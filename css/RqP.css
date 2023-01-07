@@ -1,0 +1,121 @@
+nav {
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+
+#logo {
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+
+#menu {
+
+
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+    padding-top: 18px;
+
+}
+
+#btHome {
+
+    color: #0386FF;
+    margin-left: 22%;
+}
+
+
+#btOut {
+
+    color: #565656;
+    margin-left: 22%;
+
+
+}
+
+#n1 {
+    color: #F87F28;
+    margin-left: 15%;
+}
+
+container{
+    position: absolute;
+    margin-left: 120px;
+    font-size: 20px;
+}
+#blue1{
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 120px;
+    width: 520px;
+    height: 520px;
+    background-color: #68B3F8;
+    text-align: center;
+    padding-top: 60px;
+    color: #FFFFFF;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+   
+}
+#b2{
+    font-size: 38px;
+}
+#b3{
+    width: 450px;
+    margin-left: 36px;
+}
+
+#pic1{
+    width: 280px;
+}
+#orange2{
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 640px;
+    color: #FFFFFF;
+    width: 520px;
+    height: 520px;
+    background-color: #F69A56;
+    padding-left: 50px;
+    padding-top: 60px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+#o1{
+    font-size: 24px;
+}
+#l1{
+    line-height: 40px;
+}
+#o2{
+    font-size: 24px;
+}
+#white3{
+    color: black;
+    width: 340px;
+    height: 60px;
+    background-color: white;
+    padding-top: 18px;
+    padding-left: 22px;
+    border-radius: 16px;
+   
+}
+#btRq{
+    background-color: black;
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 190px;
+    border-radius: 16px;
+    width: 220px;
+
+}
+#x{
+    position: absolute;
+    margin-left:425px;
+    margin-top:-31px;
+    cursor: pointer;
+    
+}

@@ -1,0 +1,264 @@
+body {
+    background-color: #68B3F8;
+    
+}
+.dropdown{
+    display: inline-block;
+    height: 70px;
+    margin-left: 1%;
+}
+.dropbtn {
+    
+    margin-left: 1%;
+    color: #565656;
+    width: 60px;
+
+    border: none;
+  }
+  
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    
+    
+    background-color: rgba(255, 255, 255, 0.8) ;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #565656;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: rgba(216, 216, 216, 0.8) ;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: rgba(216, 216, 216, 0.8) ;}
+
+nav {
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+
+#logo {
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+
+#menu{
+    
+    
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+    padding-top: 18px;
+    
+}
+#btHome {
+
+    color: #0386FF;
+    margin-left: 22%;
+}
+
+
+
+#n1{
+    color: #565656;
+    margin-left: 42%;
+}
+#n2{
+    color: #F87F28;
+}
+#bt4 {
+
+    color: #565656;
+    margin-left: 48%;
+}
+
+#admin {
+    position: absolute;
+    right: 0px;
+    bottom: 20px;
+    width: 240px;
+
+
+}
+
+
+container {
+    position: absolute;
+    width: 1000px;
+    height: 630px;
+    
+    margin-top: 20px;
+    margin-left: 250px;
+
+    border-radius: 15px;
+
+}
+
+#backform {
+
+    width: 1000px;
+    height: 250px;
+    background-color: white;
+
+    border-radius: 15px;
+    border: 1px solid #F69A56;
+}
+
+form {
+    width: 100%;
+    height: 200px;
+    background-color: #F69A56;
+
+    margin-top: 280px;
+    border-radius: 15px;
+    color: white;
+
+}
+
+#tr1 {
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.head {
+    display: inline-block;
+
+    margin-top: 2.5em;
+    font-size: 20px;
+}
+
+.hd1 {
+    position: absolute;
+    margin-left: 2em;
+}
+
+.hd2 {
+    position: absolute;
+    margin-left: 13em;
+}
+
+.hd3 {
+    position: absolute;
+    margin-left: 21em;
+}
+
+.hd4 {
+    position: absolute;
+    margin-left: 31em;
+}
+
+input {
+    color: #565656;
+    border-radius: 5px;
+    border: 1px solid #565656;
+    text-indent: 5px;
+}
+
+input[name="adm_name"] {
+    width: 200px;
+}
+
+input[name="adm_phone"] {
+    width: 140px;
+}
+
+input[name="adm_user"] {
+    width: 180px;
+}
+input[name="adm_pass"] {
+    width: 150px;
+}
+button[type="submit"]{
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 850px;
+
+
+}
+button[type="reset"]{
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 730px;
+
+}
+#btnForm1{
+    width: 100px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: transparent;
+    height: 40px;
+}
+#btnForm2{
+    width: 100px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: transparent;
+    height: 40px;
+}
+table{
+    position: absolute;
+    width: 975px;
+    margin-top: 10px;
+    margin-left: 10px;
+    
+    max-height: 180PX;
+    
+    
+}
+
+td,th{
+    border-bottom: #b6b6b6 1px solid;
+}
+#tr2{
+    font-size: 18px;
+    
+}
+#tr1{
+    font-size: 20px;
+}
+#Edit{
+    
+    margin-left: 30px;
+    
+    
+    font-weight: bold;
+    color: #ffff2f;
+    height: 29px;
+}
+#Remove{
+    
+    margin-left: 20px;
+    
+    
+    font-weight: bold;
+    color: #f85a5a;
+}
+#data{
+    color: Black;
+}
+#btnTable{
+    background-color: #525252;
+}
+#radio{
+    position: absolute;
+    margin-left:2em;
+    margin-top: 6em;
+    font-size: 20px;
+}
+.col1{
+    color: #F69A56;
+}

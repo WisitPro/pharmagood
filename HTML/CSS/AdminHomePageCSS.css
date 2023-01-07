@@ -1,0 +1,49 @@
+body{
+    background-color: #68B3F8;
+}
+nav{
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+#logo{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+#btHome{
+    
+    
+    margin-left: 20%;
+}
+#bt1{
+    
+    
+    margin-left: 520px;
+}
+#bt2{
+    
+    
+    margin-left: 700px;
+}
+#bt3{
+    
+    
+    margin-left: 907px;
+}
+#btHome,#bt1,#bt2,#bt3{
+    color: #565656;
+    margin-top: 13px;
+    position: absolute;
+    font-size: 20px;
+    width: 1000px;
+    
+}
+#admin{
+    position: absolute;
+right: 0px;
+bottom: 30px;
+    
+    
+}

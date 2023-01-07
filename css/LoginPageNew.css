@@ -1,0 +1,89 @@
+nav{
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+#logo{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+#menu{
+    
+    
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+    padding-top: 18px;
+}
+
+#btHome{
+    
+    color: #565656;
+    margin-left: 22%;
+}
+#btLogin {
+
+    color: #565656;
+    margin-left: 45%;
+
+}
+
+#btRegister {
+    color: #565656;
+    margin-left: 1%;
+}
+
+#pic1{
+    margin-top: 80px;
+    margin-left: 18%;
+}
+form{
+    position: absolute;
+    width: 400px;
+    height: 250px;
+    background-color: #F69A56;
+    margin-top: -400px;
+    margin-left: 53%;
+    border-radius: 20px;
+    text-align: center;
+}
+h1{
+    color: white;
+    
+}
+#user{
+    margin-top: 10px;
+    width: 320px;
+    height: 35px;
+    text-indent: 5px;
+    font-size: 20px;
+}
+#pass{
+    width: 320px;
+    height: 35px;
+    text-indent: 5px;
+    font-size: 20px;
+}
+#btnLogin{
+    border: transparent;
+    border-radius: 30px;
+    background-color: #68B3F8;
+    color: white;
+    width: 200px;
+    height: 40px;
+    font-size: 24px;
+}
+#plaster{
+    
+    margin-top: -170px;
+    margin-left: 395px;
+    transform: rotate(35deg);
+}
+#plaster2{
+    
+    margin-top: -790px;
+    margin-left: 790px;
+    transform: rotate(-35deg);
+}

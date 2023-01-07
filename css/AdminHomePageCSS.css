@@ -1,0 +1,65 @@
+body{
+    background-color: #68B3F8;
+}
+nav{
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+#logo{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+#btHome{
+    
+    
+    margin-left: 20%;
+}
+#bt1{
+    
+    
+    margin-left: 480px;
+}
+#bt2{
+    
+    
+    margin-left: 665px;
+}
+#bt3{
+    
+    
+    margin-left: 870px;
+}
+#menu{
+    
+    
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+    padding-top: 18px;
+}
+#admin{
+    position: absolute;
+right: 0px;
+bottom: 30px;
+    
+    
+}
+#date_time,#time{
+    
+    color: #ffffff;
+}
+#date_time{
+    position: absolute;
+    margin-top: 330px;
+    margin-left: 730px;
+    font-size: 38px;
+}
+#time{
+    font-size: 48px;
+    position: absolute;
+    margin-top: 360px;
+    margin-left: 810px;
+}

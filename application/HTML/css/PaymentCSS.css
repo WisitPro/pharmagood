@@ -1,0 +1,188 @@
+nav{
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+#logo{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+
+#btHome{
+    
+    
+    margin-left: 20%;
+}
+#btLogin{
+    
+    margin-left: 72%;
+}
+#btRegister{
+    
+    margin-left: 82%;
+}
+#btHome,#btLogin,#btRegister{
+    color: #565656;
+    margin-top: 13px;
+    position: absolute;
+    font-size: 20px;
+    
+}
+
+
+#p3{
+    position: absolute;
+    width: 800px;
+    height: 500px;
+    margin-left: 445px;
+    margin-top: 75px;
+    display: inline-block;
+    background: #F79A56;
+    border-radius: 20px;
+
+}
+#p4{
+    background: #000000;
+    color: #ffffff;
+    margin-left: 630px;
+    margin-top: 450px;
+    position: absolute;
+    width: 100px;
+    border-radius: 20px;
+}
+#p5{
+    position: absolute;
+    width: 500px;
+    height: 450px;
+    margin-left: 500px;
+    margin-top: 100px;
+    display: inline-block;
+    background: #68B3F8;
+    border-radius: 20px;
+
+}
+#p6{
+    color: #ffffff;
+    position: absolute;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#p7{
+    color: #ffffff;
+    position: absolute;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 120px;
+}
+#p8{
+    color: #ffffff;
+    position: absolute;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 220px;
+}
+#p9{
+    color: #ffffff;
+    position: absolute;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 320px;
+}
+#p10{
+    color: #ffffff;
+    position: absolute;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 420px;
+}
+#p11{
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 400px;
+    margin-left: 20px;
+}
+#p12{
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 400px;
+    margin-left: 420px;
+}
+#a1{
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-left: 630px;
+}
+#a2{
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 80px;
+    margin-left: 590px;
+}
+#b1{
+margin-top: 130px;
+margin-left: 590px;
+width: 150px;
+position: absolute;
+border-radius: 20px;
+border: transparent;
+}
+#a3{
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 140px;
+    margin-left: 590px;
+}
+#b2{
+    margin-top: 170px;
+    margin-left: 590px;
+    width: 150px;
+    position: absolute;
+    border-radius: 20px;
+    border: transparent;
+    }
+#a4{
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 190px;
+    margin-left: 590px;
+}    
+#b3{
+    margin-top: 220px;
+    margin-left: 590px;
+    width: 150px;
+    position: absolute;
+    border-radius: 20px;
+    border: transparent;
+    }
+    #a5{
+        color: #ffffff;
+        position: absolute;
+        font-size: 20px;
+        margin-top: 250px;
+        margin-left: 590px;
+    }
+    #b4{
+        margin-top: 285px;
+        margin-left: 590px;
+        width: 150px;
+        position: absolute;
+        border-radius: 20px;
+        border: transparent;
+        }
+        #a6{
+            color: #ffffff;
+            position: absolute;
+            font-size: 20px;
+            margin-top: 310px;
+            margin-left: 590px;
+        }

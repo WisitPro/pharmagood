@@ -1,0 +1,86 @@
+body{
+    background-color: #68B3F8;
+}
+nav{
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+#logo{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+
+
+#btHome{
+    
+    color: #565656;
+    margin-left: 22%;
+}
+#btBack{
+    color: #565656;
+    margin-left: 1%;
+}
+
+#menu{
+    
+    
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+    padding-top: 18px;
+}
+#pic1{
+    margin-top: 200px;
+    margin-left: 20%;
+}
+form{
+    position: absolute;
+    width: 400px;
+    height: 250px;
+    background-color: #F69A56;
+    margin-top: -260px;
+    margin-left: 52%;
+    border-radius: 20px;
+    text-align: center;
+}
+h1{
+    color: white;
+    
+}
+#user{
+    margin-top: 10px;
+    width: 320px;
+    height: 35px;
+    text-indent: 5px;
+    font-size: 20px;
+}
+#pass{
+    width: 320px;
+    height: 35px;
+    text-indent: 5px;
+    font-size: 20px;
+}
+#btnLogin{
+    border: transparent;
+    border-radius: 30px;
+    background-color: #68B3F8;
+    color: white;
+    width: 200px;
+    height: 40px;
+    font-size: 24px;
+}
+#plaster{
+    
+    margin-top: -30px;
+    margin-left: 100px;
+    transform: rotate(-40deg);
+}
+#plaster2{
+    
+    margin-top: -80px;
+    margin-left: 1140px;
+    transform: rotate(-35deg);
+}
