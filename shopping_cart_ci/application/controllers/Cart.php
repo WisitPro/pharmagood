@@ -25,19 +25,23 @@ class Cart extends CI_Controller{
     
     function updateItemQty(){
         $update = 0;
-        
+    
         // Get cart item info
         $rowid = $this->input->get('rowid');
-        $qty = $this->input->get('qty');
+        $price = $this->input->get('price'); // price increase
         
         // Update item in the cart
-        if(!empty($rowid) && !empty($qty)){
+        if(!empty($rowid)){
             $data = array(
                 'rowid' => $rowid,
-                'qty'   => $qty
+                'price' => $this->cart->get_item($rowid)['price'] + $price,
+                'subtotal' => $this->cart->get_item($rowid)['subtotal'] + $price
             );
             $update = $this->cart->update($data);
         }
+        
+        // Update cart subtotal
+        $this->cart->update_cart();
         
         // Return response
         echo $update?'ok':'err';
