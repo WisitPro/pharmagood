@@ -1,21 +1,26 @@
-$(function() {
-    var price = parseFloat($('#price').text());
-  
-    $('#subtract').on("click",function() {
-      var $qty = $('#qty');
-      var current = parseInt($qty.val());
-      if ( current > 0 ) {
-          $qty.val(current-1);
-          $('#Subtotal').val(price*(current-1));
-      } else {
-          $('#Subtotal').val(0);
-      }
+$(function()
+{
+    $(".add").click(function()
+    {
+        var currentVal = parseInt($(this).next(".qty").val());
+
+        if (currentVal != NaN)
+        {
+            $(this).next(".qty").val(currentVal + 1);
+         
+        }
+        
     });
-  
-    $('#add').on("click",function() {
-      var $qty = $('#qty');
-      var current = parseInt($qty.val());
-      $qty.val(current+1);
-      $('#Subtotal').val(price*(current+1));
+
+    $(".minus").click(function()
+    {
+        var currentVal = parseInt($(this).prev(".qty").val());
+        if (currentVal != NaN)
+        {
+            if(currentVal > 0){
+                    $(this).prev(".qty").val(currentVal - 1);
+                }
+
+        }
     });
-  });    
+}); 

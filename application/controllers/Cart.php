@@ -39,6 +39,7 @@ class Cart extends CI_Controller{
             );
             $update = $this->cart->update($data);
         }
+
         
         // Update cart subtotal
         $this->cart->update_cart();
@@ -55,6 +56,6 @@ class Cart extends CI_Controller{
         $remove = $this->cart->remove($rowid);
         
         // Redirect to the cart page
-        redirect('cart/');
+        redirect('cart');
     }
     
