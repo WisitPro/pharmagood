@@ -26,7 +26,7 @@ function updateCartItem(obj, rowid){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketC.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script> -->
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/qty.js"></script> -->
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
@@ -71,6 +71,7 @@ function updateCartItem(obj, rowid){
         <td id="price"><?php echo ''.$item["price"]; ?></td>
         
         <td >
+            
         <div class="input-group">
     <span class="input-group-btn">
         <button class="btn btn-default btn-subtract" type="button" name="subtract" id="subtract">-</button>
