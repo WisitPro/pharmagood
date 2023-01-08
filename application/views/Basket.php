@@ -27,6 +27,7 @@ function updateCartItem(obj, rowid){
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketC.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/qty.js"></script> -->
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
@@ -53,9 +54,9 @@ function updateCartItem(obj, rowid){
 <thead>
     <tr>
 
-        <th style="width:30%;background-color:red;" >Product</th>
+        <th style="width:30%;" >Product</th>
         <th >Price</th>
-        <th style="width:60%;">Quantity</th>
+        <th style="width:20%;">Quantity</th>
         <div id="subtractadd">
      
      </div>
@@ -69,9 +70,17 @@ function updateCartItem(obj, rowid){
         <td><?php echo $item["name"]; ?></td>
         <td id="price"><?php echo ''.$item["price"]; ?></td>
         
-        <td><input type="button" name="subtract" id="subtract" value="-"><input type="text" style="width:40%" class="form-control text-center" 
-        value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')">  
-        <input type="button" name="add" id="add" value="+"></td>
+        <td >
+        <div class="input-group">
+    <span class="input-group-btn">
+        <button class="btn btn-default btn-subtract" type="button" name="subtract" id="subtract">-</button>
+    </span>
+    <input type="text" class="form-control no-padding text-center item-quantity" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')">
+    <span class="input-group-btn">
+         <button class="btn btn-default btn-add" type="button" name="add" id="add">+</button>
+    </span>
+</div>
+
    
         <td class="text-right"><?php echo ''.$item["subtotal"].' บาท'; ?></td>
         <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete item?')?window.location.href='<?php echo base_url('cart/removeItem/'.$item["rowid"]); ?>':false;"><i class="itrash"></i> </button> </td>
@@ -105,6 +114,7 @@ function updateCartItem(obj, rowid){
         ?>
 
     </div>
+    
 
 </body>
 
