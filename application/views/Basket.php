@@ -12,6 +12,7 @@ function updateCartItem(obj, rowid){
         }
     });
 }
+
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +24,8 @@ function updateCartItem(obj, rowid){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketN.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketC.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script>
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
@@ -51,14 +51,11 @@ function updateCartItem(obj, rowid){
         <table class="table table-striped">
 <thead>
     <tr>
-
+        <th width="10%"></th>
         <th width="30%">Product</th>
-        <th width="20%">Price</th>
+        <th width="15%">Price</th>
         <th width="13%">Quantity</th>
-        <div id="subtractadd">
-     
-     </div>
-        <th width="30%" class="text-right">Subtotal</th>
+        <th width="20%" class="text-right">Subtotal</th>
         <th width="12%"></th>
     </tr>
 </thead>
@@ -66,12 +63,9 @@ function updateCartItem(obj, rowid){
     <tr>
         
         <td><?php echo $item["name"]; ?></td>
-        <td id="price"><?php echo ''.$item["price"].' THB'; ?></td>
-        
-        <td><input type="button" name="subtract" id="subtract" value="-"></input> <input type="text" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')">  
-     <input type="button" name="add" id="add" value="+"></input></td>
-   
-        <td class="text-right"><?php echo ''.$item["subtotal"].' THB'; ?></td>
+        <td><?php echo '$'.$item["price"].' USD'; ?></td>
+        <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
+        <td class="text-right"><?php echo '$'.$item["subtotal"].' USD'; ?></td>
         <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete item?')?window.location.href='<?php echo base_url('cart/removeItem/'.$item["rowid"]); ?>':false;"><i class="itrash"></i> </button> </td>
     </tr>
     <?php } }else{ ?>
@@ -84,7 +78,7 @@ function updateCartItem(obj, rowid){
         <td></td>
         <td><strong></strong></td>
         <td><strong>Cart Total</strong></td>
-        <td class="text-right"><strong><?php echo ''.$this->cart->total().' THB'; ?></strong></td>
+        <td class="text-right"><strong><?php echo '$'.$this->cart->total().' USD'; ?></strong></td>
         <td></td>
     </tr>
     <?php } ?>
@@ -95,7 +89,6 @@ function updateCartItem(obj, rowid){
         <div class="allpricetotal">
         
 
-        </div>
         <button href="checkout.php" id="btGo">ชำระเงิน</button>
 
         <?php
@@ -103,6 +96,7 @@ function updateCartItem(obj, rowid){
         ?>
 
     </div>
+    
 
 </body>
 

@@ -344,8 +344,7 @@ class controller extends CI_Controller
     }
     public function Basket(){
         
-        $data['tbl_orderList'] = $this->m_basket->Load();
-        $this->load->view('Basket', $data);
+        redirect('Cart');
     }
     public function StoreX(){
         $data['tbl_product'] = $this->m_product->Store();
