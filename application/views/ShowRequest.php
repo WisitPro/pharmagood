@@ -98,6 +98,12 @@ foreach ($tbl_request as $row) {
 </head>
 
 <body>
+<?php
+// session_destroy();
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
+?>
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">

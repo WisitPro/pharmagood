@@ -406,7 +406,7 @@ class controller extends CI_Controller
             } else {
                 $data['msg'] = "error";
             }
-
+            
             $data['tbl_request'] = $this->m_request->cur_req($data);
             
             $this->load->view('ShowRequest',$data);
@@ -441,12 +441,18 @@ class controller extends CI_Controller
             $data['req_status'] = $_REQUEST['req_status'];
             
             $success = $this->m_request->cus_req($data);
+
             if ($success) {
                 $data['msg'] = "complete";
             } else {
                 $data['msg'] = "error";
             }
-
+            // foreach($success as $row){
+            //     $req_data = array(
+            //     'req_id'=>$row->req_id
+            //     );
+            //     $this->session->request_data($req_data);
+            //     }
             $data['tbl_request'] = $this->m_request->cur_req($data);
             
             $this->load->view('ShowRequest',$data);
