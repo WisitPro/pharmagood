@@ -37,9 +37,9 @@ function updateCartItem(obj, rowid){
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
-            <a id="btHome" href="HomePage3">หน้าหลัก</a>
+            <a id="btHome" href="controller/HomePage3">หน้าหลัก</a>
 
-            <a id="btCart" href="Basket"><i class="fa-solid fa-basket-shopping"></i> ตะกร้าสินค้า</a>
+            <a id="btCart" href="Cart"><i class="fa-solid fa-basket-shopping"></i> ตะกร้าสินค้า</a>
             <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
 
@@ -121,7 +121,7 @@ function updateCartItem(obj, rowid){
 </html>
 <script>
     function Out() {
-        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = 'CusLogout';
+        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = 'controller/CusLogout';
 
 
     }
