@@ -26,6 +26,8 @@ function updateCartItem(obj, rowid){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketC.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/qty.js"></script> -->
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
@@ -49,41 +51,82 @@ function updateCartItem(obj, rowid){
     <div id="p3">
         <div id="p4">
         <table class="table table-striped">
-<thead>
+        <thead>
     <tr>
-        <th width="10%"></th>
-        <th width="30%">Product</th>
-        <th width="15%">Price</th>
-        <th width="13%">Quantity</th>
-        <th width="20%" class="text-right">Subtotal</th>
-        <th width="12%"></th>
+
+        <th style="width:30%;" >Product</th>
+        <th >Price</th>
+        <th style="width:20%;">Quantity</th>
+        <div id="subtractadd">
+
+     </div>
+        <th  class="text-right">Subtotal</th>
+        <th ></th>
     </tr>
 </thead>
-<?php if($this->cart->total_items() > 0){ foreach($cartItems as $item){    ?>
-    <tr>
+
+<!-- <script>
+    function incrementValue()
+    {   
+        var value = parseInt(document.getElementById('number').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.getElementById('number').value = value;
         
-        <td><?php echo $item["name"]; ?></td>
-        <td><?php echo '$'.$item["price"].' USD'; ?></td>
-        <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
-        <td class="text-right"><?php echo '$'.$item["subtotal"].' USD'; ?></td>
-        <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete item?')?window.location.href='<?php echo base_url('cart/removeItem/'.$item["rowid"]); ?>':false;"><i class="itrash"></i> </button> </td>
-    </tr>
-    <?php } }else{ ?>
-    <tr><td colspan="6"><p>Your cart is empty.....</p></td>
-    <?php } ?>
-    <?php if($this->cart->total_items() > 0){ ?>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><strong></strong></td>
-        <td><strong>Cart Total</strong></td>
-        <td class="text-right"><strong><?php echo '$'.$this->cart->total().' USD'; ?></strong></td>
-        <td></td>
-    </tr>
-    <?php } ?>
-</tbody>
-</table>
+    }
+    function notincrementValue()
+    {
+        var value = parseInt(document.getElementById('number').value, 0);
+        value = isNaN(value) ? 0 : value;
+        value--;
+        document.getElementById('number').value = value;
+    }
+</script> -->
+    <?php if($this->cart->total_items() > 0){ foreach($cartItems as $item){    ?>
+        <tr>
+            
+            <td><?php echo $item["name"]; ?></td>
+            <td id="price"><?php echo ''.$item["price"]; ?></td>
+            
+            <td >
+            <form id="myform">
+        <input type="button" value="+" id="add1" class="add" />       
+        <input type="text" id="qty1" value="0" class="qty"  />       
+        <input type="button" value="-" id="minus1" class="minus" /><br /><br />
+    </form>
+
+            <!-- <div class="input-group">
+        <span class="input-group-btn">
+         <input type="button" value="+" id="add1" class="add" />       
+        </span>
+        <input type="text" class="qty form-control no-padding text-center item-quantity"  id="qty1 value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')">
+        <span class="input-group-btn">
+           <input type="button" value="-" id="minus1" class="minus" /><br /><br />
+        </span>
+    </div> -->
+
+
+    
+            <td class="text-right"><?php echo ''.$item["subtotal"].' บาท'; ?></td>
+ 
+            <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete item?')?window.location.href='<?php echo base_url('cart/removeItem/'.$item["rowid"]); ?>':false;"><i class="itrash"></i> </button> </td>
+        </tr>
+        <?php } }else{ ?>
+        <tr><td colspan="6"><p>Your cart is empty.....</p></td>
+        <?php } ?>
+        <?php if($this->cart->total_items() > 0){ ?>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong></strong></td>
+            <td><strong>Cart Total</strong></td>
+            <td class="text-right"><strong><?php echo '$'.$this->cart->total().' USD'; ?></strong></td>
+            <td></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+    </table>
 
         </div>
         <div class="allpricetotal">
