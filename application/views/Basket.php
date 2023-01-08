@@ -90,16 +90,17 @@ function updateCartItem(obj, rowid){
             
             <td >
             <form id="myform">
-        <input type="button" value="+" id="add1" class="add" />       
-        <input type="text" id="qty1" value="0" class="qty"  />       
-        <input type="button" value="-" id="minus1" class="minus" /><br /><br />
+            <input style="width:30px" type="button" value="-"  class="minus" />       
+        <input style="width:60px" type="text" id="qty1" value="<?php echo $item["qty"]; ?>" class="qty"  />       
+        
+        <input style="width:30px" type="button" value="+"  class="add" />  
     </form>
 
             <!-- <div class="input-group">
         <span class="input-group-btn">
          <input type="button" value="+" id="add1" class="add" />       
         </span>
-        <input type="text" class="qty form-control no-padding text-center item-quantity"  id="qty1 value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')">
+        <input type="text" class="qty form-control no-padding text-center item-quantity"  id="qty1" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')">
         <span class="input-group-btn">
            <input type="button" value="-" id="minus1" class="minus" /><br /><br />
         </span>
