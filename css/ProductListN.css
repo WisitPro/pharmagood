@@ -1,46 +1,59 @@
 body {
     background-color: #68B3F8;
-    
+
 }
-.dropdown{
+
+.dropdown {
     display: inline-block;
     height: 70px;
     margin-left: 1%;
 }
+
 .dropbtn {
-    
+
     margin-left: 1%;
     color: #565656;
     width: 60px;
 
     border: none;
-  }
-  
-  
-  
-  .dropdown-content {
+}
+
+
+
+.dropdown-content {
     display: none;
     position: absolute;
-    
-    
-    background-color: rgba(255, 255, 255, 0.8) ;
+    border-radius: 10px;
+
+
+
     min-width: 220px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: #565656;
+}
+
+.dropdown-content a {
+    color: #ffffff;
     padding: 8px 10px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: rgba(216, 216, 216, 0.8) ;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  .dropdown:hover .dropbtn {background-color: rgba(216, 216, 216, 0.8) ;}
+    transition: 0.1s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background-color: #ffffff;
+    color: #525252;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    background-color: #50a7f8e9;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgba(255, 255, 255, 0.8);
+}
 
 nav {
     height: 62px;
@@ -55,15 +68,16 @@ nav {
 
 }
 
-#menu{
-    
-    
+#menu {
+
+
     position: absolute;
     font-size: 20px;
     width: 100%;
     padding-top: 18px;
-    
+
 }
+
 #btHome {
 
     color: #565656;
@@ -98,8 +112,8 @@ nav {
     width: 1150px;
     height: 500px;
     background-color: white;
-display: block;
-        overflow: auto;
+    display: block;
+    overflow: auto;
 
     border-radius: 15px;
     border: 1px solid #F69A56;
@@ -111,21 +125,22 @@ form {
     background-color: #F69A56;
     position: absolute;
     margin-left: 280px;
-    
-    
+
+
     border-radius: 15px;
     color: white;
 
 }
-#form{
-    
+
+#form {
+
     margin-top: 500px;
 }
 
 #tr1 {
     font-size: 18px;
     font-weight: bold;
-    
+
 }
 
 
@@ -140,7 +155,7 @@ input {
 }
 
 
-#btnForm1{
+#btnForm1 {
     width: 100px;
     font-size: 20px;
     border-radius: 30px;
@@ -150,7 +165,8 @@ input {
     margin-top: -8px;
     margin-left: 690px;
 }
-#btnForm2{
+
+#btnForm2 {
     width: 100px;
     font-size: 20px;
     border-radius: 30px;
@@ -161,99 +177,113 @@ input {
     margin-left: 800px;
 
 }
-table{
+
+table {
     position: absolute;
     max-width: 1140px;
     width: 100%;
     height: 490px;
     margin-left: 4px;
     margin-top: 4px;
-    
-    display:block;
-overflow: auto;
-    
-    
-    
-    
-    
+
+    display: block;
+    overflow: auto;
+
+
+
+
+
 }
-.dt{
+
+.dt {
     padding-left: 8px;
 }
 
 
-td,th{
+td,
+th {
     border-bottom: #b6b6b6 1px solid;
-    
-}
-#tr2{
-    font-size: 18px;
-    
 
 }
-#tr1{
+
+#tr2 {
+    font-size: 18px;
+
+
+}
+
+#tr1 {
     font-size: 20px;
     height: 50px;
 }
-#Edit{
-    
+
+#Edit {
+
     margin-left: 15px;
-    
-    
+
+
     font-weight: bold;
     color: #ffff2f;
     height: 29px;
 }
-#Remove{
-    
+
+#Remove {
+
     margin-left: 5px;
-    
-    
+
+
     font-weight: bold;
     color: #f85a5a;
 }
-#data{
+
+#data {
     color: Black;
-    
+
 }
-#btnTable{
+
+#btnTable {
     background-color: #525252;
 }
 
-.col1{
+.col1 {
     color: #F69A56;
 }
+
 .head {
-    
-    
+
+
     margin-top: 3em;
     font-size: 20px;
-    
+
 }
-select{
+
+select {
     position: absolute;
     color: #525252;
     height: 32px;
-    
+
     border-radius: 5px;
-    
-    
+
+
 }
-.pro_id{
+
+.pro_id {
     margin-left: 2em;
 }
-.pro_price{
+
+.pro_price {
     margin-left: 11.5em;
     width: 130px;
 }
 
 
-#img{
+#img {
     margin-left: 2em;
     font-size: 20px;
-    
+
 }
-#container{
+
+#container {
     margin-left: 180px;
     margin-top: 220px;
 }

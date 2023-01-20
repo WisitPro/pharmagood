@@ -1,19 +1,4 @@
-
-<script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
-
-<script>
-// Update item quantity
-function updateCartItem(obj, rowid){
-    $.get("<?php echo base_url('cart/updateItemQty/'); ?>", {rowid:rowid, qty:obj.value}, function(resp){
-        if(resp == 'ok'){
-            location.reload();
-        }else{
-            alert('Cart update failed, please try again.');
-        }
-    });
-}
-
-</script>
+<!-- <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,131 +9,176 @@ function updateCartItem(obj, rowid){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketC.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketCa.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script>
-    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/qty.js"></script> -->
+    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/qtyxprice.js"></script> -->
+    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script> -->
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
 
-<body>
+<body onload="updateTotal()">
+<script>
+    function updateTotal() {
+        var subtt = document.getElementsByName("subtotal");
+        var total = 0;
+        for (var i = 0; i < subtt.length; i++) {
+            total += parseFloat(subtt[i].value);
+        }
+        console.log(subtt.length);
+        document.getElementById("total").value = total;
+    }
+
+</script>
 
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
-            <a id="btHome" href="controller/HomePage3">หน้าหลัก</a>
+            <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">หน้าหลัก</a>
 
             <a id="btCart" href="Cart"><i class="fa-solid fa-basket-shopping"></i> ตะกร้าสินค้า</a>
             <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
 
     </nav>
-    <a onclick="window.history.back()"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
+    <a href="<?php echo base_url();?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
     <p id="p1">ตะกร้าสินค้าของฉัน</p>
 
 
     <div id="p3">
         <div id="p4">
-        <table class="table table-striped">
-        <thead>
-    <tr>
 
-        <th style="width:30%;" >Product</th>
-        <th >Price</th>
-        <th style="width:20%;">Quantity</th>
-        <div id="subtractadd">
+            <table class="table ">
+                <thead style="width: 100%;">
+                    <tr>
+                        <th style="width:340px;padding-left:16px">สินค้า</th>
+                        <th class="text-left" style="width:100px;">ราคา</th>
+                        <th style="width: 170px;" class="text-center">จำนวน</th>
+                        <th style="width:100px;" class="text-right">ราคารวม</th>
+                        <th style="width: 50px;"></th>
+                    </tr>
+                </thead>
+                <tbody class="tableRow">
+                    <?php
 
-     </div>
-        <th  class="text-right">Subtotal</th>
-        <th ></th>
-    </tr>
-</thead>
+                    if ($this->cart->total_items() > 0) {
+                        $qty = 1;
+                        foreach ($cartItems as $item) {
+                    ?>
 
-<!-- <script>
-    function incrementValue()
-    {   
-        var value = parseInt(document.getElementById('number').value, 10);
-        value = isNaN(value) ? 0 : value;
-        value++;
-        document.getElementById('number').value = value;
-        
-    }
-    function notincrementValue()
-    {
-        var value = parseInt(document.getElementById('number').value, 0);
-        value = isNaN(value) ? 0 : value;
-        value--;
-        document.getElementById('number').value = value;
-    }
-</script> -->
-    <?php if($this->cart->total_items() > 0){ foreach($cartItems as $item){    ?>
-        <tr>
-            
-            <td><?php echo $item["name"]; ?></td>
-            <td id="price"><?php echo ''.$item["price"]; ?></td>
-            
-            <td >
-            <form id="myform">
-            <input style="width:30px" type="button" value="-"  class="minus" />       
-        <input style="width:60px" type="text" id="qty1" value="<?php echo $item["qty"]; ?>" class="qty"  />       
-        
-        <input style="width:30px" type="button" value="+"  class="add" />  
-    </form>
+                            <tr class="trB">
+                                <td style="width:340px;padding-top: 12px;padding-left:16px"><strong><?php echo $item["name"]; ?></strong></td>
+                                <td style="width:100px;padding-top: 12px;" id="price">
+                                    <p><?php echo '' . $item["price"]; ?></p><input type="hidden" id="pz<?php echo $qty  ?>" value="<?php echo '' . $item["price"]; ?>" />
+                                </td>
+                                <td class="text-center" style="width: 170px;">
+                                    <input type="button" value="-" class="minus text-center qtybt" id="minus<?php echo $qty ?>" />
+                                    <input style="width:60px;cursor:default" class="qty text-center " type="text" value="1" id="qty<?php echo $qty  ?>" readonly />
+                                    <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" />
+                                </td>
 
-            <!-- <div class="input-group">
-        <span class="input-group-btn">
-         <input type="button" value="+" id="add1" class="add" />       
-        </span>
-        <input type="text" class="qty form-control no-padding text-center item-quantity"  id="qty1" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')">
-        <span class="input-group-btn">
-           <input type="button" value="-" id="minus1" class="minus" /><br /><br />
-        </span>
-    </div> -->
+                                <td style="padding-top: 12px;width:100px;" >
+                                    <input class="text-right" style="width:50px;border:transparent;background:transparent;cursor:default;" disabled name="subtotal" type="text" class="subtt" id="subtt<?php echo $qty ?>" value=" <?php echo $item["subtotal"] ?>" >
+                                        
+                                        <script>
+                                            document.getElementById("add<?php echo $qty ?>").onclick = function() {
+                                                var pz = document.getElementById("pz<?php echo $qty ?>");
+                                                var qty = document.getElementById("qty<?php echo $qty ?>");
+                                                if (qty.value >= 5) {
 
+                                                    return;
+                                                }
+                                                qty.value++;
+                                                updateTotal();
+                                                document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
 
-    
-            <td class="text-right"><?php echo ''.$item["subtotal"].' บาท'; ?></td>
- 
-            <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete item?')?window.location.href='<?php echo base_url('cart/removeItem/'.$item["rowid"]); ?>':false;"><i class="itrash"></i> </button> </td>
-        </tr>
-        <?php } }else{ ?>
-        <tr><td colspan="6"><p>Your cart is empty.....</p></td>
-        <?php } ?>
-        <?php if($this->cart->total_items() > 0){ ?>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><strong></strong></td>
-            <td><strong>Cart Total</strong></td>
-            <td class="text-right"><strong><?php echo '$'.$this->cart->total().' USD'; ?></strong></td>
-            <td></td>
-        </tr>
-        <?php } ?>
-    </tbody>
-    </table>
+                                            }
+                                            document.getElementById("minus<?php echo $qty ?>").onclick = function() {
+                                                var pz = document.getElementById("pz<?php echo $qty ?>");
+                                                var qty = document.getElementById("qty<?php echo $qty ?>");
+                                                if (qty.value <= 1) {
 
+                                                    return;
+                                                }
+                                                qty.value--;
+                                                document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
+                                                updateTotal();
+                                            }
+                                        </script>
+                                    <span> บาท</span>
+                                </td>
+
+                                <td style="width: 50px;"><i class="fa fa-trash-o" style="padding-top: 2px;font-size:22px;color:red;cursor: pointer;" class="btn btn-sm btn-danger" onclick="return confirm('คุณต้องการลบรายการนี้หรือไม่')?
+                            window.location.href='<?php echo base_url('/index.php/controller/removeItem/' . $item["rowid"]); ?>':false;"></i> </td>
+                            </tr>
+                        <?php
+                            $qty++;
+                        }
+                    } else { ?>
+                        <strong>
+                            <h2 style="position:absolute;margin-left:250px;margin-top:180px">ไม่มีสินค้าในตะกร้าสินค้า</h2>
+                        </strong>
+                    <?php }
+                    ?>
+                </tbody>
+            </table>
         </div>
-        <div class="allpricetotal">
-        
-
-        <button href="checkout.php" id="btGo">ชำระเงิน</button>
+        <?php if ($this->cart->total_items() > 0) { ?>
+            <span id="totalTxt">ราคาสุทธิ :<input  disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input> <span>บาท</span>
+            
+            
+            <span id="btG">
+                <button id="btGo">ชำระเงิน</button>
+            </span>
 
         <?php
-        // mysql_close();
-        ?>
 
+        } ?>
     </div>
-    
-
 </body>
 
 </html>
 <script>
+    // const subtotal = document.getElementByClassName('subtt')[0];
+    // console.log(subtotal);
+    // subotal.getElementByClassName('subtt')[0].innerHTML = "New text!";
+</script>
+<script>
     function Out() {
-        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = 'controller/CusLogout';
-
+        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/controller/CusLogout'); ?>';
 
     }
+
+    function updateCartItem(obj, rowid) {
+        $.get("<?php echo base_url('cart/updateItemQty/'); ?>", {
+            rowid: rowid,
+            qty: obj.value
+        }, function(resp) {
+            if (resp == 'ok') {
+                location.reload();
+            } else {
+                alert('Cart update failed, please try again.');
+            }
+        });
+    }
+
+    // function updatePrice() {
+    //     // Get the quantity value
+    //     var quantity = document.getElementByClassName("qty").value;
+    //     console.log(quantity)
+
+    //     // Get the unit price
+    //     var unitPrice = document.getElementByClassName("pz").value;
+    //     console.log(unitPrice)
+
+    //     // Calculate the total price
+    //     var totalPrice = quantity * unitPrice;
+    //     console.log(totalPrice)
+
+    //     // Update the total price display
+    //     document.getElementById("subtt").innerHTML = totalPrice;
+    // }
+
+    
+
 </script>

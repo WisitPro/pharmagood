@@ -1,7 +1,7 @@
 
 <?php 
  
-if (!$_SESSION["adm_id"]){  //check session
+if (!$_SESSION["adm_user"]){  //check session
  
 	  Header("Location: AdminLoginPage.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form 
  

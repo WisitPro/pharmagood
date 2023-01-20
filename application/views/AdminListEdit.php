@@ -29,18 +29,18 @@ foreach ($tbl_admin as $row) {
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
-        <a id="btHome" href="AdminHomePage">หน้าหลัก</a>
-            <a id="bt1" href="AdminListPage">ข้อมูลผู้ใช้งาน</a>
+         <p id="btHome"  style="margin-left:340px;color:#0386FF">ฟอร์มแก้ไขข้อมูลผู้ใช้</p>
+           <!-- <a id="bt1" href="AdminListPage">ข้อมูลผู้ใช้งาน</a>
             <a id="bt5" href="ProductListPage">รายการสินค้า</a>
             <a id="bt2" href="">ข้อมูลร้องขอคำปรึกษา</a>
             <a id="bt3" href="">ข้อมูลการชำระเงิน</a>
-            <a id="bt4"  onclick="AmOut()" style="cursor:pointer">ออกจากระบบ</a>
+            <a id="bt4"  onclick="AmOut()" style="cursor:pointer">ออกจากระบบ</a> -->
             <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
             <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
         </div>
 
     </nav>
-    <p style="font-size:20px; margin-left:190px; color:white">สำหรับเจ้าของกิจการ</p>
+    <p style="font-size:20px; margin-left:155px; color:white">สำหรับเจ้าของกิจการ</p>
 
     <container>
         
@@ -94,16 +94,14 @@ foreach ($tbl_admin as $row) {
 
 
 
-                <button id="btnForm1" onclick="history.back()" style="background-color:#FF5353">ยกเลิก</button>
-                <button id="btnForm2" type="submit" style="background-color:#56FF5D">บันทึก</button>
+                <button id="btnForm1" onclick="return confirm('ยกเลิกการแก้ไขข้อมูล');" onclick="history.back()" style="background-color:#FF5353">ยกเลิก</button>
+                <button id="btnForm2" onclick="return confirm('ยืนยันการแก้ไขข้อมูล');" type="submit" style="background-color:#56FF5D">บันทึก</button>
 
             </form>
         </div>
     </container>
 
-    <div>
-
-    </div>
+    
 
 
 

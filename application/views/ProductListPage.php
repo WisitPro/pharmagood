@@ -41,7 +41,7 @@ foreach ($tbl_product as $row) {
         </div>
 
     </nav>
-    <p style="font-size:20px; margin-left:190px; color:white">สำหรับเจ้าของกิจการ</p>
+    <p style="font-size:20px; margin-left:155px; color:white">สำหรับเจ้าของกิจการ</p>
 
 
     <form action="Product_Add" method="POST">
@@ -49,10 +49,10 @@ foreach ($tbl_product as $row) {
         <!-- <input type="text" name="pro_id"  style="visibility:hidden ;position:absolute" value="<?php echo $row->pro_id + 1 ?>"> -->
 
 
-        <input type="text" class="head pro_id" name="pro_id" placeholder="รหัสสินค้า*" maxlength="13" onkeypress='validate(event)'>
-        <input type="text" class="head pro_name" name="pro_name" placeholder="ชื่อสินค้า*">
-        <select name="pro_type" class="head ">
-            <option disabled selected hidden style="color:#FF5353;">ประเภทยารักษา</option>
+        <input type="text" class="head pro_id" name="pro_id" placeholder="รหัสสินค้า*" maxlength="13" onkeypress='validate(event)' required>
+        <input type="text" class="head pro_name" name="pro_name" placeholder="ชื่อสินค้า*" required>
+        <select name="pro_type" class="head " required>
+            <option disabled selected hidden style="color:#FF5353;" >ประเภทยารักษา</option>
             <option>ยาลดกรด แก้ท้องอืด</option>
             <option>ยาบรรเทาอาการท้องเสีย</option>
             <option>ยาระบายแก้ท้องผูก</option>
@@ -72,11 +72,11 @@ foreach ($tbl_product as $row) {
 
 
 
-        <input type="text" class="head pro_price" name="pro_price" placeholder="ราคา*" onkeypress='validate(event)'>
+        <input type="text" class="head pro_price" name="pro_price" placeholder="ราคา*" onkeypress='validate(event)' required>
 
 
         <br><br>
-        <p id="img">ลิ้งค์รูปภาพ: <input type="text" class=" pro_img" name="pro_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <p id="img">ลิ้งค์รูปภาพ: <input type="text" class=" pro_img" name="pro_img" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             <input type="radio" name="pro_kind" value="ยาทั่วไป" checked> ยาทั่วไป &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -142,7 +142,7 @@ foreach ($tbl_product as $row) {
                             <td class="data dt"><?php echo $row->pro_kind; ?></td>
                             <td id="btnTable">
                                 <a id="Edit" href='Product_Edit?pro_id=<?php echo $row->pro_id; ?>'>แก้ไข</a>
-                                <a id="Remove" href='Product_Remove?pro_id=<?php echo $row->pro_id; ?>'>ลบ</a>
+                                <a id="Remove" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่');" href='Product_Remove?pro_id=<?php echo $row->pro_id; ?>'>ลบ</a>
 
                             </td>
                         </tr></tbody>

@@ -1,6 +1,16 @@
 To do list{
-    
+    หน้า insert product ติดเรื่อง primary key
 }
 
 Line token
 2I4JlM2R0DEAYt9nTHnbz2lfIXkiVQ2Twx4YOfMMnmj
+
+<td class="text-center" style="width: 170px;">
+                                    <input  type="button" value="-" class="minus text-center qtybt"  
+                                    onclick='javascript:
+                                        document.getElementById("qty<?php echo $qty  ?>").value--;
+                                         $("#subtt<?php echo $qty ?>").text($("#pz<?php echo $qty ?>").val() * $("#qty<?php echo $qty ?>").val());'
+                                         />
+                                    <input  style="width:60px" class="qty text-center " type="text" value="1" id="qty<?php echo $qty  ?>"/>
+                                    <input type="button" value="+" class="add text-center qtybt"  onclick='javascript:document.getElementById("qty<?php echo $qty  ?>").value++; $("#subtt<?php echo $qty ?>").text($("#pz<?php echo $qty ?>").val() * $("#qty<?php echo $qty ?>").val());' />
+                                </td>

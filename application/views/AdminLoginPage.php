@@ -26,11 +26,11 @@
     
     <form action="AdminLoginPage2" method="POST">
         <h1>เข้าสู่ระบบ</h1>
-        <input type="text" name="adm_user" id="user" placeholder="ชื่อผู้ใช้"><br>
+        <input type="text" name="adm_user" id="user" placeholder="ชื่อผู้ใช้" value="admin"><br>
         <font color="red">
             <?php echo form_error('adm_user'); ?>
         </font><br>
-        <input type="password" name="adm_pass" id="pass" placeholder="รหัสผ่าน"><br>
+        <input type="password" name="adm_pass" id="pass" placeholder="รหัสผ่าน" value="12345"><br>
         <font color="red">
             <?php echo form_error('adm_pass'); ?>
         </font><br>

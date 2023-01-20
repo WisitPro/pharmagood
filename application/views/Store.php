@@ -45,15 +45,18 @@
             ?>
                 <div class="cardGap">
                     <div class="card">
+                        
                         <div class="img">
-                            <img src="<?php echo $row['pro_img'] ?>" alt="ไม่มีรูฟภาพ" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
+                        
+                            <img src="<?php echo $row['pro_img'] ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
                         </div>
-                        <p class="head"><?php echo $row['pro_name'] ?></p>
+                        <p class="head hhhhh" ><?php echo $row['pro_name'] ?></p>
                         <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
                         <p class="detail"><?php echo $row['pro_type'] ?></p>
                         <a href="<?php echo base_url('/index.php/Products/AddtoCart/'.$row['pro_id']); ?>"><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
                     </div>
                 </div>               
+                
             <?php
                 $item++;
             }

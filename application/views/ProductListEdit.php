@@ -30,7 +30,7 @@
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
-            <a id="btHome" >ฟอร์มแก้ไขข้อมูลสินค้า</a>
+            <p id="btHome" >ฟอร์มแก้ไขข้อมูลสินค้า</p>
             
             
             <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->

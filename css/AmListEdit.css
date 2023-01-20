@@ -62,6 +62,7 @@ nav {
     position: absolute;
     right: 0px;
     bottom: 30px;
+    width: 240px;
 
 
 }
@@ -69,10 +70,10 @@ nav {
 container {
     position: absolute;
     width: 1000px;
-    height: 630px;
+    height: 430px;
     
     margin-top: 100px;
-    margin-left: 450px;
+    margin-left: 250px;
 
     border-radius: 15px;
 

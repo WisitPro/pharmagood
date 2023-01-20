@@ -24,7 +24,15 @@ class m_product extends CI_Model
         // Return fetched data
         return !empty($result) ? $result : false;
     }
+    public function Product()
+    {
+        $sql = "select * from tbl_product 
+        ORDER BY CONVERT (pro_kind using tis620) ASC,pro_type ";
 
+        $qr = $this->db->query($sql);
+
+        return $qr->result();
+    }
     public function Store()
     {
         $sql = "select * from tbl_product where 

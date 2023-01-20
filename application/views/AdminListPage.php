@@ -81,7 +81,7 @@ foreach ($tbl_admin as $row) {
                         <td class="data"><?php echo $row->adm_role; ?></td>
                         <td id="btnTable">
                             <a id="Edit" href='Admin_Edit?adm_id=<?php echo $row->adm_id; ?>'>แก้ไข</a>
-                            <a id="Remove" href='Admin_Remove?adm_id=<?php echo $row->adm_id; ?>'>ลบ</a>
+                            <a id="Remove" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่');" href='Admin_Remove?adm_id=<?php echo $row->adm_id; ?>'>ลบ</a>
 
                         </td>
                     </tr>
@@ -97,38 +97,38 @@ foreach ($tbl_admin as $row) {
 
             <form action="AddAdmin" method="POST">
                 <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มเพิ่มผู้ใช้</p>
-                <input type="text" name="adm_id"  style="visibility:hidden ;position:absolute" value="<?php echo $row->adm_id+1 ?>">
+                <input required type="text" name="adm_id"  style="visibility:hidden ;position:absolute" value="<?php echo $row->adm_id+1 ?>">
                 
                 
 
                 <p class="head hd1">ชื่อ-นามสกุล*<br>
-                    <input type="text" name="adm_name">
+                    <input required type="text" name="adm_name">
                     <font color="red">
                         <?php echo form_error('adm_name'); ?>
                     </font>
                 </p>
                 <p class="head hd2">เบอร์โทร*<br>
-                    <input type="text" name="adm_phone">
+                    <input required type="text" name="adm_phone">
                     <font color="red">
                         <?php echo form_error('adm_phone'); ?>
                     </font>
                 </p>
                 <p class="head hd3">ชื่อผู้ใช้*<br>
-                    <input type="text" name="adm_user">
+                    <input required type="text" name="adm_user">
                     <font color="red">
                         <?php echo form_error('adm_user'); ?>
                     </font>
                 </p>
                 <p class="head hd4">รหัสผ่าน*<br>
-                    <input type="text" name="adm_pass">
+                    <input required type="text" name="adm_pass">
                     <font color="red">
                         <?php echo form_error('adm_pass'); ?>
                     </font>
                 </p>
                 <p id="radio">
-                    <input type="radio" name="adm_role" value="เจ้าของกิจการ"> เจ้าของกิจการ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input  type="radio" name="adm_role" value="เจ้าของกิจการ"> เจ้าของกิจการ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <input type="radio" name="adm_role" value="เภสัชกร" checked> เภสัชกร
+                    <input  type="radio" name="adm_role" value="เภสัชกร" checked> เภสัชกร
                 </p>
 
                 <br>
