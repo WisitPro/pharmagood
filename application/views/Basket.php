@@ -25,7 +25,7 @@
         for (var i = 0; i < subtt.length; i++) {
             total += parseFloat(subtt[i].value);
         }
-        console.log(subtt.length);
+       
         document.getElementById("total").value = total;
     }
 
@@ -85,12 +85,12 @@
                                                 var pz = document.getElementById("pz<?php echo $qty ?>");
                                                 var qty = document.getElementById("qty<?php echo $qty ?>");
                                                 if (qty.value >= 5) {
-
+                                                
                                                     return;
-                                                }
+                                                }    
                                                 qty.value++;
-                                                updateTotal();
                                                 document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
+                                                updateTotal();
 
                                             }
                                             document.getElementById("minus<?php echo $qty ?>").onclick = function() {
@@ -103,6 +103,7 @@
                                                 qty.value--;
                                                 document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
                                                 updateTotal();
+                                                
                                             }
                                         </script>
                                     <span> บาท</span>
@@ -125,11 +126,14 @@
         </div>
         <?php if ($this->cart->total_items() > 0) { ?>
             <span id="totalTxt">ราคาสุทธิ :<input  disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input> <span>บาท</span>
-            
-            
-            <span id="btG">
+            <span id="buttonbar">
+                <button id="btSv">บันทึกตะกร้า</button>
                 <button id="btGo">ชำระเงิน</button>
             </span>
+            
+            
+                
+            
 
         <?php
 
