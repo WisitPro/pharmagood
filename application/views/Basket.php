@@ -1,4 +1,12 @@
 <!-- <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> -->
+<!-- <?php
+
+echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>';
+?> -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,11 +17,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketCa.css">
+    <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketCa.css">
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/qtyxprice.js"></script> -->
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script> -->
-    <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
 
@@ -36,12 +44,12 @@
         <div id="menu">
             <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">หน้าหลัก</a>
 
-            <a id="btCart" href="Cart"><i class="fa-solid fa-basket-shopping"></i> ตะกร้าสินค้า</a>
+            <a id="btCart"  style="cursor:default;text-decoration: none;"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0)?' ตะกร้าสินค้า ('.$this->cart->total_items().')':' ไม่มีสินค้าในตะกร้า'; ?></a>
             <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
 
     </nav>
-    <a href="<?php echo base_url();?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
+    <a href="<?php echo base_url();?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-prescription-bottle-medical"></i> ดูสินค้า</button></a>
     <p id="p1">ตะกร้าสินค้าของฉัน</p>
 
 
@@ -73,8 +81,8 @@
                                 </td>
                                 <td class="text-center" style="width: 170px;">
                                     <input type="button" value="-" class="minus text-center qtybt" id="minus<?php echo $qty ?>" />
-                                    <input style="width:60px;cursor:default" class="qty text-center " type="text" value="1" id="qty<?php echo $qty  ?>" readonly />
-                                    <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" />
+                                    <input style="width:60px;cursor:default" class="qty text-center " type="text" value="<?php echo $item["qty"] ?>" id="qty<?php echo $qty  ?>" readonly />
+                                    <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/Cart/updateItemQty/'.$item["rowid"]); ?>"/>
                                 </td>
 
                                 <td style="padding-top: 12px;width:100px;" >
@@ -89,8 +97,12 @@
                                                     return;
                                                 }    
                                                 qty.value++;
+                                                
                                                 document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
                                                 updateTotal();
+                                                window.location='<?php echo base_url('/index.php/Cart/updateItemQty/'.$item["rowid"].'/'); ?>'+qty.value;
+
+                                                
 
                                             }
                                             document.getElementById("minus<?php echo $qty ?>").onclick = function() {
@@ -102,7 +114,9 @@
                                                 }
                                                 qty.value--;
                                                 document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
-                                                updateTotal();
+                                                updateTotal();  
+                                                window.location='<?php echo base_url('/index.php/Cart/updateItemQty2/'.$item["rowid"].'/'); ?>'+qty.value;
+                                                
                                                 
                                             }
                                         </script>
@@ -127,10 +141,10 @@
         <?php if ($this->cart->total_items() > 0) { ?>
             <span id="totalTxt">ราคาสุทธิ :<input  disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input> <span>บาท</span>
             <span id="buttonbar">
-                <button id="btSv">บันทึกตะกร้า</button>
-                <button id="btGo">ชำระเงิน</button>
+                
+                <a href="<?php echo base_url('/index.php/controller/Ordering'); ?>"><button id="btGo" >ชำระเงิน</button></a>
             </span>
-            
+           
             
                 
             

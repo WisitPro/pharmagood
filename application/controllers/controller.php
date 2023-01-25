@@ -15,11 +15,9 @@ class controller extends CI_Controller
         $this->load->model('m_product');
         $this->load->model('m_cart');
         $this->load->model('m_request');
+        $this->load->model('m_order');
         // Other
         $this->load->helper('form', 'url');
-
-
-
     }
     public function AdminHomePage()
     {
@@ -71,8 +69,6 @@ class controller extends CI_Controller
                 } elseif ($userdata['adm_role'] == "เภสัชกร") {
                     $this->load->view('PhaHomePage');
                 }
-
-
             } else { //ไม่พบข้อมูลใน database
                 $data['error'] = "username or password incorrect";
                 echo "<script>";
@@ -83,8 +79,6 @@ class controller extends CI_Controller
             }
             /**** */
         }
-
-
     }
     public function removeItem($rowid)
     {
@@ -108,6 +102,8 @@ class controller extends CI_Controller
     }
     public function HomePage3()
     {
+        
+        $this->session->set_flashdata('order_success',false);
 
         $this->load->view('HomePage3');
     }
@@ -312,8 +308,7 @@ class controller extends CI_Controller
                 $data['msg'] = "complete";
             } else {
                 $data['tbl_product'] = $this->m_product->Product();
-            $this->load->view('ProductListPage', $data);
-                
+                $this->load->view('ProductListPage', $data);
             }
 
             $data['tbl_product'] = $this->m_product->Product();
@@ -405,8 +400,6 @@ class controller extends CI_Controller
             echo "alert(\"เกิดข้อผิดพลาดในการส่งคำร้องขอ \");";
             echo "window.history.back()";
             echo "</script>";
-
-
         } else {
             $data['req_id'] = $_REQUEST['req_id'];
             $data['cus_id'] = $_REQUEST['cus_id'];
@@ -424,11 +417,7 @@ class controller extends CI_Controller
             $data['tbl_request'] = $this->m_request->cur_req($data);
 
             $this->load->view('ShowRequest', $data);
-
-
         }
-
-
     }
     public function RqF()
     {
@@ -446,8 +435,6 @@ class controller extends CI_Controller
             echo "alert(\"เกิดข้อผิดพลาดในการส่งคำร้องขอ \");";
             echo "window.history.back()";
             echo "</script>";
-
-
         } else {
             $data['req_id'] = $_REQUEST['req_id'];
             $data['cus_id'] = $_REQUEST['cus_id'];
@@ -471,24 +458,81 @@ class controller extends CI_Controller
             $data['tbl_request'] = $this->m_request->cur_req($data);
 
             $this->load->view('ShowRequest', $data);
-
-
         }
-
     }
     public function ShowRq()
     {
 
         $this->load->view('ShowRequest');
     }
+    public function Ordering()
+    {
+        date_default_timezone_set("Asia/Bangkok");
+        $ordermo = gmdate('His');
+        $user_data = $this->session->userdata();
+        $data["order_id"] = $ordermo;
+        $data["cus_id"] = $user_data['cus_id'];
+
+        $data["order_datetime"] = date('Y-m-d H:i:s');
+        $data["order_total"] = $this->cart->total();
+        $data["order_status"] = "ยังไม่ชำระเงิน";
+        $insertOrder = $this->m_order->insert($data);
+        $getOrderno = $ordermo;
+
+        if ($insertOrder) {
+
+            $cartItems = $this->cart->contents();
+            $ordItemData = array();
+            $i = 0;
+            foreach ($cartItems as $item) {
+                $ordItemData[$i]['ol_id']     = "";
+                $ordItemData[$i]['order_id']     = $getOrderno;
+                $ordItemData[$i]['pro_id']     = $item['id'];
+                $ordItemData[$i]['qty']     = $item['qty'];
+                $ordItemData[$i]['sub_total']     = $item["subtotal"];
+                $i++;
+            }
+            if (!empty($ordItemData)) {
+                // Insert order items
+                $insertOrderItems = $this->m_order->insertOrderItems($ordItemData);
+
+                if ($insertOrderItems) {
+                    // Remove items from the cart
+
+                    $ordersession = array(
+                        'order_id' => $getOrderno,
+
+                    );
+
+                    $this->session->set_userdata($ordersession);
 
 
+                    redirect('controller/Payment');
+                }
+            }
+        }
+    }
+    public function Payment()
+    {
+
+        $data['cartItems'] = $this->cart->contents();
+        $this->load->view('Payment', $data);
+    }
+    public function Checkout()
+    {
+        $getOrder = $this->session->userdata();
+        $data["order_id"] = $getOrder['order_id'];
+        $update = $this->m_order->update($data);
 
 
+        $this->session->unset_userdata('order_id');
+        $this->cart->destroy();
+        $this->session->set_flashdata('order_success', true);
+        
+       
 
 
+        $this->load->view('Homepage3');
 
-
+    }
 }
-
-?>

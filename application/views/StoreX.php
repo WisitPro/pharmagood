@@ -62,7 +62,7 @@ foreach ($tbl_product as $row) {
                         <p class="head hhhhh" ><?php echo $row['pro_name'] ?></p>
                         <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
                         <p class="detail"><?php echo $row['pro_type'] ?></p>
-                        <a href="<?php echo base_url('/index.php/Products/AddtoCart/'.$row['pro_id']); ?>"><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
+                        <a ><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
                     </div>
                 </div>               
                 

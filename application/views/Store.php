@@ -1,9 +1,10 @@
-<?php
-// session_destroy();
-// echo '<pre>';
-// var_dump($_SESSION);
-// echo '</pre>';
-?>
+<!-- <?php
+        // session_destroy();
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,9 +25,9 @@
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
-            <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3')?>">หน้าหลัก</a>
+            <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3') ?>">หน้าหลัก</a>
 
-            <a id="btCart" href="<?php echo base_url('/index.php/controller/Basket')?>"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0)?' ตะกร้าสินค้า ('.$this->cart->total_items().')':' ไม่มีสินค้าในตะกร้า'; ?></a>
+            <a id="btCart" href="<?php echo base_url('/index.php/controller/Basket') ?>"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ไม่มีสินค้าในตะกร้า'; ?></a>
             <a id="btOut" onclick="Out()" style="cursor:pointer">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
             <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
@@ -45,18 +46,18 @@
             ?>
                 <div class="cardGap">
                     <div class="card">
-                        
+
                         <div class="img">
-                        
+
                             <img src="<?php echo $row['pro_img'] ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
                         </div>
-                        <p class="head hhhhh" ><?php echo $row['pro_name'] ?></p>
+                        <p class="head hhhhh"><?php echo $row['pro_name'] ?></p>
                         <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
                         <p class="detail"><?php echo $row['pro_type'] ?></p>
-                        <a href="<?php echo base_url('/index.php/Products/AddtoCart/'.$row['pro_id']); ?>"><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
+                        <a href="<?php echo base_url('/index.php/Products/AddtoCart/' . $row['pro_id']); ?>"><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
                     </div>
-                </div>               
-                
+                </div>
+
             <?php
                 $item++;
             }

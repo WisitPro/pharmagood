@@ -98,7 +98,7 @@ nav{
     display: inline-block;
     background: #F79A56;
     border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 
 }
 #p4{
@@ -208,7 +208,7 @@ td{
 }
 #buttonbar{
     
-    margin-left: 130px;
+    margin-left: 270px;
     
 }
 .qtybt{
