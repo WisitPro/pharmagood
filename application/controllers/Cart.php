@@ -17,12 +17,14 @@ class Cart extends CI_Controller
 
     function index()
     {
+        
         $data = array();
 
         // Retrieve cart data from the session
         $data['cartItems'] = $this->cart->contents();
 
         // Load the cart view
+        $this->session->unset_userdata('order_id');
         $this->load->view('Basket', $data);
     }
 

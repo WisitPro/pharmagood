@@ -5,18 +5,19 @@ class controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
-        // Load library
+        //libraly   
         $this->load->library('cart');
         $this->load->library('form_validation');
-        // Load model
+
+        //model
         $this->load->model('m_admin');
         $this->load->model('m_customer');
         $this->load->model('m_product');
-        $this->load->model('m_cart');
         $this->load->model('m_request');
         $this->load->model('m_order');
-        // Other
+        $this->load->model('m_payprove');
+
+        //helper
         $this->load->helper('form', 'url');
     }
     public function AdminHomePage()
@@ -102,8 +103,8 @@ class controller extends CI_Controller
     }
     public function HomePage3()
     {
-        
-        $this->session->set_flashdata('order_success',false);
+
+        $this->session->set_flashdata('order_success', false);
 
         $this->load->view('HomePage3');
     }
@@ -467,17 +468,20 @@ class controller extends CI_Controller
     }
     public function Ordering()
     {
-        date_default_timezone_set("Asia/Bangkok");
-        $ordermo = gmdate('His');
-        $user_data = $this->session->userdata();
-        $data["order_id"] = $ordermo;
-        $data["cus_id"] = $user_data['cus_id'];
+        
 
-        $data["order_datetime"] = date('Y-m-d H:i:s');
-        $data["order_total"] = $this->cart->total();
-        $data["order_status"] = "ยังไม่ชำระเงิน";
+        date_default_timezone_set("Asia/Bangkok");
+        $orderno = gmdate('sHms');
+        $orderno2 = $orderno;
+        $user_data = $this->session->userdata();
+        $data['order_id'] = $orderno2;
+        $data['cus_id'] = $user_data['cus_id'];
+
+        $data['order_datetime'] = date('Y-m-d H:i:s');
+        $data['order_total'] = $this->cart->total();
+        $data['order_status'] = 'ยังไม่ชำระเงิน';
         $insertOrder = $this->m_order->insert($data);
-        $getOrderno = $ordermo;
+
 
         if ($insertOrder) {
 
@@ -486,7 +490,7 @@ class controller extends CI_Controller
             $i = 0;
             foreach ($cartItems as $item) {
                 $ordItemData[$i]['ol_id']     = "";
-                $ordItemData[$i]['order_id']     = $getOrderno;
+                $ordItemData[$i]['order_id']     = $orderno2;
                 $ordItemData[$i]['pro_id']     = $item['id'];
                 $ordItemData[$i]['qty']     = $item['qty'];
                 $ordItemData[$i]['sub_total']     = $item["subtotal"];
@@ -498,11 +502,12 @@ class controller extends CI_Controller
 
                 if ($insertOrderItems) {
                     // Remove items from the cart
-
+                    $this->session->unset_userdata('order_id');
                     $ordersession = array(
-                        'order_id' => $getOrderno,
+                        'order_id' => $orderno2,
 
                     );
+
 
                     $this->session->set_userdata($ordersession);
 
@@ -520,19 +525,35 @@ class controller extends CI_Controller
     }
     public function Checkout()
     {
+        $config['upload_path'] = '../images/';
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('pay_slip');
+        
+        $data = array('upload_data' => $this->upload->data());
+
+
         $getOrder = $this->session->userdata();
-        $data["order_id"] = $getOrder['order_id'];
+        $data['order_id'] = $getOrder['order_id'];
         $update = $this->m_order->update($data);
+
+        $this->form_validation->set_rules('pay_slip', 'pay_slip');
+        date_default_timezone_set("Asia/Bangkok");
+        $orderno = date('sHsmis');
+        $data['pay_id'] = $orderno;
+        $data['order_id'] = $getOrder['order_id'];
+        $data['pay_slip'] = $_REQUEST['pay_slip'];
+        $data['adm_id'] = "";
+        $data['prove_status'] = "ชำระเงินแล้ว";
+        $paysuccess = $this->m_payprove->payprove($data);
 
 
         $this->session->unset_userdata('order_id');
         $this->cart->destroy();
         $this->session->set_flashdata('order_success', true);
-        
-       
+
+
 
 
         $this->load->view('Homepage3');
-
     }
 }

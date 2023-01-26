@@ -5,6 +5,7 @@ echo '<pre>';
 var_dump($_SESSION);
 echo '</pre>';
 ?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,7 +94,10 @@ echo '</pre>';
                     ?>
                 </tbody>
             </table>
+            
         </div>
+        
+        <form action="<?php echo base_url('/index.php/controller/Checkout'); ?>">
         <div id="paymentinput">
             <p id="a2">เลขที่บัญชี :</p>
             <input  type="text"  class="in"  readonly ></input><br><br>
@@ -102,15 +106,18 @@ echo '</pre>';
             <p >ชื่อบัญชี :</p>
             <input  type="text"  class="in" readonly ></input><br><br>
             <p ><span style="color:red">* </span>สลิปโอนเงิน :</p>
-            <input id="slip" type="file" accept="image/png, image/gif, image/jpeg" required />
+            <input id="slip" type="file" name="pay_slip" accept="image/png, image/gif, image/jpeg" required />
         </div>
 
         <?php if ($this->cart->total_items() > 0) { ?>
             <span id="totalTxt">ราคาสุทธิ :<input disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input> <span>บาท</span>
                 <span id="buttonbar">
 
-                <a href="<?php echo base_url('/index.php/controller/Checkout'); ?>"><button  id="btGo"  >ยืนยันการชำระเงิน</button></a>
+                <!-- <a href="<?php echo base_url('/index.php/controller/Checkout'); ?>"> -->
+                <button  id="btGo" type="submit" >ยืนยันการชำระเงิน</button>
+            <!-- </a> -->
                 </span>
+                </form>
 
             <?php
 

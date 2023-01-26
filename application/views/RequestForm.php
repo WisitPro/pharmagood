@@ -45,7 +45,7 @@
 
         <form id="form2" action="sent_to_line" method="post">
         <i  id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="history.back()"></i>
-            <h1><img src="<?php echo base_url(); ?>images/image 4.png"> กรอกข้อมูลเพื่อใช้บริการ</h1>
+            <h1><img src="<?php echo base_url(); ?>images/image 4.png"> กรอกข้อมูลอาการ</h1>
             <input style="visibility: hidden;position:absolute;" type="text" name="req_id" value=" " ></input>
 
             <input style="visibility: hidden;position:absolute;" type="text" name="cus_id" value="<?php echo $id ?> " ></input>

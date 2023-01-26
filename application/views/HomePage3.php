@@ -1,9 +1,12 @@
-<!-- <?php
-        // session_destroy();
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
-        ?> -->
+<?php
+       
+        
+        // echo '<pre>';
+        // var_dump($_SESSION);
+        // echo '</pre>';
+
+        
+        ?> 
 
 
 
@@ -17,6 +20,7 @@ if (isset($this->session->userdata['cus_user'])) {
     $phone = $this->session->userdata['cus_phone'];
 } else {
 
+    session_destroy();
 
     redirect('controller/LoginPage');
 }
