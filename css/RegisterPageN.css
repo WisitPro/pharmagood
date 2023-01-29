@@ -44,7 +44,7 @@ nav{
 form{
     position: absolute;
     width: 400px;
-    height: 510px;
+    height: 560px;
     background-color: #68B3F8;
     margin-top: 70px;
     margin-left: 53%;
@@ -55,15 +55,14 @@ h1{
     color: white;
     
 }
-#id{
-    margin-top:8px;
-}
-#id,#name,#phone,#user,#pass{
+
+form input,textarea{
     width: 320px;
     height: 35px;
     text-indent: 5px;
     font-size: 20px;
 }
+
 #btnRegister{
     border: transparent;
     border-radius: 30px;

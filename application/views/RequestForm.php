@@ -6,8 +6,9 @@
     $id = $this->session->userdata['cus_id'];
     $phone = $this->session->userdata['cus_phone'];
 }
-?>
 
+$now = new DateTime();
+?>
 
 
 
@@ -17,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good | เข้าสู่ระบบ</title>
+    <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -38,10 +39,10 @@
     </nav>
 
     <div id="total">
-        <form>
+        <div id="tab">
 
 
-        </form>
+        </div>
 
         <form id="form2" action="sent_to_line" method="post">
         <i  id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="history.back()"></i>
@@ -50,23 +51,24 @@
 
             <input style="visibility: hidden;position:absolute;" type="text" name="cus_id" value="<?php echo $id ?> " ></input>
             
-            <p>ชื่อ-นามสกุล<span>*</span><br>
-                <input type="text" name="cus_name" value="<?php echo $name ?>" readonly required></input>
+            <p>ชื่อ-นามสกุล<span></span><br>
+                <input type="text" name="cus_name" value="<?php echo $name ?>" readonly disabled required></input>
             </p>
-            <p>เบอร์โทร<span>*</span><br>
-                <input type="text"  name="cus_phone" value="<?php echo $phone ?>"readonly required></input>
+            <p>เบอร์โทร<span></span><br>
+                <input type="text"  name="cus_phone" value="<?php echo $phone ?>"readonly disabled required></input>
             </p>
             <p>อาการเบื้องต้น<span>*</span><br>
                 <textarea name="req_sym" required></textarea>
             </p>
             <p>วันและเวลาที่ต้องการปรึกษา<span>*(โปรดระบุเวลามากกว่า 30 นาทีขึ้นไป)</span><br>
-                <input type="datetime-local" name="req_time"  
-                value="<?php date_default_timezone_set("Asia/Bangkok"); echo date("d/m/Y H:i"); ?>"
-                 required ></input>
+                <input type="datetime-local" name="req_time"  required ></input>
+            </p>
+            <p>
+                เวลาทำการ 9:30 น. - 18:30 น.
             </p>
             <input style="visibility: hidden;position:absolute;" type="text" name="req_status" value="รอยืนยันการขอคำปรึกษาจากเภสัชกร" ></input>
 
-            <br>
+                
             <button type="submit" id="bt">ยืนยันข้อมูล</button>
 
     </div>

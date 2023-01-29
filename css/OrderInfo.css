@@ -1,0 +1,165 @@
+body {
+    background-color: #68B3F8;
+    
+}
+
+#admin {
+    position: absolute;
+    right: 0px;
+    bottom: 20px;
+    width: 240px;
+
+
+}
+
+
+container {
+    position: absolute;
+    width: 1000px;
+    height: 630px;
+    
+    margin-top: 20px;
+    margin-left: 250px;
+
+    border-radius: 15px;
+
+}
+
+#backform {
+
+    width: 1000px;
+    height: 500px;
+    background-color: white;
+
+    border-radius: 15px;
+    border: 1px solid #F69A56;
+    margin-top: 10px;
+}
+#backform2 {
+
+    width: 1000px;
+    height: 500px;
+    background-color: white;
+
+    border-radius: 15px;
+    border: 1px solid #2fe150;
+    margin-top: 10px;
+}
+#backform3 {
+
+    width: 1000px;
+    height: 500px;
+    background-color: white;
+
+    border-radius: 15px;
+    border: 1px solid #f74242;
+    margin-top: 10px;
+}
+
+form {
+    width: 100%;
+    height: 200px;
+    background-color: #F69A56;
+
+    margin-top: 280px;
+    border-radius: 15px;
+    color: white;
+
+}
+
+#tr1 {
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
+.head {
+    display: inline-block;
+
+    margin-top: 2.5em;
+    font-size: 20px;
+}
+
+
+
+table{
+    position: absolute;
+    width: 975px;
+    margin-top: 2px;
+    margin-left: 10px;
+    
+    max-height: 180PX;
+    
+    
+}
+
+td,th{
+    padding: 4px;
+    border-bottom: #b6b6b6 1px solid;
+}
+#tr2{
+    font-size: 16px;
+    
+}
+#tr1{
+    font-size: 18px;
+}
+#Edit{
+    
+    
+    
+    
+    font-weight: bold;
+    color: #2dc026;
+    height: 29px;
+}
+#Remove{
+    
+    
+    
+    
+    font-weight: bold;
+    color: #f41717;
+}
+#data{
+    color: Black;
+}
+
+#radio{
+    position: absolute;
+    margin-left:2em;
+    margin-top: 6em;
+    font-size: 20px;
+}
+.col1{
+    color: #F69A56;
+}
+span button{
+    border-radius: 10px;
+    border: none;
+    width: 220px;
+}
+#spb1{
+    background-color: #F69A56;
+    
+}
+#spb2{
+    background-color: #2fe150;
+    margin-left: 3px;
+}
+#spb3{
+    background-color: #f74242;
+    margin-left: 3px;
+}
+.st{
+    background-color: #d1d1d1;
+
+}
+.st2{
+    background-color: #2fe150;
+
+}
+.st3{
+    background-color: #f74242;
+
+}

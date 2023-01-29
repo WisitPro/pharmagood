@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good | รายการยาและเวชภัณฑ์</title>
+    <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -27,7 +27,8 @@
         <div id="menu">
             <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3') ?>">หน้าหลัก</a>
 
-            <a id="btCart" href="<?php echo base_url('/index.php/controller/Basket') ?>"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ไม่มีสินค้าในตะกร้า'; ?></a>
+            <a id="btCart" href="<?php echo base_url('/index.php/controller/Basket') ?>"><i class=" fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
+</a>
             <a id="btOut" onclick="Out()" style="cursor:pointer">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
             <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->

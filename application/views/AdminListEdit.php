@@ -17,7 +17,7 @@ foreach ($tbl_admin as $row) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good | เจ้าของกิจการ | แก้ไขข้อมูลผู้ใช้ระบบ</title>
+    <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -26,21 +26,8 @@ foreach ($tbl_admin as $row) {
 </head>
 
 <body>
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-         <p id="btHome"  style="margin-left:340px;color:#0386FF">ฟอร์มแก้ไขข้อมูลผู้ใช้</p>
-           <!-- <a id="bt1" href="AdminListPage">ข้อมูลผู้ใช้งาน</a>
-            <a id="bt5" href="ProductListPage">รายการสินค้า</a>
-            <a id="bt2" href="">ข้อมูลร้องขอคำปรึกษา</a>
-            <a id="bt3" href="">ข้อมูลการชำระเงิน</a>
-            <a id="bt4"  onclick="AmOut()" style="cursor:pointer">ออกจากระบบ</a> -->
-            <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
-            <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
-        </div>
-
-    </nav>
-    <p style="font-size:20px; margin-left:155px; color:white">สำหรับเจ้าของกิจการ</p>
+    
+    
 
     <container>
         

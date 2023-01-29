@@ -11,7 +11,7 @@ foreach ($tbl_product as $row) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good | เจ้าของกิจการ | รายการยาและเวชภัณฑ์</title>
+    <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -22,26 +22,9 @@ foreach ($tbl_product as $row) {
 </head>
 
 <body>
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" href="AdminHomePage">หน้าหลัก</a>
-            <div class="dropdown">
-                <button class="dropbtn">เมนู <i class="fa-solid fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a  href="AdminListPage">ข้อมูลผู้ใช้งาน</a>
-                    <a  href="ProductListPage">รายการสินค้า</a>
-                    <a  href="">ข้อมูลร้องขอคำปรึกษา</a>
-                    <a  href="">ข้อมูลการชำระเงิน</a>
-                </div>
-            </div>
-            <a id="bt4" onclick="AmOut()" style="cursor:pointer">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-            <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
-            <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
-        </div>
-
-    </nav>
-    <p style="font-size:20px; margin-left:155px; color:white">สำหรับเจ้าของกิจการ</p>
+    <br><br><br>
+   
+     
 
 
     <form action="Product_Add" method="POST">

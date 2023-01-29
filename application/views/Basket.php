@@ -13,7 +13,7 @@ echo '</pre>';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good | เข้าสู่ระบบ</title>
+    <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -43,8 +43,8 @@ echo '</pre>';
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
             <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">หน้าหลัก</a>
-
-            <a id="btCart"  style="cursor:default;text-decoration: none;"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0)?' ตะกร้าสินค้า ('.$this->cart->total_items().')':' ไม่มีสินค้าในตะกร้า'; ?></a>
+            <a id="btHistory" href="<?php echo base_url('/index.php/controller/OrderHistory'); ?>"><i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
+            <a id="btCart"  style="cursor:default;text-decoration: none;"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0)?' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
             <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
 

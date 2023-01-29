@@ -42,7 +42,7 @@ nav {
 }
 
 
- form{
+ #tab{
  
     width:30px;
     height: 500px;
@@ -104,7 +104,8 @@ span{
     background-color: black;
     width: 156px;
     border-radius: 20px;
-    margin-left:290px;
+    margin-left:296px;
+    margin-top:-16px;
     height:38px;
 
 }
@@ -114,5 +115,32 @@ span{
     margin-top:14px;
     cursor: pointer;
     color:white;
+    
+}
+#btGo{
+    position: absolute;
+    /* background: #68B3F8; */
+    /* background: #91afcb; */
+    width: 443px;
+    height: 50px;
+    margin-left: 448px;
+    margin-top: 550px;
+    font-size: 20px;
+    color: #ffffff;
+    border-radius: 20px;
+    border: transparent;
+    
+}
+#btCancel{
+    
+    background: #e7493e;
+    width: 140px;
+    height: 50px;
+    margin-left: 900px;
+    margin-top: 550px;
+    font-size: 20px;
+    color: #ffffff;
+    border-radius: 20px;
+    border: transparent;
     
 }

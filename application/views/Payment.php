@@ -12,7 +12,7 @@ echo '</pre>';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good | เข้าสู่ระบบ</title>
+    <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -30,14 +30,14 @@ echo '</pre>';
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
-            <a id="btHome" onclick="return confirm('คุณต้องการยกเลิกการชำระนี้หรือไม่')" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">หน้าหลัก</a>
+            <a id="btHome" onclick="return confirm('รายการของคุณจะถูกยกเลิกและกลับไปยังหน้าหลัก')" href="<?php echo base_url(); ?>index.php/controller/CancelStore">หน้าหลัก</a>
 
             <!-- <a id="btCart" href="Cart"><i class="fa-solid fa-basket-shopping"></i> ตะกร้าสินค้า</a>
             <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a> -->
         </div>
 
     </nav>
-    <a href="<?php echo base_url(); ?>index.php/Cart" onclick="return confirm('คุณต้องการยกเลิกการชำระนี้หรือไม่')"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
+    <a href="<?php echo base_url(); ?>index.php/controller/CancelStore" onclick="return confirm('รายการของคุณจะถูกยกเลิกและกลับไปยังหน้าหลัก')"><button id="p2"><i class="fa-solid fa-caret-left"></i> ยกเลิก</button></a>
     <p id="p1">หน้าชำระเงิน</p>
 
 
@@ -97,14 +97,14 @@ echo '</pre>';
             
         </div>
         
-        <form action="<?php echo base_url('/index.php/controller/Checkout'); ?>">
+        <form action="<?php echo base_url('/index.php/controller/Checkout'); ?>" method="post" enctype="multipart/form-data">
         <div id="paymentinput">
             <p id="a2">เลขที่บัญชี :</p>
-            <input  type="text"  class="in"  readonly ></input><br><br>
+            <strong><input  type="text"  class="in" disabled readonly value="ddddddddddddddd"></input></strong><br><br>
             <p >ธนาคาร :</p>
-            <input  type="text"  class="in" readonly ></input><br><br>
+            <strong><input  type="text"  class="in" disabled readonly value="dddddddddddddd"></input></strong><br><br>
             <p >ชื่อบัญชี :</p>
-            <input  type="text"  class="in" readonly ></input><br><br>
+            <strong><input  type="text"  class="in" disabled readonly value="dddddddddddddd"></input></strong><br><br>
             <p ><span style="color:red">* </span>สลิปโอนเงิน :</p>
             <input id="slip" type="file" name="pay_slip" accept="image/png, image/gif, image/jpeg" required />
         </div>
@@ -132,6 +132,8 @@ echo '</pre>';
    
     var fileInput = document.getElementById("slip");   
     var payButton = document.getElementById("btGo");
+    var cancelBt = document.getElementById("p2");
+    var cancelBt2 = document.getElementById("btHome");
 
 
     function disBt(){
@@ -141,11 +143,19 @@ echo '</pre>';
     fileInput.oninput = function() {
         if (fileInput.files.length > 0) {
             payButton.disabled = false;
+            cancelBt.disabled = true;
+            cancelBt2.disabled = true;
             payButton.style.backgroundColor = "#68B3F8";
+            cancelBt.style.backgroundColor = "#925e5e";
+            cancelBt2.style.visibility = "hidden";
         }
         else{
             payButton.disabled = true;
             payButton.style.backgroundColor = "#aac5d5";
+            cancelBt.disabled = false;
+            cancelBt2.disabled = false;
+            
+            
         }
     
     }

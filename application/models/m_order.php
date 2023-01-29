@@ -39,21 +39,33 @@ class m_order extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
-    public function payprove($data)
+    public function cancel($data)
     {
-         // Insert order items
-         $pay_id = $data['pay_id'];
-         $order_id = $data['order_id'];
-         $pay_slip = $data['pay_slip'];
-         $adm_id = $data['adm_id'];
-         $prove_status = $data['prove_status'];
-         
-        
- 
- 
-         $sql = "insert into tbl_payprove values('$pay_id','$order_id','$pay_slip','$adm_id','$prove_status')";
-         $qr = $this->db->query($sql);
-         return true;
+        $order_id = $data['order_id'];
+
+        $sql = "update tbl_order set order_status = 'ยกเลิก' where order_id = '$order_id'";
+        $qr = $this->db->query($sql);
+        return true;
+    }
+
+    public function remove($data)
+    {
+        $order_id = $data['order_id'];
+
+        $sql = "delete from tbl_orderlist where order_id = '$order_id'";
+        $qr = $this->db->query($sql);
+        return true;
+    }
+    public function OrderHistory($data)
+    {
+        $cus_id = $data["cus_id"];
+        $sql = "select o.order_id,o.order_datetime,p.pro_name,p.pro_price,l.qty,l.sub_total 
+        from tbl_product p,tbl_orderlist l,tbl_order o where l.pro_id = p.pro_id and o.order_id = l.order_id 
+        and o.cus_id ='$cus_id' and o.order_status ='ชำระเงินแล้ว' order by o.order_datetime DESC";
+
+        $qr = $this->db->query($sql);
+
+        return $qr->result();
     }
     
     

@@ -15,7 +15,7 @@ foreach ($tbl_product as $row) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good | เจ้าของกิจการ | รายการยาและเวชภัณฑ์ | ฟอร์มแก้ไขข้อมูลสินค้า</title>
+    <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -26,18 +26,8 @@ foreach ($tbl_product as $row) {
 </head>
 
 <body>
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <p id="btHome">ฟอร์มแก้ไขข้อมูลสินค้า</p>
-
-
-            <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
-            <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
-        </div>
-
-    </nav>
-    <p style="font-size:20px; margin-left:155px; color:white">สำหรับเจ้าของกิจการ</p>
+    
+     
 
     <div id="form">
         <form action="Product_Update" method="POST">
