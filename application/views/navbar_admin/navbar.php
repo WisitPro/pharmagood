@@ -4,7 +4,11 @@ if (isset($this->session->userdata['adm_user'])) {
     $name = $this->session->userdata['adm_name'];
 }
 ?>
-
+<!-- <?php
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +22,7 @@ if (isset($this->session->userdata['adm_user'])) {
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/OwnerHomePage2.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/Fonts.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>js/date_time.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/AdminOut.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/AdminOut.js"></script> -->
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
@@ -26,14 +30,14 @@ if (isset($this->session->userdata['adm_user'])) {
     <nav>
         <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
         <div id="menu">
-            <a id="btHome" href="AdminHomePage">หน้าหลัก</a>
+            <a id="btHome" href="<?php echo base_url('/index.php/controller/AdminHomePage');?>">หน้าหลัก</a>
             <div class="dropdown">
                 <button class="dropbtn">เมนู <i class="fa-solid fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a  href="AdminListPage">ข้อมูลผู้ใช้งาน</a>
-                    <a  href="ProductListPage">รายการสินค้า</a>
-                    <a  href="ListRQ1">ข้อมูลการนัดปรึกษา</a>
-                    <a  href="OrderInfo1">ข้อมูลออเดอร์</a>
+                    <a  href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้งาน</a>
+                    <a  href="<?php echo base_url('/index.php/ProductController/ProductListPage'); ?>">รายการสินค้า</a>
+                    <a  href="<?php echo base_url('/index.php/RequestController/ListRQ1'); ?>">ข้อมูลการนัดปรึกษา</a>
+                    <a  href="<?php echo base_url('/index.php/OrderController/OrderInfo1'); ?>">ข้อมูลออเดอร์</a>
                 </div>
             </div>
 
@@ -54,4 +58,12 @@ if (isset($this->session->userdata['adm_user'])) {
 </body>
 
 </html>
+<script>
+    function AmOut() {
+    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='<?php echo base_url('/index.php/controller/Logout'); ?>';
+    
+
+}
+
+</script>
 

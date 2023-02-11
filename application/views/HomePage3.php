@@ -1,15 +1,12 @@
 <?php
-       
-        
-        // echo '<pre>';
-        // var_dump($_SESSION);
-        // echo '</pre>';
-
-        
-        ?> 
+    //    session_destroy();
+    //    redirect('controller/LoginPage');
 
 
+      
 
+
+        ?>
 
 <?php
 if (isset($this->session->userdata['cus_user'])) {
@@ -18,6 +15,7 @@ if (isset($this->session->userdata['cus_user'])) {
     $name = $this->session->userdata['cus_name'];
     $id = $this->session->userdata['cus_id'];
     $phone = $this->session->userdata['cus_phone'];
+    
 } else {
 
     session_destroy();
@@ -41,7 +39,7 @@ if (isset($this->session->userdata['cus_user'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link href="<?php echo base_url(); ?>css/HomePage3N.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>css/HomePage.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/Fonts.css" rel="stylesheet">
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/Loader.js"></script> -->
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
@@ -58,7 +56,11 @@ if (isset($this->session->userdata['cus_user'])) {
         document.getElementById("page").style.display = "block";
     }
 </script>
-
+<!-- <?php
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ?> -->
 <body onload="myFunction()">
 <?php if ($this->session->flashdata('order_success')) : ?>
             <script>
@@ -83,7 +85,7 @@ if (isset($this->session->userdata['cus_user'])) {
                 }
 
                 #loader {
-                    
+
                     position: absolute;
                     left: 50%;
                     top: 50%;
@@ -126,7 +128,7 @@ if (isset($this->session->userdata['cus_user'])) {
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p>สินค้าจะจัดส่งถึงคุณภายใน 60 นาที ขอบคุณที่ใช้บริการ <i class="fa-solid fa-truck-fast"></i></p>
+                    <p>สินค้าจะจัดส่งถึงคุณภายใน 2 ชม. ขอบคุณที่ใช้บริการ <i class="fa-solid fa-truck-fast"></i></p>
                 </div>
 
             </div>
@@ -135,28 +137,12 @@ if (isset($this->session->userdata['cus_user'])) {
 
     <container id="page" class="animate-bottom">
 
-
-        <nav>
-            <img id="logo" src="<?php echo base_url('images/logo.png'); ?>">
-            <div id="menu">
-                <a id="btHome" href="HomePage3">หน้าหลัก</a>
-                <span id="n1">สวัสดีคุณ <?php echo $name ?></span>
-                <a id="btCart" href="<?php echo base_url('/index.php/Cart'); ?>""><i class=" fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
-
-                <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
-                <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
-            </div>
-
-
-        </nav>
-        
         <banner>
             <a href="<?php echo base_url('/index.php/Products/Store'); ?>"><button id="btn1">
                     ดูรายการยาและเวชภัณฑ์
                 </button></a>
             <img id="capsule" src="<?php echo base_url('images/Group 15.png'); ?>">
-            <a href="<?php echo base_url('/index.php/controller/RequestPage'); ?>"><button id="btn2">
+            <a href="<?php echo base_url('/index.php/RequestController/RequestPage'); ?>"><button id="btn2">
                     นัดเวลาปรึกษาเภสัชกร
                 </button></a>
         </banner>
@@ -169,7 +155,7 @@ if (isset($this->session->userdata['cus_user'])) {
                         <p>และเวชภัณฑ์ได้ทันที</p>
                         <img id="pic1" src="<?php echo base_url('images/image 1.png'); ?>">
                     </button></a>
-                <a href="<?php echo base_url('/index.php/controller/RequestPage'); ?>"><button id="ft2">
+                <a href="<?php echo base_url('/index.php/RequestController/RequestPage'); ?>"><button id="ft2">
                         <p style="font-size: 20px">ปรึกษาเภสัชกร</p>
                         <p>ระบุอาการเบื้องต้นและเวลาที่ต้องการปรึกษา</p>
                         <p>สามารถวิดีโอคอลหรือส่งแชทข้อความได้</p>
@@ -186,8 +172,6 @@ if (isset($this->session->userdata['cus_user'])) {
 <script>
     function Out() {
         if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location = '<?php echo base_url('/index.php/controller/CusLogout/') ?>';
-
-
     }
 
 

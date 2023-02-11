@@ -13,11 +13,18 @@ class Cart extends CI_Controller
 
         // Load product model
         $this->load->model('m_product');
+        $this->load->model('m_admin');
+        $this->load->model('m_customer');
+        $this->load->model('m_product');
+        $this->load->model('m_request');
+        $this->load->model('m_order');
+        $this->load->model('m_payprove');
+        $this->load->model('m_bill');
     }
 
     function index()
     {
-        
+
         $data = array();
 
         // Retrieve cart data from the session
@@ -25,52 +32,61 @@ class Cart extends CI_Controller
 
         // Load the cart view
         $this->session->unset_userdata('order_id');
+        $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('Basket', $data);
     }
+    function remove($rowid, $req_id)
+    {
 
-    function updateItemQty($rowid,$qty)
+        $this->cart->remove($rowid);
+
+        $data = array();
+        $data['cartItems'] = $this->cart->contents();
+        $data['req_detail'] = $this->m_request->RqDetail($req_id);
+        $data['tbl_product'] = $this->m_product->Pharmacy();
+        $this->load->view('navbar_admin/navbar');
+        $this->load->view('RqDetail', $data);
+    }
+
+    function updateItemQty($rowid, $qty)
     {
         $cart = $this->cart->get_item($rowid);
         $data = array(
             'rowid'    => $rowid,
             'qty'    => $qty,
-            
-    );
+
+        );
 
         // Update cart subtotal
         $this->cart->update($data);
         redirect("Cart/");
-        
+
         // Return response
-        
+
     }
-    function updateItemQty2($rowid,$qty)
+    function updateItemQty2($rowid, $qty)
     {
         $cart = $this->cart->get_item($rowid);
         $data = array(
             'rowid'    => $rowid,
             'qty'    => $qty,
-            
-    );
+
+        );
 
         // Update cart subtotal
         $this->cart->update($data);
         redirect("Cart/");
-        
+
         // Return response
-        
+
     }
-
-
 }
 
 function removeItem($rowid)
 {
     // Remove item from cart
     $remove = $this->cart->remove($rowid);
-    
+
     // Redirect to the cart page
     redirect('Cart/');
 }
-
-?>

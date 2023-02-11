@@ -1,10 +1,10 @@
 <!-- <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> -->
 
 <!-- <?php
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
-?> -->
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
+        ?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,27 +17,23 @@ echo '</pre>';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
-    
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Payment.css">
-   
-    
+
+
 </head>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbE5PxKKnEVpr873MVdBeGvS5veUJ0Nd0&callback=initMap&v=weekly" defer></script>
 
 
-<body onload="disBt()">
-    
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" onclick="return confirm('รายการของคุณจะถูกยกเลิกและกลับไปยังหน้าหลัก')" href="<?php echo base_url(); ?>index.php/controller/CancelStore">หน้าหลัก</a>
+<body onload="disBt()" onload="initMap()">
 
-            <!-- <a id="btCart" href="Cart"><i class="fa-solid fa-basket-shopping"></i> ตะกร้าสินค้า</a>
-            <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a> -->
-        </div>
 
-    </nav>
-    <a href="<?php echo base_url(); ?>index.php/controller/CancelStore" onclick="return confirm('รายการของคุณจะถูกยกเลิกและกลับไปยังหน้าหลัก')"><button id="p2"><i class="fa-solid fa-caret-left"></i> ยกเลิก</button></a>
+    <a href="<?php echo base_url(); ?>index.php/OrderController/CancelStore" onclick="return confirm('รายการของคุณจะถูกยกเลิกและกลับไปยังหน้าหลัก')"><button id="p2"><i class="fa-solid fa-caret-left"></i> ยกเลิก</button></a>
     <p id="p1">หน้าชำระเงิน</p>
 
 
@@ -51,7 +47,7 @@ echo '</pre>';
                         <th style="width:250px;">สินค้า</th>
                         <th class="text-right" style="width:70px;">ราคา</th>
                         <th style="width: 60px;" class="text-center">จำนวน</th>
-                        <th style="width:70px;" class="text-right">รวม</th>
+                        <th style="min-width:80px;" class="text-right">รวม</th>
 
                     </tr>
                 </thead>
@@ -63,8 +59,8 @@ echo '</pre>';
                         foreach ($cartItems as $item) {
                     ?>
 
-                            <tr  class="trB">
-                                <td  class="text-right" style="width:30px "><?php echo $qty ?></td>
+                            <tr class="trB">
+                                <td class="text-right" style="width:30px "><?php echo $qty ?></td>
                                 <td style="width:250px;"><strong><?php echo $item["name"]; ?></strong></td>
                                 <td class="text-right" style="width:70px;" id="price">
                                     <p><?php echo '' . $item["price"]; ?></p>
@@ -75,7 +71,7 @@ echo '</pre>';
                                     <!-- <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/Cart/updateItemQty/' . $item["rowid"]); ?>"/> -->
                                 </td>
 
-                                <td style="width:70px;" class="text-right">
+                                <td style="min-width:80px;" class="text-right">
                                     <span class="text-right" style="width:50px;border:transparent;background:transparent;cursor:default;" class="subtt" id="subtt<?php echo $qty ?>"><?php echo $item["subtotal"] ?></span>
                                     <span> บาท</span>
 
@@ -94,83 +90,218 @@ echo '</pre>';
                     ?>
                 </tbody>
             </table>
-            
-        </div>
-        
-        <form action="<?php echo base_url('/index.php/controller/Checkout'); ?>" method="post" enctype="multipart/form-data">
-        <div id="paymentinput">
-            <p id="a2">เลขที่บัญชี :</p>
-            <strong><input  type="text"  class="in" disabled readonly value="ddddddddddddddd"></input></strong><br><br>
-            <p >ธนาคาร :</p>
-            <strong><input  type="text"  class="in" disabled readonly value="dddddddddddddd"></input></strong><br><br>
-            <p >ชื่อบัญชี :</p>
-            <strong><input  type="text"  class="in" disabled readonly value="dddddddddddddd"></input></strong><br><br>
-            <p ><span style="color:red">* </span>สลิปโอนเงิน :</p>
-            <input id="slip" type="file" name="pay_slip" accept="image/png, image/gif, image/jpeg" required />
+
         </div>
 
-        <?php if ($this->cart->total_items() > 0) { ?>
-            <span id="totalTxt">ราคาสุทธิ :<input disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input> <span>บาท</span>
-                <span id="buttonbar">
+        <form action="<?php echo base_url('/index.php/OrderController/Checkout'); ?>" method="post" enctype="multipart/form-data" autocomplete="false">
+            <div id="paymentinput">
+                <p id="a2">เลขที่บัญชี :</p>
+                <strong><input type="text" class="in" disabled readonly value=""></input></strong><br><br>
+                <p>ธนาคาร :</p>
+                <strong><input type="text" class="in" disabled readonly value=""></input></strong><br><br>
+                <p>ชื่อบัญชี :</p>
+                <strong><input type="text" class="in" disabled readonly value=""></input></strong><br><br>
+                <p><span style="color:red">* </span>สลิปโอนเงิน :</p>
+                <input id="slip" type="file" name="pay_slip" accept="image/png, image/gif, image/jpeg" required />
+                <p><span style="color:red">* </span>เบอร์โทร :</p>
+                <input type="text" name="order_phone" value="<?php echo $this->session->userdata['cus_phone']; ?>" required />
 
-                <!-- <a href="<?php echo base_url('/index.php/controller/Checkout'); ?>"> -->
-                <button  id="btGo" type="submit" >ยืนยันการชำระเงิน</button>
-            <!-- </a> -->
-                </span>
-                </form>
+                <input onclick="OpenMap()" type="text" name="order_address" class="text-center" id="order_address" value="" style="margin-top: 33px;text-indent: 0px;border:2px solid red;" placeholder="เลือกที่จัดส่ง" required />
 
-            <?php
 
-        } ?>
+
+            </div>
+
+
+            <?php if ($this->cart->total_items() > 0) { ?>
+                <span id="totalTxt">ราคาสุทธิ : <input disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input>
+                    <span id="buttonbar">
+
+                     
+                        <button id="btGo" type="submit">ยืนยันการชำระเงิน</button>
+                       
+                    </span>
+
+        </form>
+
+    <?php
+
+            } ?>
     </div>
+
+    <div class="map1" id="map" ondblclick="clearMarkers ()">
+        <div id="BoxSelectMap">
+            <p id="TextSelectMap">
+            <div class="dd">
+                <input type="hidden" id="myText">
+            </div>
+            <div id="BoxSelectAddress">
+                <p id="TextSelectAddress">
+            </div>
+        </div>
+
 </body>
 
 </html>
 
 <script>
-    
-   
-    var fileInput = document.getElementById("slip");   
+    var fileInput = document.getElementById("slip");
     var payButton = document.getElementById("btGo");
     var cancelBt = document.getElementById("p2");
     var cancelBt2 = document.getElementById("btHome");
 
 
-    function disBt(){
+
+    function disBt() {
         payButton.disabled = true;
     }
-    
+
     fileInput.oninput = function() {
-        if (fileInput.files.length > 0) {
+        if (fileInput.files.length > 0 && pin.value.length < 0) {
             payButton.disabled = false;
             cancelBt.disabled = true;
             cancelBt2.disabled = true;
             payButton.style.backgroundColor = "#68B3F8";
             cancelBt.style.backgroundColor = "#925e5e";
             cancelBt2.style.visibility = "hidden";
-        }
-        else{
+        } else {
             payButton.disabled = true;
             payButton.style.backgroundColor = "#aac5d5";
             cancelBt.disabled = false;
             cancelBt2.disabled = false;
-            
-            
+
+
         }
-    
+
     }
-    
+    var pin = document.getElementById("order_address");
 
-</script>
+    // pin.oninput = function(){
+    //         if (fileInput.files.length > 0 && pin.value !== 0) {
+    //         payButton.disabled = false;
+    //         cancelBt.disabled = true;
+    //         cancelBt2.disabled = true;
+    //         payButton.style.backgroundColor = "#68B3F8";
+    //         cancelBt.style.backgroundColor = "#925e5e";
+    //         cancelBt2.style.visibility = "hidden";
+    //     }
+    //     else if(fileInput.files.length == 0 && pin.value == 0){
+    //         payButton.disabled = true;
+    //         payButton.style.backgroundColor = "#aac5d5";
+    //         cancelBt.disabled = false;
+    //         cancelBt2.disabled = false;
 
-<script>
-    
+
+    //     }
+    //     }
+
+    var map = document.getElementById("map");
+
+    function OpenMap() {
+        var map = document.getElementById('map');
+        if (map.style.visibility == 'visible') {
+            map.style.visibility = 'hidden';
+        } else {
+
+            map.style.visibility = 'visible'
+        }
+
+
+
+    }
+    var map;
+    var markers = [];
+    var infoWindow;
+    var location1;
+
+
+    function initMap() {
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: {
+                lat: 16.434132,
+                lng: 102.816064
+            },
+            zoom: 15
+        });
+        infoWindow = new google.maps.InfoWindow();
+        var geocoder = new google.maps.Geocoder();
+        google.maps.event.addListener(map, "click", function(event) {
+            if (markers.length >= 1) {
+
+
+                return;
+            }
+
+
+
+            var marker = new google.maps.Marker({
+                position: event.latLng,
+                map: map
+            });
+
+            markers.push(marker);
+
+            geocoder.geocode({
+                location: event.latLng
+            }, function(results, status) {
+                if (status === "OK") {
+                    if (markers.length == 1) {
+                        location1 = event.latLng;
+                        infoWindow.setContent(
+                            "order address: " + results[0].formatted_address
+                        );
+                        infoWindow.open(map, marker);
+                        document.getElementById("order_address").value =
+                            results[0].formatted_address;
+                        if (fileInput.files.length > 0 && pin.value !== 0) {
+                            payButton.disabled = false;
+                            cancelBt.disabled = true;
+                            cancelBt2.disabled = true;
+                            payButton.style.backgroundColor = "#68B3F8";
+                            cancelBt.style.backgroundColor = "#925e5e";
+                            cancelBt2.style.visibility = "hidden";
+                        } else if (fileInput.files.length == 0 && pin.value == 0) {
+                            payButton.disabled = true;
+                            payButton.style.backgroundColor = "#aac5d5";
+                            cancelBt.disabled = false;
+                            cancelBt2.disabled = false;
+
+
+                        }
+
+
+
+
+                    }
+                } else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
+        });
+    }
+
+    function clearMarkers() {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+        document.getElementById("order_address").value = "";
+
+        payButton.disabled = true;
+        payButton.style.backgroundColor = "#aac5d5";
+        cancelBt.disabled = false;
+        cancelBt2.disabled = false;
+
+    }
+
+
+
     function Out() {
         if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/controller/CusLogout'); ?>';
 
     }
 
-    
 
 
     // function updateCartItem(obj, rowid) {

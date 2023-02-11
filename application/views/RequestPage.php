@@ -5,11 +5,12 @@ if (isset($this->session->userdata['cus_user'])) {
     $name = $this->session->userdata['cus_name'];
     $id = $this->session->userdata['cus_id'];
     $phone = $this->session->userdata['cus_phone'];
-    if (!isset($this->session->userdata['req_status'])) {
-    $req_status = false;
-    }else if(isset($this->session->userdata['req_status'])) {
-        $req_status = true;
-    }
+}
+    if (!isset($this->session->userdata['ss_req_status'])) {
+    $ss_req_status = false;
+    }else if(isset($this->session->userdata['ss_req_status'])) {
+        $ss_req_status = $this->session->userdata['ss_req_status'];
+    
 }
 ?>
 <!DOCTYPE html>
@@ -28,16 +29,8 @@ if (isset($this->session->userdata['cus_user'])) {
 </head>
 
 <body>
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" href="HomePage3">หน้าหลัก</a>
-            <!-- <span id="n1">สวัสดีคุณ <?php echo $name ?></span> -->
-            <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        </div>
-
-    </nav>
-    <container>
+   
+    <div id="container">
         <div id="blue1">
             <p>บริการ</p>
             <p id="b2">ปรึกษาเภสัชกร</p>
@@ -54,17 +47,16 @@ if (isset($this->session->userdata['cus_user'])) {
                 <li>บริการจัดส่งยาถึงหน้าบ้าน</li>
                 <li>ระยะเวลาการจัดส่งไม่เกิน 1-2 ชม.</li>
             </ul>
-            <p id="o2">ค่าบริการ</p>
+            <!-- <p id="o2">ค่าบริการ</p>
             <div id="white3">
                 <li>ค่ายารักษา</li>
                 <li style="position: absolute; margin-left:180px; margin-top:-28px">ค่าจัดส่ง</li>
-
-            </div>
-            <?php if($req_status === false){ ?>
+            </div> -->
+            <?php if($ss_req_status === false){ ?>
             
-                <a href="RequestForm" style="color:white"><button id="btRq"  >นัดเวลาปรึกษาเภสัชกร</button></a>
-            <?php }else if($req_status === true){?>
-                <a href="RequestForm" style="color:white"><button id="btRq"  >ดูการนัดของคุณ</button></a>
+                <a href="RequestForm" style="color:white;"><button id="btRq"  >นัดเวลาปรึกษาเภสัชกร</button></a>
+            <?php }else if($ss_req_status === true){?>
+                <a href="MyCurrentRQ" style="color:white;"><button id="btRq"  >ดูการนัดของคุณ</button></a>
 
 
             <?php } ?>
@@ -72,7 +64,7 @@ if (isset($this->session->userdata['cus_user'])) {
            
 
         </div>
-    </container>
+    </div>
 
 
 </body>

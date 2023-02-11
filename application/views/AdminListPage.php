@@ -58,8 +58,11 @@ foreach ($tbl_admin as $row) {
                         <td class="data"><?php echo $row->adm_role; ?></td>
                         <td id="btnTable">
                             <a id="Edit" href='Admin_Edit?adm_id=<?php echo $row->adm_id; ?>'>แก้ไข</a>
-                            <a id="Remove" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่');" href='Admin_Remove?adm_id=<?php echo $row->adm_id; ?>'>ลบ</a>
+                            <?php if($row->adm_role == "เจ้าของกิจการ"){
+                                }else{?>
 
+                            <a id="Remove" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่');" href='Admin_Remove?adm_id=<?php echo $row->adm_id; ?>'>ลบ</a>
+<?php }?>
                         </td>
                     </tr>
                 <?php

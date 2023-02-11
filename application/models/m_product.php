@@ -42,6 +42,26 @@ class m_product extends CI_Model
 
         return $qr->result();
     }
+    public function Pharmacy($pro_id = '')
+    {
+        $this->db->select('*');
+        $this->db->from($this->proTable);
+        
+
+        if ($pro_id) {
+            $this->db->where('pro_id', $pro_id);
+            $this->db->order_by('pro_type', 'ASC');
+            $query = $this->db->get();
+            $result = $query->row_array();
+        } else {
+            $this->db->order_by('pro_type', 'ASC');
+            $query = $this->db->get();
+            $result = $query->result_array();
+        }
+
+        // Return fetched data
+        return !empty($result) ? $result : false;
+    }
     public function Product_Add($data)
     {
         $pro_id = $data['pro_id'];

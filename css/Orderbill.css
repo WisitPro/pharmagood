@@ -1,0 +1,212 @@
+body {
+  background-color: #68b2f8;
+  color: #5b5b5b;
+}
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 0.2s;
+  animation-name: animatebottom;
+  animation-duration: 0.2s;
+}
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: 0px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: 0px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+#admin {
+  position: absolute;
+  right: 0px;
+  bottom: 20px;
+  width: 240px;
+}
+/* page{
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    background-color: #255f96c5;
+    position: absolute;
+    width: 100%;
+    height: 700px;
+
+} */
+
+container {
+  position: absolute;
+  width: 1000px;
+
+  margin-top: 20px;
+  margin-left: 250px;
+
+  border-radius: 15px;
+}
+#store_detail {
+  width: 500px;
+  border-bottom: 2px solid #8a8a8a;
+  border-bottom-style: dashed;
+  height: 100px;
+}
+#store_detail span {
+}
+#store_detail span p {
+  font-size: 16px;
+  text-align: right;
+  margin-right: 36px;
+}
+
+/* 
+#slip{
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    border: 2px solid #ffffff ;
+    border-radius: 15px; 
+} */
+
+#backform {
+  width: 500px;
+  min-height: 480px;
+
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom: 3px solid #8a8a8a;
+  border-bottom-style: dashed;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-top: 12px;
+  background-color: #ffffff; /* For browsers that do not support gradients */
+  /* background-image: linear-gradient(#25b5ea,#95def7, white 60%); */
+}
+/* #cus_detail{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 16px;
+    position: absolute;
+} */
+
+#tr1 {
+  font-size: 16px;
+}
+
+.head {
+  display: inline-block;
+
+  margin-top: 2.5em;
+  font-size: 20px;
+}
+
+table {
+  width: 440px;
+  margin-left: 27px;
+  margin-top: 20px;
+}
+tfoot {
+  line-height: 40px;
+}
+
+#tr2 {
+  font-size: 16px;
+  height: 40px;
+}
+#tr1 {
+  font-size: 26px;
+}
+
+span button {
+  border-radius: 10px;
+  border: 1px solid;
+  border: 2px solid #ffffff;
+}
+
+#spb1 {
+  background-color: #f69a56;
+  width: 352px;
+  border-radius: 10px;
+  border: 1px solid;
+  border: 2px solid #ffffff;
+  color: white;
+  height: 40px;
+  position: absolute;
+}
+#spb2 {
+  position: absolute;
+  background-color: #f69a56;
+  color: white;
+  height: 43px;
+  margin-top: 10px;
+  margin-left: 180px;
+  width: 40px;
+  padding-top: 5px;
+}
+
+#logooo {
+  position: absolute;
+  margin-left: 26px;
+  margin-top: 20px;
+  filter: grayscale(100%);
+}
+#printbt {
+  background-color: #f69a56;
+  width: 120px;
+  border-radius: 10px;
+  border: 1px solid;
+  border: 2px solid #ffffff;
+  color: white;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  margin-left: 6px;
+}
+#delbt {
+  background-color: #f69a56;
+  width: 120px;
+  border-radius: 10px;
+  border: 1px solid;
+  border: 2px solid #ffffff;
+  color: white;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  margin-left: 500px;
+}
+@media print{
+    
+    nav {
+      visibility: hidden;
+    }
+    nav *{
+      visibility: hidden;
+    }
+    body * {
+      visibility: hidden;
+    }
+    #backform,
+    #backform * {
+      visibility: visible;
+    }
+    #backform{
+        position: absolute;
+    }
+
+    
+  }

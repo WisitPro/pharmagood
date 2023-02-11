@@ -20,15 +20,8 @@
 <body>
    
     
-<br><br>
-    <container>
-        <span style="font-size:24px;">
-            <a href="ListRQ1" style=" margin-left:auto; color:white"><button id="spb1">รายการที่รอยืนยัน</button></a> 
-            <a href="ListRQ2" style=" margin-left:auto; color:white"><button id="spb2">รายการยืนยันแล้ว</button></a> 
-            <a href="ListRQ3" style=" margin-left:auto; color:white"><button id="spb3">รายการยกเลิก</button></a>
-        </span>
-        
-        
+
+  
         <div id="backform">
             <table>
 

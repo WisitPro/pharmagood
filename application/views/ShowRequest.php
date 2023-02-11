@@ -27,10 +27,6 @@ define('LINE_API',"https://notify-api.line.me/api/notify");
     // "เวลา : ".$formatted_date."\n"
     ;
 
-    
-
-
- 
 $res = notify_message($str,$token);
 
 
@@ -50,6 +46,7 @@ function notify_message($message,$token){
  $result = file_get_contents(LINE_API,FALSE,$context);
  $res = json_decode($result);
  return $res;
+ redirect('controller/MyCurrentRQ');
  
 }   
 
@@ -65,7 +62,7 @@ var_dump($_SESSION);
 echo '</pre>';
 ?>  -->
 
-<?php
+<!-- <?php
 if (isset($this->session->userdata['cus_user'])) {
     $user = $this->session->userdata['cus_user'];
 
@@ -73,8 +70,8 @@ if (isset($this->session->userdata['cus_user'])) {
     $id = $this->session->userdata['cus_id'];
     $phone = $this->session->userdata['cus_phone'];
 }
-?>
-<?php
+?> -->
+<!-- <?php
 foreach ($tbl_request as $row) {
     
     
@@ -87,10 +84,10 @@ foreach ($tbl_request as $row) {
     $req_status = $row->req_status;
 }
 
-?>
+?> -->
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -105,34 +102,26 @@ foreach ($tbl_request as $row) {
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-<?php
+<body> -->
+// <?php
 // session_destroy();
 // echo '<pre>';
 // var_dump($_SESSION);
 // echo '</pre>';
-?>
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" href="HomePage3">หน้าหลัก</a>
+// ?>
+   
 
-            <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        </div>
-
-    </nav>
-
-    <div id="total">
+    <!-- <div id="total">
         <form>
 
 
         </form>
         
 
-            <form id="form2" action="">
+            <form id="form2" >
                 <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='http://localhost/pharmagood/index.php/controller/HomePage3';"></i>
                 <h1><img src="<?php echo base_url(); ?>images/image 4.png"> ข้อมูลขอคำปรึกษา</h1>
-                <input style="visibility: hidden;position:absolute;" type="text" name="req_id" value="<?php echo $req_id ?> "></input>
+                
 
                 <input style="visibility: hidden;position:absolute;" type="text" name="cus_id" value="<?php echo $cus_id ?> "></input>
                 <p>ชื่อ-นามสกุล<span></span><br>
@@ -169,4 +158,4 @@ function Out() {
   
 
 }
-</script>
+</script> -->

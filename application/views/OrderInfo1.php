@@ -21,28 +21,21 @@
    
     
 <br><br>
-    <container>
-        <span style="font-size:24px;">
-            <a href="OrderInfo1" style=" margin-left:auto; color:white"><button id="spb1">ออเดอร์ที่รอยืนยัน</button></a> 
-            <a href="OrderInfo2" style=" margin-left:auto; color:white"><button id="spb2">ออเดอร์ที่ยืนยันแล้ว</button></a> 
-            <a href="OrderInfo3" style=" margin-left:auto; color:white"><button id="spb3">ออเดอร์ที่ยกเลิก</button></a>
-        </span>
+   
+       
         
         
-        <div id="backform">
-            <table>
-
+        <div id="backform" class="animate-bottom">
+            <table >
                 <tr id="tr1">
-
                     <th style="width:60px ;text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56">ลำดับ</th>
-                    <th style="width:170px ;text-indent: 4px;">รหัสการจอง</th>
-                    <th style="width:300px ;">เลขออเดอร์</th>
-                    <th style="width:120px ;">ลูกค้า</th>
-                    <th style="width:340px;">เวลาชำระ</th>
-                    
+                    <th style="min-width:150px ;text-indent: 4px;">รหัสการแจ้งโอน</th>
+                    <th style="min-width:110px ;">เลขออเดอร์</th>
+                    <th style="width:62px ;" class="text-right">ราคา</th>
+                    <th style="width:300px ;">ลูกค้า</th>
+                    <th style="width:250px;">เวลาชำระ</th>
                     <th style="width:140px  ;" class="st" >สถานะ</th>
                     <th style="width:200px ;"></th>
-
                 </tr>
                 <?php
                 $item = 1;
@@ -53,15 +46,18 @@
                     <tr id="tr2" style="height: 32px;">
                         <td class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></td>
                         <td class="data" style="text-indent: 4px;"><?php echo $row->pay_id; ?></td>
-                        <td class="data"><?php echo $row->order_id; ?></td>
+                        <td class="data" ><a href="OrderDetail/<?php echo $row->pay_id; ?>"><?php echo $row->order_id; ?></a></td>
+                        <td class="data text-right"><?php echo $row->order_total; ?></td>
                         <td class="data"><?php echo $row->cus_name; ?></td>
                         
                         <td class="data"><?php echo $fmd; ?> น.</td>
                         <td class="data st text-center"><strong><?php echo $row->prove_status; ?></strong></td>
                         <td id="btnTable" class="text-right">
-                            <a id="Edit"  onclick="return confirm('ยืนยันออเดอร์');" href='VerifyOR/<?php echo $row->pay_id; ?>'>ยืนยัน</a>
+                            <a id="Edit"  onclick="return confirm('ยืนยันออเดอร์');" 
+                            href='<?php echo base_url('index.php/OrderController/VerifyOR/'.$row->pay_id.'');?>'>ยืนยัน</a>
                             &nbsp;&nbsp;&nbsp;
-                            <a id="Remove" onclick="return confirm('ยกเลิกออเดอร์');" href='DenyOR/<?php echo $row->pay_id; ?>'>ยกเลิก</a>
+                            <a id="Remove" onclick="return confirm('ยกเลิกออเดอร์');" 
+                            href='<?php echo base_url('index.php/OrderController/DenyOR/'.$row->pay_id.'');?>'>ยกเลิก</a>
 
                         </td>
                     </tr>

@@ -13,13 +13,14 @@ echo '</pre>';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
     <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/BasketCa.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/Basket.css">
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/qtyxprice.js"></script> -->
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/UpdateCart.js"></script> -->
 </head>
@@ -39,16 +40,7 @@ echo '</pre>';
 
 </script>
 
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">หน้าหลัก</a>
-            <a id="btHistory" href="<?php echo base_url('/index.php/controller/OrderHistory'); ?>"><i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
-            <a id="btCart"  style="cursor:default;text-decoration: none;"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0)?' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
-            <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        </div>
-
-    </nav>
+    
     <a href="<?php echo base_url();?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-prescription-bottle-medical"></i> ดูสินค้า</button></a>
     <p id="p1">ตะกร้าสินค้าของฉัน</p>
 
@@ -123,7 +115,8 @@ echo '</pre>';
                                     <span> บาท</span>
                                 </td>
 
-                                <td style="width: 50px;"><i class="fa fa-trash-o" style="padding-top: 2px;font-size:22px;color:red;cursor: pointer;" class="btn btn-sm btn-danger" onclick="return confirm('คุณต้องการลบรายการนี้หรือไม่')?
+                                <td style="width: 50px;"><i class="fa fa-trash-o" style="padding-top: 2px;font-size:22px;color:red;cursor: pointer;" 
+                                class="btn btn-sm btn-danger" onclick="return confirm('คุณต้องการลบรายการนี้หรือไม่')?
                             window.location.href='<?php echo base_url('/index.php/controller/removeItem/' . $item["rowid"]); ?>':false;"></i> </td>
                             </tr>
                         <?php
@@ -142,7 +135,7 @@ echo '</pre>';
             <span id="totalTxt">ราคาสุทธิ :<input  disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input> <span>บาท</span>
             <span id="buttonbar">
                 
-                <a href="<?php echo base_url('/index.php/controller/Ordering'); ?>"><button id="btGo" >ชำระเงิน</button></a>
+                <a href="<?php echo base_url('/index.php/OrderController/Ordering'); ?>"><button id="btGo" >ชำระเงิน</button></a>
             </span>
            
             

@@ -20,27 +20,20 @@
 <body>
    
     
-<br><br>
-    <container>
-        <span style="font-size:24px;">
-            <a href="ListRQ1" style=" margin-left:auto; color:white"><button id="spb1">รายการที่รอยืนยัน</button></a> 
-            <a href="ListRQ2" style=" margin-left:auto; color:white"><button id="spb2">รายการยืนยันแล้ว</button></a> 
-            <a href="ListRQ3" style=" margin-left:auto; color:white"><button id="spb3">รายการยกเลิก</button></a>
-        </span>
-        
-        
+
         <div id="backform2">
             <table>
 
                 <tr id="tr1">
 
-                    <th style="width:60px ;text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56">ลำดับ</th>
+                <th style="width:60px ;text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56">ลำดับ</th>
                     <th style="width:170px ;text-indent: 4px;">หมายเลขคำขอ</th>
                     <th style="width:300px ;">ลูกค้า</th>
                     <th style="width:120px ;">เบอร์โทร</th>
                     <th style="width:340px;">อาการ</th>
                     <th style="width:150px ;">วันที่นัด</th>
                     <th style="width:100px  ;" class="st2" >สถานะ</th>
+                    <th style="min-width:90px ;"></th>
                     
                 </tr>
                 <?php
@@ -50,17 +43,19 @@
 
                 ?>
                     <tr id="tr2" style="height: 32px;">
-                        <td class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></td>
+                    <td class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></td>
                         <td class="data" style="text-indent: 4px;"><?php echo $row->req_id; ?></td>
                         <td class="data"><?php echo $row->cus_name; ?></td>
                         <td class="data"><?php echo $row->cus_phone; ?></td>
                         <td class="data"><?php echo $row->req_sym; ?></td>
                         <td class="data"><?php echo $fmd; ?> น.</td>
                         <td class="data st2 text-center"><strong><?php echo $row->req_status; ?></strong></td>
-                        <!-- <td id="btnTable" class="text-right">
-                           
+                        <td id="btnTable" class="text-center">
+                            <a id="Edit"  onclick="return confirm('เปิดห้องวิดีโอคอล');" href='AdminCall/<?php echo $row->req_id; ?>'>วิดีโอคอล</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a id="Remove" onclick="return confirm('ยกเลิกคำขอนัด');" href='DenyRQ/<?php echo $row->req_id; ?>'>ยกเลิก</a>
 
-                        </td> -->
+                        </td>
                     </tr>
                 <?php
                     $item++;

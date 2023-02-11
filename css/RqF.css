@@ -1,146 +1,96 @@
-nav {
-    height: 62px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 2px solid #0386FF;
+#tab {
+  width: 30px;
+  height: 500px;
+  margin-left: 448px;
+  margin-top: 40px;
+  display: inline-block;
+  background: #68b3f8;
+  border-radius: 20px 0px 0px 20px;
+  position: absolute;
+}
+#form2 {
+  position: absolute;
+  width: 560px;
+  height: 500px;
+  margin-left: 480px;
+  margin-top: 40px;
+  display: inline-block;
+  background: #f79a56;
+  border-radius: 0px 20px 20px 0px;
+  padding-left: 44px;
+  padding-top: 16px;
 }
 
-#logo {
-    position: absolute;
-    margin-left: 10%;
-    margin-top: 2px;
-
+#images {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  margin-left: 30px;
+  margin-top: 50px;
 }
 
-#menu {
-
-
-    position: absolute;
-    font-size: 20px;
-    width: 100%;
-    padding-top: 18px;
-
+input {
+  font-size: 18px;
+  color: #000000;
+  text-indent: 4px;
 }
 
-#btHome {
-
-    color: #0386FF;
-    margin-left: 22%;
+textarea {
+  color: black;
+  width: 460px;
+  resize: none;
+  text-indent: 4px;
 }
-
-
-#btOut {
-
-    color: #565656;
-    margin-left: 52%;
-
-
+h1 {
+  color: white;
+  margin-left: -10px;
 }
-
-#n1 {
-    color: #F87F28;
-    margin-left: 15%;
+p {
+  color: white;
+  font-size: 20px;
 }
-
-
- #tab{
- 
-    width:30px;
-    height: 500px;
-    margin-left: 448px;
-    margin-top: 40px;
-    display: inline-block;
-    background: #68B3F8;
-    border-radius: 20px 0px 0px 20px;
-    position: absolute;
+span {
+  font-size: 16px;
+  color: black;
 }
-#form2{
- position: absolute;
-width: 560px;
-height: 500px;
-margin-left: 480px;
-margin-top: 40px;
-display: inline-block;
-background: #F79A56;
-border-radius: 0px 20px 20px 0px;
-padding-left: 44px;
-padding-top:16px;
-} 
-
-#images{
-    width: 35px;
-    height: 35px;
-position: absolute;
-margin-left: 30px;
-margin-top: 50px;
+#bt {
+  color: white;
+  font-size: 20px;
+  background-color: black;
+  width: 156px;
+  border-radius: 20px;
+  margin-left: 296px;
+  margin-top: -16px;
+  height: 38px;
 }
-
-input{
-    font-size: 18px;
-    color: #000000;
-    text-indent: 4px;
+#x {
+  position: absolute;
+  margin-left: 470px;
+  margin-top: 14px;
+  cursor: pointer;
+  color: white;
 }
-
-textarea{
-    color:black;
-    width: 460px;
-    resize: none;
-    text-indent: 4px;
+#btGo {
+  position: absolute;
+  /* background: #68B3F8; */
+  /* background: #91afcb; */
+  width: 443px;
+  height: 50px;
+  margin-left: 448px;
+  margin-top: 550px;
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 20px;
+  border: transparent;
 }
-h1{
-    color: white;
-    margin-left:-10px;
-}
-p{
-    color:white;
-    font-size: 20px;
-}
-span{
-    font-size: 16px;
-    color:black;
-}
-#bt{
-    color:white;
-    font-size: 20px;
-    background-color: black;
-    width: 156px;
-    border-radius: 20px;
-    margin-left:296px;
-    margin-top:-16px;
-    height:38px;
-
-}
-#x{
-    position: absolute;
-    margin-left:470px;
-    margin-top:14px;
-    cursor: pointer;
-    color:white;
-    
-}
-#btGo{
-    position: absolute;
-    /* background: #68B3F8; */
-    /* background: #91afcb; */
-    width: 443px;
-    height: 50px;
-    margin-left: 448px;
-    margin-top: 550px;
-    font-size: 20px;
-    color: #ffffff;
-    border-radius: 20px;
-    border: transparent;
-    
-}
-#btCancel{
-    
-    background: #e7493e;
-    width: 140px;
-    height: 50px;
-    margin-left: 900px;
-    margin-top: 550px;
-    font-size: 20px;
-    color: #ffffff;
-    border-radius: 20px;
-    border: transparent;
-    
+#btCancel {
+  background: #e7493e;
+  width: 140px;
+  height: 50px;
+  margin-left: 900px;
+  margin-top: 550px;
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 20px;
+  border: transparent;
 }

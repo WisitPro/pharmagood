@@ -25,6 +25,9 @@ foreach ($tbl_request as $row) {
    
     $req_sym = $row->req_sym;
     $req_status = $row->req_status;
+    // if( $req_status = "เสร็จสิ้น"){
+    //     redirect('controller/HomePage3');
+    // }
 }
 
 ?>
@@ -36,7 +39,7 @@ foreach ($tbl_request as $row) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="30">
+    <meta http-equiv="refresh" content="10">
     <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -53,15 +56,7 @@ foreach ($tbl_request as $row) {
 // var_dump($_SESSION);
 // echo '</pre>';
 ?>
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" href="HomePage3">หน้าหลัก</a>
-
-            <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        </div>
-
-    </nav>
+    
 
     <div id="total">
         <div id="tab">
@@ -88,11 +83,18 @@ foreach ($tbl_request as $row) {
                 <p>วันและเวลาที่ต้องการปรึกษา<span></span><br>
                     <input disabled type="text" name="req_time" value="<?php echo $req_time ?>" ></input>
                 </p>
-                <p>สถานะ : <?php echo $req_status ?></p>
+                <?php if($req_status =="ยกเลิก"){?>
+                <p style="color: black;">สถานะ : รายการของคุณถูก<?php echo $req_status ?></p>
+                <?php }elseif($req_status =="ยืนยันแล้ว"){?>
+                    <p>สถานะ : รายการของคุณถูก<?php echo $req_status ?> </p>
+                    <p>เมื่อถึงเวลานัด คุณจะสามารถกดปุ่ม "วิดีโอคอล" ได้</p>
+                    <?php }else{?>
+                        <p>สถานะ : <?php echo $req_status ?> 
+                        <?php }?>
 
     </div><div id="buttonbar">
-        <?php if($req_status == "ยืนยันแล้ว"){?>
-            <a href="<?php echo base_url('/index.php/controller/VideoCall'); ?>"><button id="btGo" style="background-color:#68B3F8;" >วิดีโอคอล</button></a>
+        <?php if($req_status == "วิดีโอคอล"){?>
+            <button id="btGo" style="background-color:#68B3F8;" onclick="window.open('https://digitalpharmacysritan.000webhostapp.com');">วิดีโอคอล</button>
         <?php }else{?>
             <p ><button disabled id="btGo" style="background-color:#91afcb;">วิดีโอคอล</button></p>
         <?php } ?>
@@ -104,7 +106,7 @@ foreach ($tbl_request as $row) {
 
         </div>
 
-    <a onclick="return confirm('คุณต้องการยกเลิกการนัดนี้')" href="<?php echo base_url('/index.php/controller/CancelRQ'); ?>" ><button id="btCancel" >ยกลิก</button></a>
+    <a onclick="return confirm('คุณต้องการยกเลิกการนัดนี้')" href="<?php echo base_url('/index.php/RequestController/CancelRQ'); ?>" ><button id="btCancel" >ยกเลิก</button></a>
 </div>
 </body>
 

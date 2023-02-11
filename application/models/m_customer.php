@@ -14,7 +14,7 @@ public function cusinfo()
     public function login($data)
     {
         $cus_user = $data['cus_user'];
-        $cus_pass = $data['cus_pass'];
+        $cus_pass = MD5($data['cus_pass']);
         $sql = "select * from tbl_customer where cus_user='$cus_user'
 and cus_pass='$cus_pass'";
         $qr = $this->db->query($sql);
@@ -28,7 +28,7 @@ and cus_pass='$cus_pass'";
         $cus_pass=$data['cus_pass'];
         
         $cus_add=$data['cus_add'];
-        $sql = "insert into tbl_customer values('$cus_id','$cus_name','$cus_phone','$cus_user','$cus_pass','$cus_add')";
+        $sql = "insert into tbl_customer values('$cus_id','$cus_name','$cus_phone','$cus_user',MD5('$cus_pass'),'$cus_add')";
         $qr = $this->db->query($sql);
         return true;
     }

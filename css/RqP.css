@@ -1,55 +1,18 @@
-nav {
-    height: 62px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 2px solid #0386FF;
-}
-
-#logo {
-    position: absolute;
-    margin-left: 10%;
-    margin-top: 2px;
-
-}
-
-#menu {
 
 
-    position: absolute;
+#container{
+    
     font-size: 20px;
-    width: 100%;
-    padding-top: 18px;
-
+    height: 520px;
+    width: 1040px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    
 }
-
-#btHome {
-
-    color: #0386FF;
-    margin-left: 22%;
-}
-
-
-#btOut {
-
-    color: #565656;
-    margin-left: 52%;
-
-
-}
-
-#n1 {
-    color: #F87F28;
-    margin-left: 19%;
-}
-
-container{
+ #blue1{
+    
     position: absolute;
-    margin-left: 120px;
-    font-size: 20px;
-}
-#blue1{
-    position: absolute;
-    margin-top: 50px;
-    margin-left: 120px;
     width: 520px;
     height: 520px;
     background-color: #68B3F8;
@@ -60,6 +23,9 @@ container{
     border-bottom-left-radius: 20px;
    
 }
+#pic1{
+    width: 280px;
+}
 #b2{
     font-size: 38px;
 }
@@ -68,13 +34,12 @@ container{
     margin-left: 36px;
 }
 
-#pic1{
-    width: 280px;
-}
+
+
+
 #orange2{
+    margin-left: 520px;
     position: absolute;
-    margin-top: 50px;
-    margin-left: 640px;
     color: #FFFFFF;
     width: 520px;
     height: 520px;
@@ -106,7 +71,7 @@ container{
 #btRq{
     background-color: black;
     position: absolute;
-    margin-top: 60px;
+    margin-top: 170px;
     margin-left: 190px;
     border-radius: 16px;
     width: 220px;

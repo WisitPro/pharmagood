@@ -1,0 +1,234 @@
+
+nav{
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+#logo{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+
+
+
+
+#menu{
+    
+    
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+    padding-top: 18px;
+    
+}
+#btHome {
+
+    color: #0386FF;
+    margin-left: 22%;
+}
+
+#btLogin {
+
+    color: #565656;
+    margin-left: 50%;
+
+}
+
+#btRegister {
+    color: #565656;
+    margin-left: 1%;
+}
+
+
+
+#btn1{
+    background-color: #266FDC;
+    margin-top: 300px;
+    margin-left: 15%;
+    color: white;
+
+}
+#btn2{
+    background-color: #F87F28;
+    margin-top: -330px;
+    margin-left: 70%;
+    color: white;
+
+}
+#btn1,#btn2{
+    position: absolute;
+    width: 245px;
+    height: 40px;
+    border-radius: 30px;
+    border: transparent;
+    font-size: 20px;
+
+}
+#capsule{
+    
+    margin-top: 30px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+footer{
+    position: absolute;
+    max-width: 1920px;
+    width: 100%;
+    height: 370px;
+    background-color: #acebd8;
+    margin-top: 39px;
+}
+#footer{
+    padding-top: 20px;
+}
+#footH{
+    font-size: 24px;
+    text-align: center;
+}
+#ft1{
+    margin-top: 10px;
+    position: absolute;
+    margin-left: 25%;
+    width: 360px;
+    height: 230px;
+    text-align: left;
+    background-color: #F69A56;
+    border: transparent;
+    border-radius: 30px;
+    font-size: 16px;
+    color: white;
+    text-indent: 25px;
+    line-height: 12px;
+    
+    
+}
+#ft2{
+    margin-top: 10px;
+    position: absolute;
+    margin-left: 51%;
+    width: 360px;
+    height: 230px;
+    text-align: left;
+    background-color: #68B3F8;
+    border: transparent;
+    border-radius: 30px;
+    font-size: 16px;
+    color: white;
+    text-indent: 25px;
+    line-height: 12px;
+    
+  
+}
+#pic1{
+    width: 100px;
+    height: 100px;
+   margin-left: 64%;
+}
+#pic2{
+    width: 105px;
+    height: 105px;
+   margin-left: 64%;
+}
+.dropdown {
+    display: inline-block;
+    height: 70px;
+    margin-left: 0px;
+}
+
+.dropbtn {
+
+    margin-left: 1%;
+    
+    min-width: 260px;
+    color: #F87F28;
+    border: none;
+}
+
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    border-radius: 10px;
+
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #ffffff;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: block;
+    transition: 0.1s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background-color: #ffffff;
+    color: #525252;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    background-color: #50a7f8e9;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+nav {
+    height: 62px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid #0386FF;
+}
+
+#logo {
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 2px;
+
+}
+
+#menu{
+    
+    
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+    padding-top: 18px;
+    
+}
+#btHome {
+
+    color: #525252;
+    margin-left: 22%;
+}
+#btCart{
+    color: #525252;
+    margin-left: 38%;
+}
+button:not(:disabled):hover {
+    
+    transform: scale(1.06);
+}
+* button{
+    
+    transition: 0.2s ease-in-out;
+}
+a {
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: 0.2s ;
+    
+  }
+a:hover{
+   color: #0386FF !important;   
+}
+
+
+
+

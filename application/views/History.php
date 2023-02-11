@@ -38,16 +38,7 @@
         }
     </script>
 
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">หน้าหลัก</a>
-            <a id="btHistory" href="<?php echo base_url('/index.php/controller/OrderHistory'); ?>"><i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
-            <a id="btCart" href="<?php echo base_url(); ?>index.php/Cart"><i class="fa-solid fa-basket-shopping"></i><?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
-            <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        </div>
-
-    </nav>
+    
     <a href="<?php echo base_url(); ?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-prescription-bottle-medical"></i> ดูสินค้า</button></a>
     <p id="p1">ประวัติการซื้อของฉัน</p>
 
@@ -55,46 +46,68 @@
     <div id="p3">
         <div id="p4">
 
-            <table class="table ">
-                <thead style="width: 100%;font-size: 20px;">
+            <table class="table" >
+                <thead style="font-size: 20px;">
                     <!-- 660px -->
                     <tr>
                         <th style="width:26px;"></th>
-                        <th style="width:340px">สินค้า</th>
-                        <th style="width:100px">ราคา</th>
-                        <th style="width:30px">จำนวน</th>
-                        <th class="text-right" style="width:100px">ราคารวม</th>
-                        <th class="text-right" style="width:120px">วันที่สั่งซื้อ</th>
-
+                        <th style="width:768px" colspan="5">รายการ</th>
+                       
                     </tr>
                 </thead>
                 <tbody class="tableRow" style="font-size: 16px;">
-                    <?php
-
-
-                    $qty = 1;
-                    foreach ($order_history as $row) {
-                        $formatted_date = date("d/m/Y", strtotime($row->order_datetime));
-                        $pro_price = number_format($row->pro_price);
-                        $sub_total = number_format($row->sub_total);
+                    <?php 
+                   
+                    foreach ($order_history as $ol_id => $orderlists):
+                        $order_id =$orderlists[0]->order_id;
+                        $order_datetime = date('วันที่ '.'d-m-Y'.' เวลา '.' H:i', strtotime($orderlists[0]->order_datetime)).' น.';
                     ?>
-
-                        <tr class="trB">
-                            <td style="width:10px"><?php echo $qty; ?></td>
-                            <td style="width:340px"><strong><?php echo $row->pro_name; ?></strong></td>
-                            <td style="width:100px"><?php echo $pro_price ?></td>
-                            <td class="text-center" style="width:72px"><?php echo $row->qty; ?></td>
-                            <td class="text-right" style="width:100px"><?php echo $sub_total; ?></td>
-                            <td class="text-right" style="width:120px"><?php echo $formatted_date ?></td>
-
-
-
+                        <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
+                            <td style="width:10px"></td>
+                            <td colspan="3" style="width:900px"><strong>ออเดอร์ <?php echo $orderlists[0]->order_id?></strong></td>                          
+                            
+                           
+                           <?php if($orderlists[0]->order_status== "ชำระเงินแล้ว"){ ?>
+                            <td colspan="2" class="text-right tdstatus" 
+                            onclick="Confirm('<?php echo $order_id ?>')" style="background-color: #68B3F8;" >
+                            <strong>ได้รับสินค้าแล้ว</strong></td>
+                            <?php }else{?>
+                                <td colspan="2" class="text-right" style="background-color: #F79A56;" >
+                                <strong>ได้รับสินค้าแล้ว</strong></td>
+                                <?php }?>
                         </tr>
-                    <?php
-                        $qty++;
-                    }
-
-                    ?>
+                        
+                        <?php
+                         $line = 1;
+                            foreach ($orderlists as $item):
+                               
+                        ?>
+                                <tr>
+                                    <td style="width:26px;"></td>
+                                    <td style="width:340px"><?php echo $line ?>) <?php echo $item->pro_name?></td>
+                                    <td style="width:100px"><?php echo $item->qty?></td>
+                                    <td class="text-center" style="width:30px"></td>
+                                    <td class="text-right" style="width:100px"></td>
+                                    <td class="text-right" style="width:120px"><?php echo $item->sub_total?></td>
+                                </tr>
+                            <?php $line++; endforeach; ?>
+                            <tr class="trB">
+                            <td style="width:10px"></td>
+                            <td style="width:340px"><strong><?php echo $order_datetime?></strong></td>                          
+                            <td style="width:100px"></td>
+                            <td class="text-center" style="width:72px"></td>
+                            <td class="text-right" style="width:100px"><strong>รวม</strong></td>
+                            <td class="text-right" style="width:120px;color:#F79A56;"><strong><?php echo $orderlists[0]->order_total?></strong></td>
+                        </tr>
+                        <tr class="trB" >
+                            <td style="width:10px"></td>
+                            <td style="width:340px"></td>                          
+                            <td style="width:100px"></td>
+                            <td class="text-center" style="width:72px"></td>
+                            <td class="text-right" style="width:100px"></td>
+                            <td class="text-right" style="width:120px;color:#F79A56;"></td>
+                        </tr>
+                        <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -111,6 +124,12 @@
 <script>
     function Out() {
         if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/controller/CusLogout'); ?>';
+
+    }
+    function Confirm(order_id) {
+        if (confirm('คุณได้รับสินค้าของออเดอร์นี้แล้วใช่หรือไม่')) window.location.href ='<?php echo base_url('/index.php/OrderController/OrderSuccess/'); ?>'+ order_id;
+            
+        
 
     }
 

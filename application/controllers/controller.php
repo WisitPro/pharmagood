@@ -17,87 +17,138 @@ class controller extends CI_Controller
         $this->load->model('m_request');
         $this->load->model('m_order');
         $this->load->model('m_payprove');
+        $this->load->model('m_bill');
 
         //helper
         $this->load->helper('form', 'url');
     }
-    public function ListRQ1(){
+    // public function ListRQ1(){
 
-        $data['list_req'] = $this->m_request->List_req1();
-        $this->load->view('navbar_admin/navbar');
-        $this->load->view('ListRQ1',$data);
-    }
-    public function ListRQ2(){
+    //     $data['list_req'] = $this->m_request->List_req1();
+    //     $this->load->view('navbar_admin/navbar');
+    //     $this->load->view('component/ListRQ_ButtonBar');
+    //     $this->load->view('ListRQ1',$data);
+    // }
+    // public function ListRQ2(){
 
-        $data['list_req'] = $this->m_request->List_req2();
-        $this->load->view('navbar_admin/navbar');
-        $this->load->view('ListRQ2',$data);
-    }
-    public function ListRQ3(){
+    //     $data['list_req'] = $this->m_request->List_req2();
+    //     $this->load->view('navbar_admin/navbar');
+    //     $this->load->view('component/ListRQ_ButtonBar');
+    //     $this->load->view('ListRQ2',$data);
+    // }
+    // public function ListRQ3(){
 
-        $data['list_req'] = $this->m_request->List_req3();
-        $this->load->view('navbar_admin/navbar');
-        $this->load->view('ListRQ3',$data);
-    }
-    public function VerifyRQ($req_id){
-        $verify = $this->m_request->verify($req_id);
-        $data['list_req'] = $this->m_request->List_req1();
-        redirect('controller/ListRQ1');
-    }
-    public function DenyRQ($req_id){
-        $DenyRQ = $this->m_request->DenyRQ($req_id);
-        $data['list_req'] = $this->m_request->List_req1();
-        $this->load->view('navbar_admin/navbar');
-        redirect('controller/ListRQ1');
-    }
-    public function OrderInfo1(){
+    //     $data['list_req'] = $this->m_request->List_req3();
+    //     $this->load->view('navbar_admin/navbar');
+    //     $this->load->view('component/ListRQ_ButtonBar');
+    //     $this->load->view('ListRQ3',$data);
+    // }
+    // public function ListRQ4(){
 
-        $data['OrderInfo'] = $this->m_payprove->OrderRest();
-        $this->load->view('navbar_admin/navbar');   
-        $this->load->view('OrderInfo1' ,$data);
-    }
-    public function OrderInfo2(){
+    //     $data['list_req'] = $this->m_request->List_req4();
+    //     $this->load->view('navbar_admin/navbar');
+    //     $this->load->view('component/ListRQ_ButtonBar');
+    //     $this->load->view('ListRQ4',$data);
+    // }
+    // public function VerifyRQ($req_id){
+    //     $this->m_request->verify($req_id);
+    //     $data['list_req'] = $this->m_request->List_req1();
+    //     redirect('controller/ListRQ1');
+    // }
+    // public function DenyRQ($req_id){
+    //     $this->m_request->DenyRQ($req_id);
+    //     $data['list_req'] = $this->m_request->List_req1();
+    //     $this->session->set_userdata('ss_req_status',false);
+    //     $this->session->unset_userdata('rq_id');
+    //     $this->load->view('navbar_admin/navbar');
+    //     redirect('controller/ListRQ1');
+    // }
+    // public function SuccessRQ($req_id){
+    //     $this->m_request->SuccessRQ($req_id);
+    //     $data['list_req'] = $this->m_request->List_req4();
+    //      $this->session->set_userdata('ss_req_status',false);
+    //      $this->session->unset_userdata('rq_id');
+    //     $this->load->view('navbar_admin/navbar');
+    //     redirect('controller/ListRQ4');
+    // }
+    // public function OrderInfo1(){
 
-        $data['OrderInfo'] = $this->m_payprove->OrderVerified();
-        $this->load->view('navbar_admin/navbar');   
-        $this->load->view('OrderInfo2' ,$data);
-    }
-    public function OrderInfo3(){
+    //     $data['OrderInfo'] = $this->m_payprove->OrderRest();
+    //     $this->load->view('navbar_admin/navbar');   
+    //     $this->load->view('OrderInfo1' ,$data);
+    // }
+    // public function OrderInfo2(){
 
-        $data['OrderInfo'] = $this->m_payprove->OrderCancel();
-        $this->load->view('navbar_admin/navbar');   
-        $this->load->view('OrderInfo3' ,$data);
-    }
-    public function VerifyOR($pay_id){
-        $data = array(
-            date_default_timezone_set("Asia/Bangkok"),
-            $date = date('Y-m-d H:i:s'),
-            'pay_id' => $pay_id,
-            'adm_id' => $this->session->userdata('adm_name'),
-            'pay_modify' => $date
+    //     $data['OrderInfo'] = $this->m_payprove->OrderVerified();
+    //     $this->load->view('navbar_admin/navbar');   
+    //     $this->load->view('OrderInfo2' ,$data);
+    // }
+    // public function OrderInfo3(){
+
+    //     $data['OrderInfo'] = $this->m_payprove->OrderCancel();
+    //     $this->load->view('navbar_admin/navbar');   
+    //     $this->load->view('OrderInfo3' ,$data);
+    // }
+    // public function VerifyOR($pay_id){
+    //     $data = array(
+    //         date_default_timezone_set("Asia/Bangkok"),
+    //         $date = date('Y-m-d H:i:s'),
+    //         'pay_id' => $pay_id,
+    //         'adm_id' => $this->session->userdata('adm_id'),
+    //         'pay_modify' => $date
            
-        );
-        $verify = $this->m_payprove->verifying($data);
+    //     );
+
+    //     $this->m_payprove->verifying($data);
+    //     $this->m_bill->import($data);
         
-        redirect('controller/OrderInfo1');
-    }
-    public function DenyOR($pay_id){
-        $data = array(
-            date_default_timezone_set("Asia/Bangkok"),
-            $date = date('Y-m-d H:i:s'),
-            'pay_id' => $pay_id,
-            'adm_id' => $this->session->userdata('adm_name'),
-            'pay_modify' => $date
+        
+    //     redirect('controller/OrderInfo1');
+    // }
+    // public function DenyOR($pay_id){
+    //     $data = array(
+    //         date_default_timezone_set("Asia/Bangkok"),
+    //         $date = date('Y-m-d H:i:s'),
+    //         'pay_id' => $pay_id,
+    //         'adm_id' => $this->session->userdata('adm_id'),
+    //         'pay_modify' => $date
            
-        );
-        $verify = $this->m_payprove->denying($data);
+    //     );
+    //     $this->m_payprove->denying($data);
         
-        redirect('controller/OrderInfo1');
-    }
+        
+    //     redirect('controller/OrderInfo1');
+    // }
+   
+    // public function OrderDetail($pay_id){
+    //     $pay_id = $pay_id;
+    //     $data['orderdetail'] = $this->m_payprove->OrderDetail($pay_id);
+    //     $this->load->view('navbar_admin/navbar');
+    //     $this->load->view('OrderDetail' ,$data);
+    // }
+    // public function orderbill($pay_id){
+    //     $pay_id = $pay_id;
+    //     $data['orderdetail'] = $this->m_bill->OrderDetail($pay_id);
+    //     $this->load->view('navbar_admin/navbar');
+    //     $this->load->view('Orderbill' ,$data);
+    // }
 
 
 
+    // public function AdminCall($req_id){
+       
+    //     $this->m_request->videocall($req_id);
+    //     $data = array();
+    //     $data['cartItems'] = $this->cart->contents();
+    //     $data['req_detail'] = $this->m_request->RqDetail($req_id);
+    //     $data['tbl_product'] = $this->m_product->Pharmacy();
+    //     $this->load->view('navbar_admin/navbar');   
+    //     $this->load->view('RqDetail', $data);
 
+    // }
+    
+   
+   
 
 
 
@@ -173,17 +224,19 @@ class controller extends CI_Controller
                     $userdata = array(
                         'adm_user' => $row->adm_user,
                         'adm_name' => $row->adm_name,
-                        'adm_role' => $row->adm_role
+                        'adm_role' => $row->adm_role,
+                        'adm_id' => $row->adm_id
 
                     );
                     $this->session->set_userdata($userdata);
                 }
-                if ($userdata['adm_role'] == "เจ้าของกิจการ") {
-                    $this->load->view('navbar_admin/navbar');
-                    $this->load->view('AdminHomePage');
-                } elseif ($userdata['adm_role'] == "เภสัชกร") {
-                    $this->load->view('PhaHomePage');
-                }
+                redirect('controller/AdminHomePage');
+                // if ($userdata['adm_role'] == "เจ้าของกิจการ") {
+                //     $this->load->view('navbar_admin/navbar');
+                //     $this->load->view('AdminHomePage');
+                // } elseif ($userdata['adm_role'] == "เภสัชกร") {
+                //     $this->load->view('PhaHomePage');
+                // }
             } else { //ไม่พบข้อมูลใน database
                 $data['error'] = "username or password incorrect";
                 echo "<script>";
@@ -205,6 +258,7 @@ class controller extends CI_Controller
     }
 
 
+
     public function admin_management()
     {
         $data['tbl_admin'] = $this->m_admin->admininfo();
@@ -220,7 +274,7 @@ class controller extends CI_Controller
     {
 
         $this->session->set_flashdata('order_success', false);
-
+        $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('HomePage3');
     }
 
@@ -252,9 +306,6 @@ class controller extends CI_Controller
                         'cus_id' => $row->cus_id,
                         'cus_name' => $row->cus_name,
                         'cus_phone' => $row->cus_phone
-
-
-
                     );
                     $this->session->set_userdata($userdata);
                 }
@@ -277,18 +328,7 @@ class controller extends CI_Controller
     }
     public function RegisterPage2()
     {
-        // $this->form_validation->set_rules('cus_id', 'รหัสบัตรประชาชน', 'required|min_length[13]');
-        // $this->form_validation->set_rules('cus_name', 'ชื่อ-นามสกุล', 'required');
-        // $this->form_validation->set_rules('cus_phone', 'เบอร์โทร', 'required|min_length[10]');
-        // $this->form_validation->set_rules('cus_user', 'ชื่อผู้ใช้', 'required');
-        // $this->form_validation->set_rules('cus_pass', 'รหัสผ่าน', 'required');
-        // $this->form_validation->set_rules('cus_add', 'ที่อยู่', 'required');
-        // $this->form_validation->set_message('required', 'จำเป็นต้องกรอกข้อมูล {field} ก่อน');
-
-
-        // if ($this->form_validation->run() == FALSE) {
-        //     $this->load->view('RegisterPage');
-        // } else {
+      
         $data['cus_id'] = $_REQUEST['cus_id'];
         $data['cus_name'] = $_REQUEST['cus_name'];
         $data['cus_phone'] = $_REQUEST['cus_phone'];
@@ -296,7 +336,7 @@ class controller extends CI_Controller
         $data['cus_pass'] = $_REQUEST['cus_pass'];
         $data['cus_add'] = $_REQUEST['cus_add'];
 
-        $success = $this->m_customer->insert($data);
+        $this->m_customer->insert($data);
         echo "<script>";
         echo "alert(\" สมัครสมาชิกสำเร็จ\");";
 
@@ -309,15 +349,12 @@ class controller extends CI_Controller
 
     public function AddAdmin()
     {
-
         $this->form_validation->set_rules('adm_id', 'รหัสผู้ใช้', 'required');
         $this->form_validation->set_rules('adm_name', 'ชื่อ-นามสกุล', 'required');
         $this->form_validation->set_rules('adm_phone', 'เบอร์โทร', 'required');
         $this->form_validation->set_rules('adm_user', 'ชื่อผู้ใช้', 'required');
         $this->form_validation->set_rules('adm_pass', 'รหัสผ่าน', 'required');
         $this->form_validation->set_rules('adm_role', 'ตำแหน่ง', 'required');
-
-
         $this->form_validation->set_message('required', ' จำเป็นต้องกรอกข้อมูล {field} ก่อน');
         if ($this->form_validation->run() == FALSE) {
             $data['tbl_admin'] = $this->m_admin->admininfo();
@@ -380,14 +417,14 @@ class controller extends CI_Controller
     }
     public function Logout()
     {
-        $userdata = array('adm_user', 'adm_pass');
+        $userdata = array('adm_user', 'adm_pass','adm_role','adm_name');
         $this->session->unset_userdata($userdata);
 
         $this->load->view('AdminLoginPage');
     }
     public function CusLogout()
     {
-        $userdata = array('cus_user', 'cus_pass');
+        $userdata = array('cus_user', 'cus_pass','cus_id','cus_name','cus_phone',);
         $this->session->unset_userdata($userdata);
         redirect('controller/LoginPage');
     }
@@ -466,6 +503,7 @@ class controller extends CI_Controller
     {
         $data = array();
         $data['tbl_product'] = $this->m_product->getRows();
+        $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('Store', $data);
     }
     public function Basket()
@@ -479,246 +517,215 @@ class controller extends CI_Controller
         $data['tbl_product'] = $this->m_product->getRows();
         $this->load->view('StoreX', $data);
     }
-    public function AddtoCart($pro_id)
-    {
-        $product = $this->m_product->getRows($pro_id);
-
-        $data = array(
-            'pro_id' => $product['pro_id'],
-            'qty' => 1,
-            'pro_price' => $product['pro_price'],
-            'pro_name' => $product['pro_name'],
-            'pro_img' => $product['pro_img']
-        );
-        $this->cart->insert($data);
-        // redirect('controller/Store');
-
-
-    }
-    public function RequestPage()
-    {
-
-
-        $this->load->view('RequestPage');
-    }
-    public function RequestForm()
-    {
-       
-        $data = $this->session->userdata();
-        if(isset($data['req_status']) && $data['req_status'] == true ){
-           
-            $data['tbl_request'] = $this->m_request->cur_req($data);
-            $this->load->view('MyCurrentRQ', $data);
-        }else{
-            $req_status = array(
-                'req_status' => false
-            );
-            
-        $req_session = $this->session->set_userdata($req_status);
-        $this->load->view('RequestForm');
-         }
-        
-    }
-    public function sent_to_line()
-    {
-        date_default_timezone_set("Asia/Bangkok");
-        $get_req_id = gmdate('sHms');
-        $data['req_id'] = $get_req_id;
-        $data['cus_id'] = $_REQUEST['cus_id'];
-        $data['req_sym'] = $_REQUEST['req_sym'];
-        $data['req_time'] = $_REQUEST['req_time'];
-        $data['req_status'] = "รอยืนยัน";
-        
-        $success = $this->m_request->cus_req($data);
-
-        $req_status = array(
-            'req_status' => true,
-            'rq_id' => $get_req_id
-        );
-        $req_session = $this->session->set_userdata($req_status);
-        redirect('controller/MyCurrentRQ');
-        // $data['tbl_request'] = $this->m_request->cur_req($data);
-        // $this->load->view('ShowRequest', $data);
-    }
-    // public function RqF()
+    // public function AddtoCart($pro_id)
     // {
-    //     $this->form_validation->set_rules('req_id', 'รหัสคำร้องขอคำปรึกษา');
-    //     $this->form_validation->set_rules('cus_id', 'รหัสบัตรประชาชนลูกค้า', 'required');
-    //     $this->form_validation->set_rules('req_sym', 'อาการเบื้องต้น', 'required');
-    //     $this->form_validation->set_rules('req_time', 'เวลานัด', 'required');
-    //     $this->form_validation->set_rules('req_status', 'สถานะ', 'required');
+    //     $product = $this->m_product->getRows($pro_id);
+
+    //     $data = array(
+    //         'pro_id' => $product['pro_id'],
+    //         'qty' => 1,
+    //         'pro_price' => $product['pro_price'],
+    //         'pro_name' => $product['pro_name'],
+    //         'pro_img' => $product['pro_img']
+    //     );
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->cart->insert($data);
+    //     // redirect('controller/Store');
 
 
-    //     $this->form_validation->set_message('required', ' จำเป็นต้องกรอกข้อมูล {field} ก่อน');
+    // }
+    // public function RequestPage()
+    // {
 
-    //     if ($this->form_validation->run() == FALSE) {
-    //         echo "<script>";
-    //         echo "alert(\"เกิดข้อผิดพลาดในการส่งคำร้องขอ \");";
-    //         echo "window.history.back()";
-    //         echo "</script>";
-    //     } else {
-    //         $data['req_id'] = $_REQUEST['req_id'];
-    //         $data['cus_id'] = $_REQUEST['cus_id'];
-    //         $data['req_sym'] = $_REQUEST['req_sym'];
-    //         $data['req_time'] = $_REQUEST['req_time'];
-    //         $data['req_status'] = $_REQUEST['req_status'];
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->load->view('RequestPage');
+    // }
+    // public function RequestForm()
+    // {
+        
+    //     $data = $this->session->userdata();
+    //     if(isset($data['ss_req_status']) && $data['ss_req_status'] == true ){
+           
+    //         redirect('controller/MyCurrentRQ');
+    //     }else{
+    //         $ss_req_status = array(
+    //             'ss_req_status' => false
+    //         );
+            
+    //     $this->session->set_userdata($ss_req_status);
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->load->view('RequestForm');
+    //      }
+        
+    // }
+    // public function sent_to_line()
+    // {
+    //     date_default_timezone_set("Asia/Bangkok");
+    //     $get_req_id = gmdate('sHms');
+    //     $data['req_id'] = $get_req_id;
+    //     $data['cus_id'] = $_REQUEST['cus_id'];
+    //     $data['req_sym'] = $_REQUEST['req_sym'];
+    //     $data['req_time'] = $_REQUEST['req_time'];
+    //     $data['req_status'] = "รอยืนยัน";
+        
+    //     $this->m_request->cus_req($data);
 
-    //         $success = $this->m_request->cus_req($data);
+    //     $ss_req_status = array(
+    //         'ss_req_status' => true,
+    //         'rq_id' => $get_req_id
+    //     );
+    //     $this->session->set_userdata($ss_req_status);
+    //     $data = $this->session->userdata();
+    //     // redirect('controller/MyCurrentRQ');
+    //     $data['tbl_request'] = $this->m_request->cur_req($data);
+    //     $this->load->view('ShowRequest', $data);
+    //     redirect('controller/MyCurrentRQ');
+    // }
+    
+    // public function MyCurrentRQ()
+    // {   
+    //     $data = $this->session->userdata();
+    //     $data['tbl_request'] = $this->m_request->cur_req($data);
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->load->view('MyCurrentRQ', $data);
+    // }
+    // public function Ordering()
+    // {
 
-    //         if ($success) {
-    //             $data['msg'] = "complete";
-    //         } else {
-    //             $data['msg'] = "error";
+
+    //     date_default_timezone_set("Asia/Bangkok");
+    //     $orderno = gmdate('sHms');
+    //     $orderno2 = $orderno;
+    //     $user_data = $this->session->userdata();
+    //     $data['order_id'] = $orderno2;
+    //     $data['cus_id'] = $user_data['cus_id'];
+
+    //     $data['order_datetime'] = date('Y-m-d H:i:s');
+    //     $data['order_total'] = $this->cart->total(); 
+    //     $data['order_status'] = 'ยังไม่ชำระเงิน';   
+    //     $insertOrder = $this->m_order->insert($data);
+
+
+    //     if ($insertOrder) {
+
+    //         $cartItems = $this->cart->contents();
+    //         $ordItemData = array();
+    //         $i = 0;
+    //         foreach ($cartItems as $item) {
+    //             $ordItemData[$i]['ol_id']     = "";
+    //             $ordItemData[$i]['order_id']     = $orderno2;
+    //             $ordItemData[$i]['pro_id']     = $item['id'];
+    //             $ordItemData[$i]['qty']     = $item['qty'];
+    //             $ordItemData[$i]['sub_total']     = $item["subtotal"];
+    //             $i++;
     //         }
-    //         // foreach($success as $row){
-    //         //     $req_data = array(
-    //         //     'req_id'=>$row->req_id
-    //         //     );
-    //         //     $this->session->request_data($req_data);
-    //         //     }
-    //         $data['tbl_request'] = $this->m_request->cur_req($data);
+    //         if (!empty($ordItemData)) {
+    //             // Insert order items
+    //             $insertOrderItems = $this->m_order->insertOrderItems($ordItemData);
 
-    //         $this->load->view('ShowRequest', $data);
+    //             if ($insertOrderItems) {
+    //                 // Remove items from the cart
+    //                 $this->session->unset_userdata('order_id');
+    //                 $ordersession = array(
+    //                     'order_id' => $orderno2,
+
+    //                 );
+
+
+    //                 $this->session->set_userdata($ordersession);
+
+
+    //                 redirect('controller/Payment');
+    //             }
+    //         }
     //     }
     // }
-    public function MyCurrentRQ()
-    {   
-        $data = $this->session->userdata();
-        $data['tbl_request'] = $this->m_request->cur_req($data);
-        $this->load->view('MyCurrentRQ', $data);
-    }
-    public function Ordering()
-    {
+    // public function Payment()
+    // {
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $data['cartItems'] = $this->cart->contents();
+    //     $this->load->view('Payment', $data);
+    // }
+    // public function Checkout()
+    // {
+
+    //     $config['upload_path'] = './upload/';
+    //     $config['allowed_types']        = 'gif|jpg|png';
+    //     $config['max_size']             = 2000;
+    //     $config['max_width']            = 2000;
+    //     $config['max_height']           = 2000;
+
+    //     $this->load->library('upload', $config);
+
+    //     $data = $this->upload->data();
+    //     if (!$this->upload->do_upload('pay_slip')) {
+    //         echo $this->upload->display_errors();
+    //     } else {
+    //         $data = $this->upload->data();
+    //         $filename = $data["file_name"];
+
+    //         $getOrder = $this->session->userdata();
+    //         $data['order_id'] = $getOrder['order_id'];
+    //         $data['order_address'] = $_REQUEST['order_address'];
+    //         $data['order_phone'] = $_REQUEST['order_phone'];
+    //         $update = $this->m_order->update($data);
+    //         date_default_timezone_set("Asia/Bangkok");
+    //         $orderno = date('sdHmis');
+    //         $pay['pay_id'] = $orderno;
+    //         $pay['order_id'] = $getOrder['order_id'];
+    //         $pay['pay_slip'] = $filename;
+    //         // $data['order_address'] = $_REQUEST['order_address'];
+    //         // $data['order_phone'] = $_REQUEST['order_phone'];
+    //         $pay['pay_datetime'] = date('Y-m-d H:i:s');
+    //         $pay['adm_id'] = "";
+    //         $pay['pay_modify'] = "";
+    //         $pay['prove_status'] = "ชำระเงินแล้ว";
+    //         $this->m_payprove->payprove($pay);
+
+    //     }
+
+    //     $this->session->unset_userdata('order_id');
+    //     $this->cart->destroy();
+    //     $this->session->set_flashdata('order_success', true);
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->load->view('Homepage3');
+    // }
+    // public function CancelStore()
+    // {
+
+    //     $getOrder = $this->session->userdata();
+    //     $data['order_id'] = $getOrder['order_id'];
+    //     $this->m_order->cancel($data);
+    //     $this->m_order->remove($data);
 
 
-        date_default_timezone_set("Asia/Bangkok");
-        $orderno = gmdate('sHms');
-        $orderno2 = $orderno;
-        $user_data = $this->session->userdata();
-        $data['order_id'] = $orderno2;
-        $data['cus_id'] = $user_data['cus_id'];
-
-        $data['order_datetime'] = date('Y-m-d H:i:s');
-        $data['order_total'] = $this->cart->total();
-        $data['order_status'] = 'ยังไม่ชำระเงิน';
-        $insertOrder = $this->m_order->insert($data);
+    //     $this->session->unset_userdata('order_id');
+    //     $this->cart->destroy();
 
 
-        if ($insertOrder) {
-
-            $cartItems = $this->cart->contents();
-            $ordItemData = array();
-            $i = 0;
-            foreach ($cartItems as $item) {
-                $ordItemData[$i]['ol_id']     = "";
-                $ordItemData[$i]['order_id']     = $orderno2;
-                $ordItemData[$i]['pro_id']     = $item['id'];
-                $ordItemData[$i]['qty']     = $item['qty'];
-                $ordItemData[$i]['sub_total']     = $item["subtotal"];
-                $i++;
-            }
-            if (!empty($ordItemData)) {
-                // Insert order items
-                $insertOrderItems = $this->m_order->insertOrderItems($ordItemData);
-
-                if ($insertOrderItems) {
-                    // Remove items from the cart
-                    $this->session->unset_userdata('order_id');
-                    $ordersession = array(
-                        'order_id' => $orderno2,
-
-                    );
-
-
-                    $this->session->set_userdata($ordersession);
-
-
-                    redirect('controller/Payment');
-                }
-            }
-        }
-    }
-    public function Payment()
-    {
-
-        $data['cartItems'] = $this->cart->contents();
-        $this->load->view('Payment', $data);
-    }
-    public function Checkout()
-    {
-
-        $config['upload_path'] = './upload/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 2000;
-        $config['max_width']            = 2000;
-        $config['max_height']           = 2000;
-
-        $this->load->library('upload', $config);
-
-        $data = $this->upload->data();
-        if (!$this->upload->do_upload('pay_slip')) {
-            echo $this->upload->display_errors();
-        } else {
-            $data = $this->upload->data();
-            $filename = $data["file_name"];
-
-            $getOrder = $this->session->userdata();
-            $data['order_id'] = $getOrder['order_id'];
-            $update = $this->m_order->update($data);
-            date_default_timezone_set("Asia/Bangkok");
-            $orderno = date('sHsmis');
-            $data['pay_id'] = $orderno;
-            $data['order_id'] = $getOrder['order_id'];
-            $data['pay_slip'] = $filename;
-            $data['pay_datetime'] = date('Y-m-d H:i:s');
-            $data['adm_id'] = "";
-            $data['pay_modify'] = "";
-            $data['prove_status'] = "ชำระเงินแล้ว";
-            $paysuccess = $this->m_payprove->payprove($data);
-        }
-
-        $this->session->unset_userdata('order_id');
-        $this->cart->destroy();
-        $this->session->set_flashdata('order_success', true);
-
-        $this->load->view('Homepage3');
-    }
-    public function CancelStore()
-    {
-
-        $getOrder = $this->session->userdata();
-        $data['order_id'] = $getOrder['order_id'];
-        $cancel = $this->m_order->cancel($data);
-        $remove = $this->m_order->remove($data);
-
-
-        $this->session->unset_userdata('order_id');
-        $this->cart->destroy();
-
-
-        redirect('controller/Store');
-    }
-    public function OrderHistory()
-    {
-        $cus_mention = $this->session->userdata();
-        $data['cus_id'] = $cus_mention['cus_id'];
-        $data['order_history'] = $this->m_order->OrderHistory($data);
-
-        $this->load->view('History', $data);
-    }
-    public function CancelRQ()
-    {
-        $getRQ = $this->session->userdata();
-        $data['rq_id'] = $getRQ['rq_id'];
-        $cancel = $this->m_request->cancel($data);
+    //     redirect('controller/Store');
+    // }
+    // public function OrderHistory()
+    // {
+    //     $cus_mention = $this->session->userdata();
+    //     $data['cus_id'] = $cus_mention['cus_id'];
+    //     $data['order_history'] = $this->m_order->OrderHistory($data);
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->load->view('History', $data);
+    // }
+    // public function CancelRQ()
+    // {
+    //     $getRQ = $this->session->userdata();
+    //     $data['rq_id'] = $getRQ['rq_id'];
+    //     $this->m_request->cancel($data);
         
-        $this->session->set_userdata('req_status', false);
-        $this->session->unset_userdata('rq_id');
-        redirect('controller/Homepage3');
-    }
-    public function VideoCall()
-    {
-        
-        $this->load->view('VideoCall');
-    }
+    //     $this->session->set_userdata('ss_req_status',false);
+    //     $this->session->unset_userdata('rq_id');
+    //     redirect('controller/Homepage3');
+    // }
+    // public function VideoCall()
+    // {
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->load->view('VideoCall');
+    // }
 }

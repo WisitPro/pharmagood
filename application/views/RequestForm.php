@@ -28,15 +28,7 @@ $now = new DateTime();
 </head>
 
 <body >
-    <nav>
-        <img id="logo" src="<?php echo base_url(); ?>images/Logo.png">
-        <div id="menu">
-            <a id="btHome" href="HomePage3">หน้าหลัก</a>
-
-            <a id="btOut" onclick="Out()" style="cursor:pointer;">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        </div>
-
-    </nav>
+    
 
     <div id="total">
         <div id="tab">
@@ -55,7 +47,7 @@ $now = new DateTime();
                 <input type="text" name="cus_name" value="<?php echo $name ?>" readonly disabled required></input>
             </p>
             <p>เบอร์โทร<span></span><br>
-                <input type="text"  name="cus_phone" value="<?php echo $phone ?>"readonly disabled required></input>
+                <input type="text"  name="cus_phone" value="<?php echo $phone ?>" maxlength="10" minlength="10" required></input>
             </p>
             <p>อาการเบื้องต้น<span>*</span><br>
                 <textarea name="req_sym" required></textarea>

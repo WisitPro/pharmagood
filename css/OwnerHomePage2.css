@@ -1,3 +1,15 @@
+
+
+* button:not(:disabled):hover{
+    
+    transform: scale(1.06);
+}
+* button{
+    
+    transition: 0.2s ease-in-out;
+}
+
+
 body{
     background-color: #68B3F8;
 }
@@ -23,7 +35,7 @@ nav{
 }
 #btHome {
 
-    color: #0386FF;
+    color: #525252;
     margin-left: 22%;
 }
 

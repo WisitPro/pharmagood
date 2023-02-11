@@ -12,6 +12,15 @@
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/Fonts.css">
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
+
+<script type='text/javascript'>
+function check_char(elm){
+	if(elm.value.length <2 && !elm.value.charAt(0).match(/^[ก-ฮa-z0-9]+$/i)  ){
+            alert('ไม่สามารถใส่ตัวอักษรพิเศษได้');
+            elm.value='';
+	}
+}
+</script>
 <body>
     <nav>
         <img id="logo" src="<?php echo base_url('images/logo.png'); ?>">
@@ -48,7 +57,7 @@
         <i id="check" class="fa-regular fa-circle-check" style="position: absolute;color:limegreen;font-size:22px;margin-left:-27px;margin-top:6px;transition:0.2s;"></i>
             <br>
             <br>
-        <textarea name="cus_add" id="address" placeholder="ที่อยู่" maxlength="200" required></textarea>
+        <textarea name="cus_add" id="address" onkeyup="check_char(this)" placeholder="ที่อยู่" maxlength="200" required></textarea>
         <br>
         <br>
         
