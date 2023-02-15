@@ -2,17 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/ProductList.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
-
-    <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
-</head>
 <?php
 foreach ($tbl_product as $row) {
     $pro_id = $row->pro_id;
@@ -22,14 +12,9 @@ foreach ($tbl_product as $row) {
     $pro_price = $row->pro_price;
     $pro_kind = $row->pro_kind;
     $pro_limit = $row->pro_limit;
-
-
 ?>
-
     <body>
-
         <br><br><br><br><br><br><br><br>
-
         <div id="form">
             <form action="Product_Update" method="POST" autocomplete="off">
                 <p style="font-size: 28px;">ฟอร์มเพิ่มสินค้า</p>
@@ -43,7 +28,6 @@ foreach ($tbl_product as $row) {
                     <?php } ?>
                 </select>
                 <div style="height:10px"></div>
-
                 <span id="line2">
                     <input name="pro_price" value="<?php echo $pro_price ?>" type="text" class="pro_price" placeholder="ราคา*" onkeypress='validate(event)' required>
                     <input name="pro_img" value="<?php echo $pro_img ?>" type="text" class=" pro_img" placeholder=" ลิ้งค์รูปภาพ ">
@@ -67,25 +51,16 @@ foreach ($tbl_product as $row) {
             </form><a onclick="if (confirm('ยกเลิกแก้ไขข้อมูล')) { history.back(); }"><button id="btnForm12"  style="background-color: #FF5353;color:white;position: absolute;margin-top:-54px;margin-left:940px">ยกเลิก</button></a>
         </div>
     <?php } ?>
-
-
-
-
-
-
     <img id="admin" src="<?php echo base_url(); ?>images/admin.png">
     </body>
-
 </html>
 <script>
-    function validate(evt) { //รับค่าเฉพาะตัวเลข
+    function validate(evt) {
         var theEvent = evt || window.event;
 
-        // Handle paste
         if (theEvent.type === 'paste') {
             key = event.clipboardData.getData('text/plain');
         } else {
-            // Handle key press
             var key = theEvent.keyCode || theEvent.which;
             key = String.fromCharCode(key);
         }

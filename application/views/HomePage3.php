@@ -1,75 +1,36 @@
 <?php
-    //    session_destroy();
-    //    redirect('controller/LoginPage');
-
-
-      
-
-
-        ?>
-
-<?php
 if (isset($this->session->userdata['cus_user'])) {
     $user = $this->session->userdata['cus_user'];
-
     $name = $this->session->userdata['cus_name'];
     $id = $this->session->userdata['cus_id'];
     $phone = $this->session->userdata['cus_phone'];
-    
 } else {
-
     session_destroy();
-
     redirect('controller/LoginPage');
 }
-
 ?>
-<script>
-
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
     <link href="<?php echo base_url(); ?>css/HomePage.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>css/Fonts.css" rel="stylesheet">
-    <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/Loader.js"></script> -->
-    <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 <script>
     var myVar;
-
     function myFunction() {
         myVar = setTimeout(showPage, 1800);
     }
-
     function showPage() {
         document.getElementById("loader").style.display = "none";
         document.getElementById("page").style.display = "block";
     }
 </script>
-<!-- <?php
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
-        ?> -->
 <body onload="myFunction()">
 <?php if ($this->session->flashdata('order_success')) : ?>
             <script>
                 var myVar;
-
                 function myFunction() {
                     myVar = setTimeout(showPage, 1800);
                 }
-
                 function showPage() {
                     document.getElementById("loader").style.display = "none";
                     document.getElementById("page").style.display = "block";
@@ -83,9 +44,7 @@ if (isset($this->session->userdata['cus_user'])) {
                 #myModal {
                     display: none;
                 }
-
                 #loader {
-
                     position: absolute;
                     left: 50%;
                     top: 50%;
@@ -99,44 +58,32 @@ if (isset($this->session->userdata['cus_user'])) {
                     -webkit-animation: spin 1s linear infinite;
                     animation: spin 1s linear infinite;
                 }
-
                 @-webkit-keyframes spin {
                     0% {
                         -webkit-transform: rotate(0deg);
                     }
-
                     100% {
                         -webkit-transform: rotate(360deg);
                     }
                 }
-
                 @keyframes spin {
                     0% {
                         transform: rotate(0deg);
                     }
-
                     100% {
                         transform: rotate(360deg);
                     }
                 }
             </style>
-            <!-- The Modal -->
             <div id="loader"></div>
-
             <div id="myModal" class="modal">
-
-                <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <p>สินค้าจะจัดส่งถึงคุณภายใน 2 ชม. ขอบคุณที่ใช้บริการ <i class="fa-solid fa-truck-fast"></i></p>
                 </div>
-
             </div>
-
         <?php endif; ?>
-
     <container id="page" class="animate-bottom">
-
         <banner>
             <a href="<?php echo base_url('/index.php/ProductController/Store'); ?>"><button id="btn1">
                     ดูรายการยาและเวชภัณฑ์
@@ -163,15 +110,11 @@ if (isset($this->session->userdata['cus_user'])) {
                     </button>
                 </a>
             </div>
-
         </footer>
     </container>
 </body>
-
 </html>
 <script>
-    
-
     // Get the modal
     var modal = document.getElementById("myModal");
 
@@ -186,7 +129,6 @@ if (isset($this->session->userdata['cus_user'])) {
         modal.style.display = "none";
         window.location = '<?php echo base_url('/index.php/controller/HomePage3/') ?>';
     }
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {

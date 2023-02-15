@@ -17,10 +17,10 @@ if (isset($this->session->userdata['adm_user'])) {
         ?> -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
     <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -31,7 +31,6 @@ if (isset($this->session->userdata['adm_user'])) {
     <script type="text/javascript" src="<?php echo base_url(); ?>js/AdminOut.js"></script>
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
     <?php if($adm_role == "เจ้าของกิจการ"){ ?>
     <nav>
@@ -47,17 +46,10 @@ if (isset($this->session->userdata['adm_user'])) {
                     <a  href="<?php echo base_url('/index.php/OrderController/OrderInfo1'); ?>">ข้อมูลออเดอร์</a>
                 </div>
             </div>
-
             <span id="n1"><i class="fa-regular fa-user"></i></span>
             <span id="n2"><?php echo $adm_name ?></span>
-
             <a id="bt4" onclick="AmOut()" style="cursor:pointer">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-
-            <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
-            <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
-
         </div>
-
     </nav>
     <?php }elseif($adm_role == "เภสัชกร"){ ?>
         <nav>
@@ -73,34 +65,17 @@ if (isset($this->session->userdata['adm_user'])) {
                     <a  href="<?php echo base_url('/index.php/OrderController/OrderInfo1'); ?>">ข้อมูลออเดอร์</a>
                 </div>
             </div>
-
             <span id="n1"><i class="fa-regular fa-user"></i></span>
             <span id="n2"><?php echo $adm_name ?></span>
-
             <a id="bt4" onclick="AmOut()" style="cursor:pointer">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-
-            <!-- <a id="btLogin" href="AddminLogin">เข้าสู่ระบบ</a> -->
-            <!-- <a id="btRegister" href="Register">สมัครสมาชิก</a> -->
-
         </div>
-
     </nav>
-
-        <?php }else{
-            redirect('controller/HomePage');
-        } ?>
-    
-
-    
-
+        <?php }else{redirect('controller/HomePage'); } ?>
 </body>
-
 </html>
 <script>
     function AmOut() {
     if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='<?php echo base_url('/index.php/controller/Logout'); ?>';
-    
-
 }
 </script>
 

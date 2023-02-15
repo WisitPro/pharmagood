@@ -241,6 +241,7 @@ class controller extends CI_Controller
     {
         $data = array();
         $data['tbl_product'] = $this->m_product->getRows();
+        $this->load->view('component/navbar');
         $this->load->view('StoreX', $data);
     }
 }

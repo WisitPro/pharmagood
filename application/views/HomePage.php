@@ -1,34 +1,9 @@
-<?php
-//   session_destroy();
-//    redirect('controller/LoginPage');
-
-
-// echo '<pre>';
-// var_dump($_SESSION);
-// echo '</pre>';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma Good</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
     <link href="<?php echo base_url(); ?>css/OutHomePage.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>css/Fonts.css" rel="stylesheet">
 </head>
-<!-- <?php
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
-        ?> -->
 <body>
-
     <banner>
         <a href="StoreX"><button id="btn1">
                 ดูรายการยาและเวชภัณฑ์
@@ -54,15 +29,11 @@
                 <img id="pic2" src="<?php echo base_url('images/image 2.png'); ?>">
             </button>
         </div>
-
     </footer>
 </body>
-
 </html>
 <script>
     function Msg() {
         if (confirm('เข้าสู่ระบบเพื่อใช้บริการ')) window.location.href = 'LoginPage';
-
-
     }
 </script>

@@ -1,7 +1,4 @@
-
-
 <?php
-
 foreach ($req_detail as $row) {
     $req_id = $row->req_id;
     $cus_id = $row->cus_id;
@@ -12,28 +9,20 @@ foreach ($req_detail as $row) {
     $req_sym = $row->req_sym;
     $req_status = $row->req_status;
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="30">
     <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   
     <link href="<?php echo base_url(); ?>css/RqDetail.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/Fonts.css" rel="stylesheet">
     <script type="text/javascript" src="<?php echo base_url(); ?>js/AdminOut.js"></script>
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
-
 <body onload="updateTotal()">
 <script>
     function updateTotal() {
@@ -42,85 +31,41 @@ foreach ($req_detail as $row) {
         for (var i = 0; i < subtt.length; i++) {
             total += parseFloat(subtt[i].value);
         }
-       
         document.getElementById("total").value = total;
     }
-
 </script>
-     <!-- <?php
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
-?>  -->
 <div id="total">
         <div id="tab">
         </div>
-            <div id="form1">
-               
+            <div id="form1">  
                 <h1>รายการยา</h1>    
                 <table class="table" id="druglist">
 <thead>
                 <tr id="tr1">
-
                     <th onclick="sortTable(0)" ></th>
                     <th onclick="sortTable(0)" class="dt">ยา</th>
                     <th>ประเภท</th>
-
-                    <th  class="dt" >ราคา</th>
-                   
-
-                  
+                    <th  class="dt" >ราคา</th>   
                     <th></th>
-
                 </tr>
                 </thead>
-                
-                    <?php
-                    $item = 1;
-
-                    foreach ($tbl_product as $row) {
-                       
-                        
-                    ?><tbody>
+                    <?php $item = 1;foreach ($tbl_product as $row) { ?>
+                        <tbody>
                         <tr id="tr2">
                             <th class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></th>
-                           
                             <td class="data dt"style="border-right: 1px solid #b6b6b6;"><?php echo $row['pro_name'] ?></td>
                             <td class="data dt"style="border-right: 1px solid #b6b6b6;"><?php echo $row['type_name'] ?></td>
                             <td class="data " style="color:#eb0e0e;border-right: 1px solid #b6b6b6;text-align:right;padding-right:8px">
                             <?php echo $row['pro_price']; ?></td>
-                        
                             <td id="btnTable">
                                 <a  href="<?php echo base_url('/index.php/ProductController/AddToCus/'.$row['pro_id'].'/'.$req_id) ?>">เลือก</a>
-                                
-
                             </td>
                         </tr></tbody>
-                    <?php
-                        $item++;
-                    }
-
-                    ?>
-
-
-                
-
-
-
+                    <?php $item++; } ?>
             </table>
-            
-
-             
-
     </div>
-            
-            
-
-
         </div>
 </div>
-
-
     <div id="total">
         <div id="tab">
         </div>
@@ -138,32 +83,21 @@ echo '</pre>';
                 </p>
                 <p>วันและเวลาที่ต้องการปรึกษา<span></span><br>
                     <input disabled type="text" name="req_time" value="<?php echo $req_time ?>" ></input>
-                </p>
-                
-                <p style="color: black;">สถานะ : <?php echo $req_status ?></p>
-             
-
+                </p>   
+                <p style="color: black;">สถานะ : <?php echo $req_status ?></p>          
     </div><div id="buttonbar">
         <?php if($req_status == "วิดีโอคอล"){?>   
             <button id="btGo" style="background-color:#68B3F8;" onclick="window.open('https://digitalpharmacysritan.000webhostapp.com');">วิดีโอคอล</button>
         <?php }else{?>
             <p ><button disabled id="btGo" style="background-color:#91afcb;">วิดีโอคอล</button></p>
-        <?php } ?>
-        
+        <?php } ?>      
             </div>
-            
-            
-
-
-        </div>
-
+                 </div>
     <a onclick="return confirm('เสร็จสิ้น')"
      href="<?php echo base_url('/index.php/RequestController/SuccessRQ/'.$req_id.''); ?>" ><button id="btCancel" >เสร็จสิ้น</button></a>
 </div>
-
 <div id="p3">
         <div id="p4">
-
             <table class="table">
                 <thead >
                     <tr>
@@ -176,30 +110,23 @@ echo '</pre>';
                 </thead>
                 <tbody class="tableRow">
                     <?php
-
                     if ($this->cart->total_items() > 0) {
                         $qty = 1;
                         foreach ($cartItems as $item) {
                     ?>
-
                             <tr class="trB">
                                 <td ><?php echo $item["name"]; ?></td>
                                 <td  id="price">
                                     <p style="color: black;"><?php echo '' . $item["price"]; ?></p><input type="hidden" id="pz<?php echo $qty  ?>" value="<?php echo '' . $item["price"]; ?>" />
                                 </td>
-                                <td class="text-center">
-                                   
-                                    <input  class="qty text-center " type="text" value="<?php echo $item["qty"] ?>" id="qty<?php echo $qty  ?>" readonly />
-                                    
+                                <td class="text-center">             
+                                    <input  class="qty text-center " type="text" value="<?php echo $item["qty"] ?>" id="qty<?php echo $qty  ?>" readonly />                              
                                 </td>
 
                                 <td  >
-                                    <input class="text-right"  disabled name="subtotal" type="text" class="subtt" id="subtt<?php echo $qty ?>" value=" <?php echo $item["subtotal"] ?>" >
-                                        
-                                        
+                                    <input class="text-right"  disabled name="subtotal" type="text" class="subtt" id="subtt<?php echo $qty ?>" value=" <?php echo $item["subtotal"] ?>" >                                  
                                     <span> บาท</span>
-                                </td>
-
+                            </td>
                                 <td ><i class="fa fa-trash-o" style="padding-top: 2px;font-size:16px;color:red;cursor: pointer;" class="btn btn-sm btn-danger" onclick="return confirm('คุณต้องการลบรายการนี้หรือไม่')?
                             window.location.href='<?php echo base_url('/index.php/CartController/remove/'.$item["rowid"].'/'.$req_id); ?>':false;"></i> </td>
                             </tr>
@@ -209,9 +136,7 @@ echo '</pre>';
                     }
                     ?>
                 </tbody>
-           
         </div>
-       
     </div>
     </table>
         </div>
@@ -223,20 +148,11 @@ echo '</pre>';
              disabled class="text-right" type="text" id="total" 
             value="<?php echo number_format($this->cart->total()); ?>"></input> <span style="color: white;font-size: 24px;">บาท</span>
            </strong>
-
-        <?php
-
-        } ?>
+        <?php } ?>
     </div>
-    
-
-
-
 </body>
-
 </html>
 <script>
-   
     function updateCartItem(obj, rowid) {
         $.get("<?php echo base_url('CartController/updateItemQty/'); ?>", {
             rowid: rowid,
@@ -249,6 +165,4 @@ echo '</pre>';
             }
         });
     }
-
-
 </script>
