@@ -19,6 +19,7 @@ class OrderController extends CI_Controller
         $this->load->model('m_payprove');
         $this->load->model('m_bill');
         $this->load->model('m_delivery');
+        $this->load->model('m_information');
 
         //helper
         $this->load->helper('form', 'url');
@@ -194,7 +195,9 @@ class OrderController extends CI_Controller
     }
     public function Payment()
     {
+
         $this->load->view('navbar_customer/navbar_cus');
+        $data['BankInfo'] = $this->m_information->BankInPayment();
         $data['cartItems'] = $this->cart->contents();
         $this->load->view('Payment', $data);
     }
@@ -255,7 +258,7 @@ class OrderController extends CI_Controller
         $this->cart->destroy();
 
 
-        redirect('controller/Store');
+        redirect('ProductController/Store');
     }
     public function OrderHistory()
     {

@@ -75,7 +75,7 @@ foreach ($tbl_admin as $row) {
 
             </table>
 
-            <form action="AddAdmin" method="POST">
+            <form action="AddAdmin" method="POST" autocomplete="off">
                 <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มเพิ่มผู้ใช้</p>
                 <input required type="text" name="adm_id"  style="visibility:hidden ;position:absolute" value="<?php echo $row->adm_id+1 ?>">
                 
@@ -87,8 +87,8 @@ foreach ($tbl_admin as $row) {
                         <?php echo form_error('adm_name'); ?>
                     </font>
                 </p>
-                <p class="head hd2">เบอร์โทร*<br>
-                    <input required type="text" name="adm_phone">
+                <p class="head hd2">เบอร์โทร<br>
+                    <input  type="text" name="adm_phone" minlength="10" maxlength="10">
                     <font color="red">
                         <?php echo form_error('adm_phone'); ?>
                     </font>

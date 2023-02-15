@@ -41,7 +41,7 @@ echo '</pre>';
 </script>
 
     
-    <a href="<?php echo base_url();?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-prescription-bottle-medical"></i> ดูสินค้า</button></a>
+    <a href="<?php echo base_url();?>index.php/ProductController/Store"><button id="p2"><i class="fa-solid fa-prescription-bottle-medical"></i> ดูสินค้า</button></a>
     <p id="p1">ตะกร้าสินค้าของฉัน</p>
 
 
@@ -74,7 +74,7 @@ echo '</pre>';
                                 <td class="text-center" style="width: 170px;">
                                     <input type="button" value="-" class="minus text-center qtybt" id="minus<?php echo $qty ?>" />
                                     <input style="width:60px;cursor:default" class="qty text-center " type="text" value="<?php echo $item["qty"] ?>" id="qty<?php echo $qty  ?>" readonly />
-                                    <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/Cart/updateItemQty/'.$item["rowid"]); ?>"/>
+                                    <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/CartController/updateItemQty/'.$item["rowid"]); ?>"/>
                                 </td>
 
                                 <td style="padding-top: 12px;width:100px;" >
@@ -84,7 +84,7 @@ echo '</pre>';
                                             document.getElementById("add<?php echo $qty ?>").onclick = function() {
                                                 var pz = document.getElementById("pz<?php echo $qty ?>");
                                                 var qty = document.getElementById("qty<?php echo $qty ?>");
-                                                if (qty.value >= 5) {
+                                                if (qty.value >= <?php echo $item['limit']?>) {
                                                 
                                                     return;
                                                 }    
@@ -92,7 +92,7 @@ echo '</pre>';
                                                 
                                                 document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
                                                 updateTotal();
-                                                window.location='<?php echo base_url('/index.php/Cart/updateItemQty/'.$item["rowid"].'/'); ?>'+qty.value;
+                                                window.location='<?php echo base_url('/index.php/CartController/updateItemQty/'.$item["rowid"].'/'); ?>'+qty.value;
 
                                                 
 
@@ -107,7 +107,7 @@ echo '</pre>';
                                                 qty.value--;
                                                 document.getElementById("subtt<?php echo $qty ?>").value = pz.value * qty.value;
                                                 updateTotal();  
-                                                window.location='<?php echo base_url('/index.php/Cart/updateItemQty2/'.$item["rowid"].'/'); ?>'+qty.value;
+                                                window.location='<?php echo base_url('/index.php/CartController/updateItemQty2/'.$item["rowid"].'/'); ?>'+qty.value;
                                                 
                                                 
                                             }
@@ -117,7 +117,7 @@ echo '</pre>';
 
                                 <td style="width: 50px;"><i class="fa fa-trash-o" style="padding-top: 2px;font-size:22px;color:red;cursor: pointer;" 
                                 class="btn btn-sm btn-danger" onclick="return confirm('คุณต้องการลบรายการนี้หรือไม่')?
-                            window.location.href='<?php echo base_url('/index.php/controller/removeItem/' . $item["rowid"]); ?>':false;"></i> </td>
+                            window.location.href='<?php echo base_url('/index.php/CartController/removeItem/' . $item["rowid"]); ?>':false;"></i> </td>
                             </tr>
                         <?php
                             $qty++;
@@ -155,13 +155,9 @@ echo '</pre>';
     // subotal.getElementByClassName('subtt')[0].innerHTML = "New text!";
 </script>
 <script>
-    function Out() {
-        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/controller/CusLogout'); ?>';
-
-    }
-
+    
     function updateCartItem(obj, rowid) {
-        $.get("<?php echo base_url('cart/updateItemQty/'); ?>", {
+        $.get("<?php echo base_url('CartController/updateItemQty/'); ?>", {
             rowid: rowid,
             qty: obj.value
         }, function(resp) {

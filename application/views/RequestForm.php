@@ -72,10 +72,3 @@ $now = new DateTime();
 </body>
 
 </html>
-<script>
-function Out() {
-    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='CusLogout';
-  
-
-}
-</script>

@@ -6,6 +6,8 @@
         echo '</pre>';
         ?> -->
 
+       
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +70,7 @@
                                 <td class="text-right" style="width: 40px;">
                                     <!-- <input type="button" value="-" class="minus text-center qtybt" id="minus<?php echo $qty ?>" /> -->
                                     <p style="width:50px;cursor:default;" class="qty text-center " id="qty<?php echo $qty  ?>"><?php echo $item["qty"] ?></p>
-                                    <!-- <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/Cart/updateItemQty/' . $item["rowid"]); ?>"/> -->
+                                    <!-- <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/CartController/updateItemQty/' . $item["rowid"]); ?>"/> -->
                                 </td>
 
                                 <td style="min-width:80px;" class="text-right">
@@ -92,15 +94,34 @@
             </table>
 
         </div>
-
-        <form action="<?php echo base_url('/index.php/OrderController/Checkout'); ?>" method="post" enctype="multipart/form-data" autocomplete="false">
-            <div id="paymentinput">
-                <p id="a2">เลขที่บัญชี :</p>
-                <strong><input type="text" class="in" disabled readonly value=""></input></strong><br><br>
-                <p>ธนาคาร :</p>
-                <strong><input type="text" class="in" disabled readonly value=""></input></strong><br><br>
+        <?php 
+        
+        foreach($BankInfo as $bank){
+            $bank_name = $bank->value_1;
+            $bank_no = $bank->value_2;
+            $bank_owner = $bank->value_3;
+            $formatted_bank_no = sprintf('%03d-%d-%05d-%d', 
+                             substr($bank_no, 0, 3), 
+                             substr($bank_no, 3, 1), 
+                             substr($bank_no, 4, 5), 
+                             substr($bank_no, -1)
+                            );
+            
+        }
+        
+        
+        ?>
+        
+        <form action="<?php echo base_url('/index.php/OrderController/Checkout'); ?>" method="post" enctype="multipart/form-data" autocomplete="off">
+            <div id="paymentinput" >
+                <p id="a2">ธนาคาร :</p>
+                <span id="bank">
+                <strong><input type="text" class="in" disabled readonly value="<?php echo $bank_name ?>"></input></strong><br><br>
+                <p>เลขที่บัญชี :</p>
+                <strong><input type="text" class="in" disabled readonly value="<?php echo $formatted_bank_no?>"></input></strong><br><br>
                 <p>ชื่อบัญชี :</p>
-                <strong><input type="text" class="in" disabled readonly value=""></input></strong><br><br>
+                <strong><input type="text" class="in" disabled readonly value="<?php echo $bank_owner?>"></input></strong><br><br>
+                </span>
                 <p><span style="color:red">* </span>สลิปโอนเงิน :</p>
                 <input id="slip" type="file" name="pay_slip" accept="image/png, image/gif, image/jpeg" required />
                 <p><span style="color:red">* </span>เบอร์โทร :</p>
@@ -123,28 +144,7 @@
                     </span>
 
         </form>
-
-    <?php
-
-            } ?>
-    </div>
-
-    <div class="map1" id="map" ondblclick="clearMarkers ()">
-        <div id="BoxSelectMap">
-            <p id="TextSelectMap">
-            <div class="dd">
-                <input type="hidden" id="myText">
-            </div>
-            <div id="BoxSelectAddress">
-                <p id="TextSelectAddress">
-            </div>
-        </div>
-
-</body>
-
-</html>
-
-<script>
+        <script>
     var fileInput = document.getElementById("slip");
     var payButton = document.getElementById("btGo");
     var cancelBt = document.getElementById("p2");
@@ -294,18 +294,25 @@
         cancelBt2.disabled = false;
 
     }
-
-
-
-    function Out() {
-        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/controller/CusLogout'); ?>';
-
+    window.addEventListener('popstate', function(event) {
+  if (document.URL.includes("<?php echo base_url(); ?>index.php/OrderController/CancelStore")) {
+    if (confirm('รายการของคุณจะถูกยกเลิกและกลับไปยังหน้าหลัก')) {
+      event.preventDefault(); // Prevent the default back button behavior
+      window.location = "<?php echo base_url(); ?>index.php/OrderController/CancelStore";
+    } else {
+      // User clicked cancel, do nothing
+      window.history.pushState(null, null, window.location.href); // Reset the history state
     }
+  }
+});
+
+
+
 
 
 
     // function updateCartItem(obj, rowid) {
-    //     $.get("<?php echo base_url('cart/updateItemQty/'); ?>", {
+    //     $.get("<?php echo base_url('CartController/updateItemQty/'); ?>", {
     //         rowid: rowid,
     //         qty: obj.value
     //     }, function(resp) {
@@ -334,3 +341,24 @@
     //     document.getElementById("subtt").innerHTML = totalPrice;
     // }
 </script>
+
+    <?php
+
+            } ?>
+    </div>
+
+    <div class="map1" id="map" ondblclick="clearMarkers ()">
+        <div id="BoxSelectMap">
+            <p id="TextSelectMap">
+            <div class="dd">
+                <input type="hidden" id="myText">
+            </div>
+            <div id="BoxSelectAddress">
+                <p id="TextSelectAddress">
+            </div>
+        </div>
+
+</body>
+
+</html>
+

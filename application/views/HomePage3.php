@@ -138,7 +138,7 @@ if (isset($this->session->userdata['cus_user'])) {
     <container id="page" class="animate-bottom">
 
         <banner>
-            <a href="<?php echo base_url('/index.php/Products/Store'); ?>"><button id="btn1">
+            <a href="<?php echo base_url('/index.php/ProductController/Store'); ?>"><button id="btn1">
                     ดูรายการยาและเวชภัณฑ์
                 </button></a>
             <img id="capsule" src="<?php echo base_url('images/Group 15.png'); ?>">
@@ -149,7 +149,7 @@ if (isset($this->session->userdata['cus_user'])) {
         <footer>
             <div id="footer">
                 <p id="footH">บริการของ Pharma Good</p>
-                <a href="<?php echo base_url('/index.php/Products/Store'); ?>"><button id="ft1">
+                <a href="<?php echo base_url('/index.php/ProductController/Store'); ?>"><button id="ft1">
                         <p style="font-size: 20px">สั่งซื้อสินค้า</p>
                         <p>สั่งซื้อยาสามัญประจำบ้าน</p>
                         <p>และเวชภัณฑ์ได้ทันที</p>
@@ -170,10 +170,7 @@ if (isset($this->session->userdata['cus_user'])) {
 
 </html>
 <script>
-    function Out() {
-        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location = '<?php echo base_url('/index.php/controller/CusLogout/') ?>';
-    }
-
+    
 
     // Get the modal
     var modal = document.getElementById("myModal");

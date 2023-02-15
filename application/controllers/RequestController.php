@@ -51,12 +51,28 @@ class RequestController extends CI_Controller
         $this->load->view('ListRQ4',$data);
     }
     public function VerifyRQ($req_id){
-        $this->m_request->verify($req_id);
+        $data = array(
+            date_default_timezone_set("Asia/Bangkok"),
+            $date = date('Y-m-d H:i:s'),
+            'req_id' => $req_id,
+            'adm_id' => $this->session->userdata('adm_id'),
+            'req_modify' => $date
+           
+        );
+        $this->m_request->verify($data);
         $data['list_req'] = $this->m_request->List_req1();
         redirect('RequestController/ListRQ1');
     }
     public function DenyRQ($req_id){
-        $this->m_request->DenyRQ($req_id);
+        $data = array(
+            date_default_timezone_set("Asia/Bangkok"),
+            $date = date('Y-m-d H:i:s'),
+            'req_id' => $req_id,
+            'adm_id' => $this->session->userdata('adm_id'),
+            'req_modify' => $date
+           
+        );
+        $this->m_request->DenyRQ($data);
         $data['list_req'] = $this->m_request->List_req1();
         $this->session->set_userdata('ss_req_status',false);
         $this->session->unset_userdata('rq_id');
@@ -64,7 +80,15 @@ class RequestController extends CI_Controller
         redirect('RequestController/ListRQ1');
     }
     public function SuccessRQ($req_id){
-        $this->m_request->SuccessRQ($req_id);
+        $data = array(
+            date_default_timezone_set("Asia/Bangkok"),
+            $date = date('Y-m-d H:i:s'),
+            'req_id' => $req_id,
+            'adm_id' => $this->session->userdata('adm_id'),
+            'req_modify' => $date
+           
+        );
+        $this->m_request->SuccessRQ($data);
         $data['list_req'] = $this->m_request->List_req4();
          $this->session->set_userdata('ss_req_status',false);
          $this->session->unset_userdata('rq_id');
@@ -73,8 +97,15 @@ class RequestController extends CI_Controller
     }
     
     public function AdminCall($req_id){
-       
-        $this->m_request->videocall($req_id);
+        $data = array(
+            date_default_timezone_set("Asia/Bangkok"),
+            $date = date('Y-m-d H:i:s'),
+            'req_id' => $req_id,
+            'adm_id' => $this->session->userdata('adm_id'),
+            'req_modify' => $date
+           
+        );
+        $this->m_request->videocall($data);
         $data = array();
         $data['cartItems'] = $this->cart->contents();
         $data['req_detail'] = $this->m_request->RqDetail($req_id);
@@ -145,7 +176,14 @@ class RequestController extends CI_Controller
     public function CancelRQ()
     {
         $getRQ = $this->session->userdata();
-        $data['rq_id'] = $getRQ['rq_id'];
+        $data = array(
+            date_default_timezone_set("Asia/Bangkok"),
+            $date = date('Y-m-d H:i:s'),
+            'rq_id' => $getRQ['rq_id'],
+            'req_modify' => $date
+           
+        );
+
         $this->m_request->cancel($data);
         
         $this->session->set_userdata('ss_req_status',false);
@@ -156,5 +194,14 @@ class RequestController extends CI_Controller
     {
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('VideoCall');
+    }
+    public function HistoryRequest()
+    {
+        $cus_mention = $this->session->userdata();
+        $cus_id = $cus_mention['cus_id'];
+        $data['request_list'] = $this->m_request->History($cus_id);
+        //$data['orderlist_history'] = $this->m_order->OrderListHistory($data);
+        $this->load->view('navbar_customer/navbar_cus');
+        $this->load->view('HistoryRequest', $data);
     }
 }

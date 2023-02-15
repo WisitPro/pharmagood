@@ -1,46 +1,4 @@
 
-nav{
-    height: 62px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 2px solid #0386FF;
-}
-#logo{
-    position: absolute;
-    margin-left: 10%;
-    margin-top: 2px;
-
-}
-
-
-
-
-#menu{
-    
-    
-    position: absolute;
-    font-size: 20px;
-    width: 100%;
-    padding-top: 18px;
-    
-}
-#btHome {
-
-    color: #0386FF;
-    margin-left: 22%;
-}
-
-#btLogin {
-
-    color: #565656;
-    margin-left: 50%;
-
-}
-
-#btRegister {
-    color: #565656;
-    margin-left: 1%;
-}
-
 
 
 #btn1{

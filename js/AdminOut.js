@@ -1,6 +1,6 @@
 
 function Out() {
-    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='CusLogout';
+    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='<?php echo base_url('/index.php/controller/CusLogout'); ?>';
   
 
 }

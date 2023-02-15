@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(128, 128, 128, 0); 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #68B3F8; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3691c5; 
+}
+
+
+
 #tab {
   width: 30px;
   height: 500px;
@@ -146,9 +163,15 @@ span {
   font-weight: normal;
   color: #2b2b2b;
 }
+/* #tr1{
+  overflow: auto;
+  display: block;
+} */
 #druglist{
+  height:400px ;
   background-color: #ffffff;
   margin-left:-22px;
   border-radius: 10px;
-  
+  overflow: auto;
+  display: block;
 }

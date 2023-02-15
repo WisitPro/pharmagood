@@ -33,7 +33,7 @@ foreach ($tbl_admin as $row) {
         
         
             
-            <form action="Admin_Update" method="POST">
+            <form action="Admin_Update" method="POST" autocomplete="off">
                 <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้</p>
                 <input type="text" name="adm_id"  style="visibility:hidden ;position:absolute" value="<?php echo $row->adm_id ?>">
                     

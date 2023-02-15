@@ -152,10 +152,3 @@ foreach ($tbl_request as $row) {
 </body>
 
 </html>
-<script>
-function Out() {
-    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='CusLogout';
-  
-
-}
-</script> -->

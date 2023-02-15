@@ -39,7 +39,12 @@ if (isset($this->session->userdata['cus_user'])) {
         var_dump($_SESSION);
         echo '</pre>';
         ?> -->
+<script>
+    function Out() {
+        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/controller/CusLogout'); ?>';
 
+    }
+    </script>
 <body>
     <?php if ($basename == "Payment") { ?>
         <nav>
@@ -50,7 +55,7 @@ if (isset($this->session->userdata['cus_user'])) {
                 <a id="btHome" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">หน้าหลัก</a>
 
 
-                <a href="<?php echo base_url('/index.php/Cart'); ?>" id="btCart"><i class="fa-solid fa-basket-shopping"></i>
+                <a href="<?php echo base_url('/index.php/CartController'); ?>" id="btCart"><i class="fa-solid fa-basket-shopping"></i>
                     <?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
                     </span>
                 <div class="dropdown">
@@ -79,16 +84,18 @@ if (isset($this->session->userdata['cus_user'])) {
                 <i class="fa-solid fa-house-medical-flag"></i> หน้าหลัก</a>
 
 
-                <a href="<?php echo base_url('/index.php/Cart'); ?>" id="btCart"><i class="fa-solid fa-basket-shopping"></i>
+                <a href="<?php echo base_url('/index.php/CartController'); ?>" id="btCart"><i class="fa-solid fa-basket-shopping"></i>
                     <?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
 
                 <div class="dropdown">
-                    <button disabled class="dropbtn text-left"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
+               <button disabled class="dropbtn text-left"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
                         <i class="fa-solid fa-caret-down" style="color:#525252;"></i></button>
                     <div class="dropdown-content">
                       
                         <a id="btHistory" href="<?php echo base_url('/index.php/OrderController/OrderHistory'); ?>">
                             <i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
+                            <a href="<?php echo base_url('/index.php/RequestController/HistoryRequest'); ?>">
+                            <i class="fa-solid fa-video"></i> ประวัตินัดปรึกษา</a>
                         <a id="btOut" onclick="Out()" style="cursor:pointer;">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i> ออกจากระบบ</a>
                     </div>

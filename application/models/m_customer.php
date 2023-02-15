@@ -1,9 +1,11 @@
 <?php
-class m_customer extends CI_Model{
-public function construct(){
-parent::__construct();
-}
-public function cusinfo()
+class m_customer extends CI_Model
+{
+    public function construct()
+    {
+        parent::__construct();
+    }
+    public function cusinfo()
     {
         $sql = "select * from tbl_customer";
 
@@ -20,26 +22,48 @@ and cus_pass='$cus_pass'";
         $qr = $this->db->query($sql);
         return $qr->result();
     }
-    public function insert($data){
-        $cus_id=$data['cus_id'];
-        $cus_name=$data['cus_name'];
-        $cus_phone=$data['cus_phone'];
-        $cus_user=$data['cus_user'];
-        $cus_pass=$data['cus_pass'];
-        
-        $cus_add=$data['cus_add'];
-        $sql = "insert into tbl_customer values('$cus_id','$cus_name','$cus_phone','$cus_user',MD5('$cus_pass'),'$cus_add')";
-        $qr = $this->db->query($sql);
-        return true;
+    public function Register($data)
+    {
+        $cus_id = $data['cus_id'];
+        $cus_name = $data['cus_name'];
+        $cus_phone = $data['cus_phone'];
+        $cus_user = $data['cus_user'];
+        $cus_pass = $data['cus_pass'];
+        $Account = $this->GetUser($cus_user, $cus_id);
+        if ($Account == false) {
+            $sql = "INSERT INTO tbl_customer VALUES('$cus_id','$cus_name','$cus_phone','$cus_user',MD5('$cus_pass'))";
+            $qr = $this->db->query($sql);
+            return true;
+        } else {
+            return false;
+        }
+
+        // $cus_add=$data['cus_add'];
+
     }
     public function specf_cus($cus_id)
     {
-        $sql = "select cus_name,cus_phone from tbl_customer where cus_id='$cus_id'";
-
-        $qr = $this->db->query($sql);
-
-        return $qr->result();
+        $sql = "select * from tbl_customer where cus_id='$cus_id'";
+        $query = $this->db->query($sql, array($cus_id));
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
+    public function GetUser($cus_user)
+    {
+        $sql = "select * from tbl_customer where cus_user = '$cus_user' ";
 
-
+        if ($sql == null) {
+            $sql2 = "select * from tbl_admin where adm_user = '$cus_user'  ";
+            if ($sql2 == null) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }
 }

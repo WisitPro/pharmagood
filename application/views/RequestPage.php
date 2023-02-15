@@ -70,10 +70,3 @@ if (isset($this->session->userdata['cus_user'])) {
 </body>
 
 </html>
-<script>
-function Out() {
-    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='CusLogout';
-  
-
-}
-</script>

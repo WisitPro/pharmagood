@@ -1,9 +1,3 @@
-<?php
-if (isset($this->session->userdata['adm_user'])) {
-    $user = $this->session->userdata['adm_user'];
-    $name = $this->session->userdata['adm_name'];
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,21 +17,12 @@ if (isset($this->session->userdata['adm_user'])) {
 </head>
 
 <body>
-   
-
-    
     <span id="date_time"></span><br>
-
     <span id="time"></span>
-
-
     <img id="admin" src="<?php echo base_url(); ?>images/admin.png">
-
 </body>
 
 </html>
-
-
 <script type="text/javascript">
     window.onload = date_time('date_time');
 </script>

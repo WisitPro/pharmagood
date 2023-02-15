@@ -82,8 +82,8 @@ foreach ($orderdetail as $row) {
                         <tr style="font-size: 16px;">
 
                             <td>ยอดสุทธิ</td>
-
-                            <td><?php echo $total_qty ?> ชิ้น</td>
+                            
+                            <td class="text-center"><?php echo $total_qty ?> ชิ้น</td>
                             <td class="text-right lastcolumn"><?php echo $row->order_total ?> บาท</td>
 
                         </tr>
@@ -94,9 +94,9 @@ foreach ($orderdetail as $row) {
                         </tr> -->
                         <tr style="font-size: 16px;">
 
-                            <td>หมายเลขออเดอร์ <?php echo $row->order_id ?></td>
+                            <td style="width:200px ">หมายเลขออเดอร์ <?php echo $row->order_id ?></td>
 
-                            <td colspan="2" class="text-right"><?php echo $or_date ?></td>
+                            <td colspan="2" class="text-right" ><?php echo $or_date ?></td>
 
                         </tr>
 

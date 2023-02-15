@@ -4,6 +4,17 @@
         var_dump($_SESSION);
         echo '</pre>';
         ?> -->
+        <?php 
+if ($this->session->flashdata('error_message') !== NULL) {
+    echo "<script>alert('คุณเพิ่มรายการนี้ถึงขีดจำกัดแล้ว');</script>";
+    $this->session->set_flashdata('error_message', null);
+
+
+  }else{
+    
+  }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,14 +26,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/Shope.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/Store.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/Fonts.css">
     <!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/cal.js"></script> -->
     <script src="https://kit.fontawesome.com/4812969020.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    
+
+
     <div id="banner">
         <p style="font-size:40px; color:white">รายการยาและเวชภัณฑ์</p>
     </div>
@@ -42,8 +54,8 @@
                         </div>
                         <p class="head hhhhh"><?php echo $row['pro_name'] ?></p>
                         <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
-                        <p class="detail"><?php echo $row['pro_type'] ?></p>
-                        <a href="<?php echo base_url('/index.php/Products/AddtoCart/' . $row['pro_id']); ?>"><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
+                        <p class="detail"><?php echo $row['type_name'] ?></p>
+                        <a href="<?php echo base_url('/index.php/ProductController/AddtoCart/' . $row['pro_id']); ?>"><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
                     </div>
                 </div>
 
@@ -59,10 +71,3 @@
 </body>
 
 </html>
-<script>
-    function Out() {
-        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = 'CusLogout';
-
-
-    }
-</script>

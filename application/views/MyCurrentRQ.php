@@ -13,6 +13,9 @@ if (isset($this->session->userdata['cus_user'])) {
     $id = $this->session->userdata['cus_id'];
     $phone = $this->session->userdata['cus_phone'];
 }
+if (!isset($this->session->userdata['rq_id'])) {
+    redirect('controller/HomePage3');
+}
 ?>
 <?php
 foreach ($tbl_request as $row) {
@@ -111,10 +114,3 @@ foreach ($tbl_request as $row) {
 </body>
 
 </html>
-<script>
-function Out() {
-    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href='CusLogout';
-  
-
-}
-</script>

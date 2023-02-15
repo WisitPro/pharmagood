@@ -29,16 +29,6 @@
         ?> -->
 <body>
 
-    <nav>
-        
-        <img id="logo" src="<?php echo base_url('images/logo.png'); ?>">
-        <div id="menu">
-            <a id="btHome" href="HomePage">หน้าหลัก</a>
-            <a id="btLogin" href="LoginPage">เข้าสู่ระบบ</a>
-            <a id="btRegister" href="RegisterPage">สมัครสมาชิก</a>
-        </div>
-
-    </nav>
     <banner>
         <a href="StoreX"><button id="btn1">
                 ดูรายการยาและเวชภัณฑ์

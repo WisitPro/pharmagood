@@ -39,7 +39,7 @@
     </script>
 
     
-    <a href="<?php echo base_url(); ?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-prescription-bottle-medical"></i> ดูสินค้า</button></a>
+    <!-- <a href="<?php echo base_url(); ?>index.php/ProductController/Store"><button id="p2"><i class="fa-solid fa-prescription-bottle-medical"></i> ดูสินค้า</button></a> -->
     <p id="p1">ประวัติการซื้อของฉัน</p>
 
 
@@ -122,10 +122,7 @@
     // subotal.getElementByClassName('subtt')[0].innerHTML = "New text!";
 </script>
 <script>
-    function Out() {
-        if (confirm('คุณต้องการออกจากระบบใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/controller/CusLogout'); ?>';
-
-    }
+   
     function Confirm(order_id) {
         if (confirm('คุณได้รับสินค้าของออเดอร์นี้แล้วใช่หรือไม่')) window.location.href ='<?php echo base_url('/index.php/OrderController/OrderSuccess/'); ?>'+ order_id;
             
@@ -134,7 +131,7 @@
     }
 
     function updateCartItem(obj, rowid) {
-        $.get("<?php echo base_url('cart/updateItemQty/'); ?>", {
+        $.get("<?php echo base_url('CartController/updateItemQty/'); ?>", {
             rowid: rowid,
             qty: obj.value
         }, function(resp) {

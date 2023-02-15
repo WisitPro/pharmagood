@@ -59,7 +59,7 @@ echo '</pre>';
                
                 <h1>รายการยา</h1>    
                 <table class="table" id="druglist">
-
+<thead>
                 <tr id="tr1">
 
                     <th onclick="sortTable(0)" ></th>
@@ -73,6 +73,7 @@ echo '</pre>';
                     <th></th>
 
                 </tr>
+                </thead>
                 
                     <?php
                     $item = 1;
@@ -85,13 +86,12 @@ echo '</pre>';
                             <th class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></th>
                            
                             <td class="data dt"style="border-right: 1px solid #b6b6b6;"><?php echo $row['pro_name'] ?></td>
-                            <td class="data dt"style="border-right: 1px solid #b6b6b6;"><?php echo $row['pro_type'] ?></td>
+                            <td class="data dt"style="border-right: 1px solid #b6b6b6;"><?php echo $row['type_name'] ?></td>
                             <td class="data " style="color:#eb0e0e;border-right: 1px solid #b6b6b6;text-align:right;padding-right:8px">
                             <?php echo $row['pro_price']; ?></td>
                         
                             <td id="btnTable">
-                                <a id="Edit" href="<?php echo base_url
-                                ('index.php/Products/AddToCus/'.$row['pro_id'].'/'.$req_id) ?>">เลือก</a>
+                                <a  href="<?php echo base_url('/index.php/ProductController/AddToCus/'.$row['pro_id'].'/'.$req_id) ?>">เลือก</a>
                                 
 
                             </td>
@@ -125,7 +125,7 @@ echo '</pre>';
         <div id="tab">
         </div>
             <div id="form2" action="">
-                <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='<?php echo base_url('index.php/controller/ListRQ4') ?>';"></i>
+                <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='<?php echo base_url('index.php/RequestController/ListRQ4') ?>';"></i>
                 <h1><img src="<?php echo base_url(); ?>images/image 4.png"> ข้อมูลขอคำปรึกษา</h1>    
                 <p>ลูกค้า<span></span><br>
                     <input type="text" value="<?php echo $cus_name ?>" disabled></input>
@@ -158,7 +158,7 @@ echo '</pre>';
         </div>
 
     <a onclick="return confirm('เสร็จสิ้น')"
-     href="<?php echo base_url('/index.php/controller/SuccessRQ/'.$req_id.''); ?>" ><button id="btCancel" >เสร็จสิ้น</button></a>
+     href="<?php echo base_url('/index.php/RequestController/SuccessRQ/'.$req_id.''); ?>" ><button id="btCancel" >เสร็จสิ้น</button></a>
 </div>
 
 <div id="p3">
@@ -167,7 +167,7 @@ echo '</pre>';
             <table class="table">
                 <thead >
                     <tr>
-                        <th>สินค้า</th>
+                        <th>ยา</th>
                         <th class="text-left" >ราคา</th>
                         <th  class="text-center">จำนวน</th>
                         <th  class="text-right">ราคารวม</th>
@@ -201,7 +201,7 @@ echo '</pre>';
                                 </td>
 
                                 <td ><i class="fa fa-trash-o" style="padding-top: 2px;font-size:16px;color:red;cursor: pointer;" class="btn btn-sm btn-danger" onclick="return confirm('คุณต้องการลบรายการนี้หรือไม่')?
-                            window.location.href='<?php echo base_url('/index.php/Cart/remove/'.$item["rowid"].'/'.$req_id); ?>':false;"></i> </td>
+                            window.location.href='<?php echo base_url('/index.php/CartController/remove/'.$item["rowid"].'/'.$req_id); ?>':false;"></i> </td>
                             </tr>
                         <?php
                             $qty++;
@@ -238,7 +238,7 @@ echo '</pre>';
 <script>
    
     function updateCartItem(obj, rowid) {
-        $.get("<?php echo base_url('cart/updateItemQty/'); ?>", {
+        $.get("<?php echo base_url('CartController/updateItemQty/'); ?>", {
             rowid: rowid,
             qty: obj.value
         }, function(resp) {

@@ -1,7 +1,8 @@
 $(document).ready(function(){
   $("#check").hide()
   $("#not").hide()
-  $("#btnRegister").hide()
+  $("#regisbt").hide()
+  $("#regisbt2").show()
     $("#confirmpass").bind('keyup change', function(){
       
       check_Password( $("#pass").val(), $("#confirmpass").val() )
@@ -15,7 +16,7 @@ $(document).ready(function(){
       
     })
 
-    $("#btnRegister").click(function(){
+    $("#regisbt").click(function(){
       console.log("click");
       check_Password( $("#pass").val(), $("#confirmpass").val() )
 
@@ -28,12 +29,14 @@ $(document).ready(function(){
     if(Pass === "" || Con_Pass ===""){
       $("#check").hide()
       $("#not").hide()
-      $("#btnRegister").hide()
+      $("#regisbt").hide()
+      $("#regisbt2").show()
     }else if( Pass === Con_Pass & Pass.length > 7 & Con_Pass.length > 7){
       $("#check").show()
       console.log("matched")
-      $("#btnRegister").removeAttr("onclick")
-      $("#btnRegister").show()
+      $("#regisbt").removeAttr("onclick")
+      $("#regisbt").show()
+      $("#regisbt2").hide()
       $("#not").hide()
     }
 
@@ -42,15 +45,15 @@ $(document).ready(function(){
       
       $("#check").hide()
       $("#not").show()
-      
-      $("#btnRegister").hide()
+      $("#regisbt2").show()
+      $("#regisbt").hide()
       
     }
     else{
       $("#check").hide()
       $("#not").hide()
-      
-      $("#btnRegister").hide()
+      $("#regisbt2").show()
+      $("#regisbt").hide()
     }
 
   }
