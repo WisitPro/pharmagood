@@ -155,7 +155,6 @@ class OrderController extends CI_Controller
 
         $data['order_datetime'] = date('Y-m-d H:i:s');
         $data['order_total'] = $this->cart->total(); 
-        $data['order_status'] = 'ยังไม่ชำระเงิน';   
         $insertOrder = $this->m_order->insert($data);
 
 

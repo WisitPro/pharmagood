@@ -133,4 +133,18 @@ class m_product extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+    function getDrugBySearch($pro_name)
+    {
+        if (empty($pro_name))
+            return null;
+
+        $sql = "SELECT * FROM tbl_product pd
+        JOIN tbl_product_type t ON pd.type_id = t.type_id
+        WHERE pd.pro_name LIKE ? OR t.type_name LIKE ? AND pd.pro_kind !='ยาควบคุมพิเศษ'
+        ORDER BY pd.pro_name DESC";
+
+        $qr = $this->db->query($sql, array('%' . $pro_name . '%', '%' . $pro_name . '%'));
+
+        return $qr->result();
+    }
 }

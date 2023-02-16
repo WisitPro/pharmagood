@@ -53,7 +53,9 @@ a {
 a:hover{
    color: #0386FF !important;   
 }
-
+button:not(:disabled){
+    box-shadow: 0 2px 2px #0000006f;
+}
 
 
 

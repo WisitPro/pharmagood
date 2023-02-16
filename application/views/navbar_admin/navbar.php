@@ -38,7 +38,7 @@ if (isset($this->session->userdata['adm_user'])) {
         <div id="menu">
             <a id="btHome" href="<?php echo base_url('/index.php/controller/AdminHomePage');?>">หน้าหลัก</a>
             <div class="dropdown">
-                <button class="dropbtn">เมนู <i class="fa-solid fa-caret-down"></i></button>
+                <button class="dropbtn" disabled>เมนู <i class="fa-solid fa-caret-down"></i></button>
                 <div class="dropdown-content">
                     <a  href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้งาน</a>
                     <a  href="<?php echo base_url('/index.php/ProductController/ProductListPage'); ?>">รายการสินค้า</a>
@@ -57,7 +57,7 @@ if (isset($this->session->userdata['adm_user'])) {
         <div id="menu">
             <a id="btHome" href="<?php echo base_url('/index.php/controller/AdminHomePage');?>">หน้าหลัก</a>
             <div class="dropdown">
-                <button class="dropbtn">เมนู <i class="fa-solid fa-caret-down"></i></button>
+                <button class="dropbtn" disabled>เมนู <i class="fa-solid fa-caret-down"></i></button>
                 <div class="dropdown-content">
                     <!-- <a  href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้งาน</a> -->
                     <a  href="<?php echo base_url('/index.php/ProductController/ProductListPage'); ?>">รายการสินค้า</a>

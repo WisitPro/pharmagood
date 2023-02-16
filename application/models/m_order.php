@@ -12,11 +12,11 @@ class m_order extends CI_Model
         $cus_id = $data['cus_id'];
         $order_datetime = $data['order_datetime'];
         $order_total = $data['order_total'];
-        $order_status = $data['order_status'];
+       
 
 
 
-        $sql = "insert into tbl_order values('$order_id','$cus_id','$order_datetime','$order_total','','','$order_status')";
+        $sql = "insert into tbl_order values('$order_id','$cus_id','$order_datetime','$order_total','','','ยังไม่ชำระเงิน')";
         $qr = $this->db->query($sql);
         return true;
     }

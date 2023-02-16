@@ -17,8 +17,6 @@ class ProductController extends CI_Controller
         $this->load->helper('form', 'url');
     }
 
-
-
     public function ProductListPage()
     {
         $data['tbl_product'] = $this->m_product->Product();
@@ -26,10 +24,9 @@ class ProductController extends CI_Controller
         $this->load->view('navbar_admin/navbar');
         $this->load->view('ProductListPage', $data);
     }
-
+    
     public function Product_Add()
     {
-
         $data['pro_id'] = $_REQUEST['pro_id'];
         $data['pro_img'] = $_REQUEST['pro_img'];
         $data['pro_name'] = $_REQUEST['pro_name'];
@@ -43,10 +40,9 @@ class ProductController extends CI_Controller
             echo "alert(\" รหัสสินค้านี้มีอยู่แล้ว\");";
             echo "window.history.back()";
             echo "</script>";
-        }else{
+        } else {
             redirect('ProductController/ProductListPage');
         }
-        
     }
     public function Product_Remove()
     {
@@ -103,9 +99,6 @@ class ProductController extends CI_Controller
         return null;
     }
 
-
-
-
     function AddtoCart($pro_id)
     {
         $product = $this->m_product->getRows($pro_id);
@@ -115,7 +108,6 @@ class ProductController extends CI_Controller
             'price'    => $product['pro_price'],
             'name'    => $product['pro_name'],
             'limit' => $product['pro_limit']
-            // 'options' => array('limit' =>$product['pro_limit'])
 
         );
 
@@ -144,5 +136,24 @@ class ProductController extends CI_Controller
         );
         $this->cart->insert($data);
         redirect('RequestController/AdminCall/' . $req_id . '');
+    }
+    public function searchDrug()
+    {
+        $pro_name = $_REQUEST['search'];
+        $data['StoreSearch'] = $this->m_product->getDrugBySearch($pro_name);
+        if ($pro_name == '') {
+            redirect('ProductController/Store');
+        }
+
+        if ($data['StoreSearch'] == null) {
+            echo "<script>";
+            echo "alert(\" ไม่มีข้อมูลที่คุณค้นหา \");";
+            echo "window.location.href='http://localhost/pharmagood/index.php/ProductController/Store'";
+            echo "</script>";
+        } else {
+            $data['pro_name'] = $pro_name;
+            $this->load->view('navbar_customer/navbar_cus');
+            $this->load->view('StoreSearch', $data);
+        }
     }
 }
