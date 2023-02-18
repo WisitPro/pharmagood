@@ -47,8 +47,8 @@ foreach ($tbl_product as $row) {
                         <label><input type="radio" name="pro_kind" value="เวชภัณฑ์" checked> เวชภัณฑ์ </label>
                     <?php } ?>
                 </span>
-                <button id="btnForm2" onclick="return confirm('ยืนยันการแก้ไขข้อมูล');" type="submit" style="background-color:#56FF5D">บันทึก</button>
-            </form><a onclick="if (confirm('ยกเลิกแก้ไขข้อมูล')) { history.back(); }"><button id="btnForm12"  style="background-color: #FF5353;color:white;position: absolute;margin-top:-54px;margin-left:940px">ยกเลิก</button></a>
+                <button id="btnForm222" onclick="return confirm('ยืนยันการแก้ไขข้อมูล');" type="submit" style="background-color:#56FF5D">บันทึก</button>
+            </form><a onclick="if (confirm('ยกเลิกแก้ไขข้อมูล')) { history.back(); }"><button id="btnForm111"  style="background-color: #FF5353;color:white;position: absolute;margin-top:-54px;margin-left:1120px">ยกเลิก</button></a>
         </div>
     <?php } ?>
     <img id="admin" src="<?php echo base_url(); ?>images/admin.png">

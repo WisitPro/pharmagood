@@ -56,8 +56,8 @@ foreach ($tbl_admin as $row) {
             </p>
         <?php } ?>
         <br>
-        <button id="btnForm1" onclick="return confirm('ยกเลิกการแก้ไขข้อมูล');" onclick="history.back()" style="background-color:#FF5353">ยกเลิก</button>
-        <button id="btnForm2" onclick="return confirm('ยืนยันการแก้ไขข้อมูล');" type="submit" style="background-color:#56FF5D">บันทึก</button>
+        <button id="btnForm11" onclick="return confirm('ยกเลิกการแก้ไขข้อมูล');" onclick="history.back()" style="background-color:#FF5353">ยกเลิก</button>
+        <button id="btnForm22" onclick="return confirm('ยืนยันการแก้ไขข้อมูล');" type="submit" style="background-color:#56FF5D">บันทึก</button>
         </form>
         </div>
     </container>

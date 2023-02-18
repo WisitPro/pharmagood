@@ -4,10 +4,41 @@
     margin-top: 80px;
     margin-left: 18%;
 }
+#contactChoice1{
+    width: 8%;
+}
+#tallandweight{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#tall{
+width: 160px;
+}
+#weight{
+width: 160px;
+}
+#contactChoice2{
+    width: 8%;
+    margin-left: 0.5rem;
+}
+#gender{
+    font-size: 1.7rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+#gender2{
+    font-size: 1.7rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
 form{
     position: absolute;
     width: 400px;
-    height: 480px;
+    height: 550px;
     background-color: #68B3F8;
     margin-top: 70px;
     margin-left: 53%;
@@ -17,6 +48,11 @@ form{
 h1{
     color: white;
     
+}
+#RadioGender{
+    display: flex;
+    flex-direction: row;
+    margin-left: 4rem;
 }
 
 form input,textarea{

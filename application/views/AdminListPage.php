@@ -80,8 +80,9 @@ foreach ($tbl_admin as $row) {
                 </p>
 
                 <br>
-                <button id="btnForm1" type="reset" style="background-color:#FF5353">ยกเลิก</button>
                 <button id="btnForm2" type="submit" style="background-color:#56FF5D">เพิ่ม</button>
+                <button id="btnForm1" type="reset" style="background-color:#FF5353">ยกเลิก</button>
+               
             </form>
         </div>
     </container>
