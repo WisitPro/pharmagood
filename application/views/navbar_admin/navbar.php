@@ -20,7 +20,7 @@ if (isset($this->session->userdata['adm_user'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="30">
+    
     <title>Pharma Good</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -40,8 +40,8 @@ if (isset($this->session->userdata['adm_user'])) {
             <div class="dropdown">
                 <button class="dropbtn" disabled>เมนู <i class="fa-solid fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a  href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้งาน</a>
-                    <a  href="<?php echo base_url('/index.php/ProductController/ProductListPage'); ?>">รายการสินค้า</a>
+                    <a  href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้ภายใน</a>
+                    <a  href="<?php echo base_url('/index.php/ProductController/ProductListPage'); ?>">รายการยาและเวชภัณฑ์</a>
                     <a  href="<?php echo base_url('/index.php/RequestController/ListRQ1'); ?>">ข้อมูลการนัดปรึกษา</a>
                     <a  href="<?php echo base_url('/index.php/OrderController/OrderInfo1'); ?>">ข้อมูลออเดอร์</a>
                 </div>

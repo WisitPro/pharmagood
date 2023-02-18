@@ -4,7 +4,7 @@ To do list{
     1.DataFilter ยา
     
   
-
+https://rmuti365-my.sharepoint.com/:x:/r/personal/wisit_ja_rmuti_ac_th/_layouts/15/doc2.aspx?sourcedoc=%7B45c1a500-95e0-40b5-ac34-0bfabdaad02e%7D&action=edit&wdorigin=OFFICECOM-WEB.START.NEW-INSTANT&wdenableroaming=1&wdfr=1&wdodb=1&wdhostclicktime=1676643669410&wdredirectionreason=Force_SingleStepBoot&wdinitialsession=f0452bdb-92e7-4281-a8ea-f4febc472a6f&wdrldsc=2&wdrldc=1&wdrldr=Unknown
 }
 Sub ploblem{
     **หน้า insert product ติดเรื่อง primary key

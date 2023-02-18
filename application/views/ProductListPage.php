@@ -25,7 +25,7 @@ foreach ($tbl_product as $row) {
         <div style="height:10px"></div>
         <span id="line2">
             <input type="text" class="pro_price" name="pro_price" placeholder="ราคา*" onkeypress='validate(event)' required>
-            <input type="text" class=" pro_img" name="pro_img" placeholder=" ลิ้งค์รูปภาพ "> <input type="number" style="width: 160px;" name="pro_limit" placeholder="จำนวนจำกัดซื้อ"><br>
+            <input type="text" class=" pro_img" name="pro_img" placeholder=" ลิ้งค์รูปภาพ "> <input type="number" style="width: 160px;" name="pro_limit" min="1" placeholder="จำนวนจำกัดซื้อ"><br>
             <div style="height:10px"></div>
             <label><input type="radio" name="pro_kind" value="ยาสามัญประจำบ้าน" checked> ยาสามัญประจำบ้าน </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label><input type="radio" name="pro_kind" value="ยาควบคุมพิเศษ"> ยาควบคุมพิเศษ </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

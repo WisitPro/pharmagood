@@ -1,9 +1,9 @@
-<?php
+<!-- <?php
 foreach ($tbl_admin as $row) {
     $adm_id = $row->adm_id;
 }
 
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +11,14 @@ foreach ($tbl_admin as $row) {
 </head>
 <body>
     <container>
-        <p style="font-size:32px; margin-left:auto; color:white">ข้อมูลผู้ใช้</p>
+        <p style="font-size:32px; margin-left:auto; color:white">ข้อมูลผู้ใช้ภายใน</p>
         <div id="backform">
             <table>
                 <tr id="tr1">
                     <th style="width:60px ;text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56">ลำดับ</th>
                     <th style="width:140px ;text-indent: 4px;">รหัสผู้ใช้</th>
                     <th style="width:300px ;">ชื่อ-นามสกุล</th>
-                    <th style="width:200px ;">เบอร์โทร</th>
+                    <th style="width:200px ;">เบอร์โทรศัพท์</th>
                     <th style="width:200px;">ชื่อผู้ใช้</th>
                     <th style="width:120px ;">รหัสผ่าน</th>
                     <th style="width:300px  ;" >ตำแหน่ง</th>

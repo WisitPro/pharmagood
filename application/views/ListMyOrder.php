@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-<meta http-equiv="refresh" content="30">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/History.css">
+
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/ListMyOrder.css">
 </head>
 
 <body onload="updateTotal()">
@@ -17,7 +17,7 @@
             document.getElementById("total").value = total;
         }
     </script>
-    <p id="p1">ประวัติการซื้อของฉัน</p>
+    <p id="p1">รายการสั่งซื้อของคุณ</p>
     <div id="p3">
         <div id="p4">
             <table class="table">
@@ -29,19 +29,19 @@
                 </thead>
                 <tbody class="tableRow" style="font-size: 16px;">
                     <?php
-                    foreach ($order_history as $ol_id => $orderlists) :
+                    foreach ($ListMyOrder as $ol_id => $orderlists) :
                         $order_id = $orderlists[0]->order_id;
-                        $order_datetime = date('วันที่ ' . 'd-m-Y' . ' เวลา ' . ' H:i', strtotime($orderlists[0]->order_datetime)) . ' น.';
+                        $order_datetime = date('สั่งซื้อเมื่อ ' . 'd-m-Y' . ' เวลา ' . ' H:i', strtotime($orderlists[0]->order_datetime)) . ' น.';
                     ?>
                         <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
                             <td style="width:10px"></td>
-                            <td colspan="3" style="width:900px"><strong>ออเดอร์ <?php echo $orderlists[0]->order_id ?></strong></td>
-                            <?php if ($orderlists[0]->order_status == "ชำระเงินแล้ว") { ?>
-                                <td colspan="2" class="text-right tdstatus" onclick="Confirm('<?php echo $order_id ?>')" style="background-color: #68B3F8;">
-                                    <strong>ได้รับสินค้าแล้ว</strong>
+                            <td colspan="6" style="width:900px"><strong><?php echo $order_datetime ?></strong></td>
+                            <?php if ($orderlists[0]->order_status == "ยังไม่ชำระเงิน") { ?>
+                                <td colspan="1" class="text-right tdstatus" onclick="Cancel('<?php echo $order_id ?>')" style="background-color: #fa4444;width:60px">
+                                    <strong>ยกเลิก</strong>
                                 </td>
                             <?php } else { ?>
-                                <td colspan="2" class="text-right" style="background-color: #F79A56;">
+                                <td  class="text-right" style="background-color: #F79A56;">
                                     <strong>ได้รับสินค้าแล้ว</strong>
                                 </td>
                             <?php } ?>
@@ -52,20 +52,23 @@
                             <tr>
                                 <td style="width:26px;"></td>
                                 <td style="width:340px"><?php echo $line ?>) <?php echo $item->pro_name ?></td>
-                                <td style="width:100px"><?php echo $item->qty ?></td>
-                                <td class="text-center" style="width:30px"></td>
+                                <td style="width:100px"></td>
+                                <td class="text-center" style="width:30px"><?php echo $item->qty ?></td>
                                 <td class="text-right" style="width:100px"></td>
-                                <td class="text-right" style="width:120px"><?php echo $item->sub_total ?></td>
+                                <td colspan="3" class="text-right" style="width:120px"><?php echo $item->sub_total ?> บาท</td>
                             </tr>
                         <?php $line++;
                         endforeach; ?>
-                        <tr class="trB">
+                        <tr class="trB" >
                             <td style="width:10px"></td>
-                            <td style="width:340px"><strong><?php echo $order_datetime ?></strong></td>
+                            <td style="width:340px"><strong></strong></td>
                             <td style="width:100px"></td>
-                            <td class="text-center" style="width:72px"></td>
-                            <td class="text-right" style="width:100px"><strong>รวม</strong></td>
-                            <td class="text-right" style="width:120px;color:#F79A56;"><strong><?php echo $orderlists[0]->order_total ?></strong></td>
+                            <td class="text-center" style="width:72px"><strong>รวม</strong></td>
+                            <td colspan="1" class="text-right" style="width:120px;color:#F79A56;"><strong><?php echo $orderlists[0]->order_total ?> บาท</strong></td>
+
+                            <td colspan="3" class="text-right tdpay" onclick="Confirm('<?php echo $order_id ?>')" style="background-color: #68B3F8;color: white;">
+                            <strong>ชำระเงิน</strong>
+                                </td>
                         </tr>
                         <tr class="trB">
                             <td style="width:10px"></td>
@@ -73,7 +76,7 @@
                             <td style="width:100px"></td>
                             <td class="text-center" style="width:72px"></td>
                             <td class="text-right" style="width:100px"></td>
-                            <td class="text-right" style="width:120px;color:#F79A56;"></td>
+                            <td colspan="4"  class="text-right" style="width:120px;color:#F79A56;"></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -85,7 +88,10 @@
 </html>
 <script>
     function Confirm(order_id) {
-        if (confirm('คุณได้รับสินค้าของออเดอร์นี้แล้วใช่หรือไม่')) window.location.href = '<?php echo base_url('/index.php/OrderController/OrderSuccess/'); ?>' + order_id;
+        if (confirm('ชำระเงินคำสั่งซื้อรายการนี้')) window.location.href = '<?php echo base_url('/index.php/OrderController/Payment/'); ?>' + order_id;
+    }
+    function Cancel(order_id) {
+        if (confirm('ยกเลิกคำสั่งซื้อรายการนี้')) window.location.href = '<?php echo base_url('/index.php/OrderController/CancelStore/'); ?>' + order_id;
     }
 
     function updateCartItem(obj, rowid) {

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+<meta http-equiv="refresh" content="30">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/ListRQ.css">
 </head>
 

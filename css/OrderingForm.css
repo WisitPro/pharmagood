@@ -1,0 +1,185 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(128, 128, 128, 0);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #68b3f8;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3691c5;
+}
+
+
+#p1 {
+  text-align: center;
+  font-size: 40px;
+  color: black;
+  margin-top: 20px;
+}
+#p2 {
+  font-size: 24px;
+  background: #fa4444;
+  width: 120px;
+  height: 60px;
+  margin-left: 60px;
+  margin-top: 50px;
+  position: absolute;
+  color: #ffffff;
+  border-radius: 20px;
+  border: transparent;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#p3 {
+  width: 800px;
+  height: 540px;
+  position: absolute;
+  margin-left: 360px;
+  margin-top: 5px;
+  display: inline-block;
+  background: #f79a56;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+#p4 {
+  position: absolute;
+  background: #ffffff;
+  width: 500px;
+  height: 400px;
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 15px;
+
+  border-radius: 10px;
+}
+table {
+  position: absolute;
+}
+table thead {
+  display: block;
+  width: 100%;
+  overflow-y: scroll;
+}
+.tableRow {
+  width: 100%;
+  overflow-y: scroll;
+  display: block;
+  height: 356px;
+}
+
+th {
+  color: #565656;
+  font-size: 18px;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+td {
+  color: #565656;
+}
+.trB:hover {
+  background-color: #e8e8e8;
+}
+.trB {
+  transition: 0.1s;
+}
+
+#total {
+  font-weight: bold;
+  font-size: 28px;
+  background-color: transparent;
+  border: transparent;
+  cursor: default;
+  width: 120px;
+}
+#btGo {
+  /* background: #68B3F8; */
+  background: #aac5d5;
+  width: 240px;
+  height: 36px;
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 20px;
+  border: transparent;
+
+}
+
+#btSv {
+  background: #45e56a;
+  width: 150px;
+  height: 50px;
+
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 20px;
+  border: transparent;
+}
+#subtract {
+  display: flex;
+}
+#totalTxt {
+  position: absolute;
+  font-size: 30px;
+  color: #ffffff;
+  margin-top: 480px;
+  margin-left: 24px;
+}
+
+#buttonbar {
+  margin-left: 186px;
+}
+
+.qtybt {
+  width: 26px;
+  border-radius: 50px;
+  border: 1px solid #555555;
+}
+
+#a2 {
+  margin-top: 80px;
+}
+
+#paymentinput{
+    position: absolute;
+    margin-top:-60px;
+    line-height: 12px;
+}
+
+#paymentinput input {
+  margin-left: 534px;
+  width: 240px;
+  height: 36px;
+  border-radius: 16px;
+  border: transparent;
+  text-indent: 12px;
+  font-size: 16px;
+  
+}
+
+#paymentinput p {
+  margin-left: 534px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.in{
+  cursor: default;
+}
+#map {
+  
+  position: absolute;
+  margin-top: 26px;
+  margin-left: 380px;
+  height: 380px; 
+  width: 490px; 
+  visibility: hidden;
+  
+  
+  
+}
+#bank{
+  color: rgb(20, 20, 212);
+}
+

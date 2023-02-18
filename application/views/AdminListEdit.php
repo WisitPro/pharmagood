@@ -12,13 +12,14 @@ foreach ($tbl_admin as $row) {
 <html lang="en">
 
 <head>
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/AmListEdit.css">
 </head>
 
 <body>
     <container>
         <form action="Admin_Update" method="POST" autocomplete="off">
-            <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้</p>
+            <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้ภายใน</p>
             <input type="text" name="adm_id" style="visibility:hidden ;position:absolute" value="<?php echo $row->adm_id ?>">
             <p class="head hd1">ชื่อ-นามสกุล*<br>
                 <input type="text" name="adm_name" value="<?php echo $row->adm_name ?>">
@@ -26,8 +27,8 @@ foreach ($tbl_admin as $row) {
                     <?php echo form_error('adm_name'); ?>
                 </font>
             </p>
-            <p class="head hd2">เบอร์โทร*<br>
-                <input type="text" name="adm_phone" value="<?php echo $row->adm_phone ?>">
+            <p class="head hd2">เบอร์โทรศัพท์*<br>
+                <input type="text" name="adm_phone" minlength="10" maxlength="10" value="<?php echo $row->adm_phone ?>">
                 <font color="red">
                     <?php echo form_error('adm_phone'); ?>
                 </font>

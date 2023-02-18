@@ -187,8 +187,7 @@ class controller extends CI_Controller
             echo "</script>";
         } else {
             $data['tbl_admin'] = $this->m_admin->admininfo();
-            $this->load->view('navbar_admin/navbar');
-            $this->load->view('AdminListPage', $data);
+            redirect('controller/AdminListPage');
         }
     }
 
@@ -219,12 +218,11 @@ class controller extends CI_Controller
         if ($update == false) {
             echo "<script>";
             echo "alert(\" ชื่อผู้ใช้ซ้ำ\");";
-            echo "window.history.back()";
+            echo "window.location.href='http://localhost/pharmagood/index.php/controller/AdminListPage'";
             echo "</script>";
         } else {
             $data['tbl_admin'] = $this->m_admin->admininfo();
-            $this->load->view('navbar_admin/navbar');
-            $this->load->view('AdminListPage', $data);
+            redirect('controller/AdminListPage');
         }
     }
     public function AdminListEdit()
@@ -233,9 +231,6 @@ class controller extends CI_Controller
         $this->load->view('navbar_admin/navbar');
         $this->load->view('AdminListPage', $data);
     }
-
-
-
 
     public function StoreX()
     {

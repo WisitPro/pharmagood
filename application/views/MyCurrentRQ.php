@@ -22,7 +22,7 @@ foreach ($tbl_request as $row) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="10">
+<meta http-equiv="refresh" content="30">
     <link href="<?php echo base_url(); ?>css/RqF.css" rel="stylesheet">
 </head>
 <body>

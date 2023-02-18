@@ -46,7 +46,7 @@ class CartController extends CI_Controller
         $data['req_detail'] = $this->m_request->RqDetail($req_id);
         $data['tbl_product'] = $this->m_product->Pharmacy();
         $this->load->view('navbar_admin/navbar');
-        $this->load->view('RqDetail', $data);
+        $this->load->view('AdminVideoCall', $data);
     }
 
     function updateItemQty($rowid, $qty)

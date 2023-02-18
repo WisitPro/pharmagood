@@ -24,104 +24,112 @@ class OrderController extends CI_Controller
         //helper
         $this->load->helper('form', 'url');
     }
-    
-    public function OrderInfo1(){
+
+    public function OrderInfo1()
+    {
 
         $data['OrderInfo'] = $this->m_payprove->OrderRest();
         $this->load->view('navbar_admin/navbar');
         $this->load->view('component/OrderInfoMenuBar');
-        $this->load->view('OrderInfo1' ,$data);
+        $this->load->view('OrderInfo1', $data);
     }
-    public function OrderInfo2(){
+    public function OrderInfo2()
+    {
 
         $data['OrderInfo'] = $this->m_payprove->OrderVerified();
-        $this->load->view('navbar_admin/navbar');   
+        $this->load->view('navbar_admin/navbar');
         $this->load->view('component/OrderInfoMenuBar');
-        $this->load->view('OrderInfo2' ,$data);
+        $this->load->view('OrderInfo2', $data);
     }
-    public function OrderInfo3(){
+    public function OrderInfo3()
+    {
 
         $data['OrderInfo'] = $this->m_payprove->OrderCancel();
-        $this->load->view('navbar_admin/navbar');   
+        $this->load->view('navbar_admin/navbar');
         $this->load->view('component/OrderInfoMenuBar');
-        $this->load->view('OrderInfo3' ,$data);
+        $this->load->view('OrderInfo3', $data);
     }
-    public function OrderInfo4(){
+    public function OrderInfo4()
+    {
 
         $data['OrderInfo'] = $this->m_delivery->DeliveryOrder();
-        $this->load->view('navbar_admin/navbar');   
+        $this->load->view('navbar_admin/navbar');
         $this->load->view('component/OrderInfoMenuBar');
-        $this->load->view('OrderInfo4' ,$data);
+        $this->load->view('OrderInfo4', $data);
     }
-    public function VerifyOR($pay_id){
+    public function VerifyOR($pay_id)
+    {
         $data = array(
             date_default_timezone_set("Asia/Bangkok"),
             $date = date('Y-m-d H:i:s'),
             'pay_id' => $pay_id,
             'adm_id' => $this->session->userdata('adm_id'),
             'pay_modify' => $date
-           
+
         );
 
         $this->m_payprove->verifying($data);
         $this->m_bill->import($data);
-        
-        
+
+
         redirect('OrderController/OrderInfo1');
     }
-    public function DenyOR($pay_id){
+    public function DenyOR($pay_id)
+    {
         $data = array(
             date_default_timezone_set("Asia/Bangkok"),
             $date = date('Y-m-d H:i:s'),
             'pay_id' => $pay_id,
             'adm_id' => $this->session->userdata('adm_id'),
             'pay_modify' => $date
-           
+
         );
         $this->m_payprove->denying($data);
-        
-        
+
+
         redirect('OrderController/OrderInfo1');
     }
-    public function OrderSuccess($order_id){
+    public function OrderSuccess($order_id)
+    {
         $data = array(
             date_default_timezone_set("Asia/Bangkok"),
             $date = date('Y-m-d H:i:s'),
             'order_id' => $order_id,
             'delivery_success' => $date
-        
+
         );
         $this->m_delivery->OrderSuccess($data);
         $this->m_order->OrderSuccess($data);
 
-        
-        
+
+
         redirect('OrderController/OrderHistory');
     }
-    
-   
-    public function OrderDetail($pay_id){
+
+
+    public function OrderDetail($pay_id)
+    {
         $pay_id = $pay_id;
         $data['orderdetail'] = $this->m_order->OrderDetail($pay_id);
         $this->load->view('navbar_admin/navbar');
-        $this->load->view('OrderDetail' ,$data);
+        $this->load->view('OrderDetail', $data);
     }
-    public function Orderbill($pay_id,$order_id){
+    public function Orderbill($pay_id, $order_id)
+    {
         $pay_id = $pay_id;
         $order_id = $order_id;
-        $Exists = $this->m_delivery->DeliveryExists($order_id);   
-        if($Exists==true){
+        $Exists = $this->m_delivery->DeliveryExists($order_id);
+        if ($Exists == true) {
             $data['orderdetail'] = $this->m_bill->OrderDetail($pay_id);
             $this->load->view('navbar_admin/navbar');
-            $this->load->view('Orderbill2' ,$data);
-        }elseif($Exists==false){
+            $this->load->view('Orderbill2', $data);
+        } elseif ($Exists == false) {
             $data['orderdetail'] = $this->m_bill->OrderDetail($pay_id);
             $this->load->view('navbar_admin/navbar');
-            $this->load->view('Orderbill' ,$data);
-        }else{
+            $this->load->view('Orderbill', $data);
+        } else {
             redirect('OrderController/OrderInfo1');
         }
-        
     }
 
     public function InsertDelivery($order_id)
@@ -137,67 +145,75 @@ class OrderController extends CI_Controller
         $this->m_payprove->DeliveryStatus($order_id);
         redirect('OrderController/OrderInfo4');
     }
-   
-
-
-
-   
-    public function Ordering()
+    public function OrderingForm()
     {
 
+        $data = array();
+        $data['cartItems'] = $this->cart->contents();
 
+
+        $this->load->view('navbar_customer/navbar_cus');
+        $this->load->view('OrderingForm', $data);
+    }
+
+
+    public function Ordering()
+    {
         date_default_timezone_set("Asia/Bangkok");
-        $orderno = gmdate('sHms');
-        $orderno2 = $orderno;
         $user_data = $this->session->userdata();
-        $data['order_id'] = $orderno2;
         $data['cus_id'] = $user_data['cus_id'];
-
         $data['order_datetime'] = date('Y-m-d H:i:s');
-        $data['order_total'] = $this->cart->total(); 
-        $insertOrder = $this->m_order->insert($data);
+        $data['order_total'] = $this->cart->total();
+        $data['order_address'] = $_REQUEST['order_address'];
+        $data['order_phone'] = $_REQUEST['order_phone'];
 
-
-        if ($insertOrder) {
+        // Call the model method and check for success
+        $insertResult = $this->m_order->insert($data);
+        if ($insertResult) {
+            $order_id = $insertResult['order_id'];
 
             $cartItems = $this->cart->contents();
             $ordItemData = array();
             $i = 0;
             foreach ($cartItems as $item) {
-                $ordItemData[$i]['ol_id']     = "";
-                $ordItemData[$i]['order_id']     = $orderno2;
-                $ordItemData[$i]['pro_id']     = $item['id'];
-                $ordItemData[$i]['qty']     = $item['qty'];
-                $ordItemData[$i]['sub_total']     = $item["subtotal"];
+                $ordItemData[$i]['ol_id'] = "";
+                $ordItemData[$i]['order_id'] = $order_id;
+                $ordItemData[$i]['pro_id'] = $item['id'];
+                $ordItemData[$i]['qty'] = $item['qty'];
+                $ordItemData[$i]['sub_total'] = $item["subtotal"];
                 $i++;
             }
+
             if (!empty($ordItemData)) {
                 // Insert order items
                 $insertOrderItems = $this->m_order->insertOrderItems($ordItemData);
 
                 if ($insertOrderItems) {
-                    // Remove items from the cart
-                    $this->session->unset_userdata('order_id');
-                    $ordersession = array(
-                        'order_id' => $orderno2,
-
-                    );
-
-
-                    $this->session->set_userdata($ordersession);
-
-
-                    redirect('OrderController/Payment');
+                    $this->cart->destroy();
+                    redirect('OrderController/CusOrder');
                 }
             }
+        } else {
+            // Handle the error if the query was not successful
+            echo "Database error: " . $insertResult['error'];
         }
     }
-    public function Payment()
+
+    public function ListMyOrder()
+    {
+        //session cus_id ใน model
+        $data['ListMyOrder'] = $this->m_order->ListMyOrder();
+        //$data['orderlist_history'] = $this->m_order->OrderListHistory($data);
+        $this->load->view('navbar_customer/navbar_cus');
+        $this->load->view('ListMyOrder', $data);
+    }
+    public function Payment($order_id)
     {
 
-        $this->load->view('navbar_customer/navbar_cus');
+
         $data['BankInfo'] = $this->m_information->BankInPayment();
-        $data['cartItems'] = $this->cart->contents();
+        $data['cartItems'] = $this->m_order->GetOrderById($order_id);
+        $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('Payment', $data);
     }
     public function Checkout()
@@ -235,25 +251,24 @@ class OrderController extends CI_Controller
             $pay['pay_modify'] = "";
             $pay['prove_status'] = "ชำระเงินแล้ว";
             $this->m_payprove->payprove($pay);
-
         }
 
         $this->session->unset_userdata('order_id');
-        $this->cart->destroy();
+
         $this->session->set_flashdata('order_success', true);
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('Homepage3');
     }
-    public function CancelStore()
+    public function CancelStore($order_id)
     {
 
-        $getOrder = $this->session->userdata();
-        $data['order_id'] = $getOrder['order_id'];
-        $this->m_order->cancel($data);
-        $this->m_order->remove($data);
+        // $getOrder = $this->session->userdata();
+        // $data['order_id'] = $getOrder['order_id'];
+        $this->m_order->cancel($order_id);
+        // $this->m_order->remove($data);
 
 
-        $this->session->unset_userdata('order_id');
+        // $this->session->unset_userdata('order_id');
         $this->cart->destroy();
 
 
@@ -268,7 +283,4 @@ class OrderController extends CI_Controller
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('History', $data);
     }
-
-
-   
 }

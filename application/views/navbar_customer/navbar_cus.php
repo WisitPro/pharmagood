@@ -60,7 +60,29 @@ if (isset($this->session->userdata['cus_user'])) {
                 </div>
             </div>
         </nav>
-    <?php } else { ?>
+    <?php } elseif($basename == "OrderingForm") { ?>
+        <nav>
+            <img id="logo" src="<?php echo base_url('images/logo.png'); ?>">
+            <div id="menu">
+                <a id="btHome" onclick="return confirm('ยืนยันออกจากหน้าสั่งซื้อยาและเวชภัณฑ์')" href="<?php echo base_url('/index.php/controller/HomePage3'); ?>">
+                    <i class="fa-solid fa-house-medical-flag"></i> หน้าหลัก</a>
+                <a style="visibility: hidden;" href="<?php echo base_url('/index.php/CartController'); ?>" id="btCart"><i class="fa-solid fa-basket-shopping"></i>
+                    <?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
+                <div class="dropdown">
+                    <button disabled class="dropbtn text-left"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
+                        <i class="fa-solid fa-caret-down" style="color:#525252;"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="return confirm('ยืนยันออกจากหน้าสั่งซื้อยาและเวชภัณฑ์')" id="btHistory" href="<?php echo base_url('/index.php/OrderController/OrderHistory'); ?>">
+                            <i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
+                        <a onclick="return confirm('ยืนยันออกจากหน้าสั่งซื้อยาและเวชภัณฑ์')" href="<?php echo base_url('/index.php/RequestController/HistoryRequest'); ?>">
+                            <i class="fa-solid fa-video"></i> ประวัตินัดปรึกษา</a>
+                        <a  id="btOut" onclick="Out()" style="cursor:pointer;">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> ออกจากระบบ</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <?php }else { ?>
         <nav>
             <img id="logo" src="<?php echo base_url('images/logo.png'); ?>">
             <div id="menu">
@@ -72,6 +94,8 @@ if (isset($this->session->userdata['cus_user'])) {
                     <button disabled class="dropbtn text-left"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
                         <i class="fa-solid fa-caret-down" style="color:#525252;"></i></button>
                     <div class="dropdown-content">
+                    <a id="btHistory" href="<?php echo base_url('/index.php/OrderController/ListMyOrder'); ?>">
+                            <i class="fa-solid fa-clock-rotate-left"></i> รายการสั่งซื้อรอชำระ</a>
                         <a id="btHistory" href="<?php echo base_url('/index.php/OrderController/OrderHistory'); ?>">
                             <i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
                         <a href="<?php echo base_url('/index.php/RequestController/HistoryRequest'); ?>">

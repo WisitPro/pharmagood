@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2023 at 03:51 PM
+-- Generation Time: Feb 18, 2023 at 07:45 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -41,7 +41,8 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`adm_id`, `adm_name`, `adm_phone`, `adm_user`, `adm_pass`, `adm_role`) VALUES
-('101', 'DEV', '081245678', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'เจ้าของกิจการ');
+('101', 'เจ้าของกิจการ', '0816629398', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'เจ้าของกิจการ'),
+('102', 'เภสัชกร', '0323564578', 'admin2', '827ccb0eea8a706c4c34a16891f84e7b', 'เภสัชกร');
 
 -- --------------------------------------------------------
 
@@ -50,7 +51,7 @@ INSERT INTO `tbl_admin` (`adm_id`, `adm_name`, `adm_phone`, `adm_user`, `adm_pas
 --
 
 CREATE TABLE `tbl_bills` (
-  `bill_no` varchar(255) NOT NULL,
+  `bill_no` int(11) NOT NULL,
   `pay_id` varchar(255) NOT NULL,
   `bill_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -74,9 +75,7 @@ CREATE TABLE `tbl_customer` (
 --
 
 INSERT INTO `tbl_customer` (`cus_id`, `cus_name`, `cus_phone`, `cus_user`, `cus_pass`) VALUES
-('1111111111111', 'dev', '0123456789', 'test', '81dc9bdb52d04dc20036dbd8313ed055'),
-('1409903033103', 'วิศิษฏ์ จรรยาไพบูลย์', '0648185686', 'wisit', 'a6c7cac3471b53fb6cea8f71d12d9f6e'),
-('1488888888888', 'วิศิษฏ์', '0123456789', 'test2', 'a6c7cac3471b53fb6cea8f71d12d9f6e');
+('1409903033103', 'วิศิษฏ์ จรรยาไพบูลย์', '0648185686', 'wisit', 'a6c7cac3471b53fb6cea8f71d12d9f6e');
 
 -- --------------------------------------------------------
 
@@ -91,16 +90,6 @@ CREATE TABLE `tbl_delivery` (
   `delivery_status` varchar(255) DEFAULT NULL,
   `delivery_success` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_delivery`
---
-
-INSERT INTO `tbl_delivery` (`order_id`, `adm_id`, `delivery_datetime`, `delivery_status`, `delivery_success`) VALUES
-('04120204', '101', '2023-02-12 20:07:46', 'จัดส่งเรียบร้อย', '2023-02-12 20:08:06'),
-('36160236', '101', '2023-02-11 18:35:37', 'กำลังทำการส่ง', NULL),
-('37170237', '101', '2023-02-15 00:58:47', 'จัดส่งเรียบร้อย', '2023-02-15 00:59:24'),
-('48170248', '101', '2023-02-12 01:02:34', 'จัดส่งเรียบร้อย', '2023-02-12 02:15:37');
 
 -- --------------------------------------------------------
 
@@ -132,7 +121,7 @@ INSERT INTO `tbl_information` (`id`, `key_1`, `key_2`, `key_3`, `value_1`, `valu
 --
 
 CREATE TABLE `tbl_order` (
-  `order_id` varchar(255) NOT NULL,
+  `order_id` int(11) NOT NULL,
   `cus_id` char(13) DEFAULT NULL,
   `order_datetime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `order_total` float(8,2) NOT NULL,
@@ -140,6 +129,30 @@ CREATE TABLE `tbl_order` (
   `order_phone` varchar(255) DEFAULT NULL,
   `order_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_order`
+--
+
+INSERT INTO `tbl_order` (`order_id`, `cus_id`, `order_datetime`, `order_total`, `order_address`, `order_phone`, `order_status`) VALUES
+(100000, '1409903033103', '2023-02-18 03:33:38', 25.00, '', '0648185686', 'ยังไม่ชำระเงิน'),
+(100001, '1409903033103', '2023-02-18 03:34:40', 25.00, 'CRQ8+5R เทศบาลนครขอนแก่น อำเภอเมืองขอนแก่น ขอนแก่น ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100002, '1409903033103', '2023-02-18 03:35:17', 25.00, 'CRQ8+5R เทศบาลนครขอนแก่น อำเภอเมืองขอนแก่น ขอนแก่น ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100003, '1409903033103', '2023-02-18 03:35:49', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100004, '1409903033103', '2023-02-18 03:38:29', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100005, '1409903033103', '2023-02-18 03:42:06', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100006, '1409903033103', '2023-02-18 03:42:38', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100007, '1409903033103', '2023-02-18 03:42:53', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100008, '1409903033103', '2023-02-18 03:45:14', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100009, '1409903033103', '2023-02-18 03:46:04', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100010, '1409903033103', '2023-02-18 03:47:41', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100011, '1409903033103', '2023-02-18 03:48:28', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100012, '1409903033103', '2023-02-18 03:51:17', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100013, '1409903033103', '2023-02-18 03:51:49', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100014, '1409903033103', '2023-02-18 03:51:51', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100015, '1409903033103', '2023-02-18 03:56:23', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
+(100016, '1409903033103', '2023-02-18 04:39:40', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยกเลิก'),
+(100017, '1409903033103', '2023-02-18 04:38:09', 215.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน');
 
 -- --------------------------------------------------------
 
@@ -149,11 +162,21 @@ CREATE TABLE `tbl_order` (
 
 CREATE TABLE `tbl_orderlist` (
   `ol_id` int(11) NOT NULL,
-  `order_id` varchar(255) DEFAULT NULL,
+  `order_id` int(11) NOT NULL,
   `pro_id` varchar(255) DEFAULT NULL,
   `qty` int(11) NOT NULL,
-  `sub_total` double(5,2) NOT NULL
+  `sub_total` double(8,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_orderlist`
+--
+
+INSERT INTO `tbl_orderlist` (`ol_id`, `order_id`, `pro_id`, `qty`, `sub_total`) VALUES
+(298, 100016, '3341206888984', 1, 25.00),
+(299, 100017, '0942050911533', 2, 34.00),
+(300, 100017, '1838839938893', 2, 26.00),
+(301, 100017, '9642469764546', 1, 155.00);
 
 -- --------------------------------------------------------
 
@@ -162,7 +185,7 @@ CREATE TABLE `tbl_orderlist` (
 --
 
 CREATE TABLE `tbl_payprove` (
-  `pay_id` varchar(255) NOT NULL,
+  `pay_id` int(11) NOT NULL,
   `order_id` varchar(255) DEFAULT NULL,
   `pay_slip` varchar(255) NOT NULL,
   `pay_datetime` datetime DEFAULT NULL,
@@ -259,26 +282,11 @@ INSERT INTO `tbl_product_type` (`type_id`, `type_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_quickcode`
---
-
-CREATE TABLE `tbl_quickcode` (
-  `key_1` varchar(255) NOT NULL,
-  `key_2` varchar(255) NOT NULL,
-  `key_3` varchar(255) NOT NULL,
-  `value_1` varchar(255) NOT NULL,
-  `value_2` varchar(255) NOT NULL,
-  `value_3` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_request`
 --
 
 CREATE TABLE `tbl_request` (
-  `req_id` varchar(255) NOT NULL,
+  `req_id` int(11) NOT NULL,
   `cus_id` char(13) DEFAULT NULL,
   `cus_phone` varchar(255) DEFAULT NULL,
   `req_sym` varchar(255) DEFAULT NULL,
@@ -372,22 +380,46 @@ ALTER TABLE `tbl_request`
 --
 
 --
+-- AUTO_INCREMENT for table `tbl_bills`
+--
+ALTER TABLE `tbl_bills`
+  MODIFY `bill_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400000;
+
+--
 -- AUTO_INCREMENT for table `tbl_information`
 --
 ALTER TABLE `tbl_information`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100018;
+
+--
 -- AUTO_INCREMENT for table `tbl_orderlist`
 --
 ALTER TABLE `tbl_orderlist`
-  MODIFY `ol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=292;
+  MODIFY `ol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
+
+--
+-- AUTO_INCREMENT for table `tbl_payprove`
+--
+ALTER TABLE `tbl_payprove`
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10000;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_type`
 --
 ALTER TABLE `tbl_product_type`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `tbl_request`
+--
+ALTER TABLE `tbl_request`
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3000;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
