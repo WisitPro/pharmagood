@@ -5,6 +5,7 @@ if (isset($this->session->userdata['cus_user'])) {
     $id = $this->session->userdata['cus_id'];
     $phone = $this->session->userdata['cus_phone'];
     $basename = basename($_SERVER['PHP_SELF']);
+    
 } else {
     session_destroy();
     redirect('controller/LoginPage');
@@ -37,7 +38,8 @@ if (isset($this->session->userdata['cus_user'])) {
 </script>
 
 <body>
-    <?php if ($basename == "Payment") { ?>
+
+    <?php if (isset($payment)) { ?>
         <nav>
             <img id="logo" src="<?php echo base_url('images/logo.png'); ?>">
             <div id="menu">

@@ -33,7 +33,7 @@
                         $order_id = $orderlists[0]->order_id;
                         $order_datetime = date('วันที่ ' . 'd-m-Y' . ' เวลา ' . ' H:i', strtotime($orderlists[0]->order_datetime)) . ' น.';
                     ?>
-                        <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
+                        <!-- <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
                             <td style="width:10px"></td>
                             <td colspan="3" style="width:900px"><strong>ออเดอร์ <?php echo $orderlists[0]->order_id ?></strong></td>
                             <?php if ($orderlists[0]->order_status == "ชำระเงินแล้ว") { ?>
@@ -43,6 +43,19 @@
                             <?php } else { ?>
                                 <td colspan="2" class="text-right" style="background-color: #F79A56;">
                                     <strong>ได้รับสินค้าแล้ว</strong>
+                                </td>
+                            <?php } ?>
+                        </tr> -->
+                        <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
+                            <td style="width:10px"></td>
+                            <td colspan="3" style="width:900px"><strong>ออเดอร์ <?php echo $orderlists[0]->order_id ?></strong></td>
+                            <?php if ($orderlists[0]->order_status == "ชำระเงินแล้ว") { ?>
+                                <td colspan="2" class="text-right" >
+                                   
+                                </td>
+                            <?php } else { ?>
+                                <td colspan="2" class="text-right" >
+                                   
                                 </td>
                             <?php } ?>
                         </tr>

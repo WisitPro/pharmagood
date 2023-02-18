@@ -107,7 +107,7 @@ class m_order extends CI_Model
     {
         $cus_id = $this->session->userdata('cus_id');
         $sql = "select * from tbl_order o,tbl_orderlist ol,tbl_product p
-        where o.order_status = 'ยังไม่ชำระเงิน' and o.cus_id='$cus_id' and o.order_id = ol.order_id and ol.pro_id = p.pro_id
+        where o.order_status = 'ยังไม่ชำระเงิน' and o.order_status != 'ยกเลิก' and o.cus_id='$cus_id' and o.order_id = ol.order_id and ol.pro_id = p.pro_id
        
         order by o.order_status DESC,o.order_datetime DESC";
 
@@ -127,15 +127,23 @@ class m_order extends CI_Model
         WHERE o.order_id = '$order_id' AND o.order_id = ol.order_id AND ol.pro_id = p.pro_id";
 
         $qr = $this->db->query($sql);
-        $result = $qr->result();
-        $grouped_result = array();
-
-        foreach ($result as $item) {
-            $grouped_result[$item->order_id][] = $item;
-        }
-
-        return $grouped_result;
+        return $qr->result();
     }
+    // public function GetOrderById($order_id)
+    // {     
+    //     $sql = "SELECT * FROM tbl_order o,tbl_orderlist ol,tbl_product p
+    //     WHERE o.order_id = '$order_id' AND o.order_id = ol.order_id AND ol.pro_id = p.pro_id";
+
+    //     $qr = $this->db->query($sql);
+    //     $result = $qr->result();
+    //     $grouped_result = array();
+
+    //     foreach ($result as $item) {
+    //         $grouped_result[$item->order_id][] = $item;
+    //     }
+
+    //     return $grouped_result;
+    // }
     // public function OrderListHistory($data)
     // {
     //     $cus_id = $data["cus_id"];

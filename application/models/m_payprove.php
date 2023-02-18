@@ -11,21 +11,21 @@ class m_payprove extends CI_Model
     public function payprove($pay)
     {
         
-         $pay_id = $pay['pay_id'];
          $order_id = $pay['order_id'];
-         $pay_slip = $pay['pay_slip'];
-         
+         $pay_slip = $pay['pay_slip'];  
          $pay_datetime = $pay['pay_datetime'];
-         $adm_id = $pay['adm_id'];
-         $pay_modify = $pay['pay_modify'];
-         $prove_status = $pay['prove_status'];
-         
-        
  
- 
-         $sql = "insert into tbl_payprove values('$pay_id','$order_id','$pay_slip','$pay_datetime','$adm_id','$pay_modify','$prove_status')";
+         $sql = "insert into tbl_payprove values(0,'$order_id','$pay_slip','$pay_datetime',null,null,'รอการยืนยัน')";
+         $this->UpdateOrder( $order_id);
          $qr = $this->db->query($sql);
          return true;
+    }
+    public function UpdateOrder($order_id)
+    {
+
+        $sql = "update tbl_order set order_status = 'ชำระเงินแล้ว' where order_id = '$order_id'";
+        $qr = $this->db->query($sql);
+        return true;
     }
     public function OrderRest()
     {

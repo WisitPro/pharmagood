@@ -79,7 +79,7 @@ if (isset($this->session->userdata['cus_user'])) {
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p>สินค้าจะจัดส่งถึงคุณภายใน 2 ชม. ขอบคุณที่ใช้บริการ <i class="fa-solid fa-truck-fast"></i></p>
+                    <p>ชำระเงินสำเร็จ <i class="fa-solid fa-truck-fast"></i></p>
                 </div>
             </div>
         <?php endif; ?>

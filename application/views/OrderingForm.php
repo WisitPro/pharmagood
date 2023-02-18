@@ -51,7 +51,7 @@
             </table>
         </div>
        
-        <form action="<?php echo base_url('/index.php/OrderController/Ordering'); ?>" method="post" autocomplete="off">
+        <form onsubmit="return confirm('ยืนยันคำสั่งซื้อนี้');"  action="<?php echo base_url('/index.php/OrderController/Ordering'); ?>" method="post" autocomplete="off">
             <div id="paymentinput" >
                 <p id="a2"></p>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -65,7 +65,7 @@
             <?php if ($this->cart->total_items() > 0) { ?>
                 <span id="totalTxt">ราคาสุทธิ : <input disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"> บาท</input>
                     <span id="buttonbar">               
-                        <button id="btGo" type="submit">ยืนยันคำสั่งซื้อ</button>                
+                        <button id="btGo"  type="submit">ยืนยันคำสั่งซื้อ</button>                
                     </span>
         </form>
 <script>

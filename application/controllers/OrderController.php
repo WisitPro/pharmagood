@@ -190,7 +190,13 @@ class OrderController extends CI_Controller
 
                 if ($insertOrderItems) {
                     $this->cart->destroy();
-                    redirect('OrderController/CusOrder');
+                    echo "<script>";
+                    echo "alert(\" เพิ่มรายการสั่งซื้อสำเร็จ \");";
+
+                    echo "</script>";
+                    $data['ListMyOrder'] = $this->m_order->ListMyOrder();
+                    $this->load->view('navbar_customer/navbar_cus');
+                    $this->load->view('ListMyOrder', $data);
                 }
             }
         } else {
@@ -210,10 +216,10 @@ class OrderController extends CI_Controller
     public function Payment($order_id)
     {
 
-
         $data['BankInfo'] = $this->m_information->BankInPayment();
-        $data['cartItems'] = $this->m_order->GetOrderById($order_id);
-        $this->load->view('navbar_customer/navbar_cus');
+        $data['orderlist'] = $this->m_order->GetOrderById($order_id);
+        $payment = $order_id;
+        $this->load->view('navbar_customer/navbar_cus', array('payment' => $payment));
         $this->load->view('Payment', $data);
     }
     public function Checkout()
@@ -233,23 +239,10 @@ class OrderController extends CI_Controller
         } else {
             $data = $this->upload->data();
             $filename = $data["file_name"];
-
-            $getOrder = $this->session->userdata();
-            $data['order_id'] = $getOrder['order_id'];
-            $data['order_address'] = $_REQUEST['order_address'];
-            $data['order_phone'] = $_REQUEST['order_phone'];
-            $update = $this->m_order->update($data);
             date_default_timezone_set("Asia/Bangkok");
-            $orderno = date('sdHmis');
-            $pay['pay_id'] = $orderno;
-            $pay['order_id'] = $getOrder['order_id'];
+            $pay['order_id'] = $_REQUEST['order_id'];
             $pay['pay_slip'] = $filename;
-            // $data['order_address'] = $_REQUEST['order_address'];
-            // $data['order_phone'] = $_REQUEST['order_phone'];
             $pay['pay_datetime'] = date('Y-m-d H:i:s');
-            $pay['adm_id'] = "";
-            $pay['pay_modify'] = "";
-            $pay['prove_status'] = "ชำระเงินแล้ว";
             $this->m_payprove->payprove($pay);
         }
 
@@ -269,7 +262,7 @@ class OrderController extends CI_Controller
 
 
         // $this->session->unset_userdata('order_id');
-        $this->cart->destroy();
+
 
 
         redirect('ProductController/Store');
