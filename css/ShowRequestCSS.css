@@ -1,37 +1,3 @@
-nav{
-    height: 62px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 2px solid #0386FF;
-}
-#logo{
-    position: absolute;
-    margin-left: 10%;
-    margin-top: 2px;
-
-}
-
-#btHome{
-    
-    
-    margin-left: 20%;
-}
-#btLogin{
-    
-    margin-left: 72%;
-}
-#btRegister{
-    
-    margin-left: 82%;
-}
-#btHome,#btLogin,#btRegister{
-    color: #565656;
-    margin-top: 13px;
-    position: absolute;
-    font-size: 20px;
-    
-}
-
-
 
  form{
  

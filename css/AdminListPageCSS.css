@@ -2,56 +2,7 @@ body {
     background-color: #68B3F8;
 }
 
-nav {
-    height: 62px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 2px solid #0386FF;
-}
 
-#logo {
-    position: absolute;
-    margin-left: 10%;
-    margin-top: 2px;
-
-}
-
-#menu{
-    
-    
-    position: absolute;
-    font-size: 20px;
-    width: 100%;
-    padding-top: 18px;
-    
-}
-#btHome {
-
-    color: #0386FF;
-    margin-left: 20%;
-}
-
-#bt1 {
-
-    color: #565656;
-    margin-left: 1%;
-
-}
-
-#bt2 {
-    color: #565656;
-    margin-left: 1%;
-}
-
-#bt3 {
-
-    color: #565656;
-    margin-left: 25%;
-}
-#bt4 {
-
-    color: #565656;
-    margin-left: 1%;
-}
 #admin {
     position: absolute;
     right: 0px;

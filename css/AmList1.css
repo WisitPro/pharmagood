@@ -2,101 +2,6 @@ body {
     background-color: #68B3F8;
     
 }
-.dropdown {
-    display: inline-block;
-    height: 70px;
-    margin-left: 1%;
-}
-
-.dropbtn {
-
-    margin-left: 1%;
-    color: #565656;
-    width: 60px;
-
-    border: none;
-}
-
-  
-  
-  
-.dropdown-content {
-    display: none;
-    position: absolute;
-    border-radius: 10px;
-
-
-
-    min-width: 220px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: #ffffff;
-    padding: 8px 10px;
-    text-decoration: none;
-    display: block;
-    transition: 0.1s ease-in-out;
-}
-
-.dropdown-content a:hover {
-    background-color: #ffffff;
-    color: #525252;
-    border-radius: 10px;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-    background-color: #50a7f8e9;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-nav {
-    height: 62px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 2px solid #0386FF;
-}
-
-#logo {
-    position: absolute;
-    margin-left: 10%;
-    margin-top: 2px;
-
-}
-
-#menu{
-    
-    
-    position: absolute;
-    font-size: 20px;
-    width: 100%;
-    padding-top: 18px;
-    
-}
-#btHome {
-
-    color: #565656;
-    margin-left: 22%;
-}
-
-
-
-#n1{
-    color: #565656;
-    margin-left: 42%;
-}
-#n2{
-    color: #F87F28;
-}
-#bt4 {
-
-    color: #565656;
-    margin-left: 48%;
-}
 
 #admin {
     position: absolute;
@@ -214,6 +119,8 @@ button[type="reset"]{
     border-radius: 30px;
     border: transparent;
     height: 40px;
+    margin-left: 850px;
+    
 }
 #btnForm2{
     width: 100px;
@@ -221,6 +128,7 @@ button[type="reset"]{
     border-radius: 30px;
     border: transparent;
     height: 40px;
+    margin-left: 730px;
 }
 table{
     position: absolute;

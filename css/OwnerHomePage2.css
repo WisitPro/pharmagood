@@ -1,45 +1,7 @@
+
+
 body{
     background-color: #68B3F8;
-}
-nav{
-    height: 62px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 2px solid #0386FF;
-}
-#logo{
-    position: absolute;
-    margin-left: 10%;
-    margin-top: 2px;
-
-}
-#menu{
-    
-    
-    position: absolute;
-    font-size: 20px;
-    width: 100%;
-    padding-top: 18px;
-    
-}
-#btHome {
-
-    color: #0386FF;
-    margin-left: 22%;
-}
-
-
-
-#n1{
-    color: #565656;
-    margin-left: 42%;
-}
-#n2{
-    color: #F87F28;
-}
-#bt4 {
-
-    color: #565656;
-    margin-left: 1%;
 }
 
 
