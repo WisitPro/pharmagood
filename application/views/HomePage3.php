@@ -79,7 +79,7 @@ if (isset($this->session->userdata['cus_user'])) {
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p>ชำระเงินสำเร็จ <i class="fa-solid fa-truck-fast"></i></p>
+                    <p>แจ้งชำระเงินสำเร็จ <i class="fa-solid fa-truck-fast"></i></p>
                 </div>
             </div>
         <?php endif; ?>
