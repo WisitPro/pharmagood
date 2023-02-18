@@ -27,6 +27,7 @@
         }
        
         document.getElementById("total").value = total;
+
     }
 
 </script>
@@ -41,7 +42,7 @@
         </div>
 
     </nav>
-    <a href="<?php echo base_url();?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
+    <a  href="<?php echo base_url();?>index.php/controller/Store"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
     <p id="p1">ตะกร้าสินค้าของฉัน</p>
 
 
@@ -65,7 +66,6 @@
                         $qty = 1;
                         foreach ($cartItems as $item) {
                     ?>
-
                             <tr class="trB">
                                 <td style="width:340px;padding-top: 12px;padding-left:16px"><strong><?php echo $item["name"]; ?></strong></td>
                                 <td style="width:100px;padding-top: 12px;" id="price">
@@ -79,7 +79,6 @@
 
                                 <td style="padding-top: 12px;width:100px;" >
                                     <input class="text-right" style="width:50px;border:transparent;background:transparent;cursor:default;" disabled name="subtotal" type="text" class="subtt" id="subtt<?php echo $qty ?>" value=" <?php echo $item["subtotal"] ?>" >
-                                        
                                         <script>
                                             document.getElementById("add<?php echo $qty ?>").onclick = function() {
                                                 var pz = document.getElementById("pz<?php echo $qty ?>");
