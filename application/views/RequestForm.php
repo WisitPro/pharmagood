@@ -34,7 +34,7 @@ foreach ($cus_info as $customer) {
             <div id="tab">
             </div>
             <form id="form2" action="sent_to_line" method="post">
-                <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="history.back()"></i>
+                <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='<?php echo base_url('index.php/RequestController/RequestPage') ?>';"></i>
                 <h1><img src="<?php echo base_url(); ?>images/image 4.png"> กรอกข้อมูลอาการ</h1>
                 <input style="visibility: hidden;position:absolute;" type="text" name="req_id" value=" "></input>
                 <input style="visibility: hidden;position:absolute;" type="text" name="cus_id" value="<?php echo $id ?> "></input>
@@ -54,9 +54,18 @@ foreach ($cus_info as $customer) {
                 <p>เบอร์โทรศัพท์<span></span><br>
                     <input type="text" style="width: 120px;" name="cus_phone" value="<?php echo $cus_phone ?>" maxlength="10" minlength="10" required></input>
                 </p>
-                <p>อาการเบื้องต้น<span>*</span><br>
-                    <textarea name="req_sym" required minlength="30">ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว</textarea>
-                </p>
+                <?php if (!empty(set_value('req_sym'))) { ?>
+                    <p>อาการเบื้องต้น<span>*</span><br>
+                        <textarea name="req_sym" required minlength="30"><?php echo set_value('req_sym'); ?></textarea>
+                    </p>
+                <?php } else { ?>
+                    <p>อาการเบื้องต้น<span>*</span><br>
+                        <textarea name="req_sym" required minlength="30">ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว</textarea>
+                    </p>
+                <?php } ?>
+
+
+
                 <?php
                 date_default_timezone_set("Asia/Bangkok");
                 $currentDateTime = date('Y-m-d H:i');

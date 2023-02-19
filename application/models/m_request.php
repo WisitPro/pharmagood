@@ -4,16 +4,54 @@ public function __construct(){
 parent::__construct();
 }
 public function cus_req($data)
-    {
-        $req_id=$data['req_id'];
-        $cus_id=$data['cus_id'];
-        $req_sym=$data['req_sym'];
-        $req_time=$data['req_time'];
-        $req_status=$data['req_status'];
-        $sql = "insert into tbl_request values('$req_id','$cus_id','$req_sym','$req_time',null,null,null,'$req_status')";
+{
+    
+    $cus_id = $data['cus_id'];
+    $req_sym = $data['req_sym'];
+    $req_time = $data['req_time'];
+    $req_status = $data['req_status'];
+    
+    $checkTime = $this->Time($req_time);
+    if ($checkTime == true) {
+        return null;
+    } else {
+        $sql = "INSERT INTO tbl_request VALUES('', '$cus_id', '$req_sym', '$req_time', null, null, null, '$req_status')";
         $qr = $this->db->query($sql);
-        return true;
+        if ($qr) {
+            $req_id = $this->db->insert_id();
+            return $req_id;
+        } else {
+            return null;
+        }
     }
+}
+
+
+public function Time($req_time){
+       
+    $sql = "SELECT * FROM tbl_request WHERE req_time = '$req_time'";
+    $qr = $this->db->query($sql);
+    if ($qr->num_rows() > 0) {
+        $row = $qr->row();
+        return $row->req_id; // return the existing req_id
+    }
+        
+    $start_time = strtotime($req_time) - 1800; 
+    $end_time = strtotime($req_time) + 1800; 
+    $start_time = date('Y-m-d H:i:s', $start_time);
+    $end_time = date('Y-m-d H:i:s', $end_time);
+        
+    $sql = "SELECT * FROM tbl_request WHERE req_time BETWEEN '$start_time' AND '$end_time'";
+    $qr = $this->db->query($sql);
+    if ($qr->num_rows() > 0) {
+        $row = $qr->row();
+        return $row->req_id; // return the existing req_id
+    }
+        
+    return false;
+}
+
+    
     public function cur_req($data){
         $cus_id = $data['cus_id'];
         $req_id = $data['rq_id'];
@@ -35,14 +73,14 @@ public function cus_req($data)
     }
     public function List_req1(){
        
-        $sql = "select r.req_id,c.cus_name,r.cus_phone,r.req_sym,r.req_time,r.req_status 
+        $sql = "select * 
         from tbl_request r,tbl_customer c where r.cus_id = c.cus_id and r.req_status = 'รอยืนยัน' order by r.req_time desc;  ";
         $qr = $this->db->query($sql);
         return $qr->result();
     }
     public function List_req2(){
        
-        $sql = "select r.req_id,c.cus_name,r.cus_phone,r.req_sym,r.req_time,r.req_status 
+        $sql = "select *
         from tbl_request r,tbl_customer c where r.cus_id = c.cus_id and r.req_status = 'ยืนยันแล้ว' order by r.req_time asc;  ";
         $qr = $this->db->query($sql);
         return $qr->result();

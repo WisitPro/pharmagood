@@ -3,6 +3,9 @@ body {
     background-color: #68B3F8;
     
 }
+.table {
+  table-layout: fixed;
+}
 
 #admin {
     position: absolute;
@@ -102,6 +105,9 @@ table{
     max-height: 496PX;
     overflow-y: scroll;
     display: block;
+ 
+        table-layout: fixed;
+      
     
     
 }
