@@ -24,31 +24,31 @@ class m_order extends CI_Model
     //         echo "Database error: " . $error['message'];
     //         return null;
     //     } else {
-            
+
     //         return $qr;
     //     }
     // }
     public function insert($data)
-{
-    $cus_id = $data['cus_id'];
-    $order_datetime = $data['order_datetime'];
-    $order_total = $data['order_total'];
-    $order_address = $data['order_address'];
-    $order_phone = $data['order_phone'];
+    {
+        $cus_id = $data['cus_id'];
+        $order_datetime = $data['order_datetime'];
+        $order_total = $data['order_total'];
+        $order_address = $data['order_address'];
+        $order_phone = $data['order_phone'];
 
-    $sql = "INSERT INTO tbl_order (order_id, cus_id, order_datetime, order_total, order_address, order_phone, order_status) 
+        $sql = "INSERT INTO tbl_order (order_id, cus_id, order_datetime, order_total, order_address, order_phone, order_status) 
             VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', '$order_address', '$order_phone', 'ยังไม่ชำระเงิน')";
-    
-    $this->db->query($sql);
 
-    if ($this->db->affected_rows() == 1) {
-        $insert_id = $this->db->insert_id();
-        $result = $this->db->get_where('tbl_order', array('order_id' => $insert_id))->row_array();
-        return $result;
-    } else {
-        return null;
+        $this->db->query($sql);
+
+        if ($this->db->affected_rows() == 1) {
+            $insert_id = $this->db->insert_id();
+            $result = $this->db->get_where('tbl_order', array('order_id' => $insert_id))->row_array();
+            return $result;
+        } else {
+            return null;
+        }
     }
-}
 
     public function insertOrderItems($data = array())
     {
@@ -76,6 +76,7 @@ class m_order extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+
 
     public function remove($data)
     {
@@ -122,7 +123,7 @@ class m_order extends CI_Model
         return $grouped_result;
     }
     public function GetOrderById($order_id)
-    {     
+    {
         $sql = "SELECT * FROM tbl_order o,tbl_orderlist ol,tbl_product p
         WHERE o.order_id = '$order_id' AND o.order_id = ol.order_id AND ol.pro_id = p.pro_id";
 
@@ -185,4 +186,5 @@ class m_order extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+   
 }

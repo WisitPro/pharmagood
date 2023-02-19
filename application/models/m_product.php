@@ -33,7 +33,7 @@ class m_product extends CI_Model
             $qr = $this->db->query($sql);
             $result = $qr->row_array();
         } else {
-            $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id and p.pro_kind !='ยาควบคุมพิเศษ' order by t.type_id asc ;";
+            $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id and p.pro_kind !='ยาควบคุมพิเศษ'";
             $qr = $this->db->query($sql);
             $result = $qr->result_array();
         }
@@ -41,10 +41,34 @@ class m_product extends CI_Model
         // Return fetched data
         return !empty($result) ? $result : false;
     }
+    function getDrugBySearch($pro_name)
+    {
+        if (empty($pro_name))
+            return null;
+
+        $sql = "SELECT * FROM tbl_product pd LEFT JOIN tbl_product_type t ON pd.type_id = t.type_id
+        WHERE pd.pro_name LIKE ? OR t.type_name LIKE ? OR pd.pro_brand LIKE ? OR pd.pro_detail LIKE ? AND pd.pro_kind !='ยาควบคุมพิเศษ'
+        ORDER BY pd.pro_name DESC";
+
+        $qr = $this->db->query($sql, array('%' . $pro_name . '%', '%' . $pro_name . '%','%' . $pro_name . '%','%' . $pro_name . '%'));
+
+        return $qr->result_array();
+    }
+    function SelectByType($type_id)
+    {
+        if (empty($type_id))
+            return null;
+
+        $sql = "SELECT * FROM tbl_product pd LEFT JOIN tbl_product_type t ON pd.type_id = t.type_id
+        WHERE t.type_id = '$type_id 'AND pd.pro_kind !='ยาควบคุมพิเศษ';";
+
+        $qr = $this->db->query($sql);
+
+        return $qr->result_array();
+    }
     public function Product()
     {
-        $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id
-        ORDER BY t.type_id ASC ";
+        $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id";
 
         $qr = $this->db->query($sql);
 
@@ -59,6 +83,7 @@ class m_product extends CI_Model
 
         return $qr->result();
     }
+    
     public function Pharmacy($pro_id = '')
     {
         $this->db->select('*');
@@ -82,8 +107,11 @@ class m_product extends CI_Model
     {
         $pro_id = $data['pro_id'];
         $pro_img = $data['pro_img'];
+        $pro_brand = $data['pro_brand'];
         $pro_name = $data['pro_name'];
+        $pro_detail = $data['pro_detail'];
         $type_id = $data['type_id'];
+        $pro_unit = $data['pro_unit'];
         $pro_price = $data['pro_price'];
         $pro_kind = $data['pro_kind'];
         $pro_limit = $data['pro_limit'];
@@ -95,14 +123,15 @@ class m_product extends CI_Model
 
 
 
-            $sql = "insert into tbl_product values('$pro_id','$pro_img','$pro_name','$type_id','$pro_price','$pro_kind','$pro_limit')";
+            $sql = "INSERT into tbl_product values('$pro_id','$pro_img','$pro_brand','$pro_name','$pro_detail'
+            ,'$pro_unit','$type_id','$pro_price','$pro_kind','$pro_limit','1')";
             $qr = $this->db->query($sql);
             return true;
         }
     }
     public function Remove($pro_id)
     {
-        $sql = "delete from tbl_product where pro_id='$pro_id'";
+        $sql = "update tbl_product set pro_status = '0' where pro_id='$pro_id'";
         $qr = $this->db->query($sql);
         return true;
     }
@@ -118,13 +147,16 @@ class m_product extends CI_Model
     {
         $pro_id = $data['pro_id'];
         $pro_img = $data['pro_img'];
+        $pro_brand = $data['pro_brand'];
         $pro_name = $data['pro_name'];
+        $pro_detail = $data['pro_detail'];
         $type_id = $data['type_id'];
-        $pro_kind = $data['pro_kind'];
+        $pro_unit = $data['pro_unit'];
         $pro_price = $data['pro_price'];
+        $pro_kind = $data['pro_kind'];
         $pro_limit = $data['pro_limit'];
-        $sql = "update tbl_product set pro_img='$pro_img',
-        pro_name='$pro_name' ,
+        $sql = "update tbl_product set pro_img='$pro_img',pro_brand ='$pro_brand',
+        pro_name='$pro_name' ,pro_detail='$pro_detail',pro_unit= '$pro_unit',
         type_id='$type_id' ,
         pro_kind='$pro_kind',
         pro_price='$pro_price',
@@ -133,18 +165,26 @@ class m_product extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
-    function getDrugBySearch($pro_name)
+    public function UpdateNoImage($data)
     {
-        if (empty($pro_name))
-            return null;
-
-        $sql = "SELECT * FROM tbl_product pd
-        JOIN tbl_product_type t ON pd.type_id = t.type_id
-        WHERE pd.pro_name LIKE ? OR t.type_name LIKE ? AND pd.pro_kind !='ยาควบคุมพิเศษ'
-        ORDER BY pd.pro_name DESC";
-
-        $qr = $this->db->query($sql, array('%' . $pro_name . '%', '%' . $pro_name . '%'));
-
-        return $qr->result();
+        $pro_id = $data['pro_id'];
+        $pro_brand = $data['pro_brand'];
+        $pro_name = $data['pro_name'];
+        $pro_detail = $data['pro_detail'];
+        $type_id = $data['type_id'];
+        $pro_unit = $data['pro_unit'];
+        $pro_price = $data['pro_price'];
+        $pro_kind = $data['pro_kind'];
+        $pro_limit = $data['pro_limit'];
+        $sql = "update tbl_product set pro_brand ='$pro_brand',
+        pro_name='$pro_name' ,pro_detail='$pro_detail',pro_unit= '$pro_unit',
+        type_id='$type_id' ,
+        pro_kind='$pro_kind',
+        pro_price='$pro_price',
+        pro_limit='$pro_limit'
+        where pro_id='$pro_id'";
+        $qr = $this->db->query($sql);
+        return true;
     }
+    
 }

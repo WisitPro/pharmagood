@@ -72,10 +72,12 @@ if (isset($this->session->userdata['cus_user'])) {
                     <?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
                 <div class="dropdown">
                     <button disabled class="dropbtn text-left"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
-                        <i class="fa-solid fa-caret-down" style="color:#525252;"></i></button>
+                        <i class="fa-regular fa-rectangle-list"></i></button>
                     <div class="dropdown-content">
+                    <a onclick="return confirm('ยืนยันออกจากหน้าสั่งซื้อยาและเวชภัณฑ์')" id="btHistory" href="<?php echo base_url('/index.php/OrderController/ListMyOrder'); ?>">
+                    <i class="fa-regular fa-rectangle-list"></i> รายการสั่งซื้อรอชำระ</a>
                         <a onclick="return confirm('ยืนยันออกจากหน้าสั่งซื้อยาและเวชภัณฑ์')" id="btHistory" href="<?php echo base_url('/index.php/OrderController/OrderHistory'); ?>">
-                            <i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
+                            <i class="fa-solid fa-clock-rotate-left"></i> ประวัติการสั่งซื้อ</a>
                         <a onclick="return confirm('ยืนยันออกจากหน้าสั่งซื้อยาและเวชภัณฑ์')" href="<?php echo base_url('/index.php/RequestController/HistoryRequest'); ?>">
                             <i class="fa-solid fa-video"></i> ประวัตินัดปรึกษา</a>
                         <a  id="btOut" onclick="Out()" style="cursor:pointer;">
@@ -92,12 +94,12 @@ if (isset($this->session->userdata['cus_user'])) {
                     <i class="fa-solid fa-house-medical-flag"></i> หน้าหลัก</a>
                 <a href="<?php echo base_url('/index.php/CartController'); ?>" id="btCart"><i class="fa-solid fa-basket-shopping"></i>
                     <?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
-                <div class="dropdown">
-                    <button disabled class="dropbtn text-left"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
+                <div class="dropdown ">
+                    <button disabled class="dropbtn text-right"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
                         <i class="fa-solid fa-caret-down" style="color:#525252;"></i></button>
                     <div class="dropdown-content">
                     <a id="btHistory" href="<?php echo base_url('/index.php/OrderController/ListMyOrder'); ?>">
-                            <i class="fa-solid fa-clock-rotate-left"></i> รายการสั่งซื้อรอชำระ</a>
+                    <i class="fa-regular fa-rectangle-list"></i> รายการสั่งซื้อรอชำระ</a>
                         <a id="btHistory" href="<?php echo base_url('/index.php/OrderController/OrderHistory'); ?>">
                             <i class="fa-solid fa-clock-rotate-left"></i> ประวัติการซื้อ</a>
                         <a href="<?php echo base_url('/index.php/RequestController/HistoryRequest'); ?>">

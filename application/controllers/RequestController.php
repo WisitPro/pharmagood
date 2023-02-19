@@ -135,8 +135,9 @@ class RequestController extends CI_Controller
             );
             
         $this->session->set_userdata($ss_req_status);
+        $data['cus_info'] = $this->m_customer->specf_cus($this->session->userdata('cus_id'));
         $this->load->view('navbar_customer/navbar_cus');
-        $this->load->view('RequestForm');
+        $this->load->view('RequestForm',$data);
          }
         
     }
@@ -146,12 +147,18 @@ class RequestController extends CI_Controller
         $get_req_id = gmdate('sHms');
         $data['req_id'] = $get_req_id;
         $data['cus_id'] = $_REQUEST['cus_id'];
-        $data['cus_phone'] = $_REQUEST['cus_phone'];
         $data['req_sym'] = $_REQUEST['req_sym'];
         $data['req_time'] = $_REQUEST['req_time'];
         $data['req_status'] = "รอยืนยัน";
-        
+
+        $data['cus_id'] = $_REQUEST['cus_id'];
+        $data['cus_phone'] = $_REQUEST['cus_phone'];
+        $data['cus_age'] = $_REQUEST['cus_age'];
+        $data['cus_weight'] = $_REQUEST['cus_weight'];
+        $data['cus_height'] = $_REQUEST['cus_height'];
+
         $this->m_request->cus_req($data);
+        $this->m_customer->UpdateByRequest($data);
 
         $ss_req_status = array(
             'ss_req_status' => true,

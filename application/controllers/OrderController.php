@@ -155,11 +155,13 @@ class OrderController extends CI_Controller
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('OrderingForm', $data);
     }
+   
 
 
     public function Ordering()
     {
         date_default_timezone_set("Asia/Bangkok");
+
         $user_data = $this->session->userdata();
         $data['cus_id'] = $user_data['cus_id'];
         $data['order_datetime'] = date('Y-m-d H:i:s');
@@ -194,9 +196,10 @@ class OrderController extends CI_Controller
                     echo "alert(\" เพิ่มรายการสั่งซื้อสำเร็จ \");";
 
                     echo "</script>";
-                    $data['ListMyOrder'] = $this->m_order->ListMyOrder();
-                    $this->load->view('navbar_customer/navbar_cus');
-                    $this->load->view('ListMyOrder', $data);
+                    // $data['ListMyOrder'] = $this->m_order->ListMyOrder();
+                    // $this->load->view('navbar_customer/navbar_cus');
+                    // $this->load->view('ListMyOrder', $data);
+                    redirect('OrderController/ListMyOrder');
                 }
             }
         } else {

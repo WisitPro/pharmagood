@@ -1,21 +1,26 @@
 .dropdown {
     display: inline-block;
     height: 70px;
-    margin-left: 0px;
+   float: right;
+   margin-right: 12%;
 }
 .dropbtn {
-    margin-left: 1%;
-    min-width: 260px;
+    
+    min-width: fit-content;
     color: #F87F28;
     border: none;
 } 
 .dropdown-content {
+    
     display: none;
     position: absolute;
     border-radius: 10px;
-    min-width: 220px;
+    min-width: 240px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    
+    
+    
 }
 .dropdown-content a {
     color: #ffffff;
@@ -59,7 +64,9 @@ nav {
 }
 #btCart{
     color: #525252;
-    margin-left: 38%;
+    
+    margin-left: 1%;
+    
 }
 button:not(:disabled):hover {
     

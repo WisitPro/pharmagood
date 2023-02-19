@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+<meta http-equiv="refresh" content="30">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/ListMyOrder.css">
 </head>
 
@@ -82,7 +82,9 @@
                 </tbody>
             </table>
         </div>
+        <strong><p style="font: 20px;color:#fa4444;margin-top:510px;">! คำสั่งซื้อจะถูกยกเลิกหากไม่ทำการชำระเงินภายใน 7 วัน</p></strong>
     </div>
+    
 </body>
 
 </html>

@@ -20,7 +20,7 @@ foreach ($tbl_admin as $row) {
     <container>
         <form action="Admin_Update" method="POST" autocomplete="off">
             <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้ภายใน</p>
-            <input type="text" name="adm_id" style="visibility:hidden ;position:absolute" value="<?php echo $row->adm_id ?>">
+            
             <p class="head hd1">ชื่อ-นามสกุล*<br>
                 <input type="text" name="adm_name" value="<?php echo $row->adm_name ?>">
                 <font color="red">
@@ -39,12 +39,7 @@ foreach ($tbl_admin as $row) {
                     <?php echo form_error('adm_user'); ?>
                 </font>
             </p>
-            <p class="head hd4">รหัสผ่าน*<br>
-                <input type="text" name="adm_pass" value="<?php echo $row->adm_pass ?>">
-                <font color="red">
-                    <?php echo form_error('adm_pass'); ?>
-                </font>
-            </p>
+            
             <p id="radio">
                 <?php if ($adm_role == "เจ้าของกิจการ") { ?>
                     <input type="radio" name="adm_role" value="เจ้าของกิจการ" checked> เจ้าของกิจการ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -13,6 +13,10 @@ if (!isset($this->session->userdata['rq_id'])) {
 foreach ($tbl_request as $row) { 
     $cus_name = $row->cus_name;
     $cus_phone = $row->cus_phone;
+    $cus_age = $row->cus_age;
+    $cus_weight = $row->cus_age;
+    $cus_height = $row->cus_height;
+    
     $time = new DateTime($row->req_time);
     $req_time =  date_format($time,"d/m/Y H:i"); 
     $req_sym = $row->req_sym;
@@ -31,12 +35,21 @@ foreach ($tbl_request as $row) {
         </div>
             <div id="form2" action="">
                 <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='http://localhost/pharmagood/index.php/controller/HomePage3';"></i>
-                <h1><img src="<?php echo base_url(); ?>images/image 4.png"> ข้อมูลขอคำปรึกษา</h1>        
+                <h1><img src="<?php echo base_url(); ?>images/image 4.png"> ข้อมูลขอคำปรึกษา</h1> 
+                <p style="position: absolute;margin-left:250px;margin-top:28px">อายุ <span></span>
+                    <input type="text" style="width:60px" name="cus_age" disabled value="<?php echo $cus_age ?>" required></input>
+                    ปี </span>       
                 <p>ชื่อ-นามสกุล<span></span><br>
                     <input type="text" value="<?php echo $cus_name ?>" disabled></input>
                 </p>
-                <p>เบอร์โทร<span></span><br>
-                    <input type="text" value="<?php echo $cus_phone ?>" disabled></input>
+                <p style="position: absolute;margin-left:150px;margin-top:28px">น้ำหนัก <span></span>
+                    <input type="text" style="width:60px" name="cus_weight" disabled value="<?php echo $cus_weight ?>" required></input>
+                    </span>
+                <p style="position: absolute;margin-left:310px;margin-top:28px">ส่วนสูง <span></span>
+                    <input type="text" style="width:60px" name="cus_height" disabled value="<?php echo $cus_height ?>" required></input>
+                    </span>
+                <p>เบอร์โทรศัพท์<span></span><br>
+                    <input type="text"  style="width: 120px;" value="<?php echo $cus_phone ?>" disabled></input>
                 </p>
                 <p>อาการเบื้องต้น<span></span><br>
                     <textarea disabled name="req_sym"><?php echo $req_sym ?></textarea>
@@ -50,7 +63,7 @@ foreach ($tbl_request as $row) {
                     <p>สถานะ : รายการของคุณถูก<?php echo $req_status ?> </p>
                     <p>เมื่อถึงเวลานัด คุณจะสามารถกดปุ่ม "วิดีโอคอล" ได้</p>
                     <?php }else{?>
-                        <p>สถานะ : <?php echo $req_status ?> 
+                        <p>สถานะ : <?php echo $req_status ?>จากทางร้าน
                         <?php }?>
     </div><div id="buttonbar">
         <?php if($req_status == "วิดีโอคอล"){?>

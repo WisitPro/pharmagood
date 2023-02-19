@@ -25,13 +25,13 @@ $(document).ready(function(){
 
   function check_Password( Pass, Con_Pass){
     
-
+    
     if(Pass === "" || Con_Pass ===""){
       $("#check").hide()
       $("#not").hide()
       $("#regisbt").hide()
       $("#regisbt2").show()
-    }else if( Pass === Con_Pass & Pass.length > 7 & Con_Pass.length > 7){
+    }else if( Pass === Con_Pass & Pass.length > 7 & Con_Pass.length > 7  ){
       $("#check").show()
       console.log("matched")
       $("#regisbt").removeAttr("onclick")

@@ -31,7 +31,7 @@ if (isset($this->session->userdata['cus_user'])) {
                 <li>จ่ายยาตามอาการ</li>
                 <li>ปรึกษาอาการกับเภสัชกรคุณภาพก่อนซื้อยา</li>
                 <li>บริการจัดส่งยาถึงหน้าบ้าน</li>
-                <li>ระยะเวลาการจัดส่งไม่เกิน 1-2 ชม.</li>
+               
             </ul>
             <?php if($ss_req_status === false){ ?>
                 <a href="RequestForm" style="color:white;"><button id="btRq"  >นัดเวลาปรึกษาเภสัชกร</button></a>

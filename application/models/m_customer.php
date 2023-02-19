@@ -24,20 +24,23 @@ and cus_pass='$cus_pass'";
     }
     public function Register($data)
     {
-        $cus_id = $data['cus_id'];
-        $cus_name = $data['cus_name'];
-        $cus_phone = $data['cus_phone'];
         $cus_user = $data['cus_user'];
         $cus_pass = $data['cus_pass'];
-        $Account = $this->GetUser($cus_user, $cus_id);
+        $cus_name = $data['cus_name'];
+        $cus_phone = $data['cus_phone'];
+        $cus_age = $data['cus_age'];
+        $cus_height = $data['cus_height'];
+        $cus_weight = $data['cus_weight'];
+        $cus_gender = $data['cus_gender'];
+        $Account = $this->GetUser($cus_user);
         if ($Account == false) {
-            $sql = "INSERT INTO tbl_customer VALUES('$cus_id','$cus_name','$cus_phone','$cus_user',MD5('$cus_pass'))";
+            $sql = "INSERT INTO tbl_customer VALUES('','$cus_user',
+            MD5('$cus_pass'),'$cus_name','$cus_phone','$cus_age', '$cus_height','$cus_weight','$cus_gender')";
             $qr = $this->db->query($sql);
             return true;
-        } elseif($Account == true) {
+        } elseif ($Account == true) {
             return false;
-        }
-        else{
+        } else {
             return false;
         }
 
@@ -47,12 +50,9 @@ and cus_pass='$cus_pass'";
     public function specf_cus($cus_id)
     {
         $sql = "select * from tbl_customer where cus_id='$cus_id'";
-        $query = $this->db->query($sql, array($cus_id));
-        if ($query->num_rows() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        $query = $this->db->query($sql);
+
+        return $query->result();
     }
     public function GetUser($cus_user)
     {
@@ -69,5 +69,19 @@ and cus_pass='$cus_pass'";
         } else {
             return true;
         }
+    }
+    public function UpdateByRequest($data)
+    {
+        $cus_id = $data['cus_id'];
+        $cus_phone = $data['cus_phone'];
+        $cus_age = $data['cus_age'];
+        $cus_height = $data['cus_height'];
+        $cus_weight = $data['cus_weight'];
+        $sql = "update tbl_customer set cus_phone ='$cus_phone',cus_age='$cus_age',cus_weight = '$cus_weight',cus_height ='$cus_height';";
+        $qr = $this->db->query($sql);
+        return true;
+
+        // $cus_add=$data['cus_add'];
+
     }
 }
