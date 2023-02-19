@@ -10,7 +10,15 @@ foreach ($tbl_product as $row) {
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/ProductList.css">
 </head>
 
+<style>
 
+    #pro_img{
+        transition: 0.2s ease-in-out;
+    }
+    #pro_img:hover{
+        transform: scale(4);
+    }
+</style>
 <body>
     <br>
     
@@ -39,7 +47,7 @@ foreach ($tbl_product as $row) {
                         <tr id="tr2">
                             <th class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></th>
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->pro_id; ?></td>
-                            <td class="data text-center" style="border-right: 1px solid #b6b6b6"><img style="width: 54px;height:54px;color:#F69A56;"  src="<?php echo base_url('/images/Product/'.$row->pro_img.'');?>" alt="ไม่มีรูปภาพ"></td>
+                            <td  class="data text-center" style="border-right: 1px solid #b6b6b6"><img style="width: 54px;height:54px;color:#F69A56;" id="pro_img" src="<?php echo base_url('/images/Product/'.$row->pro_img.'');?>" alt="ไม่มีรูปภาพ"></td>
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->pro_brand; ?></td>
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->pro_name; ?></td>
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->type_name; ?></td>
@@ -93,6 +101,8 @@ foreach ($tbl_product as $row) {
                 <option value="ขวด">ขวด</option>
                 <option value="กล่อง">กล่อง</option>
                 <option value="หลอด">หลอด</option>
+                <option value="่ห่อ">่ห่อ</option>
+                <option value="ซอง">ซอง</option>
                 <option value="อื่นๆ">อื่นๆ</option>
 
         </select>

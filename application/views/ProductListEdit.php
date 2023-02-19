@@ -11,10 +11,10 @@
 <body>
     <br><div id="myModal" class="modal" style="display: block !important;">
     <form onsubmit="return confirm('ยืนยันแก้ไขข้อมูล');" action="Product_Update" method="POST" autocomplete="off" enctype="multipart/form-data" class="modal-content">
-        <input name="pro_id" value="<?php echo $row->pro_id; ?>" readonly type="hidden" class="pro_id" placeholder="รหัสสินค้า*" maxlength="13" onkeypress='validate(event)' required>
+        <input name="pro_id" value="<?php echo $row->pro_id; ?>"  readonly type="hidden" class="pro_id" placeholder="รหัสสินค้า*" maxlength="13" onkeypress='validate(event)' required>
         <p style="font-size: 28px;">ฟอร์มแก้ไขข้อมูลยาและเวชภัณฑ์</p> 
         <label for="pro_id">*รหัสสินค้า :
-            <input type="text" class="pro_id" disabled readonly value="<?php echo $row->pro_id ?>" name="" maxlength="13" style="width: 140px;" onkeypress='validate(event)' required>
+            <input type="text" class="pro_id" disabled readonly value="<?php echo $row->pro_id ?>" name="" maxlength="13" style="width: 140px;font-weight:bold;" onkeypress='validate(event)' required>
         </label>&nbsp;&nbsp;&nbsp;
         <select name="type_id" id="selectlist" required>
             <option value="<?php echo $row->type_id ?>"><?php echo $row->type_name ?></option>
@@ -46,6 +46,8 @@
                     <option value="ขวด">ขวด</option>
                     <option value="กล่อง">กล่อง</option>
                     <option value="หลอด">หลอด</option>
+                    <option value="ห่อ">ห่อ</option>
+                    <option value="ซอง">ซอง</option>
                     <option value="อื่นๆ">อื่นๆ</option>
                 <?php } elseif ($row->pro_unit == "กระปุก") { ?>
                     <option selected value="กระปุก">กระปุก</option>
@@ -53,6 +55,8 @@
                     <option value="ขวด">ขวด</option>
                     <option value="กล่อง">กล่อง</option>
                     <option value="หลอด">หลอด</option>
+                    <option value="ห่อ">ห่อ</option>
+                    <option value="ซอง">ซอง</option>
                     <option value="อื่นๆ">อื่นๆ</option>
                 <?php } elseif ($row->pro_unit == "ขวด") { ?>
                     <option selected value="ขวด">ขวด</option>
@@ -60,6 +64,8 @@
                     <option value="กระปุก">กระปุก</option>
                     <option value="กล่อง">กล่อง</option>
                     <option value="หลอด">หลอด</option>
+                    <option value="ห่อ">ห่อ</option>
+                    <option value="ซอง">ซอง</option>
                     <option value="อื่นๆ">อื่นๆ</option>
                 <?php } elseif ($row->pro_unit == "กล่อง") { ?>
                     <option selected value="กล่อง">กล่อง</option>
@@ -67,6 +73,8 @@
                     <option value="กระปุก">กระปุก</option>
                     <option value="ขวด">ขวด</option>
                     <option value="หลอด">หลอด</option>
+                    <option value="ห่อ">ห่อ</option>
+                    <option value="ซอง">ซอง</option>
                     <option value="อื่นๆ">อื่นๆ</option>
                 <?php } elseif ($row->pro_unit == "หลอด") { ?>
                     <option selected value="หลอด">หลอด</option>
@@ -74,6 +82,27 @@
                     <option value="กระปุก">กระปุก</option>
                     <option value="ขวด">ขวด</option>
                     <option value="กล่อง">กล่อง</option>
+                    <option value="ห่อ">ห่อ</option>
+                    <option value="ซอง">ซอง</option>
+                    <option value="อื่นๆ">อื่นๆ</option>
+                    <?php } elseif ($row->pro_unit == "ซอง") { ?>
+                    <option selected value="ซอง">ซอง</option>
+                    <option value="แผง">แผง</option>
+                    <option value="กระปุก">กระปุก</option>
+                    <option value="ขวด">ขวด</option>
+                    <option value="กล่อง">กล่อง</option>
+                    <option value="ห่อ">ห่อ</option>
+                    
+                    
+                    <option value="อื่นๆ">อื่นๆ</option>
+                <?php } elseif ($row->pro_unit == "ห่อ") { ?>
+                    <option selected value="ห่อ">ห่อ</option>
+                    <option value="แผง">แผง</option>
+                    <option value="กระปุก">กระปุก</option>
+                    <option value="ขวด">ขวด</option>
+                    <option value="กล่อง">กล่อง</option>
+                    <option value="หลอด">หลอด</option>
+                    <option value="ซอง">ซอง</option>
                     <option value="อื่นๆ">อื่นๆ</option>
                 <?php } elseif ($row->pro_unit == "อื่นๆ") { ?>
                     <option selected value="อื่นๆ">อื่นๆ</option>
@@ -82,7 +111,20 @@
                     <option value="ขวด">ขวด</option>
                     <option value="กล่อง">กล่อง</option>
                     <option value="หลอด">หลอด</option>
-                <?php } ?>
+                    <option value="ห่อ">ห่อ</option>
+                    <option value="ซอง">ซอง</option>
+                <?php }else{ ?>
+                    <option value="แผง">แผง</option>
+                <option value="กระปุก">กระปุก</option>
+                <option value="ขวด">ขวด</option>
+                <option value="กล่อง">กล่อง</option>
+                <option value="หลอด">หลอด</option>
+                <option value="่ห่อ">่ห่อ</option>
+                <option value="ซอง">ซอง</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+
+
+                    <?php }?>
 
             </select>
             <span style="padding-left: 100px;"><label for="pro_limit">*จำนวนจำกัดซื้อ : <input type="number" value="<?php echo $row->pro_limit?>" style="width: 70px;" name="pro_limit" min="1">

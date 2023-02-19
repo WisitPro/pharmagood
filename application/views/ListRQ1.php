@@ -80,10 +80,10 @@
                 
                 <p style="color: black;">สถานะ : <span id="status"></span></p>
     </div>
-    <a href="<?php echo base_url('/index.php/RequestController/VerifyRQ/'); ?>" id="verifyBT">
+    <a onclick="return confirm('ยืนยันคำขอนัดปรึกษา');" href="<?php echo base_url('/index.php/RequestController/VerifyRQ/'); ?>" id="verifyBT">
         <button id="verifyBTT"  style="background-color:#55fe3d;color:white;border:transparent;
         width:100px;height:34px;font-size:20px;margin-left:240px">ยืนยัน</button></a>
-        <a href="<?php echo base_url('/index.php/RequestController/DenyRQ/'); ?>" id="denyBT">
+        <a onclick="return confirm('ยกเลิกคำขอนัดปรึกษา');" href="<?php echo base_url('/index.php/RequestController/DenyRQ/'); ?>" id="denyBT">
         <button id="denyBTT"  style="background-color:#ff4242;color:white;border:transparent;
         width:100px;height:34px;font-size:20px;margin-left:20px;margin-top:0px;position: absolute;">ยกเลิก</button></a>
    
@@ -236,6 +236,10 @@
 .modal-content span {
   font-size: 16px;
   color: black;
+}
+.modal p span{
+  color: black;
+  font-size: 20px;
 }
 .modal #x {
   position: absolute;
