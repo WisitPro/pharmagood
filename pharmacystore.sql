@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2023 at 07:45 AM
+-- Generation Time: Feb 19, 2023 at 02:50 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbl_admin` (
-  `adm_id` char(3) NOT NULL,
+  `adm_id` int(3) NOT NULL,
   `adm_name` varchar(255) NOT NULL,
   `adm_phone` char(10) DEFAULT NULL,
   `adm_user` varchar(255) NOT NULL,
@@ -41,8 +41,8 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`adm_id`, `adm_name`, `adm_phone`, `adm_user`, `adm_pass`, `adm_role`) VALUES
-('101', 'เจ้าของกิจการ', '0816629398', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'เจ้าของกิจการ'),
-('102', 'เภสัชกร', '0323564578', 'admin2', '827ccb0eea8a706c4c34a16891f84e7b', 'เภสัชกร');
+(101, 'เจ้าของกิจการ', '0816629398', 'admin', '25d55ad283aa400af464c76d713c07ad', 'เจ้าของกิจการ'),
+(102, 'เภสัชกร', '0323564578', 'admin2', '25d55ad283aa400af464c76d713c07ad', 'เภสัชกร');
 
 -- --------------------------------------------------------
 
@@ -63,19 +63,23 @@ CREATE TABLE `tbl_bills` (
 --
 
 CREATE TABLE `tbl_customer` (
-  `cus_id` char(13) NOT NULL,
-  `cus_name` varchar(255) NOT NULL,
-  `cus_phone` char(10) NOT NULL,
+  `cus_id` int(11) NOT NULL,
   `cus_user` varchar(255) NOT NULL,
-  `cus_pass` varchar(255) NOT NULL
+  `cus_pass` varchar(255) NOT NULL,
+  `cus_name` varchar(255) NOT NULL,
+  `cus_phone` varchar(255) NOT NULL,
+  `cus_age` varchar(255) NOT NULL,
+  `cus_height` varchar(255) NOT NULL,
+  `cus_weight` varchar(255) NOT NULL,
+  `cus_gender` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_customer`
 --
 
-INSERT INTO `tbl_customer` (`cus_id`, `cus_name`, `cus_phone`, `cus_user`, `cus_pass`) VALUES
-('1409903033103', 'วิศิษฏ์ จรรยาไพบูลย์', '0648185686', 'wisit', 'a6c7cac3471b53fb6cea8f71d12d9f6e');
+INSERT INTO `tbl_customer` (`cus_id`, `cus_user`, `cus_pass`, `cus_name`, `cus_phone`, `cus_age`, `cus_height`, `cus_weight`, `cus_gender`) VALUES
+(1, 'wisit', 'a6c7cac3471b53fb6cea8f71d12d9f6e', 'วิศิษฏ์', '0845678995', '22', '180', '60', 'ชาย');
 
 -- --------------------------------------------------------
 
@@ -135,24 +139,10 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`order_id`, `cus_id`, `order_datetime`, `order_total`, `order_address`, `order_phone`, `order_status`) VALUES
-(100000, '1409903033103', '2023-02-18 03:33:38', 25.00, '', '0648185686', 'ยังไม่ชำระเงิน'),
-(100001, '1409903033103', '2023-02-18 03:34:40', 25.00, 'CRQ8+5R เทศบาลนครขอนแก่น อำเภอเมืองขอนแก่น ขอนแก่น ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100002, '1409903033103', '2023-02-18 03:35:17', 25.00, 'CRQ8+5R เทศบาลนครขอนแก่น อำเภอเมืองขอนแก่น ขอนแก่น ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100003, '1409903033103', '2023-02-18 03:35:49', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100004, '1409903033103', '2023-02-18 03:38:29', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100005, '1409903033103', '2023-02-18 03:42:06', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100006, '1409903033103', '2023-02-18 03:42:38', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100007, '1409903033103', '2023-02-18 03:42:53', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100008, '1409903033103', '2023-02-18 03:45:14', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100009, '1409903033103', '2023-02-18 03:46:04', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100010, '1409903033103', '2023-02-18 03:47:41', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100011, '1409903033103', '2023-02-18 03:48:28', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100012, '1409903033103', '2023-02-18 03:51:17', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100013, '1409903033103', '2023-02-18 03:51:49', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100014, '1409903033103', '2023-02-18 03:51:51', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100015, '1409903033103', '2023-02-18 03:56:23', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน'),
-(100016, '1409903033103', '2023-02-18 04:39:40', 25.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยกเลิก'),
-(100017, '1409903033103', '2023-02-18 04:38:09', 215.00, 'CRQ8+25F ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0648185686', 'ยังไม่ชำระเงิน');
+(100026, '1', '2023-02-18 20:09:13', 25.00, '16 ชอย มิตรภาพ 4 ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0845678995', 'ยกเลิก'),
+(100027, '1', '2023-02-18 20:09:13', 39.00, '151/49 ซอย มะลิวัลย์ 5 ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0845678995', 'ยกเลิก'),
+(100028, '1', '2023-02-18 20:11:13', 25.00, '149/8 ชอย มิตรภาพ 4 ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0845678995', 'ยกเลิก'),
+(100029, '1', '2023-02-18 20:13:18', 13.00, 'CRP9+HVG ซอย มะลิวัลย์ 5 ตำบลในเมือง อำเภอเมืองขอนแก่น ขอนแก่น 40000 ประเทศไทย', '0845678995', 'ยังไม่ชำระเงิน');
 
 -- --------------------------------------------------------
 
@@ -173,10 +163,10 @@ CREATE TABLE `tbl_orderlist` (
 --
 
 INSERT INTO `tbl_orderlist` (`ol_id`, `order_id`, `pro_id`, `qty`, `sub_total`) VALUES
-(298, 100016, '3341206888984', 1, 25.00),
-(299, 100017, '0942050911533', 2, 34.00),
-(300, 100017, '1838839938893', 2, 26.00),
-(301, 100017, '9642469764546', 1, 155.00);
+(312, 100026, '3341206888984', 1, 25.00),
+(313, 100027, '7615846815232', 1, 39.00),
+(314, 100028, '3341206888984', 1, 25.00),
+(315, 100029, '9124972868114', 1, 13.00);
 
 -- --------------------------------------------------------
 
@@ -189,7 +179,7 @@ CREATE TABLE `tbl_payprove` (
   `order_id` varchar(255) DEFAULT NULL,
   `pay_slip` varchar(255) NOT NULL,
   `pay_datetime` datetime DEFAULT NULL,
-  `adm_id` char(3) NOT NULL,
+  `adm_id` char(3) DEFAULT NULL,
   `pay_modify` datetime DEFAULT NULL,
   `prove_status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -203,48 +193,27 @@ CREATE TABLE `tbl_payprove` (
 CREATE TABLE `tbl_product` (
   `pro_id` varchar(255) NOT NULL,
   `pro_img` varchar(255) DEFAULT NULL,
+  `pro_brand` varchar(255) NOT NULL,
   `pro_name` varchar(255) NOT NULL,
+  `pro_detail` text NOT NULL,
+  `pro_unit` varchar(255) NOT NULL,
   `type_id` int(11) DEFAULT NULL,
   `pro_price` double(5,2) NOT NULL,
   `pro_kind` varchar(255) NOT NULL,
-  `pro_limit` int(11) NOT NULL
+  `pro_limit` int(11) NOT NULL,
+  `pro_status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`pro_id`, `pro_img`, `pro_name`, `type_id`, `pro_price`, `pro_kind`, `pro_limit`) VALUES
-('0078081472641', 'https://img.my-best.in.th/contents/4b2924fa3f4f320b499defb65fdf072f.png?ixlib=rails-4.2.0&q=70&lossless=0&w=1200&h=900&fit=crop&s=3a14d2f5f861140a759eb1781dda6df9', 'ชุดปฐมพยาบาลเบื้องต้น พร้อมอุปกรณ์ 79 ชิ้น', 16, 120.00, 'เวชภัณฑ์', 10),
-('0350608765376', 'https://image.makewebeasy.net/makeweb/0/jKFUCwieZ/Food/1633256149802.jpg', 'คาอาบอน ชาร์โคล แก้ท้องเสีย 10 เม็ด', 8, 25.00, 'ยาสามัญประจำบ้าน', 10),
-('0942050911533', 'https://cf.shopee.co.th/file/93ea7d279486565a3ee7d74ec57ce310', 'ยาแก้ไอตราเสือดาว 60 มล.', 3, 17.00, 'ยาสามัญประจำบ้าน', 5),
-('1270740056929', 'https://inwfile.com/s-cz/w9dzuk.jpg', 'Duphalac ยาระบาย 100 มล.', 9, 180.00, 'ยาสามัญประจำบ้าน', 5),
-('1585376111738', 'https://cf.shopee.co.th/file/438624727e7db390744a99b330d8ed2d', 'แชมบัค บรรเทาอาการ แมลงกัดต่อย', 11, 82.00, 'ยาสามัญประจำบ้าน', 10),
-('1593527158853\r\n', 'https://pim-cdn0.ofm.co.th/products/large/0001964.jpg', 'Navamed ยาแก้เมารถ แบบแผง', 5, 5.00, 'ยาสามัญประจำบ้าน', 5),
-('1826046930670', 'https://inwfile.com/s-e/icvhg8.jpg', 'Ezerra Cream  ยาแก้คันผิวหนัง', 13, 750.00, 'ยาสามัญประจำบ้าน', 10),
-('1838839938893', 'https://www.tudsinjai.com/wa-data/public/shop/products/37/01/137/images/351/351.970.jpg', 'ยาทิฟฟี่ แผง 4 เม็ด', 1, 13.00, 'ยาสามัญประจำบ้าน', 10),
-('1934753391254', 'https://www.tmanpharma.co.th/files/product/large/product-000366-1569299724.jpg', 'สเปรย์พ่นคอโพรโพลิซ พลัส เอ็กเฮิร์บ', 6, 159.00, 'ยาสามัญประจำบ้าน', 5),
-('1982978601801', 'https://cf.shopee.co.th/file/c0a5fe34ce137dce441a14b3945105fe', 'Mederma ยาทาแผลไฟไหม้ น้ำร้อนลวก 20 g', 14, 860.00, 'ยาสามัญประจำบ้าน', 5),
-('2390284884655', 'https://st.bigc-cs.com/public/media/catalog/product/55/88/8850172243055/8850172243055_4.jpg', 'บีแพนเธน เซนซิเดิร์ม ครีม  ยาแก้คันผิวหนัง 20 g', 13, 420.00, 'ยาสามัญประจำบ้าน', 10),
-('2503846869506', 'https://cf.shopee.co.th/file/ecf929fe4c907f8f7c60978ad5cf803c', ' Blackmores Multivitamin 12+ วิตามินรวม 60 เม็ด', 15, 780.00, 'ยาสามัญประจำบ้าน', 10),
-('2539112007761', 'https://cf.shopee.co.th/file/c8c52eab28bfd5824774f0b9aab113c7', 'น้ำมันมวย บรรเทากล้ามเนื้อ 30ml ', 11, 39.00, 'ยาสามัญประจำบ้าน', 10),
-('2549773745988', 'https://obs.line-scdn.net/r/ect/ect/image_164224278299261136119ca2194t0f1ec9cf', 'Senokot ยาระบาย แบบแผง', 9, 115.00, 'ยาสามัญประจำบ้าน', 5),
-('2654283658748', 'https://cf.shopee.co.th/file/1245b5bcf2bd1c6c46a36ad297681b33', 'ยาแก้เมารถ Cooling Massage Oil', 5, 5.00, 'ยาสามัญประจำบ้าน', 5),
-('2796785767662', 'https://cf.shopee.co.th/file/8a73b8c77c7d0444b4bba80d0ff2f538', 'ยาดมตราโป๊ยเชียน', 4, 20.00, 'ยาสามัญประจำบ้าน', 10),
-('3138610444321', 'https://cf.shopee.co.th/file/3dc7ba5957a173635f68139266b84a7b', 'Yanhee Burrny Gel  ยาทาแผลไฟไหม้ น้ำร้อนลวก 30 g', 14, 120.00, 'ยาสามัญประจำบ้าน', 10),
-('3341206888984', 'https://img10.jd.co.th/mobilecms/s750x750_jfs/t7/202/11492773932/81450/ab5b3d66/627ce27eNbd54fa60.jpg!q70.jpg', 'ซูลิดีน บรรเทาอาการหวัด ', 2, 25.00, 'ยาสามัญประจำบ้าน', 5),
-('4133030080080', 'https://static.hdmall.co.th/system/image_attachments/images/000/123/563/original/%E0%B9%80%E0%B8%9A%E0%B8%99%E0%B8%94%E0%B9%89%E0%B8%B2_500_%28Mebendazole%29.jpg', 'เบนด้า 500 ยาถ่ายพญาธิแบบแผง\r\n', 10, 35.00, 'ยาสามัญประจำบ้าน', 5),
-('4365805624506', 'https://inwfile.com/s-cz/3o2ex5.jpg', 'Nutrivita Multivitamin & Minerals   วิตามินรวม 10 เม็ด', 15, 150.00, 'ยาสามัญประจำบ้าน', 10),
-('4511054433769', 'https://st.bigc-cs.com/public/media/catalog/product/11/88/8850109073311/8850109073311.jpg', 'ยาดม Peppermint Field', 4, 20.00, 'ยาสามัญประจำบ้าน', 10),
-('4795687338619', 'https://www.pimmanee.co.th/vmart/wp-content/uploads/2022/01/000896-2.jpg', 'Gaviscon กาวิสคอนดูอัลแอคชั่น ชนิดเม็ด 16 เม็ด', 7, 258.00, 'ยาสามัญประจำบ้าน', 5),
-('6748153364306', 'https://img10.jd.co.th/n0/jfs/t40/23/1382331069/26286/79ff76d6/63527e02N17368a7f.jpg!q70.jpg', 'Tear Mac Eye Drops Solution ยาหยอดตา 10 มล.', 12, 80.00, 'ยาสามัญประจำบ้าน', 5),
-('7615846815232', 'https://moombhesaj.com/wp-content/uploads/2020/04/loratadine-1.jpg', 'Clarid Loratadine ยาแก้แพ้ 10 เม็ด', 2, 39.00, 'ยาสามัญประจำบ้าน', 5),
-('8453489566415', 'https://api.watsons.co.th/medias/prd-front-301850.jpg?context=bWFzdGVyfGltYWdlc3w0NTcyM3xpbWFnZS9qcGVnfGgzYS9oYzMvMTExNTQxNzkxOTQ5MTAvV1RDVEgtMzAxODUwLWZyb250LmpwZ3w2MzczMjE5MzhlYjcyMmQ0MTY0MDliZTdlNGIzNTI2ZWMxYmFkODEzMzgyZTMzMmQ4NDk0Y2JhZThmZjhmOWMy', 'Welcare หน้ากากอนามัย 3 ชั้น เลเวล 2 50 ชิ้น/กล่อง', 16, 125.00, 'ยาสามัญประจำบ้าน', 10),
-('9124972868114', 'https://ocs-k8s-prod.s3.ap-southeast-1.amazonaws.com/PRODUCT_1619431667176.jpeg', 'ไทลินอล ยาบรรเทาปวดลดไข้ 10 เม็ด', 1, 13.00, 'ยาสามัญประจำบ้าน', 10),
-('9459544217466', 'https://inwfile.com/s-fy/rq4a8e.jpg', 'ยาแก้ไออาปาเช่ 60 มล.', 3, 25.00, 'ยาสามัญประจำบ้าน', 5),
-('9642469764546', 'https://punsuk.com/3011-6660-thickbox_default/kamillosan-m-15-ml-bottle-with-sprayer.jpg', 'สเปรย์พ่นคอ คามิลโลซาน เอ็ม', 6, 155.00, 'ยาสามัญประจำบ้าน', 5),
-('9826912895852', 'https://cf.shopee.co.th/file/444e05cf1f6242f4c90ca5c12085656f', 'ยาธาตุน้ำขาว ตรากระต่ายบิน 50 มล.', 7, 19.00, 'ยาสามัญประจำบ้าน', 10),
-('9987068493429', 'https://aqua.c1ub.net/home/upload/files/1505188983_u1_EZPmk8iy.jpg', 'ฟูกาคาร์', 10, 35.00, 'ยาสามัญประจำบ้าน', 5);
+INSERT INTO `tbl_product` (`pro_id`, `pro_img`, `pro_brand`, `pro_name`, `pro_detail`, `pro_unit`, `type_id`, `pro_price`, `pro_kind`, `pro_limit`, `pro_status`) VALUES
+('1927295159788', 'promotion_online_33_1.jpg', 'หงส์ไทย', 'ยาดมสมุนไพร ตราหงส์ไทย สูตร 2 กระปุกเหลือง', 'ยาดมสมุนไพร ตราหงส์ไทย สูตร 2 กระปุกเหลือง ยาดมสมุนไพรหมักใช้สำหรับสูดดม กลิ่นหอมเย็นชื่นใจ ต้นตำรับสมุนไพรหมักแห่งแรกในไทย ด้วยส่วนประกอบจากสมุนไพรนานาชนิด                                                                                                   ', 'กระปุก', 4, 39.00, 'ยาสามัญประจำบ้าน', 10, 1),
+('1927295159794', 'promotion_online_33_1.jpg', 'หงส์ไทย', 'ยาดมสมุนไพร ตราหงส์ไทย สูตร 2 กระปุกเหลือง', 'ยาดมสมุนไพร ตราหงส์ไทย สูตร 2 กระปุกเหลือง ยาดมสมุนไพรหมักใช้สำหรับสูดดม กลิ่นหอมเย็นชื่นใจ ต้นตำรับสมุนไพรหมักแห่งแรกในไทย ด้วยส่วนประกอบจากสมุนไพรนานาชนิด                                                                                                   ', 'กระปุก', 4, 39.00, 'ยาสามัญประจำบ้าน', 10, 1),
+('1927295159797', 'promotion_online_33_1.jpg', 'หงส์ไทย', 'ยาดมสมุนไพร ตราหงส์ไทย สูตร 2 กระปุกเหลือง', 'ยาดมสมุนไพร ตราหงส์ไทย สูตร 2 กระปุกเหลือง ยาดมสมุนไพรหมักใช้สำหรับสูดดม กลิ่นหอมเย็นชื่นใจ ต้นตำรับสมุนไพรหมักแห่งแรกในไทย ด้วยส่วนประกอบจากสมุนไพรนานาชนิด                                                                                                   ', 'กระปุก', 4, 39.00, 'ยาสามัญประจำบ้าน', 10, 1),
+('3920799176747', 'promotion_online_28_.jpg', 'Vicks', 'วิคส์ วาโปรัป 5 กรัม', 'วิคส์ วาโปรับ บรรเทาอาการหวัด คลายหวัด คัดจมูก ยาทาระเหยบรรเทาอาการคัดจมูกชนิดขี้ผึ้ง ช่วยให้หายใจโล่ง', 'กระปุก', 2, 27.00, 'ยาสามัญประจำบ้าน', 10, 1),
+('7609537033941', 'promotion_online_39_.jpg', 'Gaviscon', 'Gaviscon กาวิสคอนซัสเพนชั่นเปปเปอร์มิ้นต์ ชนิดน้ำ 10 มล. 12 ซอง', 'Gaviscon กาวิสคอนซัสเพนชั่นเปปเปอร์มิ้นต์ ชนิดน้ำ 10 มล. 12 ซอง Gaviscon กาวิสคอนซัสเพนชั่นเปปเปอร์มิ้นต์ ชนิดน้ำ ช่วยบรรเทาอาการแสบร้อนกลางอกจากโรคกรดไหลย้อน และอาหารไม่ย่อย เนื่องจากมีกรดมากเกินไปในกระเพาะอาหารโดยรวมตัวกันเป็นชั้นเจลลอยตัวอยู่ชั้นบนของกรดในกระเพาะ', 'กล่อง', 7, 295.00, 'ยาสามัญประจำบ้าน', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -263,7 +232,7 @@ CREATE TABLE `tbl_product_type` (
 
 INSERT INTO `tbl_product_type` (`type_id`, `type_name`) VALUES
 (1, 'กลุ่มยาบรรเทาปวดลดไข้'),
-(2, 'กลุ่มยาแก้แพ้ ลดน้ำมูก'),
+(2, 'กลุ่มยาแก้แพ้ ลดน้ำมูกและหวัด'),
 (3, 'กลุ่มยาแก้ไอ ขับเสมหะ'),
 (4, 'กลุ่มยาดม หรือยาทาแก้วิงเวียน หน้ามืด คัดจมูก'),
 (5, 'กลุ่มยาแก้เมารถ เมาเรือ'),
@@ -288,7 +257,6 @@ INSERT INTO `tbl_product_type` (`type_id`, `type_name`) VALUES
 CREATE TABLE `tbl_request` (
   `req_id` int(11) NOT NULL,
   `cus_id` char(13) DEFAULT NULL,
-  `cus_phone` varchar(255) DEFAULT NULL,
   `req_sym` varchar(255) DEFAULT NULL,
   `req_time` datetime DEFAULT NULL,
   `req_time_change` datetime DEFAULT NULL,
@@ -296,6 +264,14 @@ CREATE TABLE `tbl_request` (
   `req_modify` datetime DEFAULT NULL,
   `req_status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_request`
+--
+
+INSERT INTO `tbl_request` (`req_id`, `cus_id`, `req_sym`, `req_time`, `req_time_change`, `adm_id`, `req_modify`, `req_status`) VALUES
+(34120234, '1', 'ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว', '2023-02-23 19:30:00', NULL, NULL, NULL, 'รอยืนยัน'),
+(43120243, '1', 'ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว', '2023-02-04 19:09:00', NULL, NULL, '2023-02-19 19:10:23', 'ยกเลิก');
 
 --
 -- Indexes for dumped tables
@@ -380,10 +356,22 @@ ALTER TABLE `tbl_request`
 --
 
 --
+-- AUTO_INCREMENT for table `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  MODIFY `adm_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
+--
 -- AUTO_INCREMENT for table `tbl_bills`
 --
 ALTER TABLE `tbl_bills`
   MODIFY `bill_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400000;
+
+--
+-- AUTO_INCREMENT for table `tbl_customer`
+--
+ALTER TABLE `tbl_customer`
+  MODIFY `cus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_information`
@@ -395,19 +383,19 @@ ALTER TABLE `tbl_information`
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100018;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100030;
 
 --
 -- AUTO_INCREMENT for table `tbl_orderlist`
 --
 ALTER TABLE `tbl_orderlist`
-  MODIFY `ol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
+  MODIFY `ol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 
 --
 -- AUTO_INCREMENT for table `tbl_payprove`
 --
 ALTER TABLE `tbl_payprove`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10000;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10005;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_type`
@@ -419,7 +407,17 @@ ALTER TABLE `tbl_product_type`
 -- AUTO_INCREMENT for table `tbl_request`
 --
 ALTER TABLE `tbl_request`
-  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3000;
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43120244;
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `cancel_old_orders` ON SCHEDULE EVERY 1 DAY STARTS '2023-02-18 20:09:13' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE tbl_order
+SET order_status = 'ยกเลิก'
+WHERE order_datetime <= DATE_SUB(NOW(), INTERVAL 7 DAY)$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

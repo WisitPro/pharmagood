@@ -21,16 +21,18 @@
                     <?php
                     $line = 1;
                     foreach ($request_list as $list) :
-                        $req_modify = date('วันที่ ' . 'd-m-Y' . ' เวลา ' . ' H:i', strtotime($list->req_modify)) . ' น.';
+                        if(isset($req_modify)){$req_modify = date('วันที่ ' . 'd-m-Y' . ' เวลา ' . ' H:i', strtotime($list->req_modify)) . ' น.';}
                         $req_time = date('วันที่นัด ' . 'd-m-Y' . ' เวลา ' . ' H:i', strtotime($list->req_time)) . ' น.';
                     ?>
                         <tr class="trB" style="border-top: 2px solid #F79A56; ">
                             <td style="width:10px"><?php echo $line ?></td>
-                            <td colspan="3" style="width:300px"><strong>อาการที่ปรึกษา <?php echo $list->req_sym ?></strong></td>
-                            <td colspan="3" style="width:500px" class="text-right"><?php echo  $req_time ?></td>
+                            <td colspan="6" style="width:500px"><strong>อาการที่ปรึกษา <?php echo $list->req_sym ?></strong></td>
+                            <td colspan="2" style="min-width:300px" class="text-right"><?php echo  $req_time ?></td>
                         </tr>
                         <tr class="trB">
-                            <td colspan="12" style="width:500px" class="text-left"><?php echo  $list->req_status ?> <?php echo  $req_modify ?></td>
+                            <td></td>
+                            <td colspan="11" style="width:500px" class="text-left"><?php echo  $list->req_status ?>
+                             <?php if(isset($req_modify)){ echo $req_modify; }?></td>
                         </tr>
                         <tr>
                             <td colspan="12"></td>

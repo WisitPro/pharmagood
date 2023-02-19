@@ -30,7 +30,12 @@
     display: block;
   margin-left: auto;
   margin-right: auto;
+  transition: 0.8 ease-out;
 }
+#capsule:hover {
+    transform: rotateY(360deg);
+    transition: transform 10s ease-in
+  }
 footer{
     position: absolute;
     max-width: 1920px;
@@ -129,4 +134,5 @@ footer{
     cursor: pointer;
   }
 
+ 
   

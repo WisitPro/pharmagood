@@ -111,7 +111,7 @@ public function cus_req($data)
     public function History($cus_id)
     {
         $cus_id = $cus_id;
-        $sql = "select * from tbl_request where cus_id ='$cus_id' order by req_modify desc;";
+        $sql = "select * from tbl_request where cus_id ='$cus_id' and req_status ='เสร็จสิ้น' or req_status = 'ยกเลิก'  order by req_modify desc;";
         $qr = $this->db->query($sql);
         return $qr->result();
     }
