@@ -50,8 +50,8 @@
                     <th style="width:200px ;">เบอร์โทรศัพท์</th>
                     <th style="width:200px;">ชื่อผู้ใช้</th>
                     <th style="width:160px ;">รหัสผ่าน</th>
-                    <th style="width:260px  ;" >ตำแหน่ง</th>
-                    <th style="width:200px ;"></th>
+                    <th style="min-width:120px  ;" >ตำแหน่ง</th>
+                    <th style="min-width:150px ;"></th>
                 </tr>
                 <?php $item = 1;foreach ($tbl_admin as $row) { ?>
                     <tr id="tr2" style="height: 32px;">
@@ -63,10 +63,10 @@
                         <td class="data"><a  onclick="return confirm('สร้างรหัสใหม่');" href="<?php echo base_url('index.php/controller/UpdateAdminPassword/'.$row->adm_id.''); ?>">ลืมรหัสผ่าน</a></td>
                         <td class="data"><?php echo $row->adm_role; ?></td>
                         <td id="btnTable">
-                            <a id="Edit" href='<?php echo base_url('/index.php/controller/Admin_Edit?adm_id='.$row->adm_id.''); ?>'>แก้ไข</a>
+                            <a id="Edit" onclick="return confirm('แก้ไขข้อมูล');" href='<?php echo base_url('/index.php/controller/Admin_Edit?adm_id='.$row->adm_id.''); ?>'>แก้ไข</a>
                             <?php if($row->adm_role == "เจ้าของกิจการ"){
                                 }else{?>
-                            <a id="Remove" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่');" href='Admin_Remove?adm_id=<?php echo $row->adm_id; ?>'>ลบ</a>
+                            <a id="Remove" onclick="return confirm('คุณต้องการปิดบัญชีผู้ใช้นี้');" href='Admin_Keep?adm_id=<?php echo $row->adm_id; ?>'>ปิดบัญชี</a>
 <?php }?>
                         </td>
                     </tr>
@@ -94,7 +94,7 @@
                     </font>
                 </p>
                 <p class="head hd3">ชื่อผู้ใช้*<br>
-                    <input required type="text" name="adm_user" value="<?php echo $edit->adm_user ?>">
+                    <input required type="text" name="adm_user" value="<?php echo $edit->adm_user ?>" >
                     <font color="red">
                         <?php echo form_error('adm_user'); ?>
                     </font>
@@ -133,17 +133,13 @@
                         <?php echo form_error('adm_phone'); ?>
                     </font>
                 </p>
-                <p class="head hd3">ชื่อผู้ใช้*<br>
-                    <input required type="text" name="adm_user">
-                    <font color="red">
-                        <?php echo form_error('adm_user'); ?>
-                    </font>
+                <p class="head hd3" >ชื่อผู้ใช้*<br>
+                    <input required type="text" name="adm_user" >
+                    
                 </p>
-                <p class="head hd4">รหัสผ่าน*<br>
-                    <input required type="password"  minlength="8"  name="adm_pass">
-                    <font color="red">
-                        <?php echo form_error('adm_pass'); ?>
-                    </font>
+                <p class="head hd4" >รหัสผ่าน*<br>
+                    <input required type="password"  minlength="8"  name="adm_pass" >
+                    
                 </p>
                 <p class="head hd4">ยืนยันรหัสผ่าน*<br>
                     <input required type="password" minlength="8"  name="adm_pass2">
@@ -170,7 +166,7 @@
     <div>
     </div>
 
-    <img id="admin" src="<?php echo base_url(); ?>images/admin.png">
+    <img id="admin" src="<?php echo base_url(); ?>images/admin.png">    
     <?php }?>
 </body>
 </html>

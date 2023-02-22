@@ -56,7 +56,7 @@ if ($this->session->flashdata('error_message') !== NULL) {
     <div class="modal-content">
     <span class="close">&times;</span>
     
-    <img style="width: 240px;border:1px solid lightgray;" id="p_img" src="" >
+    <img style="width: 240px;height:240px;border:1px solid lightgray;" id="p_img" src="" >
     <div style="position: absolute;margin-left:260px;margin-top:-200px;width:400px"> <p id="p_brand" ></p>
     <strong><p  id="p_name" ></p></strong>
     <p id="p_price"  ></p></div>
@@ -65,16 +65,17 @@ if ($this->session->flashdata('error_message') !== NULL) {
     <p id="p_detail"  ></p></div>
    
     <p id="p_type" ></p>
-   
+    </div>
        
         <a href="<?php echo base_url('/index.php/ProductController/AddtoCart/'); ?>" id="addToCartLink">
         <button id="addToCartButton" name="add_product" 
-        style="background-color:#F69A56;color:white;border:transparent;width:200px;height:40px;font-size:20px;float:right;margin-right:60px">เพิ่มไปยังตะกร้า</button></a>
+        style="position:absolute; background-color:#F69A56;color:white;border:transparent;
+        width:200px;height:40px;font-size:20px;margin-left:911px;margin-top:530px">เพิ่มไปยังตะกร้า</button></a>
 
 
     
        
-    </div></div>
+    </div>
     
 </body>
 

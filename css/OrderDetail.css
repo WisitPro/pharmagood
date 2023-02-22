@@ -236,7 +236,7 @@ span button{
 #button_bar{
     position: absolute;
     margin-left: 660px;
-    margin-top: 520px;
+    margin-top: 518px;
     font-size: 20px;
     
 }
@@ -254,6 +254,11 @@ span button{
    
     background-color: #2fe150;
     margin-left: 260px;
+}
+#verifybt2{
+   
+    background-color: #3691c5;
+    margin-left: 430px;
 }
 
 #cancelbt{

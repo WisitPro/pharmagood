@@ -38,17 +38,17 @@ foreach ($cus_info as $customer) {
                 <h1><img src="<?php echo base_url(); ?>images/image 4.png"> กรอกข้อมูลอาการ</h1>
                 <input style="visibility: hidden;position:absolute;" type="text" name="req_id" value=" "></input>
                 <input style="visibility: hidden;position:absolute;" type="text" name="cus_id" value="<?php echo $id ?> "></input>
-                <p style="position: absolute;margin-left:250px;margin-top:24px">อายุ <span></span>
-                    <input type="text" style="width:60px" name="cus_age" value="<?php echo $cus_age ?>" required></input>
+                <p style="position: absolute;margin-left:230px;margin-top:28px">อายุ <span></span>
+                    <input type="number" style="width:60px" name="cus_age"  value="<?php echo $cus_age ?>" required></input>
                     ปี </span>
                 <p>ชื่อ-นามสกุล<span></span><br>
                     <input type="text" name="cus_name" value="<?php echo $name ?>" readonly disabled required></input>
                 </p>
-                <p style="position: absolute;margin-left:150px;margin-top:24px">น้ำหนัก <span></span>
-                    <input type="text" style="width:60px" name="cus_weight" value="<?php echo $cus_weight ?>" required></input>
+                <p style="position: absolute;margin-left:130px;margin-top:28px">น้ำหนัก <span></span>
+                    <input type="text" style="width:60px" name="cus_weight" value="<?php echo $cus_weight ?>" required></input> กก.
                     </span>
-                <p style="position: absolute;margin-left:310px;margin-top:24px">ส่วนสูง <span></span>
-                    <input type="text" style="width:60px" name="cus_height" value="<?php echo $cus_height ?>" required></input>
+                <p style="position: absolute;margin-left:300px;margin-top:28px">ส่วนสูง <span></span>
+                    <input type="text" style="width:60px" name="cus_height" value="<?php echo $cus_height ?>" required></input> ซม.
                     </span>
 
                 <p>เบอร์โทรศัพท์<span></span><br>
@@ -69,7 +69,7 @@ foreach ($cus_info as $customer) {
                 <?php
                 date_default_timezone_set("Asia/Bangkok");
                 $currentDateTime = date('Y-m-d H:i');
-                echo $currentDateTime;
+                // echo $currentDateTime;
                 ?>
 
                 <p>วันและเวลาที่ต้องการปรึกษา<span>*(โปรดระบุเวลามากกว่า 30 นาทีขึ้นไป)</span><br>

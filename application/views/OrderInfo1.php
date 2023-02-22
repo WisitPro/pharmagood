@@ -16,7 +16,7 @@
                     <th style="width:300px ;">ลูกค้า</th>
                     <th style="width:250px;">เวลาชำระ</th>
                     <th style="width:140px  ;" class="st" >สถานะ</th>
-                    <th style="width:200px ;"></th>
+                    <th style="min-width:100px ;"></th>
                 </tr>
                 <?php
                 $item = 1;
@@ -32,12 +32,14 @@
                         
                         <td class="data"><?php echo $fmd; ?> น.</td>
                         <td class="data st text-center"><strong><?php echo $row->prove_status; ?></strong></td>
-                        <td id="btnTable" class="text-right">
-                            <a id="Edit"  onclick="return confirm('ยืนยันออเดอร์');" 
-                            href='<?php echo base_url('index.php/OrderController/VerifyOR/'.$row->pay_id.'');?>'>ยืนยัน</a>
-                            &nbsp;&nbsp;&nbsp;
+                        <td id="btnTable" class="text-center">
+                            <!-- <a id="Edit"  onclick="return confirm('รายละเอียด');" 
+                            href='<?php echo base_url('index.php/OrderController/OrderDetail/'.$row->pay_id.'');?>'>ยืนยัน</a> -->
+                            <a id="Edit" 
+                            href='<?php echo base_url('index.php/OrderController/OrderDetail/'.$row->pay_id.'');?>'>รายละเอียด</a>
+                            <!-- &nbsp;&nbsp;&nbsp;
                             <a id="Remove" onclick="return confirm('ยกเลิกออเดอร์');" 
-                            href='<?php echo base_url('index.php/OrderController/DenyOR/'.$row->pay_id.'');?>'>ยกเลิก</a>
+                            href='<?php echo base_url('index.php/OrderController/DenyOR/'.$row->pay_id.'');?>'>ยกเลิก</a> -->
                         </td>
                     </tr>
                 <?php $item++;}?>

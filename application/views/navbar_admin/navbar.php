@@ -3,6 +3,7 @@ if (isset($this->session->userdata['adm_user'])) {
     $adm_id = $this->session->userdata['adm_id'];
     $adm_role = $this->session->userdata['adm_role'];
     $adm_name = $this->session->userdata['adm_name'];
+    $basename = basename($_SERVER['PHP_SELF']);
     
 }else{
     redirect('controller/LoginPage');

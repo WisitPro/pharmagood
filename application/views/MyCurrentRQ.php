@@ -36,17 +36,17 @@ foreach ($tbl_request as $row) {
             <div id="form2" action="">
                 <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='http://localhost/pharmagood/index.php/controller/HomePage3';"></i>
                 <h1><img src="<?php echo base_url(); ?>images/image 4.png"> ข้อมูลขอคำปรึกษา</h1> 
-                <p style="position: absolute;margin-left:250px;margin-top:28px">อายุ <span></span>
+                <p style="position: absolute;margin-left:230px;margin-top:28px">อายุ <span></span>
                     <input type="text" style="width:60px" name="cus_age" disabled value="<?php echo $cus_age ?>" required></input>
                     ปี </span>       
                 <p>ชื่อ-นามสกุล<span></span><br>
                     <input type="text" value="<?php echo $cus_name ?>" disabled></input>
                 </p>
-                <p style="position: absolute;margin-left:150px;margin-top:28px">น้ำหนัก <span></span>
-                    <input type="text" style="width:60px" name="cus_weight" disabled value="<?php echo $cus_weight ?>" required></input>
+                <p style="position: absolute;margin-left:130px;margin-top:28px">น้ำหนัก <span></span>
+                    <input type="text" style="width:60px" name="cus_weight" disabled value="<?php echo $cus_weight ?>" required></input> กก.
                     </span>
-                <p style="position: absolute;margin-left:310px;margin-top:28px">ส่วนสูง <span></span>
-                    <input type="text" style="width:60px" name="cus_height" disabled value="<?php echo $cus_height ?>" required></input>
+                <p style="position: absolute;margin-left:300px;margin-top:28px">ส่วนสูง <span></span>
+                    <input type="text" style="width:60px" name="cus_height" disabled value="<?php echo $cus_height ?>" required></input> ซม.
                     </span>
                 <p>เบอร์โทรศัพท์<span></span><br>
                     <input type="text"  style="width: 120px;" value="<?php echo $cus_phone ?>" disabled></input>

@@ -30,39 +30,40 @@ class controller extends CI_Controller
     public function LoginPage2()
     {
 
-        $get_data['cus_user'] = $_REQUEST['username'];
-        $get_data['cus_pass'] = $_REQUEST['password'];
+        $username = $_REQUEST['username'];
+        $password = $_REQUEST['password'];
+        $get_data['adm_user'] = $username;
+        $get_data['adm_pass'] = $password;
 
-        $data = $this->m_customer->login($get_data);
-        if ($data) {
-            foreach ($data as $row) {
+        $admin = $this->m_admin->login($get_data);
+        if ($admin!=null) {
+            foreach ($admin as $row) {
                 $userdata = array(
-                    'cus_user' => $row->cus_user,
-                    'cus_id' => $row->cus_id,
-                    'cus_name' => $row->cus_name,
-                    'cus_phone' => $row->cus_phone
+                    'adm_user' => $row->adm_user,
+                    'adm_name' => $row->adm_name,
+                    'adm_role' => $row->adm_role,
+                    'adm_id' => $row->adm_id
+
                 );
                 $this->session->set_userdata($userdata);
             }
-            redirect('controller/Homepage3');
-        } elseif (!$data) {
-            $get_data['adm_user'] = $_REQUEST['username'];
-            $get_data['adm_pass'] = $_REQUEST['password'];
-
-            $admin = $this->m_admin->login($get_data);
-            if ($admin) {
-                foreach ($admin as $row) {
+            redirect('controller/AdminHomePage');
+        } elseif ($admin==null) {
+            $get_data['cus_user'] = $username;
+            $get_data['cus_pass'] = $password;
+            $data = $this->m_customer->login($get_data);
+            if ($data!=null) {
+                foreach ($data as $row) {
                     $userdata = array(
-                        'adm_user' => $row->adm_user,
-                        'adm_name' => $row->adm_name,
-                        'adm_role' => $row->adm_role,
-                        'adm_id' => $row->adm_id
-
+                        'cus_user' => $row->cus_user,
+                        'cus_id' => $row->cus_id,
+                        'cus_name' => $row->cus_name,
+                        'cus_phone' => $row->cus_phone
                     );
                     $this->session->set_userdata($userdata);
                 }
-                redirect('controller/AdminHomePage');
-            } else {
+                redirect('controller/Homepage3');
+            }else{
                 $data['error'] = "username or password incorrect";
                 echo "<script>";
                 echo "alert(\" ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง\");";
@@ -71,8 +72,18 @@ class controller extends CI_Controller
                 $this->load->view('component/navbar');
                 $this->load->view('LoginPage', $data);
             }
+        } else {
+            $data['error'] = "username or password incorrect";
+            echo "<script>";
+            echo "alert(\" ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง\");";
+            echo "window.history.back()";
+            echo "</script>";
+            $this->load->view('component/navbar');
+            $this->load->view('LoginPage', $data);
         }
     }
+
+
 
     public function RegisterPage()
     {
@@ -217,10 +228,10 @@ class controller extends CI_Controller
         }
     }
 
-    public function Admin_Remove()
+    public function Admin_Keep()
     {
         $adm_id = $_REQUEST['adm_id'];
-        $this->m_admin->Remove($adm_id);
+        $this->m_admin->Keep($adm_id);
         $data['tbl_admin'] = $this->m_admin->admininfo();
         $this->load->view('navbar_admin/navbar');
         $this->load->view('AdminListPage', $data);
@@ -261,8 +272,8 @@ class controller extends CI_Controller
     //     $this->load->view('AdminListPage', $data);
     // }
     public function UpdateAdminPassword($adm_id)
-    {   
-        
+    {
+
         $data['tbl_admin'] = $this->m_admin->admininfo();
         $data['UpdatePassword'] = $this->m_admin->GetAdminById($adm_id);
         $this->load->view('navbar_admin/navbar');
@@ -287,7 +298,7 @@ class controller extends CI_Controller
             echo "<script>";
             echo "alert(\" บันทึกข้อมูลเรียบร้อยแล้ว\");";
             echo "</script>";
-           
+
             redirect('controller/AdminListPage');
         }
     }
@@ -327,6 +338,7 @@ class controller extends CI_Controller
         $data = array();
         $data['tbl_product'] = $this->m_product->SelectByType($type_id);
         $data['product_type'] = $this->m_product_type->Type();
+
         $this->load->view('component/navbar');
         $this->load->view('StoreX', $data);
     }

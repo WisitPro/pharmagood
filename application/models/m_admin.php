@@ -7,7 +7,7 @@ class m_admin extends CI_Model
     }
     public function admininfo()
     {
-        $sql = "select * from tbl_admin";
+        $sql = "select * from tbl_admin where adm_role = 'เจ้าของกิจการ' or adm_role = 'เภสัชกร'";
 
         $qr = $this->db->query($sql);
 
@@ -18,7 +18,7 @@ class m_admin extends CI_Model
     {
         $adm_user = $data['adm_user'];
         $adm_pass = MD5($data['adm_pass']);
-        $sql = "select * from tbl_admin where adm_user='$adm_user'and adm_pass='$adm_pass'";
+        $sql = "SELECT * from tbl_admin where adm_user='$adm_user' and adm_pass='$adm_pass' and adm_role !=''";
         $qr = $this->db->query($sql);
         return $qr->result();
     }
@@ -78,9 +78,9 @@ class m_admin extends CI_Model
         // $qr = $this->db->query($sql);
         // return true;
     }
-    public function Remove($adm_id)
+    public function Keep($adm_id)
     {
-        $sql = "delete from tbl_admin where adm_id='$adm_id'";
+        $sql = "UPDATE tbl_admin  set adm_role = NULL where adm_id='$adm_id'";
         $qr = $this->db->query($sql);
         return true;
     }

@@ -56,17 +56,17 @@
       <div id="form2" action="">
                 <h1><img src="<?php echo base_url(); ?>images/image 4.png"> ข้อมูลขอคำปรึกษา</h1> 
                 <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='http://localhost/pharmagood/index.php/RequestController/ListRQ1';"></i>
-                <p style="position: absolute;margin-left:250px;margin-top:28px" >อายุ <span></span>
+                <p style="position: absolute;margin-left:230px;margin-top:28px" >อายุ <span></span>
                     <input id="age" type="text" style="width:60px" disabled required></input>
                     ปี </span>       
                 <p>ชื่อ-นามสกุล<span></span><br>
                     <input id="name" type="text"disabled></input>
                 </p>
-                <p style="position: absolute;margin-left:150px;margin-top:28px">น้ำหนัก <span></span>
-                    <input id="weight" type="text" style="width:60px"  disabled required></input>
+                <p style="position: absolute;margin-left:130px;margin-top:28px">น้ำหนัก <span></span>
+                    <input id="weight" type="text" style="width:60px"  disabled required></input> กก.
                     </span>
-                <p style="position: absolute;margin-left:310px;margin-top:28px">ส่วนสูง <span></span>
-                    <input id="height" type="text" style="width:60px"  disabled required></input>
+                <p style="position: absolute;margin-left:300px;margin-top:28px">ส่วนสูง <span></span>
+                    <input id="height" type="text" style="width:60px"  disabled required></input> ซม.
                     </span>
                 <p>เบอร์โทรศัพท์<span></span><br>
                     <input id="phone" type="text"  style="width: 120px;"  disabled></input>

@@ -85,22 +85,45 @@ class RequestController extends CI_Controller
         $this->load->view('navbar_admin/navbar');
         redirect('RequestController/ListRQ1');
     }
-    public function SuccessRQ($req_id)
+    public function OrderToCus($cus_id, $req_id)
     {
-        $data = array(
-            date_default_timezone_set("Asia/Bangkok"),
-            $date = date('Y-m-d H:i:s'),
-            'req_id' => $req_id,
-            'adm_id' => $this->session->userdata('adm_id'),
-            'req_modify' => $date
-
-        );
+        date_default_timezone_set("Asia/Bangkok");
+        $date = date('Y-m-d H:i:s');
+        $data['cus_id'] = $cus_id;
+        $data['adm_id'] = $this->session->userdata('adm_id');
+        $data['date'] = $date;
+        $data['total'] = $this->cart->total();
+        $data['req_id'] = $req_id;
+        $insertResult = $this->m_order->InsertAfterCall($data);
         $this->m_request->SuccessRQ($data);
-        $data['list_req'] = $this->m_request->List_req4();
-        $this->session->set_userdata('ss_req_status', false);
-        $this->session->unset_userdata('rq_id');
-        $this->load->view('navbar_admin/navbar');
-        redirect('RequestController/ListRQ4');
+        $order_id = $insertResult['order_id'];
+
+        $cartItems = $this->cart->contents();
+        $ordItemData = array();
+        $i = 0;
+        foreach ($cartItems as $item) {
+            $ordItemData[$i]['ol_id'] = "";
+            $ordItemData[$i]['order_id'] = $order_id;
+            $ordItemData[$i]['pro_id'] = $item['id'];
+            $ordItemData[$i]['qty'] = $item['qty'];
+            $ordItemData[$i]['sub_total'] = $item["subtotal"];
+            $i++;
+        }
+        if (!empty($ordItemData)) {
+            $insertOrderItems = $this->m_order->insertOrderItems($ordItemData);
+
+            if ($insertOrderItems) {
+                $this->cart->destroy();
+            }
+            $data['list_req'] = $this->m_request->List_req4();
+            $this->session->set_userdata('ss_req_status', false);
+            $this->session->unset_userdata('rq_id');
+            $this->load->view('navbar_admin/navbar');
+            echo "<script>";
+            echo "alert(\" เสร็จสิ้น \");";
+            echo "</script>";
+            redirect('RequestController/ListRQ4');
+        }
     }
 
     public function AdminCall($req_id)
@@ -183,20 +206,19 @@ class RequestController extends CI_Controller
             echo "alert(\" มีคำนัดปรึกษาภายในเวลาดังกล่าวแล้ว เรียนลูกค้าได้โปรดเปลี่ยนเวลานัดปรึกษาใหม่ \");";
             echo "</script>";
             $data = $this->session->userdata();
-        if (isset($data['ss_req_status']) && $data['ss_req_status'] == true) {
+            if (isset($data['ss_req_status']) && $data['ss_req_status'] == true) {
 
-            redirect('RequestController/MyCurrentRQ');
-        } else {
-            $ss_req_status = array(
-                'ss_req_status' => false
-            );
+                redirect('RequestController/MyCurrentRQ');
+            } else {
+                $ss_req_status = array(
+                    'ss_req_status' => false
+                );
 
-            $this->session->set_userdata($ss_req_status);
-            $data['cus_info'] = $this->m_customer->specf_cus($this->session->userdata('cus_id'));
-            $this->load->view('navbar_customer/navbar_cus');
-            $this->load->view('RequestForm', $data);
-        }
-
+                $this->session->set_userdata($ss_req_status);
+                $data['cus_info'] = $this->m_customer->specf_cus($this->session->userdata('cus_id'));
+                $this->load->view('navbar_customer/navbar_cus');
+                $this->load->view('RequestForm', $data);
+            }
         } else {
 
             echo "<script>";
@@ -244,5 +266,37 @@ class RequestController extends CI_Controller
         //$data['orderlist_history'] = $this->m_order->OrderListHistory($data);
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('HistoryRequest', $data);
+    }
+
+
+    public function searchDrug()
+    {
+        $pro_name = $_REQUEST['search'];
+        $req_id = $_REQUEST['req_id'];
+        $data['tbl_product'] = $this->m_product->getDrugBySearch($pro_name);
+        if ($pro_name == '') {
+            $data = array();
+            $data['cartItems'] = $this->cart->contents();
+            $data['req_detail'] = $this->m_request->RqDetail($req_id);
+            $data['tbl_product'] = $this->m_product->Pharmacy();
+            $this->load->view('navbar_admin/navbar');
+            $this->load->view('AdminVideoCall', $data);
+        } elseif ($pro_name != '' && $data['tbl_product'] == null) {
+            echo "<script>";
+            echo "alert(\" ไม่มีข้อมูลที่คุณค้นหา \");";
+            echo "</script>";
+            $data = array();
+            $data['cartItems'] = $this->cart->contents();
+            $data['req_detail'] = $this->m_request->RqDetail($req_id);
+            $data['tbl_product'] = $this->m_product->Pharmacy();
+            $this->load->view('navbar_admin/navbar');
+            $this->load->view('AdminVideoCall', $data);
+        } else {
+            $data['pro_name'] = $pro_name;
+            $data['cartItems'] = $this->cart->contents();
+            $data['req_detail'] = $this->m_request->RqDetail($req_id);
+            $this->load->view('navbar_admin/navbar');
+            $this->load->view('AdminVideoCall', $data);
+        }
     }
 }

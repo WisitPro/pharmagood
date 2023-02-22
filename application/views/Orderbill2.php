@@ -63,8 +63,7 @@ foreach ($orderdetail as $row) {
                 </table>
             </div>
             <br>
-            <a onclick="return confirm('ยืนยันข้อมูล')" href="<?php echo base_url('/index.php/OrderController/InsertDelivery/' . $row->order_id) ?>">
-                <button style="visibility: hidden;" id="delbt">ทำการส่ง</button> </a>
+            
             <button id="printbt" onclick="window.print();">ปริ้นท์</button>
         </container>
     </body>

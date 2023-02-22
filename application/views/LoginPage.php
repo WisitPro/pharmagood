@@ -12,7 +12,7 @@
         <font color="red">
             <?php echo form_error('cus_user'); ?>
         </font><br>
-        <input type="password" name="password" id="pass" placeholder="รหัสผ่าน" value="yee6629398" required><br>
+        <input type="password" name="password" id="pass" placeholder="รหัสผ่าน" value="12345678" required><br>
         <font color="red">
             <?php echo form_error('cus_pass'); ?>
         </font><br>

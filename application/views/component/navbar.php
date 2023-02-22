@@ -26,13 +26,17 @@
             <div id="menu">
                 <a id="btHome" href="HomePage">
                 <i class="fa-solid fa-house-medical-flag"></i> หน้าหลัก</a>
-                <?php if($basename == "HomePage" || $basename == "StoreX"){?>
+                <?php if($basename == "HomePage" || $basename == "StoreX"  ){?>
                 <a id="btLogin" href="LoginPage">เข้าสู่ระบบ <i class="fa-solid fa-right-to-bracket"></i></a>
                 <a id="btRegister" href="RegisterPage">สมัครสมาชิก <i class="fa-solid fa-user-plus"></i></a>
                 <?php }elseif($basename == "LoginPage"){?>
                     <a id="btRegister" href="RegisterPage" style="margin-left: 49%;">สมัครสมาชิก <i class="fa-solid fa-user-plus"></i></a>
                     <?php }elseif($basename == "RegisterPage"){?>
                 <a id="btLogin" href="LoginPage" style="margin-left: 49%;">มีบัญชีอยู่แล้ว <i class="fa-solid fa-right-to-bracket"></i></a>  
-                <?php } ?>            
+                <?php }else{?>
+                  
+                        <a id="btLogin" href="<?php  echo base_url('/index.php/controller/LoginPage');?>">เข้าสู่ระบบ <i class="fa-solid fa-right-to-bracket"></i></a>
+                <a id="btRegister" href="<?php  echo base_url('/index.php/controller/RegisterPage');?>">สมัครสมาชิก <i class="fa-solid fa-user-plus"></i></a>
+                    <?php }  ?>            
             </div>  
         </nav>

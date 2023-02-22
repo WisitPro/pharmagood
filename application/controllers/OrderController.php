@@ -57,23 +57,40 @@ class OrderController extends CI_Controller
         $this->load->view('component/OrderInfoMenuBar');
         $this->load->view('OrderInfo4', $data);
     }
-    public function VerifyOR($pay_id)
-    {
+    public function VerifyOR($pay_id) {
         $data = array(
             date_default_timezone_set("Asia/Bangkok"),
             $date = date('Y-m-d H:i:s'),
             'pay_id' => $pay_id,
             'adm_id' => $this->session->userdata('adm_id'),
             'pay_modify' => $date
-
         );
-
-        $this->m_payprove->verifying($data);
-        $this->m_bill->import($data);
-
-
-        redirect('OrderController/OrderInfo1');
+    
+        $verifying_result = $this->m_payprove->verifying($data);
+    
+        if ($verifying_result === false) {
+            echo "<script>";
+            echo "alert(\" ยืนยันไม่สำเร็จ \");";
+            echo "window.history.back()";
+            echo "</script>";
+        } else {
+            $this->m_bill->import($data);
+            $order_id = $this->m_order->getOrderIdByPayId($pay_id);
+            $this->m_order->verifying($order_id);
+            
+    
+            echo "<script>";
+            echo "alert(\" ยืนยันสำเร็จ \");";
+            echo "</script>";
+    
+            $pay_id = $pay_id;
+            $data['orderdetail'] = $this->m_order->OrderDetail($pay_id);
+            $this->load->view('navbar_admin/navbar');
+            $this->load->view('OrderDetail', $data);
+        }
     }
+    
+
     public function DenyOR($pay_id)
     {
         $data = array(
@@ -85,7 +102,10 @@ class OrderController extends CI_Controller
 
         );
         $this->m_payprove->denying($data);
+        echo "<script>";
+        echo "alert(\" ยกเลิกสำเร็จ \");";
 
+        echo "</script>";
 
         redirect('OrderController/OrderInfo1');
     }
@@ -131,20 +151,26 @@ class OrderController extends CI_Controller
             redirect('OrderController/OrderInfo1');
         }
     }
+    // public function InsertDelivery($order_id)
+    // {
+    //     $data['order_id'] = $order_id;
+    //     $this->load->view('navbar_customer/navbar_cus');
+    //     $this->load->view('DeliveryForm', $data);
+    // }
 
-    public function InsertDelivery($order_id)
-    {
-        $data = array(
-            date_default_timezone_set("Asia/Bangkok"),
-            $date = date('Y-m-d H:i:s'),
-            'order_id' => $order_id,
-            'adm_id' => $this->session->userdata('adm_id'),
-            'delivery_datetime' => $date
-        );
-        $this->m_delivery->InsertDelivery($data);
-        $this->m_payprove->DeliveryStatus($order_id);
-        redirect('OrderController/OrderInfo4');
-    }
+    // public function InsertDelivery($order_id)
+    // {
+    //     $data = array(
+    //         date_default_timezone_set("Asia/Bangkok"),
+    //         $date = date('Y-m-d H:i:s'),
+    //         'order_id' => $order_id,
+    //         'adm_id' => $this->session->userdata('adm_id'),
+    //         'delivery_datetime' => $date
+    //     );
+    //     $this->m_delivery->InsertDelivery($data);
+    //     $this->m_payprove->DeliveryStatus($order_id);
+    //     redirect('OrderController/OrderInfo4');
+    // }
     public function OrderingForm()
     {
 
@@ -155,7 +181,7 @@ class OrderController extends CI_Controller
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('OrderingForm', $data);
     }
-   
+
 
 
     public function Ordering()

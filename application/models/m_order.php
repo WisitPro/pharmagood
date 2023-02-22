@@ -49,6 +49,25 @@ class m_order extends CI_Model
             return null;
         }
     }
+    public function InsertAfterCall($data)
+    {
+        $cus_id = $data['cus_id'];
+        $order_datetime = $data['date'];
+        $order_total = $data['total'];
+       
+
+        $sql = "INSERT INTO tbl_order VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', '', '', 'ยังไม่ชำระเงิน')";
+
+        $this->db->query($sql);
+
+        if ($this->db->affected_rows() == 1) {
+            $insert_id = $this->db->insert_id();
+            $result = $this->db->get_where('tbl_order', array('order_id' => $insert_id))->row_array();
+            return $result;
+        } else {
+            return null;
+        }
+    }
 
     public function insertOrderItems($data = array())
     {
@@ -76,6 +95,25 @@ class m_order extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+    public function verifying($order)
+    {
+       $order_id = $order;
+        $sql = "update tbl_order set order_status = 'ยืนยันแล้ว' where order_id = '$order_id'";
+        $qr = $this->db->query($sql);
+        return true;
+    }
+    public function getOrderIdByPayId($pay_id) {
+        $sql = "SELECT order_id FROM tbl_payprove WHERE pay_id = '$pay_id'";
+        $qr = $this->db->query($sql, array($pay_id));
+        $result = $qr->row();
+    
+        if ($result) {
+            return $result->order_id;
+        } else {
+            return false;
+        }
+    }
+    
 
 
     public function remove($data)
@@ -183,6 +221,7 @@ class m_order extends CI_Model
     {
         $order_id = $data['order_id'];
         $sql = "update tbl_order set order_status = 'จัดส่งเรียบร้อย' where order_id = '$order_id'";
+        
         $qr = $this->db->query($sql);
         return true;
     }
