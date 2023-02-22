@@ -13,6 +13,7 @@ if ($this->session->flashdata('error_message') !== NULL) {
 </head>
 
 <body>
+
     <div id="banner">
         <p style="font-size:40px; color:white">รายการยาและเวชภัณฑ์</p>
     </div>
@@ -25,60 +26,29 @@ if ($this->session->flashdata('error_message') !== NULL) {
       <option value="">ประเภทยาและเวชภัณฑ์</option>
       <?php foreach ($product_type as $list) { ?>
         <option value="<?php echo $list->type_id ?>"><?php echo $list->type_name ?></option>
-        <?php
-    // Set the number of items to display per page
-    $items_per_page = 10;
-
-    // Determine the current page number
-    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-    // Calculate the offset for the current page
-    $offset = ($current_page - 1) * $items_per_page;
-
-    // Get a slice of the products array based on the current page and items per page
-    $products = array_slice($tbl_product, $offset, $items_per_page);
-
-    // Loop through the products on the current page
-    foreach ($products as $key => $row) {
-        // Output the product HTML as before
-        ?>
-        <div class="cardGap">
-            <div class="card" id="card-<?php echo $key ?>" data-key="<?php echo $key ?>">
-                <div class="img">
-                    <img src="<?php echo base_url('/images/Product/'.$row['pro_img'].'') ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
+      <?php } ?>
+    </select>
+        <div id="list">
+            
+            <?php $item = 1;
+            
+           foreach ($tbl_product as $key => $row) { ?>
+           
+                <div class="cardGap" >
+                    <div class="card" id="card-<?php echo $item ?>" data-key="<?php echo $key ?>"> 
+                        <div class="img">
+                            <img src="<?php echo base_url('/images/Product/'.$row['pro_img'].'') ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
+                        </div>
+                        <p class="head hhhhh"><?php echo $row['pro_name'] ?></p>
+                        <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
+                        <p class="detail"><?php echo $row['type_name'] ?></p>
+                        <a><button onclick="Msg()" id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
+                        
+                    </div>
                 </div>
-                <p class="head hhhhh"><?php echo $row['pro_name'] ?></p>
-                <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
-                <p class="detail"><?php echo $row['type_name'] ?></p>
-                <a><button onclick="Msg()" id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
-            </div>
-        </div>
-        <?php
-    }
-
-    // Output the pagination links
-    $total_pages = ceil(count($tbl_product) / $items_per_page);
-
-    if ($total_pages > 1) {
-        ?>
-        <div class="pagination">
-            <?php if ($current_page > 1) { ?>
-                <a href="?page=<?php echo $current_page - 1; ?>">Prev</a>
-            <?php } ?>
-            <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-                <?php if ($i == $current_page) { ?>
-                    <span class="current-page"><?php echo $i; ?></span>
-                <?php } else { ?>
-                    <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                <?php } ?>
-            <?php } ?>
-            <?php if ($current_page < $total_pages) { ?>
-                <a href="?page=<?php echo $current_page + 1; ?>">Next</a>
-            <?php } ?>
-        </div>
-        <?php
-    }
-?>
+                
+            <?php $item++;
+            } ?>
         </div>
     </div>
     </div>

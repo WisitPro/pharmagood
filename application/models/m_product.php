@@ -41,6 +41,7 @@ class m_product extends CI_Model
         // Return fetched data
         return !empty($result) ? $result : false;
     }
+    
     function getDrugBySearch($pro_name)
     {
         if (empty($pro_name))

@@ -24,7 +24,6 @@ class ProductController extends CI_Controller
         $this->load->view('navbar_admin/navbar');
         $this->load->view('ProductListPage', $data);
     }
-
     public function Product_Add()
     {
         $config['upload_path'] = './images/Product/';
