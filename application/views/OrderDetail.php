@@ -86,13 +86,15 @@ foreach ($orderdetail as $row) {
                         <?php }?>
                         <div id="myModal" class="modal">
     <form onsubmit="return confirm('ยืนยันเพิ่มข้อมูลนี้');" action="Product_Add" method="POST" autocomplete="off" enctype="multipart/form-data" class="modal-content">
-    <p style="font-size: 28px;">ฟอร์มบันทึกข้อมูลการจัดส่ง</p> <span class="close">&times;</span>
+    <span class="close">&times;</span><br> 
+    <p style="font-size: 28px;">ฟอร์มบันทึกข้อมูลการจัดส่ง</p> 
+    <div style="padding-left:40px">
         <p for="">*บริษัทที่จัดส่ง : </p>
         <input type="text" style="width: 200px;" required>
        
         
         <p for="">*หมายเลขติดตามพัสดุ :</p>
-        <input type="text"  style="width: 200px;" required><br><br>
+        <input type="text"  style="width: 240px;" required></div><br><br>
        
         <button id="btnForm1" type="reset" style="background-color:#FF5353">ยกเลิก</button>
         <button id="btnForm2" type="submit" style="background-color:#56FF5D">บันทึก</button>
@@ -187,7 +189,7 @@ span.onclick = function() {
     font-size: 38px;
     font-weight: bold;
     margin-right: 16px;
-    margin-top: -60px;
+    margin-top: -15px;
   }
   
   .close:hover,
