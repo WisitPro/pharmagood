@@ -7,10 +7,13 @@ if (isset($this->session->userdata['cus_user'])) {
     $phone = $this->session->userdata['cus_phone'];
 }
 foreach ($cus_info as $customer) {
-    $cus_phone = $customer->cus_phone;
-    $cus_age = $customer->cus_age;
-    $cus_height = $customer->cus_height;
-    $cus_weight = $customer->cus_weight;
+    if($id = $customer->cus_id){
+        $cus_phone = $customer->cus_phone;
+        $cus_age = $customer->cus_age;
+        $cus_height = $customer->cus_height;
+        $cus_weight = $customer->cus_weight;
+    }
+   
 
     $now = new DateTime();
 ?>

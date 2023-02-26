@@ -35,7 +35,7 @@
                     ?>
                         <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
                             <td style="width:10px"></td>
-                            <td colspan="6" style="width:900px"><strong><?php echo $order_datetime ?></strong></td>
+                            <td colspan="7" style="width:900px"><strong><?php echo $order_datetime ?></strong></td>
                             <?php if ($orderlists[0]->order_status == "ยังไม่ชำระเงิน") { ?>
                                 <td colspan="1" class="text-right tdstatus" onclick="Cancel('<?php echo $order_id ?>')" style="background-color: #fa4444;width:60px">
                                     <strong>ยกเลิก</strong>
@@ -51,22 +51,22 @@
                         foreach ($orderlists as $item) : ?>
                             <tr>
                                 <td style="width:26px;"></td>
-                                <td style="width:340px"><?php echo $line ?>) <?php echo $item->pro_name ?></td>
+                                <td colspan="5" style="width:340px"><?php echo $line ?>) <?php echo $item->pro_name ?></td>
                                 <td style="width:100px"></td>
-                                <td class="text-center" style="width:30px"><?php echo $item->qty ?></td>
-                                <td class="text-right" style="width:100px"></td>
+                                
+                                <td class="text-center" style="width:100px"><?php echo $item->qty ?></td>
                                 <td colspan="3" class="text-right" style="width:120px"><?php echo $item->sub_total ?> บาท</td>
                             </tr>
                         <?php $line++;
                         endforeach; ?>
                         <tr class="trB" >
-                            <td style="width:10px"></td>
-                            <td style="width:340px"><strong></strong></td>
-                            <td style="width:100px"></td>
-                            <td class="text-center" style="width:72px"><strong>รวม</strong></td>
-                            <td colspan="1" class="text-right" style="width:120px;color:#F79A56;"><strong><?php echo $orderlists[0]->order_total ?> บาท</strong></td>
-
-                            <td colspan="3" class="text-right tdpay" onclick="Confirm('<?php echo $order_id ?>')" style="background-color: #68B3F8;color: white;">
+                            <td colspan="1"></td>
+                            
+                           
+                            <td colspan="2" class="text-right" style="width:72px"><strong>รวม</strong></td>
+                            <td ></td>
+                            <td colspan="3" class="text-right" style="width:120px;color:#F79A56;"><strong><?php echo $orderlists[0]->order_total ?> บาท</strong></td>
+                            <td colspan="2" class="text-right tdpay" onclick="Confirm('<?php echo $order_id ?>')" style="background-color: #68B3F8;color: white;">
                             <strong>ชำระเงิน</strong>
                                 </td>
                         </tr>

@@ -113,6 +113,14 @@ class m_order extends CI_Model
             return false;
         }
     }
+    public function delivery($data)
+    {
+        $order_id = $data['order_id'];
+
+        $sql = "update tbl_order set order_status = 'จัดส่งแล้ว' where order_id = '$order_id'";
+        $qr = $this->db->query($sql);
+        return true;
+    }
     
 
 
@@ -225,5 +233,6 @@ class m_order extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+    
    
 }

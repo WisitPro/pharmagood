@@ -68,7 +68,7 @@ class m_product extends CI_Model
     }
     public function Product()
     {
-        $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id";
+        $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id order by p.pro_id asc,p.pro_status desc";
 
         $qr = $this->db->query($sql);
 

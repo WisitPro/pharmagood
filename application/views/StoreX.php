@@ -5,6 +5,22 @@ if ($this->session->flashdata('error_message') !== NULL) {
 } else {
 }
 ?>
+<?php
+// Divide $tbl_product into chunks of 10 items per page
+$items_per_page = 10;
+$chunks = array_chunk($tbl_product, $items_per_page);
+
+// Determine the current page based on the "page" query string parameter
+$current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+if ($current_page < 1) {
+    $current_page = 1;
+} elseif ($current_page > count($chunks)) {
+    $current_page = count($chunks);
+}
+
+// Get the current chunk of items to display
+$current_chunk = $chunks[$current_page - 1];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,30 +43,26 @@ if ($this->session->flashdata('error_message') !== NULL) {
         <option value="<?php echo $list->type_id ?>"><?php echo $list->type_name ?></option>
       <?php } ?>
     </select>
-        <div id="list">
-            
-            <?php $item = 1;
-            
-           foreach ($tbl_product as $key => $row) { ?>
-           
-                <div class="cardGap" >
-                    <div class="card" id="card-<?php echo $item ?>" data-key="<?php echo $key ?>"> 
-                        <div class="img">
-                            <img src="<?php echo base_url('/images/Product/'.$row['pro_img'].'') ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
-                        </div>
-                        <p class="head hhhhh"><?php echo $row['pro_name'] ?></p>
-                        <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
-                        <p class="detail"><?php echo $row['type_name'] ?></p>
-                        <a><button onclick="Msg()" id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
-                    </div>
-                </div>
-                
-            <?php $item++;
-            } ?>
-        </div>
-    </div>
-    </div>
+      
     
+<div id="list">
+  <?php foreach ($current_chunk as $key => $row) { ?>
+    <!-- display the items for the current page as before -->
+    <div class="cardGap">
+      <div class="card" id="card-<?php echo $key ?>" data-key="<?php echo $key ?>">
+        <div class="img">
+          <img src="<?php echo base_url('/images/Product/' . $row['pro_img'] . '') ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
+        </div>
+        <p class="head hhhhh"><?php echo $row['pro_name'] ?></p>
+        <p class="price"><?php echo $row['pro_price'] ?> บาท</p>
+        <p class="detail"><?php echo $row['type_name'] ?></p>
+        <a href="<?php echo base_url('/index.php/ProductController/AddtoCart/' . $row['pro_id']); ?>"><button id="addBt" name="add_product">เพิ่มไปยังตะกร้า</button></a>
+      </div>
+    </div>
+  <?php } ?>
+
+</div>
+
            
     <div id="myModal" class="modal">
     <div class="modal-content">
@@ -76,7 +88,27 @@ if ($this->session->flashdata('error_message') !== NULL) {
     
        
     </div>
-    
+      <!-- Display pagination links -->
+  <div style="display: inline;font-size: 16px;font-weight: bold;">
+  <?php if (count($chunks) > 1) { ?>
+    <div class="pagination">
+      <?php if ($current_page > 1) { ?>
+        <a href="?page=<?php echo $current_page - 1; ?>">ก่อนหน้า</a>
+      <?php } ?>
+
+      <?php for ($i = 1; $i <= count($chunks); $i++) { ?>
+        <a href="?page=<?php echo $i; ?>" <?php if ($i == $current_page) { echo 'class="active"'; } ?>><button><?php echo $i; ?></button></a>
+      <?php } ?>
+
+      <?php if ($current_page < count($chunks)) { ?>
+        <a href="?page=<?php echo $current_page + 1; ?>">ถัดไป</a>
+      <?php } ?>
+    </div>
+  <?php } ?>
+  </div>
+
+  <br><br><br><br>
+  
 </body>
 
 </html>

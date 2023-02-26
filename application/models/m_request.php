@@ -33,7 +33,7 @@ public function Time($req_time){
     $qr = $this->db->query($sql);
     if ($qr->num_rows() > 0) {
         $row = $qr->row();
-        return $row->req_id; // return the existing req_id
+        return $row->req_id;
     }
         
     $start_time = strtotime($req_time) - 1800; 
@@ -41,7 +41,7 @@ public function Time($req_time){
     $start_time = date('Y-m-d H:i:s', $start_time);
     $end_time = date('Y-m-d H:i:s', $end_time);
         
-    $sql = "SELECT * FROM tbl_request WHERE req_time BETWEEN '$start_time' AND '$end_time'";
+    $sql = "SELECT * FROM tbl_request WHERE req_time BETWEEN '$start_time' AND '$end_time' AND req_status !='ยกเลิก'";
     $qr = $this->db->query($sql);
     if ($qr->num_rows() > 0) {
         $row = $qr->row();
@@ -52,22 +52,32 @@ public function Time($req_time){
 }
 
     
-    public function cur_req($data){
-        $cus_id = $data['cus_id'];
-        $req_id = $data['rq_id'];
-        $sql = "select *
-        from tbl_request r,tbl_customer c where r.req_id = '$req_id'
-        and c.cus_id ='$cus_id' and r.cus_id ='$cus_id'  order by r.req_time desc;" ;
+    public function cur_req($cus_id){
+        //$cus_id = $data['cus_id'];
+        // $req_id = $data['rq_id'];
+        $sql = "SELECT * from tbl_request r LEFT JOIN tbl_customer c on r.cus_id = c.cus_id 
+        where r.cus_id ='$cus_id' and c.cus_id = r.cus_id and r.req_status !='ยกเลิก' and r.req_status !='เสร็จสิ้น' order by r.req_time ASC;" ;
         $qr = $this->db->query($sql);
         return $qr->result();
     }
+    public function check_existing($cus_id) {
+        $sql = "SELECT * FROM tbl_request WHERE cus_id ='$cus_id' AND req_status !='ยกเลิก'
+        AND req_status !='เสร็จสิ้น'  ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function cancel($data)
     {
-        $rq_id = $data['rq_id'];
+        $req_id = $data['req_id'];
         $req_modify = $data['req_modify'];
 
 
-        $sql = "update tbl_request set req_status = 'ยกเลิก', req_modify = '$req_modify' where req_id = '$rq_id'";
+        $sql = "update tbl_request set req_status = 'ยกเลิก', req_modify = '$req_modify' where req_id = '$req_id'";
         $qr = $this->db->query($sql);
         return true;
     }
@@ -122,8 +132,7 @@ public function Time($req_time){
     {  
         $req_id = $data['req_id'];
         $adm_id = $data['adm_id'];
-        $req_modify = $data['req_modify'];
-
+        $req_modify =$data['date'];
         $sql = "update tbl_request set req_status = 'เสร็จสิ้น',adm_id = '$adm_id',req_modify='$req_modify' where req_id = '$req_id'";
         $qr = $this->db->query($sql);
         return true;
@@ -150,6 +159,14 @@ public function Time($req_time){
     {
         $cus_id = $cus_id;
         $sql = "select * from tbl_request where cus_id ='$cus_id' and req_status ='เสร็จสิ้น' or req_status = 'ยกเลิก'  order by req_modify desc;";
+        $qr = $this->db->query($sql);
+        return $qr->result();
+    }
+
+    public function getNew()
+    {
+       
+        $sql = "select * from tbl_request where req_status ='รอยืนยัน';";
         $qr = $this->db->query($sql);
         return $qr->result();
     }

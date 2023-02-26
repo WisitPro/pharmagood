@@ -77,7 +77,8 @@ and cus_pass='$cus_pass'";
         $cus_age = $data['cus_age'];
         $cus_height = $data['cus_height'];
         $cus_weight = $data['cus_weight'];
-        $sql = "update tbl_customer set cus_phone ='$cus_phone',cus_age='$cus_age',cus_weight = '$cus_weight',cus_height ='$cus_height';";
+        $sql = "update tbl_customer set cus_phone ='$cus_phone',cus_age='$cus_age',cus_weight = '$cus_weight',
+        cus_height ='$cus_height' where cus_id =' $cus_id';";
         $qr = $this->db->query($sql);
         return true;
 

@@ -24,6 +24,13 @@ class ProductController extends CI_Controller
         $this->load->view('navbar_admin/navbar');
         $this->load->view('ProductListPage', $data);
     }
+    public function ProductListPageJustShow()
+    {
+        $data['tbl_product'] = $this->m_product->Product();
+        $data['product_type'] = $this->m_product_type->Type();
+        $this->load->view('navbar_admin/navbar');
+        $this->load->view('ProductListPageJustShow', $data);
+    }
 
     public function Product_Add()
     {
@@ -59,6 +66,10 @@ class ProductController extends CI_Controller
                 echo "window.history.back()";
                 echo "</script>";
             } else {
+                echo "<script>";
+                echo "alert(\" เพิ่มข้อมูลสำเร็จ\");";
+              
+                echo "</script>";
                 redirect('ProductController/ProductListPage');
             }
         }
@@ -67,6 +78,10 @@ class ProductController extends CI_Controller
     {
         $pro_id = $_REQUEST['pro_id'];
         $this->m_product->Remove($pro_id);
+        echo "<script>";
+        echo "alert(\" ระงับรายการนี้แล้ว\");";
+      
+        echo "</script>";
         redirect('ProductController/ProductListPage');
     }
     public function Product_Edit()
@@ -77,6 +92,15 @@ class ProductController extends CI_Controller
         $data['product_type'] = $this->m_product_type->TypeForEdit($type_id);
         $this->load->view('navbar_admin/navbar');
         $this->load->view('ProductListEdit', $data);
+    }
+    public function Product_Detail()
+    {
+        $pro_id = $_REQUEST['pro_id'];
+        $data['tbl_product'] = $this->m_product->Edit($pro_id);
+        $type_id = $data['tbl_product'][0]->type_id;
+        $data['product_type'] = $this->m_product_type->TypeForEdit($type_id);
+        $this->load->view('navbar_admin/navbar');
+        $this->load->view('Product_Detail', $data);
     }
     public function Product_Update()
     {

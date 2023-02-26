@@ -13,6 +13,15 @@ class m_admin extends CI_Model
 
         return $qr->result();
     }
+    public function Pharmacist()
+    {
+        $sql = "select * from tbl_admin where adm_role = 'เภสัชกร'";
+
+        $qr = $this->db->query($sql);
+
+        return $qr->result();
+    }
+
 
     public function login($data)
     {
@@ -27,7 +36,7 @@ class m_admin extends CI_Model
        $sql = "select * from tbl_admin where adm_user = '$adm_user' ";
         $query = $this->db->query($sql, array($adm_user));
         if ($query->num_rows() <= 0) {
-            $sql2 = "select * from tbl_customer where adm_user = '$adm_user'  ";
+            $sql2 = "select * from tbl_customer where cus_user = '$adm_user'  ";
             $query2 = $this->db->query($sql2, array($adm_user));
             if ($query2->num_rows() <= 0) {
                 return false;

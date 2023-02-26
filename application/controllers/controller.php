@@ -181,7 +181,9 @@ class controller extends CI_Controller
 
     public function AdminHomePage()
     {
-        $this->load->view('navbar_admin/navbar');
+        $data['request'] = $this->m_request->getNew();
+        $data['order'] = $this->m_payprove->getNew();
+        $this->load->view('navbar_admin/navbar',$data);
         $this->load->view('AdminHomePage');
     }
     public function AdminListPage()

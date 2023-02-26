@@ -59,7 +59,7 @@
                         <td class="data" style="text-indent: 4px;"><?php echo $row->adm_id; ?></td>
                         <td class="data"><?php echo $row->adm_name; ?></td>
                         <td class="data"><?php echo $row->adm_phone; ?></td>
-                        <td class="data"><?php echo $row->adm_user; ?></td>
+                        <td class="data">---------</td>
                         <td class="data"><a  onclick="return confirm('สร้างรหัสใหม่');" href="<?php echo base_url('index.php/controller/UpdateAdminPassword/'.$row->adm_id.''); ?>">ลืมรหัสผ่าน</a></td>
                         <td class="data"><?php echo $row->adm_role; ?></td>
                         <td id="btnTable">

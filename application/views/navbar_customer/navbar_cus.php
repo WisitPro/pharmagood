@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 if (isset($this->session->userdata['cus_user'])) {
     $user = $this->session->userdata['cus_user'];
     $name = $this->session->userdata['cus_name'];
@@ -7,7 +8,6 @@ if (isset($this->session->userdata['cus_user'])) {
     $basename = basename($_SERVER['PHP_SELF']);
     
 } else {
-    session_destroy();
     redirect('controller/LoginPage');
 }
 ?>

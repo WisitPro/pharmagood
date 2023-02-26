@@ -8,13 +8,15 @@ class m_delivery extends CI_Model
     public function InsertDelivery($data)
     {
         $order_id = $data['order_id'];
+        $delivery_service = $data['delivery_service'];
+        $delivery_tracking = $data['delivery_tracking'];
         $adm_id = $data['adm_id'];
         $delivery_datetime = $data['delivery_datetime'];
 
 
 
 
-        $sql = "insert into tbl_delivery values('$order_id','$adm_id','$delivery_datetime','จัดส่งแล้ว',null)";
+        $sql = "insert into tbl_delivery values('$order_id','$delivery_service','$delivery_tracking','$adm_id','$delivery_datetime','จัดส่งแล้ว',null)";
         $qr = $this->db->query($sql);
         return true;
     }

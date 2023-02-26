@@ -38,10 +38,10 @@ class m_payprove extends CI_Model
     public function OrderVerified()
     {
 
-        $sql = "select distinct p.pay_id,p.order_id,o.order_total,c.cus_name,p.pay_slip,
-        p.pay_datetime,a.adm_name,p.pay_modify,p.prove_status from tbl_payprove p,tbl_admin a,tbl_customer c,
+        $sql = "select distinct * from tbl_payprove p,tbl_admin a,tbl_customer c,
         tbl_order o where p.order_id = o.order_id 
-        and o.cus_id = c.cus_id and p.adm_id = a.adm_id and p.prove_status = 'ยืนยันแล้ว' ;";
+        and o.cus_id = c.cus_id and p.adm_id = a.adm_id and p.prove_status = 'ยืนยันแล้ว' and o.order_status !='จัดส่งแล้ว' 
+        and o.order_status !='จัดส่งเรียบร้อย' ;";
 
         $qr = $this->db->query($sql);
 
@@ -99,4 +99,12 @@ class m_payprove extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+    public function getNew()
+    {
+       
+        $sql = "select * from tbl_payprove where prove_status ='รอการยืนยัน';";
+        $qr = $this->db->query($sql);
+        return $qr->result();
+    }
+
 }

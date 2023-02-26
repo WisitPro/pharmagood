@@ -1,7 +1,33 @@
 <?php
-foreach ($tbl_product as $row) {
-    $pro_id = $row->pro_id;
+// Get search query
+$search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
+
+// Filter $tbl_product by search query
+$filtered_products = array_filter($tbl_product, function($product) use ($search_query) {
+    return strpos(strtolower($product->pro_name), strtolower($search_query)) !== false  ;
+});
+if (empty($filtered_products)) {
+    echo "<script>";
+                echo "alert(\" ไม่พบข้อมูล \");";
+                echo "setTimeout(function(){ window.location.href = 'http://localhost/pharmagood/index.php/ProductController/ProductListPage';3000 }, 1);";
+                echo "</script>";
+    
 }
+
+// Divide filtered products into chunks of 10 items per page
+$items_per_page = 10;
+$chunks = array_chunk($filtered_products, $items_per_page);
+
+// Determine the current page based on the "page" query string parameter
+$current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+if ($current_page < 1) {
+    $current_page = 1;
+} elseif ($current_page > count($chunks)) {
+    $current_page = count($chunks);
+}
+
+// Get the current chunk of items to display
+$current_chunk = $chunks[$current_page - 1];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +49,16 @@ foreach ($tbl_product as $row) {
     <br>
     
     <div id="container">
-        <span style="font-size:32px; margin-left:auto; color:white">รายการยาและเวชภัณฑ์</span>
-        <span style="font-size:20px; margin-left:604px; color:white;">
-        <button  id="addProduct"  >เพิ่มรายการใหม่</button></span>
+        <strong><span style="font-size:32px; margin-left:auto; color:white">รายการยาและเวชภัณฑ์
+        </span></strong>
+        <button  id="addProduct" style="margin-left: 600px;font-size:20px; color:white;" >เพิ่มรายการใหม่</button>
+        <form method="get"  style="font-size:20px;margin-left:600px;margin-top:-36px;" autocomplete="off">
+  
+  <input type="text" name="search_query" placeholder="ค้นหา" value="<?php echo htmlspecialchars($search_query); ?>">
+  <button type="submit" style="margin-left:8px;height:32px;background-color: #1f98da;color:white">ค้นหา</button>
+</form> <br>
+      
+
         <div id="back">
             <table class="table">
                 <thead>
@@ -35,14 +68,15 @@ foreach ($tbl_product as $row) {
                         <th style="min-width: 60px;" class="text-center">รูปภาพ</th>
                         <th style="min-width: 100px;" >ยี่ห้อ</th>
                         <th style="min-width: 300px;">ชื่อสินค้า</th>
-                        <th style="min-width: 200px;">ประเภทยา</th>
+                        <th style="min-width: 200px;">ประเภทยาและเวชภัณฑ์</th>
                         <th style="min-width: 70px;" class="text-right">ราคา</th>
                         <th style="min-width: 90px;"></th>
                     </tr>
                 </thead>
                 <?php
-                $item = 1;
-                foreach ($tbl_product as $row) { ?>
+                
+                $item = ($current_page - 1) * $items_per_page+1;
+                foreach ($current_chunk as $key => $row) { ?>
                     <tbody>
                         <tr id="tr2">
                             <th class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></th>
@@ -52,15 +86,33 @@ foreach ($tbl_product as $row) {
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->pro_name; ?></td>
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->type_name; ?></td>
                             <td class="data " style="color:#eb0e0e;border-right: 1px solid #b6b6b6;text-align:right;padding-right:8px"><?php echo $row->pro_price; ?></td>
-                            <td id="btnTable" class="text-right">
-                                <a id="Edit" href='<?php echo base_url('index.php/ProductController/Product_Edit?pro_id='.$row->pro_id.'')?>'>แก้ไข</a><br>
-                                <a id="Remove" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่');" href='Product_Remove?pro_id=<?php echo $row->pro_id; ?>'>ไม่ขาย</a>
+                            <td id="btnTable" class="text-center">
+                                <a id="Edit" href='<?php echo base_url('index.php/ProductController/Product_Edit?pro_id='.$row->pro_id.'')?>'><i class="fa-regular fa-pen-to-square"></i> แก้ไข</a><br>
+                                <a id="Remove" onclick="return confirm('คุณต้องการระงับรายการนี้');" href='<?php echo base_url('index.php/ProductController/');?>Product_Remove?pro_id=<?php echo $row->pro_id; ?>'>
+                            <?php if($row->pro_status == 1){?><i class="fa-solid fa-shop-slash"></i> ระงับ <?php }else{?> <span style="color: #1f98da;"><i class="fa-solid fa-store"></i> ขาย</span><?php } ?></a>
                             </td>
                         </tr>
                     </tbody>
                 <?php $item++;
                 } ?>
-            </table><br><br><br><br>
+            </table>  <!-- Display pagination links -->
+  <div style="display: inline;font-size: 16px;font-weight: bold;">
+  <?php if (count($chunks) > 1) { ?>
+    <div class="pagination">
+      <?php if ($current_page > 1) { ?>
+        <a href="?page=<?php echo $current_page - 1; ?>">ก่อนหน้า</a>
+      <?php } ?>
+
+      <?php for ($i = 1; $i <= count($chunks); $i++) { ?>
+        <a href="?page=<?php echo $i; ?>" <?php if ($i == $current_page) { echo 'class="active"'; } ?>><button><?php echo $i; ?></button></a>
+      <?php } ?>
+
+      <?php if ($current_page < count($chunks)) { ?>
+        <a href="?page=<?php echo $current_page + 1; ?>">ถัดไป</a>
+      <?php } ?>
+    </div>
+  <?php } ?>
+  </div><br><br><br><br>
         </div>
     </div>
 <div id="myModal" class="modal">
