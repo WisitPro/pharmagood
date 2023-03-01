@@ -155,7 +155,7 @@ $current_chunk = $chunks[$current_page - 1];
                 <option value="ขวด">ขวด</option>
                 <option value="กล่อง">กล่อง</option>
                 <option value="หลอด">หลอด</option>
-                <option value="่ห่อ">่ห่อ</option>
+                <option value="่ห่อ">ห่อ</option>
                 <option value="ซอง">ซอง</option>
                 <option value="อื่นๆ">อื่นๆ</option>
 
