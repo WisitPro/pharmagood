@@ -67,8 +67,8 @@ if(isset($order)){
                     <div class="dropdown-content">
                         <a href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้ภายใน</a>
                         <a href="<?php echo base_url('/index.php/ProductController/ProductListPage'); ?>">รายการยาและเวชภัณฑ์</a>
-                        <a href="<?php echo base_url('/index.php/RequestController/ListRQ1'); ?>">ข้อมูลการนัดปรึกษา</a>
-                        <a href="<?php echo base_url('/index.php/OrderController/OrderInfo1'); ?>">ข้อมูลออเดอร์</a>
+                        <a href="<?php echo base_url('/index.php/RequestController/ListRQ1'); ?>">ข้อมูลคำนัดปรึกษา</a>
+                        <a href="<?php echo base_url('/index.php/OrderController/OrderInfo1'); ?>">ข้อมูลการสั่งซื้อ</a>
                         <a href="<?php echo base_url('/index.php/ReportsController/ReportsPage'); ?>">รายงาน</a>
                     </div>
                 </div>

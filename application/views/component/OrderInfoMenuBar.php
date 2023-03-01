@@ -73,11 +73,11 @@
     <container>
         <span style="font-size:24px;">
             <a href="<?php echo base_url('index.php/OrderController/OrderInfo1') ?>"
-             style=" margin-left:auto; color:white"><button id="spb1">ออเดอร์ที่รอยืนยัน</button></a>
+             style=" margin-left:auto; color:white"><button id="spb1">คำสั่งซื้อที่รอยืนยัน</button></a>
             <a href="<?php echo base_url('index.php/OrderController/OrderInfo2') ?>"
-             style=" margin-left:auto; color:white"><button id="spb2">ออเดอร์ที่ยืนยันแล้ว</button></a>
+             style=" margin-left:auto; color:white"><button id="spb2">คำสั่งซื้อที่ยืนยันแล้ว</button></a>
             <a href="<?php echo base_url('index.php/OrderController/OrderInfo4') ?>"
-             style=" margin-left:auto; color:white"><button id="spb4">ออเดอร์ที่จัดส่งแล้ว</button></a>
+             style=" margin-left:auto; color:white"><button id="spb4">คำสั่งซื้อที่จัดส่งแล้ว</button></a>
             <a href="<?php echo base_url('index.php/OrderController/OrderInfo3') ?>"
-             style=" margin-left:auto; color:white"><button id="spb3">ออเดอร์ที่ยกเลิก</button></a>
+             style=" margin-left:auto; color:white"><button id="spb3">คำสั่งซื้อที่ยกเลิก</button></a>
         </span>
