@@ -73,7 +73,7 @@ container {
 #backform {
 
     width: 580px;
-    height: 500px;
+    min-height: 500px;
     
 
     border-radius: 15px;
@@ -256,9 +256,9 @@ span button{
     margin-left: 260px;
 }
 #verifybt2{
-   
+    width: fit-content !important;
     background-color: #3691c5;
-    margin-left: 430px;
+    margin-left: 405px;
 }
 
 #cancelbt{

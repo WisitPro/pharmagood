@@ -80,49 +80,64 @@ class RequestController extends CI_Controller
         );
         $this->m_request->DenyRQ($data);
         $data['list_req'] = $this->m_request->List_req1();
-        $this->session->set_userdata('ss_req_status', false);
-        $this->session->unset_userdata('rq_id');
+        //$this->session->set_userdata('ss_req_status', false);
+        // $this->session->unset_userdata('rq_id');
         $this->load->view('navbar_admin/navbar');
         redirect('RequestController/ListRQ1');
     }
     public function OrderToCus($cus_id, $req_id)
     {
         date_default_timezone_set("Asia/Bangkok");
-        $date = date('Y-m-d H:i:s');
+        $datetime = date('Y-m-d H:i:s');
         $data['cus_id'] = $cus_id;
         $data['adm_id'] = $this->session->userdata('adm_id');
-        $data['date'] = $date;
+        $data['date'] = $datetime;
         $data['total'] = $this->cart->total();
         $data['req_id'] = $req_id;
         $insertResult = $this->m_order->InsertAfterCall($data);
+
         $this->m_request->SuccessRQ($data);
         $order_id = $insertResult['order_id'];
 
         $cartItems = $this->cart->contents();
-        $ordItemData = array();
-        $i = 0;
-        foreach ($cartItems as $item) {
-            $ordItemData[$i]['ol_id'] = "";
-            $ordItemData[$i]['order_id'] = $order_id;
-            $ordItemData[$i]['pro_id'] = $item['id'];
-            $ordItemData[$i]['qty'] = $item['qty'];
-            $ordItemData[$i]['sub_total'] = $item["subtotal"];
-            $i++;
-        }
-        if (!empty($ordItemData)) {
-            $insertOrderItems = $this->m_order->insertOrderItems($ordItemData);
+        if (empty($cartItems)) {
 
-            if ($insertOrderItems) {
-                $this->cart->destroy();
-            }
             $data['list_req'] = $this->m_request->List_req4();
-            $this->session->set_userdata('ss_req_status', false);
-            $this->session->unset_userdata('rq_id');
+            //$this->session->set_userdata('ss_req_status', false);
+            // $this->session->unset_userdata('rq_id');
             $this->load->view('navbar_admin/navbar');
             echo "<script>";
             echo "alert(\" เสร็จสิ้น \");";
             echo "</script>";
             redirect('RequestController/ListRQ4');
+        } else {
+
+
+            $ordItemData = array();
+            $i = 0;
+            foreach ($cartItems as $item) {
+                $ordItemData[$i]['ol_id'] = "";
+                $ordItemData[$i]['order_id'] = $order_id;
+                $ordItemData[$i]['pro_id'] = $item['id'];
+                $ordItemData[$i]['qty'] = $item['qty'];
+                $ordItemData[$i]['sub_total'] = $item["subtotal"];
+                $i++;
+            }
+            if (!empty($ordItemData)) {
+                $insertOrderItems = $this->m_order->insertOrderItems($ordItemData);
+
+                if ($insertOrderItems) {
+                    $this->cart->destroy();
+                }
+                $data['list_req'] = $this->m_request->List_req4();
+                //$this->session->set_userdata('ss_req_status', false);
+                //$this->session->unset_userdata('rq_id');
+                $this->load->view('navbar_admin/navbar');
+                echo "<script>";
+                echo "alert(\" เสร็จสิ้น \");";
+                echo "</script>";
+                redirect('RequestController/ListRQ4');
+            }
         }
     }
 
@@ -148,38 +163,34 @@ class RequestController extends CI_Controller
 
     public function RequestPage()
     {
-
-        $this->load->view('navbar_customer/navbar_cus');
-        $this->load->view('RequestPage');
+        $cus_id = $this->session->userdata['cus_id'];
+        $ss_req_status = $this->m_request->check_existing($cus_id);
+        $data['ss_req_status'] = $ss_req_status;
+        $this->load->view('navbar_customer/navbar_cus'); 
+        $this->load->view('RequestPage',$data);
     }
     public function RequestForm()
     {
-
-        $data = $this->session->userdata();
-        if (isset($data['ss_req_status']) && $data['ss_req_status'] == true) {
-
+        $cus_id = $this->session->userdata['cus_id'];
+            $ss_req_status = $this->m_request->check_existing($cus_id);
+        if ($ss_req_status==true) {
             redirect('RequestController/MyCurrentRQ');
         } else {
-            $ss_req_status = array(
-                'ss_req_status' => false
-            );
-
-            $this->session->set_userdata($ss_req_status);
-            $data['cus_info'] = $this->m_customer->specf_cus($this->session->userdata('cus_id'));
+            $data['cus_info'] = $this->m_customer->specf_cus($cus_id);
             $this->load->view('navbar_customer/navbar_cus');
             $this->load->view('RequestForm', $data);
         }
+      
+
     }
     public function sent_to_line()
     {
         date_default_timezone_set("Asia/Bangkok");
         $this->form_validation->set_rules('req_sym', 'req_sym', 'required');
-
         $data['cus_id'] = $_REQUEST['cus_id'];
         $data['req_sym'] = $_REQUEST['req_sym'];
         $data['req_time'] = $_REQUEST['req_time'];
         $data['req_status'] = "รอยืนยัน";
-
         $data['cus_id'] = $_REQUEST['cus_id'];
         $data['cus_phone'] = $_REQUEST['cus_phone'];
         $data['cus_age'] = $_REQUEST['cus_age'];
@@ -190,31 +201,43 @@ class RequestController extends CI_Controller
 
         if ($this->form_validation->run() == TRUE && $req_id != null) {
             $this->m_customer->UpdateByRequest($data);
-
-            $ss_req_status = array(
-                'ss_req_status' => true,
-                'rq_id' => $req_id,
-            );
-            $this->session->set_userdata($ss_req_status);
-            $data = $this->session->userdata();
-            // redirect('controller/MyCurrentRQ');
-            $data['tbl_request'] = $this->m_request->cur_req($data);
-            $this->load->view('ShowRequest', $data);
+            define('LINE_API', "https://notify-api.line.me/api/notify");
+            $token = "2I4JlM2R0DEAYt9nTHnbz2lfIXkiVQ2Twx4YOfMMnmj"; //ใส่Token ที่copy เอาไว้
+            $formatted_date = date("วันที่ d/m/Y เวลา H:i น.",strtotime($data['req_time']));
+            $str = "\nคำร้องขอนัดปรึกษาเภสัชกร\n" .
+                "ชื่อลูกค้า : " . $this->session->userdata['cus_name'] . "\n" .
+                "เบอร์โทร : " . $_REQUEST['cus_phone'] . "\n" .
+                "อาการ : " . $_REQUEST['req_sym'] . "\n" .
+                $formatted_date . "\n"
+            ;
+            $this->notify_message($str, $token);
             redirect('RequestController/MyCurrentRQ');
+            
+            //$ss_req_status = array(
+            //'ss_req_status' => true,
+            //'rq_id' => $req_id,
+            //);
+            //$this->session->set_userdata($ss_req_status);
+            // redirect('controller/MyCurrentRQ');
+            // $data['tbl_request'] = $this->m_request->cur_req($data['cus_id']);
+            // $this->load->view('ShowRequest', $data);
+           // redirect('RequestController/MyCurrentRQ');
         } elseif ($this->form_validation->run() == TRUE && $req_id == null) {
             echo "<script>";
-            echo "alert(\" มีคำนัดปรึกษาภายในเวลาดังกล่าวแล้ว เรียนลูกค้าได้โปรดเปลี่ยนเวลานัดปรึกษาใหม่ \");";
+            echo "alert(\" มีคำนัดปรึกษาภายในเวลาดังกล่าวแล้ว ลูกค้าสามารถเปลี่ยนเวลานัดปรึกษาใหม่ได้
+            โปรดระบุมากกว่า 30 นาทีจากเวลาเดิมที่ระบุก่อนหน้า \");";
             echo "</script>";
             $data = $this->session->userdata();
-            if (isset($data['ss_req_status']) && $data['ss_req_status'] == true) {
+            $ss_req_status = $this->m_request->cur_req($this->session->userdata('cus_id'));
+            if ($ss_req_status!=null) {
 
                 redirect('RequestController/MyCurrentRQ');
             } else {
-                $ss_req_status = array(
-                    'ss_req_status' => false
-                );
+                // $ss_req_status = array(
+                //     'ss_req_status' => false
+                // );
 
-                $this->session->set_userdata($ss_req_status);
+                // $this->session->set_userdata($ss_req_status);
                 $data['cus_info'] = $this->m_customer->specf_cus($this->session->userdata('cus_id'));
                 $this->load->view('navbar_customer/navbar_cus');
                 $this->load->view('RequestForm', $data);
@@ -227,30 +250,56 @@ class RequestController extends CI_Controller
             echo "</script>";
         }
     }
+    function notify_message($message, $token)
+            {
+                $queryData = array('message' => $message);
+                $queryData = http_build_query($queryData, '', '&');
+                $headerOptions = array(
+                    'http' => array(
+                        'method' => 'POST',
+                        'header' => "Content-Type: application/x-www-form-urlencoded\r\n"
+                            . "Authorization: Bearer " . $token . "\r\n"
+                            . "Content-Length: " . strlen($queryData) . "\r\n",
+                        'content' => $queryData
+                    ),
+                );
+                $context = stream_context_create($headerOptions);
+                $result = file_get_contents(LINE_API, FALSE, $context);
+                $res = json_decode($result);
+                return $res;
+                //redirect('RequestController/MyCurrentRQ');
+            }
 
     public function MyCurrentRQ()
     {
-        $data = $this->session->userdata();
-        $data['tbl_request'] = $this->m_request->cur_req($data);
+        $cus_id = $this->session->userdata['cus_id'];
+        $data['tbl_request'] = $this->m_request->cur_req($cus_id);
+        if($data['tbl_request']==null){
+            echo "<script>";
+            echo "alert(\" ดำเนินการเสร็จสิ้น \");";
+            echo "setTimeout(function(){ window.location.href = 'http://localhost/pharmagood/index.php/controller/HomePage3';3000 }, 1);";
+
+            echo "</script>";
+        }
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('MyCurrentRQ', $data);
     }
 
-    public function CancelRQ()
+    public function CancelRQ($req_id)
     {
-        $getRQ = $this->session->userdata();
+       
         $data = array(
             date_default_timezone_set("Asia/Bangkok"),
             $date = date('Y-m-d H:i:s'),
-            'rq_id' => $getRQ['rq_id'],
+            'req_id' => $req_id,
             'req_modify' => $date
 
         );
 
         $this->m_request->cancel($data);
 
-        $this->session->set_userdata('ss_req_status', false);
-        $this->session->unset_userdata('rq_id');
+        // $this->session->set_userdata('ss_req_status', false);
+        // $this->session->unset_userdata('rq_id');
         redirect('controller/Homepage3');
     }
     public function VideoCall()

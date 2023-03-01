@@ -94,7 +94,7 @@ form button{
     margin-left:480px;
 }
 #btnForm2 {
-    margin-left: 360px;
+    margin-left: 420px;
 }
 
 #back {
@@ -163,7 +163,7 @@ table {
 }
 
 #btnTable {
-    background-color: #525252;
+    background-color: #343434;
 }
 
 .col1 {
@@ -204,11 +204,11 @@ select {
     overflow: hidden;
 }
 .modal-content {
-    width: 660px;
+    width: 740px;
     height: 440px;
     background-color: #F69A56;
     position: absolute;
-    margin-left: 420px;
+    margin-left: 390px;
     border-radius: 15px;
     color: white;
     padding-left: 36px;

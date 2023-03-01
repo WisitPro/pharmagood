@@ -36,8 +36,8 @@ class m_order extends CI_Model
         $order_address = $data['order_address'];
         $order_phone = $data['order_phone'];
 
-        $sql = "INSERT INTO tbl_order (order_id, cus_id, order_datetime, order_total, order_address, order_phone, order_status) 
-            VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', '$order_address', '$order_phone', 'ยังไม่ชำระเงิน')";
+        $sql = "INSERT INTO tbl_order (order_id, cus_id, order_datetime, order_total, order_address, order_phone,order_type, order_status) 
+            VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', '$order_address', '$order_phone',1,'ยังไม่ชำระเงิน')";
 
         $this->db->query($sql);
 
@@ -56,7 +56,7 @@ class m_order extends CI_Model
         $order_total = $data['total'];
        
 
-        $sql = "INSERT INTO tbl_order VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', '', '', 'ยังไม่ชำระเงิน')";
+        $sql = "INSERT INTO tbl_order VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', '', '',2, 'ยังไม่ชำระเงิน')";
 
         $this->db->query($sql);
 
@@ -113,6 +113,14 @@ class m_order extends CI_Model
             return false;
         }
     }
+    public function delivery($data)
+    {
+        $order_id = $data['order_id'];
+
+        $sql = "update tbl_order set order_status = 'จัดส่งแล้ว' where order_id = '$order_id'";
+        $qr = $this->db->query($sql);
+        return true;
+    }
     
 
 
@@ -148,7 +156,7 @@ class m_order extends CI_Model
         $sql = "select * from tbl_order o,tbl_orderlist ol,tbl_product p
         where o.order_status = 'ยังไม่ชำระเงิน' and o.order_status != 'ยกเลิก' and o.cus_id='$cus_id' and o.order_id = ol.order_id and ol.pro_id = p.pro_id
        
-        order by o.order_status DESC,o.order_datetime DESC";
+        order by o.order_status DESC,o.order_datetime ASC";
 
         $qr = $this->db->query($sql);
         $result = $qr->result();
@@ -225,5 +233,16 @@ class m_order extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+    public function OrderAddress($data)
+    {
+        $order_id = $data['order_id'];
+        $order_phone = $data['order_phone'];
+        $order_address = $data['order_address'];
+        $sql = "update tbl_order set order_phone = '$order_phone',order_address = '$order_address' where order_id = '$order_id'";
+        
+        $qr = $this->db->query($sql);
+        return $order_id;
+    }
+    
    
 }

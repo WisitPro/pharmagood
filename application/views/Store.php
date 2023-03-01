@@ -5,6 +5,24 @@ if ($this->session->flashdata('error_message') !== NULL) {
 } else {
 }
 ?>
+<?php
+// Divide $tbl_product into chunks of 10 items per page
+$items_per_page = 10;
+$chunks = array_chunk($tbl_product, $items_per_page);
+
+// Determine the current page based on the "page" query string parameter
+$current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+if ($current_page < 1) {
+    $current_page = 1;
+} elseif ($current_page > count($chunks)) {
+    $current_page = count($chunks);
+    
+}
+$first_index = ($current_page - 1) * $items_per_page;
+
+// Get the current chunk of items to display
+$current_chunk = $chunks[$current_page - 1];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +32,7 @@ if ($this->session->flashdata('error_message') !== NULL) {
 
 <body>
   <div id="banner">
-    <p style="font-size:40px; color:white">รายการยาและเวชภัณฑ์</p>
+    <p style="font-size:40px; color:white;display: inline;">รายการยาและเวชภัณฑ์</p>
   </div>
   <div id="container">
     <form id="form_search" action="<?php echo base_url('index.php/ProductController/searchDrug') ?>" autocomplete="off" method="GET">
@@ -32,28 +50,14 @@ if ($this->session->flashdata('error_message') !== NULL) {
     </select>
 
 
-    <?php
-// Divide $tbl_product into chunks of 10 items per page
-$items_per_page = 10;
-$chunks = array_chunk($tbl_product, $items_per_page);
-
-// Determine the current page based on the "page" query string parameter
-$current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-if ($current_page < 1) {
-    $current_page = 1;
-} elseif ($current_page > count($chunks)) {
-    $current_page = count($chunks);
-}
-
-// Get the current chunk of items to display
-$current_chunk = $chunks[$current_page - 1];
-?>
+    
 
 <div id="list">
-  <?php foreach ($current_chunk as $key => $row) { ?>
+  <?php foreach ($current_chunk as $key => $row) { 
+      $card_key = $first_index + $key;?>   
     <!-- display the items for the current page as before -->
     <div class="cardGap">
-      <div class="card" id="card-<?php echo $key ?>" data-key="<?php echo $key ?>">
+      <div class="card" id="card-<?php echo $key ?>" data-key="<?php echo  $card_key  ?>">
         <div class="img">
           <img src="<?php echo base_url('/images/Product/' . $row['pro_img'] . '') ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
         </div>
@@ -65,22 +69,6 @@ $current_chunk = $chunks[$current_page - 1];
     </div>
   <?php } ?>
 
-  <!-- Display pagination links -->
-  <?php if (count($chunks) > 1) { ?>
-    <div class="pagination">
-      <?php if ($current_page > 1) { ?>
-        <a href="?page=<?php echo $current_page - 1; ?>">Prev</a>
-      <?php } ?>
-
-      <?php for ($i = 1; $i <= count($chunks); $i++) { ?>
-        <a href="?page=<?php echo $i; ?>" <?php if ($i == $current_page) { echo 'class="active"'; } ?>><?php echo $i; ?></a>
-      <?php } ?>
-
-      <?php if ($current_page < count($chunks)) { ?>
-        <a href="?page=<?php echo $current_page + 1; ?>">Next</a>
-      <?php } ?>
-    </div>
-  <?php } ?>
 </div>
 
 
@@ -108,18 +96,36 @@ $current_chunk = $chunks[$current_page - 1];
       <a href="<?php echo base_url('/index.php/ProductController/AddtoCart/'); ?>" id="addToCartLink">
         <button id="addToCartButton" name="add_product" style="position:absolute; background-color:#F69A56;color:white;border:transparent;
         width:200px;height:40px;font-size:20px;margin-left:911px;margin-top:530px">เพิ่มไปยังตะกร้า</button></a>
+  
+  </div>
+  <!-- Display pagination links -->
+  <div style="display: inline;font-size: 16px;font-weight: bold;">
+  <?php if (count($chunks) > 1) { ?>
+    <div class="pagination">
+      <?php if ($current_page > 1) { ?>
+        <a href="?page=<?php echo $current_page - 1; ?>">ก่อนหน้า</a>
+      <?php } ?>
 
+      <?php for ($i = 1; $i <= count($chunks); $i++) { ?>
+        <a href="?page=<?php echo $i; ?>" <?php if ($i == $current_page) { echo 'class="active"'; } ?>><button><?php echo $i; ?></button></a>
+      <?php } ?>
 
-
-
-    
+      <?php if ($current_page < count($chunks)) { ?>
+        <a href="?page=<?php echo $current_page + 1; ?>">ถัดไป</a>
+      <?php } ?>
+    </div>
+  <?php } ?>
   </div>
 
+  <br><br><br><br>
+  
 </body>
 
 </html>
 
 <script>
+
+
   // Get the modal
   var modal = document.getElementById("myModal");
   var p_img = document.getElementById("p_img");
@@ -130,12 +136,9 @@ $current_chunk = $chunks[$current_page - 1];
   var p_type = document.getElementById("p_type");
 
   var addToCartLink = document.getElementById("addToCartLink");
-
-  // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
-
-  // When the user clicks on a card, open the modal
   var cards = document.getElementsByClassName("card");
+
   for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", function() {
       var key = this.getAttribute("data-key");

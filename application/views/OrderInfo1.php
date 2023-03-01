@@ -12,9 +12,9 @@
                     <th style="width:60px ;text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56">ลำดับ</th>
                     <th style="min-width:150px ;text-indent: 4px;">รหัสการแจ้งโอน</th>
                     <th style="min-width:110px ;">เลขออเดอร์</th>
-                    <th style="width:62px ;" class="text-right">ราคา</th>
+                    <th style="min-width:84px ;" class="text-right">ยอดสั่งซื้อ</th>
                     <th style="width:300px ;">ลูกค้า</th>
-                    <th style="width:250px;">เวลาชำระ</th>
+                    <th style="width:250px;">เวลาแจ้งชำระ</th>
                     <th style="width:140px  ;" class="st" >สถานะ</th>
                     <th style="min-width:100px ;"></th>
                 </tr>

@@ -92,6 +92,15 @@ if (isset($this->session->userdata['cus_user'])) {
             <a href="<?php echo base_url('/index.php/RequestController/RequestPage'); ?>"><button id="btn2">
                     นัดเวลาปรึกษาเภสัชกร
                 </button></a>
+                <a href="<?php echo base_url('/index.php/RequestController/MyCurrentRQ'); ?>">
+                <?php if($request!=null){
+                    foreach($request as $row){}
+                    $date = date("วันที่ d/m/Y เวลา H:i น.",strtotime($row->req_time));?>
+                    
+                <button id="btn2" style="margin-top: -270px;height:70px;width: 300px;margin-left:1036px;background-color: #f7c97b ;">
+                    คุณมีคำนัดปรึกษา <br> <?php echo $date ?>
+                </button></a>
+                <?php }else{}?>
         </banner>
         <footer>
             <div id="footer">

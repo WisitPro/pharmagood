@@ -10,10 +10,12 @@ class m_payprove extends CI_Model
     {
 
         $order_id = $pay['order_id'];
+        $pay_bank = $pay['pay_bank'];
+        $pay_number = $pay['pay_number'];
         $pay_slip = $pay['pay_slip'];
         $pay_datetime = $pay['pay_datetime'];
 
-        $sql = "insert into tbl_payprove values(0,'$order_id','$pay_slip','$pay_datetime',null,null,'รอการยืนยัน')";
+        $sql = "insert into tbl_payprove values(0,'$order_id',' $pay_bank',' $pay_number ','$pay_slip','$pay_datetime',null,null,'รอการยืนยัน')";
         $this->UpdateOrder($order_id);
         $qr = $this->db->query($sql);
         return true;
@@ -38,10 +40,10 @@ class m_payprove extends CI_Model
     public function OrderVerified()
     {
 
-        $sql = "select distinct p.pay_id,p.order_id,o.order_total,c.cus_name,p.pay_slip,
-        p.pay_datetime,a.adm_name,p.pay_modify,p.prove_status from tbl_payprove p,tbl_admin a,tbl_customer c,
+        $sql = "select distinct * from tbl_payprove p,tbl_admin a,tbl_customer c,
         tbl_order o where p.order_id = o.order_id 
-        and o.cus_id = c.cus_id and p.adm_id = a.adm_id and p.prove_status = 'ยืนยันแล้ว' ;";
+        and o.cus_id = c.cus_id and p.adm_id = a.adm_id and p.prove_status = 'ยืนยันแล้ว' and o.order_status !='จัดส่งแล้ว' 
+        and o.order_status !='จัดส่งเรียบร้อย' ;";
 
         $qr = $this->db->query($sql);
 
@@ -99,4 +101,12 @@ class m_payprove extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
+    public function getNew()
+    {
+       
+        $sql = "select * from tbl_payprove where prove_status ='รอการยืนยัน';";
+        $qr = $this->db->query($sql);
+        return $qr->result();
+    }
+
 }

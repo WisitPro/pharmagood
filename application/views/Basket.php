@@ -92,8 +92,8 @@
         <?php if ($this->cart->total_items() > 0) { ?>
             <span id="totalTxt">ราคาสุทธิ :<input disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"></input> <span>บาท</span>
                 <span id="buttonbar">
-                    <a href="<?php echo base_url('/index.php/OrderController/OrderingForm'); ?>">
-                    <button id="btGo">สั่งซื้อ</button></a>
+                    <a onclick="return confirm('ยืนยันคำสั่งซื้อ');" href="<?php echo base_url('/index.php/OrderController/OrderingNoPay'); ?>">
+                    <button id="btGo">ยืนยันคำสั่งซื้อ</button></a>
                 </span>
             <?php } ?>
     </div>
