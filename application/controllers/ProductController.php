@@ -62,7 +62,7 @@ class ProductController extends CI_Controller
             $add = $this->m_product->Product_Add($data);
             if ($add == false) {
                 echo "<script>";
-                echo "alert(\" รหัสสินค้านี้มีอยู่แล้ว\");";
+                echo "alert(\" รหัสยาและเวชภัณฑ์นี้มีอยู่แล้ว\");";
                 echo "window.history.back()";
                 echo "</script>";
             } else {

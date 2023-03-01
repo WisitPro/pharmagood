@@ -72,7 +72,7 @@ if (isset($this->session->userdata['cus_user'])) {
                     <?php echo ($this->cart->total_items() > 0) ? ' ตะกร้าสินค้า (' . $this->cart->total_items() . ')' : ' ตะกร้าสินค้า'; ?></a>
                 <div class="dropdown">
                     <button disabled class="dropbtn text-left"><i class="fa-solid fa-circle-user"></i> <?php echo $name ?>
-                        <i class="fa-regular fa-rectangle-list"></i></button>
+                    <i class="fa-solid fa-caret-down" style="color:#525252;"></i></button>
                     <div class="dropdown-content">
                     <a onclick="return confirm('ยืนยันออกจากหน้าสั่งซื้อยาและเวชภัณฑ์')" id="btHistory" href="<?php echo base_url('/index.php/OrderController/ListMyOrder'); ?>">
                     <i class="fa-regular fa-rectangle-list"></i> รายการสั่งซื้อรอชำระ</a>

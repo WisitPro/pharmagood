@@ -224,7 +224,8 @@ class RequestController extends CI_Controller
            // redirect('RequestController/MyCurrentRQ');
         } elseif ($this->form_validation->run() == TRUE && $req_id == null) {
             echo "<script>";
-            echo "alert(\" มีคำนัดปรึกษาภายในเวลาดังกล่าวแล้ว เรียนลูกค้าได้โปรดเปลี่ยนเวลานัดปรึกษาใหม่ \");";
+            echo "alert(\" มีคำนัดปรึกษาภายในเวลาดังกล่าวแล้ว ลูกค้าสามารถเปลี่ยนเวลานัดปรึกษาใหม่ได้
+            โปรดระบุมากกว่า 30 นาทีจากเวลาเดิมที่ระบุก่อนหน้า \");";
             echo "</script>";
             $data = $this->session->userdata();
             $ss_req_status = $this->m_request->cur_req($this->session->userdata('cus_id'));
@@ -275,7 +276,7 @@ class RequestController extends CI_Controller
         $data['tbl_request'] = $this->m_request->cur_req($cus_id);
         if($data['tbl_request']==null){
             echo "<script>";
-            echo "alert(\" เกิดข้อผิดพลาด \");";
+            echo "alert(\" ดำเนินการเสร็จสิ้น \");";
             echo "setTimeout(function(){ window.location.href = 'http://localhost/pharmagood/index.php/controller/HomePage3';3000 }, 1);";
 
             echo "</script>";

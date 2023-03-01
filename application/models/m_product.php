@@ -74,6 +74,14 @@ class m_product extends CI_Model
 
         return $qr->result();
     }
+    public function Unit()
+    {
+        $sql = "SELECT DISTINCT pro_unit FROM tbl_product;";
+
+        $qr = $this->db->query($sql);
+
+        return $qr->result();
+    }
     public function Store()
     {
         $sql = "select * from tbl_product where 

@@ -64,11 +64,12 @@ $current_chunk = $chunks[$current_page - 1];
                 <thead>
                     <tr id="tr1">
                         <th style="min-width: 40px;color:#F69A56" class="text-center">#</th>
-                        <th style="min-width: 140px;">รหัสสินค้า</th>
+                        <th style="min-width: 161px;">รหัสยาและเวชภัณฑ์</th>
                         <th style="min-width: 60px;" class="text-center">รูปภาพ</th>
                         <th style="min-width: 100px;" >ยี่ห้อ</th>
                         <th style="min-width: 300px;">ชื่อสินค้า</th>
                         <th style="min-width: 200px;">ประเภทยาและเวชภัณฑ์</th>
+                        <th style="min-width: 90px;" class="text-center" >หน่วยนับ</th>
                         <th style="min-width: 70px;" class="text-right">ราคา</th>
                         <th style="min-width: 90px;"></th>
                     </tr>
@@ -85,6 +86,7 @@ $current_chunk = $chunks[$current_page - 1];
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->pro_brand; ?></td>
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->pro_name; ?></td>
                             <td class="data" style="border-right: 1px solid #b6b6b6;"><?php echo $row->type_name; ?></td>
+                            <td class="data text-center" style="border-right: 1px solid #b6b6b6;"><?php echo $row->pro_unit; ?></td>
                             <td class="data " style="color:#eb0e0e;border-right: 1px solid #b6b6b6;text-align:right;padding-right:8px"><?php echo $row->pro_price; ?></td>
                             <td id="btnTable" class="text-center">
                                 <a id="Edit" href='<?php echo base_url('index.php/ProductController/Product_Edit?pro_id='.$row->pro_id.'')?>'><i class="fa-regular fa-pen-to-square"></i> แก้ไข</a><br>

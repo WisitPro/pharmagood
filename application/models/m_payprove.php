@@ -10,10 +10,12 @@ class m_payprove extends CI_Model
     {
 
         $order_id = $pay['order_id'];
+        $pay_bank = $pay['pay_bank'];
+        $pay_number = $pay['pay_number'];
         $pay_slip = $pay['pay_slip'];
         $pay_datetime = $pay['pay_datetime'];
 
-        $sql = "insert into tbl_payprove values(0,'$order_id','$pay_slip','$pay_datetime',null,null,'รอการยืนยัน')";
+        $sql = "insert into tbl_payprove values(0,'$order_id',' $pay_bank',' $pay_number ','$pay_slip','$pay_datetime',null,null,'รอการยืนยัน')";
         $this->UpdateOrder($order_id);
         $qr = $this->db->query($sql);
         return true;

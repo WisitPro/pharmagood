@@ -37,7 +37,7 @@ foreach ($orderdetail as $row) {
                                                                                                                                                                                                 echo base_url('index.php/OrderController/Orderbill/' . $row->pay_id . '/' . $row->order_id . ''); ?>'">ใบเสร็จ <i class="fa-solid fa-file-invoice"></i></button>
                     <?php } ?>
                 </div>
-                <table  >
+                <table>
                     <thead>
                         <tr id="tr1">
                             <th>รายการสินค้า</th>
@@ -49,7 +49,7 @@ foreach ($orderdetail as $row) {
                         <?php $item = 1;
                         foreach ($orderdetail as $row) { ?>
                             <tr id="tr2">
-                                <td ><?php echo $item ?>. <?php echo $row->pro_name ?></td>
+                                <td><?php echo $item ?>. <?php echo $row->pro_name ?></td>
                                 <td class="text-center"><?php echo $row->qty ?></td>
                                 <td style="min-width:80px;" class="text-right"><?php echo $row->sub_total ?></td>
                             </tr>
@@ -59,8 +59,8 @@ foreach ($orderdetail as $row) {
                     <tfoot>
                         <tr style="border-bottom: 1px solid #82b8d5;
                         border-top: 1px solid #82b8d5;">
-                           
-                            <td colspan="3"  class="text-right">รวมสุทธิ <?php echo $row->order_total ?> บาท</td>
+
+                            <td colspan="3" class="text-right">รวมสุทธิ <?php echo $row->order_total ?> บาท</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -91,13 +91,24 @@ foreach ($orderdetail as $row) {
                 <div style="padding-left:40px">
                     <p for="">*บริษัทที่จัดส่ง : </p>
                     <input type="hidden" name="order_id" style="width: 200px;" value="<?php echo $row->order_id ?>" required>
-                    <input type="text" name="delivery_service" style="width: 200px;" required>
+                    <input type="text" name="delivery_service" style="width: 240px;" required>
                     <div style="height: 8px;"></div>
                     <p for="">*หมายเลขติดตามพัสดุ :</p>
                     <input type="text" name="delivery_tracking" style="width: 240px;" required>
-                </div><br><br><br>
-                <button id="btnForm1" type="reset" style="background-color:#FF5353">ยกเลิก</button>
-                <button id="btnForm2" type="submit" style="background-color:#56FF5D;margin-left:20px">บันทึก</button>
+                    <div style="height: 8px;"></div>
+
+                    <?php
+                    date_default_timezone_set("Asia/Bangkok");
+                    $currentDateTime = date('Y-m-d H:i');
+                    $oneMinuteLater = date('Y-m-d H:i', strtotime($currentDateTime . ' +1 minute'));
+                    ?>
+                    <p for="">*วันเวลาที่ทำการจัดส่ง : </p>
+                    <input type="datetime-local" name="delivery_datetime" max="<?php echo $oneMinuteLater ?>" value="" required>
+
+
+                </div><br>
+                <button id="btnForm2" type="submit" style="background-color:#56FF5D;margin-left:100px">บันทึก</button>
+                <button id="btnForm1" type="reset" style="background-color:#FF5353;margin-left:20px">ยกเลิก</button>
 
             </form>
         </div>
@@ -109,6 +120,12 @@ foreach ($orderdetail as $row) {
 
 
 <script>
+    // var now = new Date().toISOString().slice(0, 16);
+    // document.getElementsByName("delivery_datetime")[0].setAttribute('max', now);
+
+
+
+
     function validate(evt) {
         var theEvent = evt || window.event;
         if (theEvent.type === 'paste') {

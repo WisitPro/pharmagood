@@ -102,7 +102,7 @@ class OrderController extends CI_Controller
         );
         $this->m_payprove->denying($data);
         echo "<script>";
-        echo "alert(\" ยกเลิกสำเร็จ \");";
+        echo "alert(\" ยกเลิกคำสั่งซื้อสำเร็จ \");";
 
         echo "</script>";
 
@@ -114,7 +114,7 @@ class OrderController extends CI_Controller
             date_default_timezone_set("Asia/Bangkok"),
             $date = date('Y-m-d H:i:s'),
             'order_id' => $order_id,
-            'delivery_success' => $date
+           
 
         );
         $this->m_delivery->OrderSuccess($data);
@@ -166,38 +166,32 @@ class OrderController extends CI_Controller
             'delivery_service' => $_REQUEST['delivery_service'],
             'delivery_tracking'=> $_REQUEST['delivery_tracking'],
             'adm_id' => $this->session->userdata('adm_id'),
-            'delivery_datetime' => $date
+            'delivery_datetime' => $_REQUEST['delivery_datetime'],
         );
         $this->m_delivery->InsertDelivery($data);
         $this->m_order->delivery($data);
         echo "<script>";
         echo "alert(\" บันทึกข้อมูลเรียบร้อย \");";
+        echo "setTimeout(function(){ window.location.href = 'http://localhost/pharmagood/index.php/OrderController/OrderInfo4';3000 }, 1);";
         echo "</script>";
-        redirect('OrderController/OrderInfo4/');
+       
     }
     public function OrderingForm()
     {
-
+        $order_id = $_REQUEST['order_id'];
         $data = array();
-        $data['cartItems'] = $this->cart->contents();
-
-
+        $data['order_item'] = $this->m_order->GetOrderById($order_id);
         $this->load->view('navbar_customer/navbar_cus');
         $this->load->view('OrderingForm', $data);
     }
-
-
-
-    public function Ordering()
+    public function OrderingNoPay()
     {
         date_default_timezone_set("Asia/Bangkok");
 
         $user_data = $this->session->userdata();
         $data['cus_id'] = $user_data['cus_id'];
         $data['order_datetime'] = date('Y-m-d H:i:s');
-        $data['order_total'] = $this->cart->total();
-        $data['order_address'] = $_REQUEST['order_address'];
-        $data['order_phone'] = $_REQUEST['order_phone'];
+        $data['order_total'] = $this->cart->total();      
 
         // Call the model method and check for success
         $insertResult = $this->m_order->insert($data);
@@ -238,6 +232,19 @@ class OrderController extends CI_Controller
         }
     }
 
+
+
+    public function Ordering()
+    {
+        $data['order_id'] = $_REQUEST['order_id'];
+        $data['order_address'] = $_REQUEST['order_address'];
+        $data['order_phone'] = $_REQUEST['order_phone'];     
+
+        $order_id = $this->m_order->OrderAddress($data);
+        redirect('OrderController/Payment/'.$order_id.'');
+      
+    }
+
     public function ListMyOrder()
     {
         //session cus_id ใน model
@@ -274,16 +281,18 @@ class OrderController extends CI_Controller
             $filename = $data["file_name"];
             date_default_timezone_set("Asia/Bangkok");
             $pay['order_id'] = $_REQUEST['order_id'];
+            $pay['pay_bank'] = $_REQUEST['pay_bank'];
+            $pay['pay_number'] = $_REQUEST['pay_number'];
             $pay['pay_slip'] = $filename;
             $pay['pay_datetime'] = date('Y-m-d H:i:s');
             $this->m_payprove->payprove($pay);
         }
 
         $this->session->unset_userdata('order_id');
-
+        $data['request'] = $this->m_request->check_existingForHomePage($this->session->userdata['cus_id']);
         $this->session->set_flashdata('order_success', true);
         $this->load->view('navbar_customer/navbar_cus');
-        $this->load->view('Homepage3');
+        $this->load->view('Homepage3',$data);
     }
     public function CancelStore($order_id)
     {

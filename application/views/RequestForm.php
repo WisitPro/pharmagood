@@ -63,7 +63,7 @@ foreach ($cus_info as $customer) {
                     </p>
                 <?php } else { ?>
                     <p>อาการเบื้องต้น<span>*</span><br>
-                        <textarea name="req_sym" required minlength="30">ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว</textarea>
+                        <textarea name="req_sym" required minlength="30" maxlength="300">ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว</textarea>
                     </p>
                 <?php } ?>
 

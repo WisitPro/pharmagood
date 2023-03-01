@@ -7,13 +7,13 @@
 </head>
 <?php
 
-$date = isset($_REQUEST['day1']) ? $_REQUEST['day1'] : null;
-if (isset($date)) {
-  $day1 = date("d-m-Y", strtotime($date));
+$date1 = isset($_REQUEST['day1']) ? $_REQUEST['day1'] : null;
+if (isset($date1)) {
+  $day1 = date("d-m-Y", strtotime($date1));
 }
 
 $date2 = isset($_REQUEST['day2']) ? $_REQUEST['day2'] : null;
-if (isset($date)) {
+if (isset($date2)) {
   $day2 = date("d-m-Y", strtotime($date2));
 }
 
@@ -29,44 +29,52 @@ date_default_timezone_set("Asia/Bangkok");
 
 
   <div id="backform">
-    <header style="padding-left: 8px;">    
-             
-          <?php if($_REQUEST['day2']==null && $_REQUEST['day1']==null){?>  
-            <h2><strong>รายงานข้อมูลจัดส่งยาและเวชภัณฑ์ทั้งหมด</strong></h2> 
+    <header style="padding-left: 8px;">
 
-          
-      <?php }elseif ($_REQUEST['day2'] == $_REQUEST['day1']) { ?>       
-        <h2><strong>รายงานข้อมูลจัดส่งยาและเวชภัณฑ์</strong></h2>  
+      <?php if ($date1 == null && $date2 == null) { ?>
+        <h2><strong>รายงานการจัดส่งยาและเวชภัณฑ์</strong></h2>
+
+      <?php } elseif ($date1 != null && $date2 != null && $date1 == $date2) { ?>
+        <h2><strong>รายงานการจัดส่งยาและเวชภัณฑ์</strong></h2>
         <h3>วันที่ <?php echo $day1 ?></h3>
-      <?php } elseif ($_REQUEST['day1'] != null && $_REQUEST['day2'] != null) { ?>
-        <h2><strong>รายงานข้อมูลจัดส่งยาและเวชภัณฑ์</strong></h2> 
+
+
+      <?php } elseif ($date1 != null && $date2 != null) { ?>
+        <h2><strong>รายงานการจัดส่งยาและเวชภัณฑ์</strong></h2>
         <h3>วันที่ <?php echo $day1 ?> ถึงวันที่ <?php echo $day2 ?></h3>
-      <?php } else{ ?>
-       
-       
+      <?php } elseif ($date1 = null || $date2 == null) { ?>
+        <h2><strong>รายงานการจัดส่งยาและเวชภัณฑ์</strong></h2>
+        <h3>วันที่ <?php if ($_REQUEST['day1'] == null) {
+                      echo $day2;
+                    } elseif ($_REQUEST['day2'] == null) {
+                      echo $day1;
+                    }  ?></h3>
+
+
       <?php } ?>
+
 
     </header>
     <table class="table ">
       <tr id="tr1">
-        <th style="min-width:130px;">หมายเลขคำสั่งซื้อ</th>
-        <th style="min-width:200px;">บริษัทจัดส่ง</th>
-        <th style="min-width: 260px;">หมายเลขติดตามพัสดุ</th>
-        <th style="min-width:170px">วันเวลาบันทึก</th>
-        <th style="min-width:200px;">บันทึกโดย</th> 
+        <th style="min-width:150px;">หมายเลขคำสั่งซื้อ</th>
+        <th style="min-width:220px;">บริษัทจัดส่ง</th>
+        <th style="min-width: 270px;">หมายเลขติดตามพัสดุ</th>
+        <th style="min-width:190px">วันเวลาจัดส่ง</th>
+        <th style="min-width:168px;">ผู้จัดส่ง</th>
       </tr>
       <?php
       $item = 0;
 
       foreach ($report as $row) {
-        $delivery_datetime = date('d-m-Y H:i', strtotime($row->delivery_datetime));            
+        $delivery_datetime = date('d-m-Y H:i', strtotime($row->delivery_datetime));
       ?>
         <tr id="tr2">
           <td><?php echo $row->order_id; ?></td>
           <td><?php echo $row->delivery_service; ?></td>
           <td><?php echo $row->delivery_tracking; ?></td>
           <td> <?php echo $delivery_datetime ?> น.</td>
-          <td> <?php echo $row->adm_name ?></td>    
+          <td> <?php echo $row->adm_name ?></td>
         </tr>
       <?php
         $item++;
@@ -74,7 +82,7 @@ date_default_timezone_set("Asia/Bangkok");
       ?>
       <tr>
         <td colspan="3">
-          <h3> จำนวนทั้งหมด <?php echo $item ?> รายการ</h3>
+          <h3>ข้อมูลการจัดส่งยาและเวชภัณฑ์ทั้งหมดจำนวน <?php echo $item ?> รายการ</h3>
         </td>
 
       </tr>

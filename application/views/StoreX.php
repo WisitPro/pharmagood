@@ -17,6 +17,7 @@ if ($current_page < 1) {
 } elseif ($current_page > count($chunks)) {
     $current_page = count($chunks);
 }
+$first_index = ($current_page - 1) * $items_per_page;
 
 // Get the current chunk of items to display
 $current_chunk = $chunks[$current_page - 1];
@@ -46,10 +47,12 @@ $current_chunk = $chunks[$current_page - 1];
       
     
 <div id="list">
-  <?php foreach ($current_chunk as $key => $row) { ?>
+  <?php foreach ($current_chunk as $key => $row) { 
+    $card_key = $first_index + $key;?>  
+    
     <!-- display the items for the current page as before -->
     <div class="cardGap">
-      <div class="card" id="card-<?php echo $key ?>" data-key="<?php echo $key ?>">
+      <div class="card" id="card-<?php echo $key ?>" data-key="<?php echo $card_key ?>">
         <div class="img">
           <img src="<?php echo base_url('/images/Product/' . $row['pro_img'] . '') ?>" onerror="this.onerror=null; this.src='https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'" style="width:98%;height:98%;margin-top:2px; line-height: 200px;">
         </div>

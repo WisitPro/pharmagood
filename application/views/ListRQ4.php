@@ -14,7 +14,7 @@
                     <th style="width:200px;">อาการ</th>
                     <th style="min-width:190px ;">วันที่นัด</th>
                     <th style="width:100px  ;" class="st4" >สถานะ</th>
-                    <th style="min-width:70px ;"></th>
+                    
                 </tr>
                 <?php
                 $item = 1;
@@ -75,7 +75,7 @@
                     <input id="phone" type="text"  style="width: 120px;"  disabled></input>
                 </p>
                 <p>อาการเบื้องต้น<span></span><br>
-                    <textarea disabled id="sym"></textarea>
+                    <textarea disabled id="sym" style="height: 140px;"></textarea>
                 </p>
                 <p>วันและเวลาที่ต้องการปรึกษา<span></span><br>
                     <input id="req_time" disabled type="text" ></input>
@@ -165,7 +165,7 @@
   .modal-content {
     position: absolute;
   width: 560px;
-  height: 500px;
+  height: 570px;
   margin-left: 480px;
   margin-top: 40px;
   display: inline-block;

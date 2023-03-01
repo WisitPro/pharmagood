@@ -6,53 +6,55 @@
 </head>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbE5PxKKnEVpr873MVdBeGvS5veUJ0Nd0&callback=initMap&v=weekly" defer></script>
 <body onload="disBt()" onload="initMap()">
-    <a href="<?php echo base_url(); ?>index.php/CartController" onclick="return confirm('ยืนยันกลับหน้าตะกร้า')"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
-    <p id="p1">สั่งซื้อยาและเวชภัณฑ์</p>
+    <a href="<?php echo base_url(); ?>index.php/CartController" onclick="return confirm('ยืนยันกลับหน้ารายการสั่งซื้อ')"><button id="p2"><i class="fa-solid fa-caret-left"></i> กลับ</button></a>
+    <p id="p1">ข้อมูลสถานที่จัดส่ง</p>
     <div id="p3">
         <div id="p4">
             <table class="table ">
                 <thead style="width: 100%;">
                     <tr>
                         <th style="width:30px "></th>
-                        <th style="width:250px;">สินค้า</th>
+                        <th style="width:270px;">สินค้า</th>
                         <th class="text-right" style="width:70px;">ราคา</th>
                         <th style="width: 60px;" class="text-center">จำนวน</th>
-                        <th style="min-width:80px;" class="text-right">รวม</th>
+                        <th style="min-width:70px;" class="text-right">รวม</th>
                     </tr>
                 </thead>
-                <tbody class="tableRow">
-                    <?php
-                    if ($this->cart->total_items() > 0) {
-                        $qty = 1;
-                        foreach ($cartItems as $item) {
-                    ?>
+               <tbody class="tableRow">
+                    <?php $qty = 1; foreach($order_item as $row){ 
+                        $order_total = $row->order_total?>
+                        
                             <tr class="trB">
-                                <td class="text-right" style="width:30px "><?php echo $qty ?></td>
-                                <td style="width:250px;"><strong><?php echo $item["name"]; ?></strong></td>
-                                <td class="text-right" style="width:70px;" id="price">
-                                    <p><?php echo '' . $item["price"]; ?></p>
-                                </td>
-                                <td class="text-right" style="width: 40px;">
-                                    <!-- <input type="button" value="-" class="minus text-center qtybt" id="minus<?php echo $qty ?>" /> -->
-                                    <p style="width:50px;cursor:default;" class="qty text-center " id="qty<?php echo $qty  ?>"><?php echo $item["qty"] ?></p>
-                                    <!-- <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/CartController/updateItemQty/' . $item["rowid"]); ?>"/> -->
-                                </td>
-                                <td style="min-width:80px;" class="text-right">
-                                    <span class="text-right" style="width:50px;border:transparent;background:transparent;cursor:default;" class="subtt" id="subtt<?php echo $qty ?>"><?php echo $item["subtotal"] ?></span>
-                                    <span> บาท</span>
-                                </td>
-                            </tr>
-                        <?php $qty++;} } else { ?>
-                        <strong>
-                            <h2 style="position:absolute;margin-left:250px;margin-top:180px">ไม่มีสินค้าในตะกร้าสินค้า</h2>
-                        </strong>
-                    <?php }?>
-                </tbody>
+                            <td class="text-right" style="width:30px "><?php echo $qty ?></td>
+                            <td style="width:270px;"><strong><?php echo $row->pro_name; ?></strong></td>
+                            <td class="text-right" style="width:70px;" id="price">
+                                <p><?php echo $row->pro_price; ?></p>
+                            </td>
+                            <td class="text-right" style="width: 40px;">
+                                <!-- <input type="button" value="-" class="minus text-center qtybt" id="minus<?php echo $qty ?>" /> -->
+                                <p style="width:50px;cursor:default;" class="qty text-center " id="qty<?php echo $qty  ?>"><?php echo $row->qty?></p>
+                                <!-- <input type="button" value="+" class="add text-center qtybt" id="add<?php echo $qty ?>" href="<?php echo base_url('/index.php/CartController/updateItemQty/' . $item["rowid"]); ?>"/> -->
+                            </td>
+                            <td style="min-width:70px;" class="text-right">
+                                <span class="text-right" style="width:50px;border:transparent;background:transparent;cursor:default;" class="subtt" id="subtt<?php echo $qty ?>"><?php echo $row->sub_total ?></span>
+                               
+                            </td>
+                        </tr>
+
+
+                            <?php $qty++;}?>
+                    
+                            </tbody>
+                    
+                        
+              
             </table>
         </div>
        
-        <form onsubmit="return confirm('ยืนยันคำสั่งซื้อนี้');"  action="<?php echo base_url('/index.php/OrderController/Ordering'); ?>" method="post" autocomplete="off">
+        <form onsubmit="return confirm('ยืนยันข้อมูลเบอร์โทรศัพท์และสถานที่จัดส่ง');"  action="<?php echo base_url('/index.php/OrderController/Ordering'); ?>" method="post" autocomplete="off">
             <div id="paymentinput" >
+            <input type="hidden" name="order_id"  value="<?php echo $row->order_id ?>"  required /><br><br>
+
                 <p id="a2"></p>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <p></p>
@@ -62,10 +64,9 @@
                 <p><span style="color:red">* </span>สถานที่จัดส่ง :</p>
                 <input onclick="OpenMap()" type="text" name="order_address" class="text-center" id="order_address" value="" style="text-indent: 0px;border:2px solid red;caret-color: transparent;text-overflow: clip;" maxlength="0"  placeholder="คลิ๊ก" required />
             </div>
-            <?php if ($this->cart->total_items() > 0) { ?>
-                <span id="totalTxt">ราคาสุทธิ : <input disabled class="text-right" type="text" id="total" value="<?php echo $this->cart->total(); ?>"> บาท</input>
+                <span id="totalTxt">ราคาสุทธิ : <input disabled class="text-right" type="text" id="total" value="<?php echo $order_total; ?>"> บาท</input>
                     <span id="buttonbar">               
-                        <button id="btGo"  type="submit">ยืนยันคำสั่งซื้อ</button>                
+                        <button id="btGo"  type="submit">ยืนยันข้อมูล</button>                
                     </span>
         </form>
 <script>
@@ -173,7 +174,7 @@ function clearMarkers() {
 //   }
 // });
 </script>
-    <?php } ?>
+    
     </div>
     <div class="map1" id="map" ondblclick="clearMarkers ()">
         <div id="BoxSelectMap">

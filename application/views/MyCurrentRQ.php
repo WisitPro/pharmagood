@@ -95,7 +95,7 @@ if(isset($tbl_request)){
                 }
             } ?>
 
-        </div>
+        </div><br><br><br>
         <div id="buttonbar">
             <?php if ($req_status == "วิดีโอคอล") { ?>
                 <button id="btGo" style="background-color:#68B3F8;" onclick="window.open('https://digitalpharmacysritan.000webhostapp.com');">วิดีโอคอล</button>

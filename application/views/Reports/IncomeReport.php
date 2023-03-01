@@ -27,6 +27,14 @@ if (isset($date)) {
   $day2 = date("d-m-Y", strtotime($date2));
 }
 
+$pro_name_by_pro_id = isset($_REQUEST['pro_id']) ? $_REQUEST['pro_id'] : null;
+if (isset($pro_name_by_pro_id)) {
+  foreach($report as $row) {
+    $pro_name_by_pro_id = $row->pro_name;
+  }
+}
+
+
 
 $basename = basename($_SERVER['PHP_SELF']);
 date_default_timezone_set("Asia/Bangkok");
@@ -39,46 +47,66 @@ date_default_timezone_set("Asia/Bangkok");
 
   <div id="backform">
     <header style="padding-left: 8px;">
+   
       <?php if ($date == null && $date2 == null) { ?>
-        <h2><strong>รายงานการขายทั้งหมด</strong></h2>
+        <h2><strong>รายงานการขายทั้งหมดของระบบ</strong></h2>
+        <?php if($_REQUEST['pro_id']!=null){  ?>
+          <h3>เฉพาะ <?php echo $pro_name_by_pro_id  ?></h3>
+          <?php  }else{?>
         <?php if($type!=null){ ?>
           <h3>ประเภท : <?php echo $type_name ?></h3>
 
-        <?php }else{} ?>
+        <?php }else{  echo "<h3>"."ประเภทยาและเวชภัณฑ์ทั้งหมด"."</h3>";} ?>
+     <?php }?>
 
       <?php } elseif ($_REQUEST['day2'] == $_REQUEST['day1']) { ?>
         <h2><strong>รายงานการขาย</strong></h2>
+        <?php if($_REQUEST['pro_id']!=null){  ?>
+          <h3>เฉพาะ <?php echo $pro_name_by_pro_id  ?></h3>
+          <?php  }else{?>
         <?php if($type!=null){ ?>
           <h3>ประเภท : <?php echo $type_name ?></h3>
 
-        <?php }else{} ?>
+        <?php }else{  echo "<h3>"."ประเภทยาและเวชภัณฑ์ทั้งหมด"."</h3>";} ?>
+     <?php }?>
         <h3>วันที่ <?php echo $day1 ?></h3>
+       
       <?php } elseif ($_REQUEST['day1'] != null && $_REQUEST['day2'] != null) { ?>
         <h2><strong>รายงานการขาย</strong></h2>
+         <?php if($_REQUEST['pro_id']!=null){  ?>
+          <h3>เฉพาะ <?php echo $pro_name_by_pro_id  ?></h3>
+          <?php  }else{?>
         <?php if($type!=null){ ?>
           <h3>ประเภท : <?php echo $type_name ?></h3>
 
-        <?php }else{} ?>
+        <?php }else{  echo "<h3>"."ประเภทยาและเวชภัณฑ์ทั้งหมด"."</h3>";} ?>
+     <?php }?>
         <h3>วันที่ <?php echo $day1 ?> ถึงวันที่ <?php echo $day2 ?></h3>
       <?php } elseif ($_REQUEST['day1'] == null || $_REQUEST['day2'] == null) { ?>
         <h2><strong>รายงานการขาย</strong></h2>
+        <?php if($_REQUEST['pro_id']!=null){  ?>
+          <h3>เฉพาะ <?php echo $pro_name_by_pro_id  ?></h3>
+          <?php  }else{?>
         <?php if($type!=null){ ?>
           <h3>ประเภท : <?php echo $type_name ?></h3>
 
-        <?php }else{} ?>
+        <?php }else{  echo "<h3>"."ประเภทยาและเวชภัณฑ์ทั้งหมด"."</h3>";} ?>
+     <?php }?>
         <h3>วันที่ <?php if ($_REQUEST['day1'] == null) {
                       echo $day2;
                     } else {
                       echo $day1;
                     }  ?></h3>
+
       <?php } ?>
     </header>
     <table class="table " style="border-bottom: 1px solid #dbdbdb;">
       <tr id="tr1">
-        <th style="width: fit-content;">รหัสสินค้า</th>
-        <th style="width: 700px;">ยาและเวชภัณฑ์</th>
-        <th class="text-center">จำนวน</th>
-        <th style="min-width: 150px;" class="text-right">รายได้</th>
+        <th style="min-width: 160px;">รหัสยาและเวชภัณฑ์</th>
+        <th style="width: 650px;">ชื่อยาและเวชภัณฑ์</th>
+        <th style="width: 140px;">ราคาต่อหน่วย</th>
+        <th class="text-center" style="width: 100px;">จำนวน</th>
+        <th style="min-width: 90px;" class="text-right">เป็นเงิน</th>
       </tr>
   
       <?php
@@ -100,7 +128,8 @@ date_default_timezone_set("Asia/Bangkok");
         <tr id="tr2">
           <td class="data"   ><?php echo $row->pro_id; ?></td>
           <td class="data "><?php echo $row->pro_name; ?></td>
-          <td class="data text-center"><?php echo $row->total_quantity; ?></td>
+          <td class="data text-center"><?php echo number_format(($row->total_income/$row->total_quantity),2); ?></td>
+          <td class="data"  ><?php echo $row->total_quantity.' '.$row->pro_unit ?></td>
           <td class="data text-right"> <?php echo number_format($row->total_income, 2); ?></td>
         </tr>
 
@@ -112,14 +141,14 @@ date_default_timezone_set("Asia/Bangkok");
 <tr>
 
 
-<td colspan="4"> <h3 style="display: inline;float: left;" > ขายได้ทั้งหมด <?php echo $grand_qty ?> ชิ้น</h3>
+<td colspan="5"> <h3 style="display: inline;float: left;" > ขายได้ทั้งหมด <?php echo $grand_qty ?> รายการ</h3>
       <h3  style="display: inline;float: right;"> รายได้ทั้งหมด <?php echo number_format($grand_total, 2); ?> บาท</h3></td>
 </tr>
       </table>
       <div style="padding-left: 8px;">
       
     <?php if($item == 2){ ?>
-      <h4>รายการยอดขายและรายได้สูงสุด : <?php echo $best_selling_name  ?> ขายได้ <?php echo $best_selling_qty  ?> </h4> 
+      <h4>รายการยอดขายสูงสุด : <?php echo $best_selling_name  ?> ขายได้ <?php echo $best_selling_qty.' '.$best_selling_unit  ?> </h4> 
       <?php }else{?>
             <h4>รายการยอดขายสูงสุด : <?php echo $best_selling_name  ?> ขายได้ <?php echo $best_selling_qty.' '.$best_selling_unit  ?>  เป็นเงิน <?php echo number_format($best_selling_income, 2); ?> บาท</h4> 
             <h4>รายการยอดขายต่ำสุด : <?php echo $row->pro_name; ?> ขายได้ <?php echo $row->total_quantity.' '.$row->pro_unit ?>  เป็นเงิน <?php echo number_format($row->total_income, 2); ?> บาท</h4>  

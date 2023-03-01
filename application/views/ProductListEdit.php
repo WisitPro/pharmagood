@@ -13,7 +13,7 @@
     <form onsubmit="return confirm('ยืนยันแก้ไขข้อมูล');" action="Product_Update" method="POST" autocomplete="off" enctype="multipart/form-data" class="modal-content">
         <input name="pro_id" value="<?php echo $row->pro_id; ?>"  readonly type="hidden" class="pro_id" placeholder="รหัสสินค้า*" maxlength="13" onkeypress='validate(event)' required>
         <p style="font-size: 28px;">ฟอร์มแก้ไขข้อมูลยาและเวชภัณฑ์</p> 
-        <label for="pro_id">*รหัสสินค้า :
+        <label for="pro_id">*รหัสยาและเวชภัณฑ์:
             <input type="text" class="pro_id" disabled readonly value="<?php echo $row->pro_id ?>" name="" maxlength="13" style="width: 140px;font-weight:bold;" onkeypress='validate(event)' required>
         </label>&nbsp;&nbsp;&nbsp;
         <select name="type_id" id="selectlist" required>
@@ -24,21 +24,22 @@
         </select>
         <div>
             <label for="pro_brand">*ยี่ห้อ :
-                <input type="text" class="pro_name" value="<?php echo $row->pro_brand ?>" name="pro_brand" style="width: 130px;" required>&nbsp;
+                <input type="text" class="pro_name" value="<?php echo $row->pro_brand ?>" name="pro_brand" style="width: 180px;" required>&nbsp;
             </label>
             <label for="pro_name">*ชื่อสินค้า :
-                <input type="text" class="pro_name" value="<?php echo $row->pro_name ?>" name="pro_name" style="width: 311px;" required>&nbsp;
+                <input type="text" class="pro_name" value="<?php echo $row->pro_name ?>" name="pro_name" style="width: 327px;" required>&nbsp;
             </label>
             </label>
 
         </div>
         <td></td>
-        <div><textarea maxlength="255" style=" color: black;font-size: 16px;border-radius: 5px;width: 587px;height:100px;resize: none;" name="pro_detail"><?php echo $row->pro_detail ?>
+        <div><textarea maxlength="255" style=" color: black;font-size: 16px;border-radius: 5px;width: 654px;height:100px;resize: none;" name="pro_detail"><?php echo $row->pro_detail ?>
         </textarea></div>
         <div>
             <label for="pro_price">*ราคา :
                 <input type="text" class="pro_price" value="<?php echo $row->pro_price ?>" name="pro_price" style="width: 80px;" onkeypress='validate(event)' required>&nbsp;
             </label>
+            หน่วยนับ : 
             <select name="pro_unit" id="selectlist" required style="width: fit-content;">
                 <?php if ($row->pro_unit == "แผง") { ?>
                     <option selected value="แผง">แผง</option>
@@ -167,7 +168,7 @@
         
         <button id="btnForm2" type="submit" style="background-color:#56FF5D">บันทึก</button>
 
-    </form><a onclick="if (confirm('ยกเลิกแก้ไขข้อมูล')) { history.back(); }"><button id="btnForm111"  style="background-color: #FF5353;color:white;position: absolute;margin-top:462px;margin-left:940px">ยกเลิก</button></a>
+    </form><a onclick="if (confirm('ยกเลิกแก้ไขข้อมูล')) { history.back(); }"><button id="btnForm111"  style="background-color: #FF5353;color:white;position: absolute;margin-top:462px;margin-left:980px">ยกเลิก</button></a>
     </div>
 <?php } ?>
 <img id="admin" src="<?php echo base_url(); ?>images/admin.png">

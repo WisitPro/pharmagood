@@ -37,16 +37,17 @@ class controller extends CI_Controller
 
         $admin = $this->m_admin->login($get_data);
         if ($admin!=null) {
-            foreach ($admin as $row) {
-                $userdata = array(
-                    'adm_user' => $row->adm_user,
-                    'adm_name' => $row->adm_name,
-                    'adm_role' => $row->adm_role,
-                    'adm_id' => $row->adm_id
-
-                );
-                $this->session->set_userdata($userdata);
+           
+                foreach ($admin as $row) {
+                    $userdata = array(
+                        'adm_user' => $row->adm_user,
+                        'adm_name' => $row->adm_name,
+                        'adm_role' => $row->adm_role,
+                        'adm_id' => $row->adm_id
+                    );
+                    $this->session->set_userdata($userdata);              
             }
+
             redirect('controller/AdminHomePage');
         } elseif ($admin==null) {
             $get_data['cus_user'] = $username;
@@ -155,10 +156,10 @@ class controller extends CI_Controller
     }
     public function HomePage3()
     {
-
+        $data['request'] = $this->m_request->check_existingForHomePage($this->session->userdata['cus_id']);
         $this->session->set_flashdata('order_success', false);
         $this->load->view('navbar_customer/navbar_cus');
-        $this->load->view('HomePage3');
+        $this->load->view('HomePage3',$data);
     }
     public function Logout()
     {

@@ -36,15 +36,18 @@
                         <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
                             <td style="width:10px"></td>
                             <td colspan="3" style="width:900px"><strong>ออเดอร์ <?php echo $orderlists[0]->order_id ?></strong></td>
-                            <?php if ($orderlists[0]->order_status == "ชำระเงินแล้ว") { ?>
+                            <td colspan="2" class="text-right" style="background-color: #F79A56;">
+                                    <strong></strong>
+                                </td>
+                            <!-- <?php if ($orderlists[0]->order_status == "ชำระเงินแล้ว") { ?>
                                 <td colspan="2" class="text-right tdstatus" onclick="Confirm('<?php echo $order_id ?>')" style="background-color: #68B3F8;">
                                     <strong>ได้รับสินค้าแล้ว</strong>
                                 </td>
                             <?php } else { ?>
                                 <td colspan="2" class="text-right" style="background-color: #F79A56;">
-                                    <strong>ได้รับสินค้าแล้ว</strong>
+                                    <strong></strong>
                                 </td>
-                            <?php } ?>
+                            <?php } ?> -->
                         </tr>
                         <!-- <tr class="trB" style="background: #F79A56;color:white;border-top: 2px solid #464646; ">
                             <td style="width:10px"></td>

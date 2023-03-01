@@ -29,6 +29,8 @@ class ReportsController extends CI_Controller
     {
         $data['admin_list'] = $this->m_admin->Pharmacist();
         $data['product_type_list'] = $this->m_product_type->Type();
+        $data['product_unit'] = $this->m_product->Unit();
+
         $this->load->view('navbar_admin/navbar');
         $this->load->view('component/ReportsFilter', $data);
     }
@@ -45,9 +47,12 @@ class ReportsController extends CI_Controller
 
         $data['product_type'] = isset($_REQUEST['product_type']) ? $_REQUEST['product_type'] : null;
         $data['pro_id'] = isset($_REQUEST['pro_id']) ? $_REQUEST['pro_id'] : null;
+        $data['pro_unit'] = isset($_REQUEST['pro_unit']) ? $_REQUEST['pro_unit'] : null;
 
         $data['admin'] = isset($_REQUEST['admin']) ? $_REQUEST['admin'] : null;
         $data['req_status'] = isset($_REQUEST['req_status']) ? $_REQUEST['req_status'] : null;
+
+        $data['order_type'] = isset($_REQUEST['order_type']) ? $_REQUEST['order_type'] : null;
         $data['order_status'] = isset($_REQUEST['order_status']) ? $_REQUEST['order_status'] : null;
 
         $data['order_id'] = isset($_REQUEST['order_id']) ? $_REQUEST['order_id'] : null;
@@ -56,6 +61,7 @@ class ReportsController extends CI_Controller
 
         $this->load->view('navbar_admin/navbar');
         $data['product_type_list'] = $this->m_product_type->Type();
+        $data['product_unit'] = $this->m_product->Unit();
         $data['admin_list'] = $this->m_admin->Pharmacist();
         if ($data['Subject'] == 1) {
             $data['report'] = $this->m_reports->IncomeReports($data);
