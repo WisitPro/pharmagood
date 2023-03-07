@@ -30,7 +30,7 @@ date_default_timezone_set("Asia/Bangkok");
 
   <div id="backform">
     <header style="padding-left: 8px;">
-      <?php if ($date1 == null && $date2 == null) { ?>
+      <?php if ($date1 == null && $date2 == null){ ?>
         <h2><strong>รายงานรายการสั่งซื้อ</strong></h2>
 
       <?php } elseif ($date1 != null && $date2 != null && $date1 == $date2) { ?>
@@ -67,6 +67,7 @@ date_default_timezone_set("Asia/Bangkok");
 
       </tr>
       <?php
+      
       $item = 0;
       $own_data = "";
       $own_price = "";

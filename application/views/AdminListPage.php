@@ -9,27 +9,23 @@
    <?php  if(isset($UpdatePassword)){ 
                 foreach($UpdatePassword as $admin)?>
                 
-                <form action="<?php echo base_url('/index.php/controller/NewAdminPassword');?>" method="POST"  autocomplete="off">
+                <form onsubmit="return confirm('ยืนยันข้อมูล');" action="<?php echo base_url('/index.php/controller/NewAdminPassword');?>" method="POST"  autocomplete="off">
                 <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">สร้างรหัสผ่านใหม่</p>
                 <input required type="hidden" name="adm_id" value="<?php echo $admin->adm_id ?>">
                 <span id="inputline" style="padding-left: 100px;">
                 <p class="head hd4">รหัสผ่าน*<br>
                     <input required type="password" minlength="8" name="adm_pass">
-                    <font color="red">
-                        <?php echo form_error('adm_pass'); ?>
-                    </font>
+                   
                 </p>
                 <p class="head hd4"  style="margin-left: 100px;">ยืนยันรหัสผ่าน*<br>
                     <input required type="password" minlength="8"  name="adm_pass2">
-                    <font color="red">
-                        <?php echo form_error('adm_pass2'); ?>
-                    </font>
+                   
                 </p>
                 </span>
                 
 
                 <br>
-                <button id="btnForm2" onclick="return confirm('ยืนยัน');" type="submit" style="background-color:#56FF5D">บันทึก</button>
+                <button id="btnForm2"" type="submit" style="background-color:#56FF5D">บันทึก</button>
                 
             </form>
             <a onclick="return confirm('ยกเลิกสร้างรหัสผ่าน');"  style="position:absolute;color: white;margin-top:-64px;width:160px"
@@ -60,7 +56,7 @@
                         <td class="data"><?php echo $row->adm_name; ?></td>
                         <td class="data"><?php echo $row->adm_phone; ?></td>
                         <td class="data"><?php echo $row->adm_user; ?></td>
-                        <td class="data"><a  onclick="return confirm('สร้างรหัสใหม่');" href="<?php echo base_url('index.php/controller/UpdateAdminPassword/'.$row->adm_id.''); ?>">ลืมรหัสผ่าน</a></td>
+                        <td class="data"><a  onclick="return confirm('สร้างรหัสผ่านใหม่');" href="<?php echo base_url('index.php/controller/UpdateAdminPassword/'.$row->adm_id.''); ?>">ลืมรหัสผ่าน</a></td>
                         <td class="data"><?php echo $row->adm_role; ?></td>
                         <td id="btnTable">
                             <a id="Edit" onclick="return confirm('แก้ไขข้อมูล');" href='<?php echo base_url('/index.php/controller/Admin_Edit?adm_id='.$row->adm_id.''); ?>'>แก้ไข</a>
@@ -79,25 +75,19 @@
                 foreach($GetAdmin as $edit)?>
                 
                 <form action="Admin_Update" method="POST" autocomplete="off">
-                <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้ภายใน</p>
+                <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้ระบบ</p>
                 <input required type="hidden" name="adm_id" value="<?php echo $edit->adm_id ?>">
                 <span id="inputline"><p class="head hd1">ชื่อ-นามสกุล*<br>
                     <input required type="text" name="adm_name" value="<?php echo $edit->adm_name ?>">
-                    <font color="red">
-                        <?php echo form_error('adm_name'); ?>
-                    </font>
+                   
                 </p>
                 <p class="head hd2">เบอร์โทรศัพท์<br>
                     <input  type="text" name="adm_phone" minlength="10" maxlength="10" value="<?php echo $edit->adm_phone ?>">
-                    <font color="red">
-                        <?php echo form_error('adm_phone'); ?>
-                    </font>
+                   
                 </p>
                 <p class="head hd3">ชื่อผู้ใช้*<br>
                     <input required type="text" name="adm_user" value="<?php echo $edit->adm_user ?>" >
-                    <font color="red">
-                        <?php echo form_error('adm_user'); ?>
-                    </font>
+                   
                 </p>
                 </span>
                 <p id="radio">
@@ -123,18 +113,14 @@
                
                 <span id="inputline"><p class="head hd1">ชื่อ-นามสกุล*<br>
                     <input required type="text" name="adm_name">
-                    <font color="red">
-                        <?php echo form_error('adm_name'); ?>
-                    </font>
+                   
                 </p>
                 <p class="head hd2">เบอร์โทรศัพท์<br>
                     <input  type="text" name="adm_phone" minlength="10" maxlength="10">
-                    <font color="red">
-                        <?php echo form_error('adm_phone'); ?>
-                    </font>
+                   
                 </p>
                 <p class="head hd3" >ชื่อผู้ใช้*<br>
-                    <input required type="text" name="adm_user" >
+                    <input required type="text" name="adm_user" minlength="5">
                     
                 </p>
                 <p class="head hd4" >รหัสผ่าน*<br>
@@ -143,9 +129,7 @@
                 </p>
                 <p class="head hd4">ยืนยันรหัสผ่าน*<br>
                     <input required type="password" minlength="8"  name="adm_pass2">
-                    <font color="red">
-                        <?php echo form_error('adm_pass'); ?>
-                    </font>
+                   
                 </p></span>
                 <p id="radio">
                     <label><input type="radio" name="adm_role" value="เจ้าของกิจการ"> เจ้าของกิจการ</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

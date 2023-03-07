@@ -33,11 +33,10 @@ class m_order extends CI_Model
         $cus_id = $data['cus_id'];
         $order_datetime = $data['order_datetime'];
         $order_total = $data['order_total'];
-        $order_address = $data['order_address'];
-        $order_phone = $data['order_phone'];
+        
 
         $sql = "INSERT INTO tbl_order (order_id, cus_id, order_datetime, order_total, order_address, order_phone,order_type, order_status) 
-            VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', '$order_address', '$order_phone',1,'ยังไม่ชำระเงิน')";
+            VALUES (NULL, '$cus_id', '$order_datetime', '$order_total', null, null,1,'ยังไม่ชำระเงิน')";
 
         $this->db->query($sql);
 
@@ -102,9 +101,9 @@ class m_order extends CI_Model
         $qr = $this->db->query($sql);
         return true;
     }
-    public function getOrderIdByPayId($pay_id) {
-        $sql = "SELECT order_id FROM tbl_payprove WHERE pay_id = '$pay_id'";
-        $qr = $this->db->query($sql, array($pay_id));
+    public function getOrderIdByPayId($order_id) {
+        $sql = "SELECT order_id FROM tbl_payprove WHERE order_id = '$order_id'";
+        $qr = $this->db->query($sql, array($order_id));
         $result = $qr->row();
     
         if ($result) {
@@ -214,12 +213,12 @@ class m_order extends CI_Model
 
         return $qr->result();
     }
-    public function OrderDetail($pay_id)
+    public function OrderDetail($order_id)
     {
-        $pay_id = $pay_id;
+        $order_id = $order_id;
 
         $sql = "select * from tbl_payprove pp,tbl_order o,tbl_orderlist ol,tbl_customer c,tbl_product p
-        where pp.pay_id = '$pay_id' and pp.order_id = o.order_id and pp.order_id = ol.order_id and o.cus_id = c.cus_id and p.pro_id = ol.pro_id; ";
+        where pp.order_id = '$order_id' and pp.order_id = o.order_id and pp.order_id = ol.order_id and o.cus_id = c.cus_id and p.pro_id = ol.pro_id; ";
 
         $qr = $this->db->query($sql);
 

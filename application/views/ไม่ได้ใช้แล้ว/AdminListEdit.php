@@ -19,7 +19,7 @@ foreach ($tbl_admin as $row) {
 <body>
     <container>
         <form action="Admin_Update" method="POST" autocomplete="off">
-            <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้ภายใน</p>
+            <p style="font-size: 28px;margin-left: 38px;margin-top:0.5em;position:absolute;">ฟอร์มแก้ไขข้อมูลผู้ใช้ระบบ</p>
             
             <p class="head hd1">ชื่อ-นามสกุล*<br>
                 <input type="text" name="adm_name" value="<?php echo $row->adm_name ?>">

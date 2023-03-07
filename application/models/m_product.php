@@ -33,7 +33,7 @@ class m_product extends CI_Model
             $qr = $this->db->query($sql);
             $result = $qr->row_array();
         } else {
-            $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id and p.pro_kind !='ยาควบคุมพิเศษ'";
+            $sql = "select * from tbl_product p,tbl_product_type t where p.type_id = t.type_id and p.pro_kind !='ยาควบคุมพิเศษ' and p.pro_status !=0";
             $qr = $this->db->query($sql);
             $result = $qr->result_array();
         }

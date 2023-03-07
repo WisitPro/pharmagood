@@ -116,7 +116,6 @@ class RequestController extends CI_Controller
             $ordItemData = array();
             $i = 0;
             foreach ($cartItems as $item) {
-                $ordItemData[$i]['ol_id'] = "";
                 $ordItemData[$i]['order_id'] = $order_id;
                 $ordItemData[$i]['pro_id'] = $item['id'];
                 $ordItemData[$i]['qty'] = $item['qty'];

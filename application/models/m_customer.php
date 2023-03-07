@@ -16,9 +16,8 @@ class m_customer extends CI_Model
     public function login($data)
     {
         $cus_user = $data['cus_user'];
-        $cus_pass = MD5($data['cus_pass']);
-        $sql = "select * from tbl_customer where cus_user='$cus_user'
-and cus_pass='$cus_pass'";
+        $cus_pass = $data['cus_pass'];
+        $sql = "SELECT * from tbl_customer where cus_user='$cus_user' and cus_pass='$cus_pass'";
         $qr = $this->db->query($sql);
         return $qr->result();
     }
@@ -32,10 +31,10 @@ and cus_pass='$cus_pass'";
         $cus_height = $data['cus_height'];
         $cus_weight = $data['cus_weight'];
         $cus_gender = $data['cus_gender'];
-        $Account = $this->GetUser($cus_user);
+        $Account = $this->GetUser($cus_user,$cus_pass);
         if ($Account == false) {
             $sql = "INSERT INTO tbl_customer VALUES('','$cus_user',
-            MD5('$cus_pass'),'$cus_name','$cus_phone','$cus_age', '$cus_height','$cus_weight','$cus_gender')";
+            '$cus_pass','$cus_name','$cus_phone','$cus_age', '$cus_height','$cus_weight','$cus_gender')";
             $qr = $this->db->query($sql);
             return true;
         } elseif ($Account == true) {
@@ -56,10 +55,10 @@ and cus_pass='$cus_pass'";
     }
     public function GetUser($cus_user)
     {
-        $sql = "select * from tbl_customer where cus_user = '$cus_user' ";
+        $sql = "SELECT * from tbl_customer where cus_user = '$cus_user' ";
         $query = $this->db->query($sql, array($cus_user));
         if ($query->num_rows() <= 0) {
-            $sql2 = "select * from tbl_admin where adm_user = '$cus_user'  ";
+            $sql2 = "SELECT * from tbl_admin where adm_user = '$cus_user'";
             $query2 = $this->db->query($sql2, array($cus_user));
             if ($query2->num_rows() <= 0) {
                 return false;

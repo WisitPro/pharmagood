@@ -65,7 +65,7 @@ if(isset($order)){
                 <div class="dropdown">
                     <button class="dropbtn" disabled>เมนู <i class="fa-solid fa-caret-down"></i></button>
                     <div class="dropdown-content">
-                        <a href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้ภายใน</a>
+                        <a href="<?php echo base_url('/index.php/controller/AdminListPage'); ?>">ข้อมูลผู้ใช้ระบบ</a>
                         <a href="<?php echo base_url('/index.php/ProductController/ProductListPage'); ?>">รายการยาและเวชภัณฑ์</a>
                         <a href="<?php echo base_url('/index.php/RequestController/ListRQ1'); ?>">ข้อมูลคำนัดปรึกษา</a>
                         <a href="<?php echo base_url('/index.php/OrderController/OrderInfo1'); ?>">ข้อมูลการสั่งซื้อ</a>

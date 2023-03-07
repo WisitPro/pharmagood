@@ -16,7 +16,7 @@ class m_delivery extends CI_Model
 
 
 
-        $sql = "insert into tbl_delivery values('$order_id','$delivery_service','$delivery_tracking','$adm_id','$delivery_datetime','จัดส่งแล้ว',null)";
+        $sql = "insert into tbl_delivery values('$order_id','$delivery_service','$delivery_tracking','$adm_id','$delivery_datetime')";
         $qr = $this->db->query($sql);
         return true;
     }

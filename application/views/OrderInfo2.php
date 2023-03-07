@@ -26,7 +26,7 @@
                     <tr id="tr2" style="height: 32px;">
                         <td class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></td>
                         
-                        <td class="data"><a href="OrderDetail/<?php echo $row->pay_id; ?>"><?php echo $row->order_id; ?></a></td>
+                        <td class="data"><a href="OrderDetail/<?php echo $row->order_id; ?>"><?php echo $row->order_id; ?></a></td>
                         <td class="data text-right"><?php echo $row->order_total; ?></td>
                         <td class="data"><?php echo $row->cus_name; ?></td>     
                         <td class="data"><?php echo $fmd; ?> น.</td>

@@ -26,17 +26,18 @@ class m_admin extends CI_Model
     public function login($data)
     {
         $adm_user = $data['adm_user'];
-        $adm_pass = MD5($data['adm_pass']);
-        $sql = "SELECT * from tbl_admin where adm_user='$adm_user' and adm_pass='$adm_pass' and adm_role !=''";
+        $adm_pass = $data['adm_pass'];
+        //$adm_pass = $data['adm_pass'];
+        $sql = "SELECT * from tbl_admin where adm_user='$adm_user' and adm_pass= '$adm_pass' and adm_role !=''";
         $qr = $this->db->query($sql);
         return $qr->result();
     }
     public function GetUser($adm_user)
     {
-       $sql = "select * from tbl_admin where adm_user = '$adm_user' ";
+       $sql = "select * from tbl_admin where adm_user = '$adm_user'";
         $query = $this->db->query($sql, array($adm_user));
         if ($query->num_rows() <= 0) {
-            $sql2 = "select * from tbl_customer where cus_user = '$adm_user'  ";
+            $sql2 = "select * from tbl_customer where cus_user = '$adm_user'";
             $query2 = $this->db->query($sql2, array($adm_user));
             if ($query2->num_rows() <= 0) {
                 return false;
@@ -56,9 +57,9 @@ class m_admin extends CI_Model
         $adm_user = $data['adm_user'];
         $adm_pass = $data['adm_pass'];
         $adm_role = $data['adm_role'];
-        $Admin = $this->GetUser($adm_user);
+        $Admin = $this->GetUser($adm_user,$adm_pass);
         if ($Admin == false) {
-            $sql = "insert into tbl_admin values('','$adm_name','$adm_phone','$adm_user',MD5('$adm_pass'),'$adm_role')";
+            $sql = "insert into tbl_admin values('','$adm_name','$adm_phone','$adm_user','$adm_pass','$adm_role')";
             $qr = $this->db->query($sql);
             return true;
         } else {
@@ -98,7 +99,7 @@ class m_admin extends CI_Model
     $adm_id = $data['adm_id'];
     $adm_pass = $data['adm_pass'];
     
-    $sql = "UPDATE tbl_admin SET adm_pass = MD5('" . $adm_pass . "') WHERE adm_id = '$adm_id'";
+    $sql = "UPDATE tbl_admin SET adm_pass = '$adm_pass ' WHERE adm_id = '$adm_id'";
     $qr = $this->db->query($sql);
     return true;
 }

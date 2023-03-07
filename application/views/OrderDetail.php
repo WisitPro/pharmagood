@@ -34,7 +34,7 @@ foreach ($orderdetail as $row) {
                     <?php if ($row->prove_status != "รอการยืนยัน" && $row->prove_status != "ยกเลิก") { ?>
                         <button id="print" style="position: absolute;cursor:pointer;
                     margin-left:420px;margin-top:-180px;font-size:20px;color:white;width:110px;background-color: #f79a56;border-radius:10px;border:white 2px solid" onclick="window.location='<?php
-                                                                                                                                                                                                echo base_url('index.php/OrderController/Orderbill/' . $row->pay_id . '/' . $row->order_id . ''); ?>'">ใบเสร็จ <i class="fa-solid fa-file-invoice"></i></button>
+                                                                                                                                                                                                echo base_url('index.php/OrderController/Orderbill/' . $row->order_id . '/' . $row->order_id . ''); ?>'">ใบเสร็จ <i class="fa-solid fa-file-invoice"></i></button>
                     <?php } ?>
                 </div>
                 <table>
@@ -67,18 +67,18 @@ foreach ($orderdetail as $row) {
             </div>
         </container>
 
-        <?php if ($row->prove_status == "รอการยืนยัน") { ?>
+        <?php if ($row->order_status == "ชำระเงินแล้ว" ) { ?>
             <div id="button_bar">
-                <a id="Remove" onclick="return confirm('ยกเลิกออเดอร์');" href='<?php echo base_url('index.php/OrderController/DenyOR/' . $row->pay_id . ''); ?>'>
+                <a id="Remove" onclick="return confirm('ยกเลิกออเดอร์');" href='<?php echo base_url('index.php/OrderController/DenyOR/' . $row->order_id . ''); ?>'>
                     <button id="cancelbt">ยกเลิก</button></a>
-                <a onclick="return confirm('ยืนยันออเดอร์');" href='<?php echo base_url('index.php/OrderController/VerifyOR/' . $row->pay_id . ''); ?>'>
+                <a onclick="return confirm('ยืนยันออเดอร์');" href='<?php echo base_url('index.php/OrderController/VerifyOR/' . $row->order_id . ''); ?>'>
                     <button id="verifybt">ยืนยัน</button></a>
             </div>
-        <?php } elseif ($row->prove_status == "ยืนยันแล้ว") { ?>
+        <?php } elseif ($row->order_status == "ยืนยันแล้ว") { ?>
             <div id="button_bar">
 
                 <!-- <a 
-                        href='<?php echo base_url('index.php/OrderController/VerifyOR/' . $row->pay_id . ''); ?>'>
+                        href='<?php echo base_url('index.php/OrderController/VerifyOR/' . $row->order_id . ''); ?>'>
                             <button id="verifybt2">จัดส่งแล้ว</button></a> -->
                 <a id=""><button id="verifybt2">บันทึกการจัดส่ง</button></a>
             </div>
@@ -157,7 +157,7 @@ foreach ($orderdetail as $row) {
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
-        window.location = '<?php echo base_url('/index.php/OrderController/OrderDetail/') . $row->pay_id ?>';
+        window.location = '<?php echo base_url('/index.php/OrderController/OrderDetail/') . $row->order_id ?>';
     }
     // When the user clicks anywhere outside of the modal, close it
 </script>

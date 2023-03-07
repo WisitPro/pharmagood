@@ -15,7 +15,7 @@ class m_payprove extends CI_Model
         $pay_slip = $pay['pay_slip'];
         $pay_datetime = $pay['pay_datetime'];
 
-        $sql = "insert into tbl_payprove values(0,'$order_id',' $pay_bank',' $pay_number ','$pay_slip','$pay_datetime',null,null,'รอการยืนยัน')";
+        $sql = "insert into tbl_payprove values('$order_id',' $pay_bank',' $pay_number ','$pay_slip','$pay_datetime',null,null,'รอการยืนยัน')";
         $this->UpdateOrder($order_id);
         $qr = $this->db->query($sql);
         return true;
@@ -53,7 +53,7 @@ class m_payprove extends CI_Model
     public function OrderCancel()
     {
 
-        $sql = "select p.pay_id,p.order_id,o.order_total,c.cus_name,p.pay_slip,p.pay_datetime,a.adm_name,p.pay_modify,p.prove_status from tbl_payprove p,tbl_admin a,tbl_customer c,tbl_order o where p.order_id = o.order_id 
+        $sql = "select p.order_id,p.order_id,o.order_total,c.cus_name,p.pay_slip,p.pay_datetime,a.adm_name,p.pay_modify,p.prove_status from tbl_payprove p,tbl_admin a,tbl_customer c,tbl_order o where p.order_id = o.order_id 
         and o.cus_id = c.cus_id and p.adm_id = a.adm_id and p.prove_status = 'ยกเลิก';";
 
         $qr = $this->db->query($sql);
@@ -62,11 +62,11 @@ class m_payprove extends CI_Model
     }
     public function verifying($data)
     {
-        $pay_id = $data['pay_id'];
+        $order_id = $data['order_id'];
         $adm_id = $data['adm_id'];
         $pay_modify = $data['pay_modify'];
     
-        $sql = "UPDATE tbl_payprove SET prove_status = 'ยืนยันแล้ว', pay_modify = '$pay_modify', adm_id = '$adm_id' WHERE pay_id = '$pay_id'";
+        $sql = "UPDATE tbl_payprove SET prove_status = 'ยืนยันแล้ว', pay_modify = '$pay_modify', adm_id = '$adm_id' WHERE order_id = '$order_id'";
         $qr = $this->db->query($sql);
         
         if ($qr === false) {

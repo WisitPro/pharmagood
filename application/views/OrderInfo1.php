@@ -26,7 +26,7 @@
                     <tr id="tr2" style="height: 32px;">
                         <td class="co1" style="text-align:center;border-right: 1px solid #b6b6b6;color:#F69A56"><?php echo $item ?></td>
                         
-                        <td class="data" ><a href="OrderDetail/<?php echo $row->pay_id; ?>"><?php echo $row->order_id; ?></a></td>
+                        <td class="data" ><a href="OrderDetail/<?php echo $row->order_id; ?>"><?php echo $row->order_id; ?></a></td>
                         <td class="data text-right"><?php echo $row->order_total; ?></td>
                         <td class="data"><?php echo $row->cus_name; ?></td>
                         
@@ -34,12 +34,12 @@
                         <td class="data st text-center"><strong><?php echo $row->prove_status; ?></strong></td>
                         <td id="btnTable" class="text-center">
                             <!-- <a id="Edit"  onclick="return confirm('รายละเอียด');" 
-                            href='<?php echo base_url('index.php/OrderController/OrderDetail/'.$row->pay_id.'');?>'>ยืนยัน</a> -->
+                            href='<?php echo base_url('index.php/OrderController/OrderDetail/'.$row->order_id.'');?>'>ยืนยัน</a> -->
                             <a id="Edit" 
-                            href='<?php echo base_url('index.php/OrderController/OrderDetail/'.$row->pay_id.'');?>'>รายละเอียด</a>
+                            href='<?php echo base_url('index.php/OrderController/OrderDetail/'.$row->order_id.'');?>'>รายละเอียด</a>
                             <!-- &nbsp;&nbsp;&nbsp;
                             <a id="Remove" onclick="return confirm('ยกเลิกออเดอร์');" 
-                            href='<?php echo base_url('index.php/OrderController/DenyOR/'.$row->pay_id.'');?>'>ยกเลิก</a> -->
+                            href='<?php echo base_url('index.php/OrderController/DenyOR/'.$row->order_id.'');?>'>ยกเลิก</a> -->
                         </td>
                     </tr>
                 <?php $item++;}?>

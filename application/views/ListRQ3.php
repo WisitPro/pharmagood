@@ -64,7 +64,7 @@
                     </span>
                 <p>เบอร์โทรศัพท์<span></span><br>
                     <input id="phone" type="text"  style="width: 120px;"  disabled></input>
-                </p>
+                </p><span style="color: white;font-size: 20px;;" id="gender"></span>
                 <p>อาการเบื้องต้น<span></span><br>
                     <textarea disabled id="sym" style="height: 140px;"></textarea>
                 </p>
@@ -99,6 +99,7 @@
   var sym = document.getElementById("sym");
   var req_time = document.getElementById("req_time");
   var status = document.getElementById("status");
+  var gender = document.getElementById("gender");
 
 
  
@@ -117,6 +118,7 @@
    
     var name = request[key].cus_name;
     var age = request[key].cus_age;
+    var gender = request[key].cus_gender;
     var weight = request[key].cus_weight;
     var height = request[key].cus_height;
     var phone = request[key].cus_phone;
@@ -133,6 +135,8 @@
     document.getElementById("sym").value = sym;
     document.getElementById("req_time").value = req_time;
     document.getElementById("status").innerHTML = status;
+    document.getElementById("gender").innerHTML = "เพศสภาพ : ผู้"+gender;
+
     
       modal.style.display = "block";
     });
@@ -156,7 +160,7 @@
   .modal-content {
     position: absolute;
   width: 560px;
-  height: 570px;
+  height: 600px;
   margin-left: 480px;
   margin-top: 40px;
   display: inline-block;

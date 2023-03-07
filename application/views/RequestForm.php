@@ -63,7 +63,7 @@ foreach ($cus_info as $customer) {
                     </p>
                 <?php } else { ?>
                     <p>อาการเบื้องต้น<span>*</span><br>
-                        <textarea name="req_sym" required minlength="30" maxlength="300">ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว ปวดหัว</textarea>
+                        <textarea name="req_sym" required minlength="20" maxlength="200"></textarea>
                     </p>
                 <?php } ?>
 
@@ -71,7 +71,7 @@ foreach ($cus_info as $customer) {
 
                 <?php
                 date_default_timezone_set("Asia/Bangkok");
-                $currentDateTime = date('Y-m-d H:i');
+                $currentDateTime = date('Y-m-d H:i', strtotime('+20 minutes'));
                 // echo $currentDateTime;
                 ?>
 

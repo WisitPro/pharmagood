@@ -240,9 +240,6 @@ if (isset($print)) {
         </div>
 
         <script>
-           
-
-
             var body = document.getElementById('body');
 
             var subjectDropdown = document.getElementById('Subject');

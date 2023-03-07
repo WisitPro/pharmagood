@@ -56,7 +56,7 @@
       <div id="form2" action="">
                 <h1><img src="<?php echo base_url(); ?>images/image 4.png"> ข้อมูลขอคำปรึกษา</h1> 
                 <i id="x" class="fa-solid fa-circle-xmark fa-2xl" onclick="window.location.href='http://localhost/pharmagood/index.php/RequestController/ListRQ1';"></i>
-                <p style="position: absolute;margin-left:230px;margin-top:28px" >อายุ <span></span>
+                <p style="position: absolute;margin-left:230px;margin-top:28px" >อายุ 
                     <input id="age" type="text" style="width:60px" disabled required></input>
                     ปี </span>       
                 <p>ชื่อ-นามสกุล<span></span><br>
@@ -70,7 +70,7 @@
                     </span>
                 <p>เบอร์โทรศัพท์<span></span><br>
                     <input id="phone" type="text"  style="width: 120px;"  disabled></input>
-                </p>
+                </p><span style="color: white;font-size: 20px;;" id="gender"></span>
                 <p>อาการเบื้องต้น<span></span><br>
                     <textarea disabled id="sym" style="height: 140px;"></textarea>
                 </p>
@@ -85,7 +85,7 @@
         width:100px;height:34px;font-size:20px;margin-left:240px">ยืนยัน</button></a>
         <a onclick="return confirm('ยกเลิกคำขอนัดปรึกษา');" href="<?php echo base_url('/index.php/RequestController/DenyRQ/'); ?>" id="denyBT">
         <button id="denyBTT"  style="background-color:#ff4242;color:white;border:transparent;
-        width:100px;height:34px;font-size:20px;margin-left:20px;margin-top:0px;position: absolute;">ยกเลิก</button></a>
+        width:100px;height:34px;font-size:20px;margin-left:20px;position: absolute;">ยกเลิก</button></a>
    
       
 
@@ -105,6 +105,7 @@
   var sym = document.getElementById("sym");
   var req_time = document.getElementById("req_time");
   var status = document.getElementById("status");
+  var gender = document.getElementById("gender");
 
   var verifyBT = document.getElementById("verifyBT");
   var denyBT = document.getElementById("denyBT");
@@ -124,6 +125,7 @@
    
     var name = request[key].cus_name;
     var age = request[key].cus_age;
+    var gender = request[key].cus_gender;
     var weight = request[key].cus_weight;
     var height = request[key].cus_height;
     var phone = request[key].cus_phone;
@@ -141,6 +143,7 @@
     document.getElementById("sym").value = sym;
     document.getElementById("req_time").value = req_time;
     document.getElementById("status").innerHTML = status;
+    document.getElementById("gender").innerHTML = "เพศสภาพ : ผู้"+gender;
     
       modal.style.display = "block";
     });
@@ -164,7 +167,7 @@
   .modal-content {
     position: absolute;
   width: 560px;
-  height: 570px;
+  height: 600px;
   margin-left: 480px;
   margin-top: 40px;
   display: inline-block;

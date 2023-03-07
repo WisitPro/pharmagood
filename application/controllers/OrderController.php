@@ -57,12 +57,12 @@ class OrderController extends CI_Controller
         $this->load->view('component/OrderInfoMenuBar');
         $this->load->view('OrderInfo4', $data);
     }
-    public function VerifyOR($pay_id)
+    public function VerifyOR($order_id)
     {
         $data = array(
             date_default_timezone_set("Asia/Bangkok"),
             $date = date('Y-m-d H:i:s'),
-            'pay_id' => $pay_id,
+            'order_id' => $order_id,
             'adm_id' => $this->session->userdata('adm_id'),
             'pay_modify' => $date
         );
@@ -76,16 +76,16 @@ class OrderController extends CI_Controller
             echo "</script>";
         } else {
             $this->m_bill->import($data);
-            $order_id = $this->m_order->getOrderIdByPayId($pay_id);
+            $order_id = $this->m_order->getOrderIdByPayId($order_id);
             $this->m_order->verifying($order_id);
             echo "<script>";
             echo "alert(\" ยืนยันสำเร็จ \");";
             echo "</script>";
-            $pay_id = $pay_id;
+            $order_id = $order_id;
             // $data['orderdetail'] = $this->m_order->OrderDetail($pay_id);
             // $this->load->view('navbar_admin/navbar');
             // $this->load->view('OrderDetail', $data);
-            redirect('OrderController/OrderDetail/'.$pay_id);
+            redirect('OrderController/OrderDetail/'.$order_id);
         }
     }
 
@@ -126,10 +126,10 @@ class OrderController extends CI_Controller
     }
 
 
-    public function OrderDetail($pay_id)
+    public function OrderDetail($order_id)
     {
-        $pay_id = $pay_id;
-        $data['orderdetail'] = $this->m_order->OrderDetail($pay_id);
+        $order_id = $order_id;
+        $data['orderdetail'] = $this->m_order->OrderDetail($order_id);
         $this->load->view('navbar_admin/navbar');
         $this->load->view('OrderDetail', $data);
     }
@@ -202,7 +202,6 @@ class OrderController extends CI_Controller
             $ordItemData = array();
             $i = 0;
             foreach ($cartItems as $item) {
-                $ordItemData[$i]['ol_id'] = "";
                 $ordItemData[$i]['order_id'] = $order_id;
                 $ordItemData[$i]['pro_id'] = $item['id'];
                 $ordItemData[$i]['qty'] = $item['qty'];

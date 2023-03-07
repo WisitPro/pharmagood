@@ -17,7 +17,7 @@ class m_request extends CI_Model
         if ($checkTime == true) {
             return null;
         } else {
-            $sql = "INSERT INTO tbl_request VALUES('', '$cus_id', '$req_sym', '$req_time', null, null, null, '$req_status')";
+            $sql = "INSERT INTO tbl_request VALUES('', '$cus_id', '$req_sym', '$req_time', null, null, '$req_status')";
             $qr = $this->db->query($sql);
             if ($qr) {
                 $req_id = $this->db->insert_id();

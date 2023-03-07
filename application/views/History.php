@@ -78,10 +78,9 @@
                         <tr class="trB">
                             <td style="width:10px"></td>
                             <td style="width:340px"><strong><?php echo $order_datetime ?></strong></td>
-                            <td style="width:100px"></td>
-                            <td class="text-center" style="width:72px"></td>
-                            <td class="text-right" style="width:100px"><strong>รวมสุทธิ</strong></td>
-                            <td class="text-right" style="width:120px;color:#F79A56;"><strong><?php echo $orderlists[0]->order_total ?></strong></td>
+                           
+                            <td colspan="2" class="text-right" style="width:100px"><strong>ยอดสั่งซื้อรวม</strong></td>
+                            <td colspan="2" class="text-right" style="width:120px;color:#F79A56;"><strong><?php echo $orderlists[0]->order_total ?> บาท</strong></td>
                         </tr>
                         <tr class="trB">
                             <td style="width:10px"></td>

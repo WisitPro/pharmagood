@@ -78,7 +78,7 @@
                 </select><br><br>
 
                 <p><span style="color:red">* </span>หมายเลขอ้างอิงสลิป :</p>
-                <input type="text" name="pay_number" value="" style="font-size: 18px;"></input><br><br>
+                <input type="text" name="pay_number" value="" maxlength="15" style="font-size: 18px;"></input><br><br>
                 <p><span style="color:red">* </span>สลิปชำระเงิน :</p>
                 <input id="slip" type="file" name="pay_slip" accept="image/png, image/gif, image/jpeg" required />
                 <input type="hidden" name="order_id" readonly value="<?php echo $row->order_id ?>"></input>
